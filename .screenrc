@@ -1,0 +1,28 @@
+# ######################
+# .screenrc
+# VERSION 1.2
+# ######################
+#
+startup_message off
+defscrollback 1000
+vbell off
+activity "%c activity -> %n%f %t"
+crlf off
+defmonitor on
+shell -$SHELL # loads .bash_profile aliases
+termcapinfo xterm ti@:te@ # allow scrolling with xterm
+
+# status line
+caption always "%{yK} $LOGNAME@%H | %w | "
+
+# clear the scroll buffer
+bind / eval "scrollback 0" "scrollback 1000"
+
+# default windows
+screen -t lin
+screen -t code1
+screen -t code2
+screen -t nav
+screen -t manage
+screen -t lib
+screen -t ssh
