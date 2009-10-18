@@ -52,6 +52,7 @@ set formatoptions-=tc					" I can format for myself, thank you very much
 set tabstop=4							" Tab stop of 4
 set shiftwidth=4						" sw 4 spaces (used on auto indent)
 set softtabstop=4						" 4 spaces as a tab for bs/del
+set expandtab
 
 " we don't want to edit these type of files
 set wildignore=*.o,*.obj,*.bak,*.exe,*.pyc,*.swp
