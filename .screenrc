@@ -19,7 +19,6 @@ caption always "%{yK} $LOGNAME@%H | %w | "
 bind / eval "scrollback 0" "scrollback 1000"
 
 # default windows
-screen -t lin
 screen -t code1
 screen -t code2
 screen -t nav

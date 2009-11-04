@@ -89,10 +89,6 @@ au!
 		\   exe "normal g`\"" |
 		\ endif
 
-	" Insert Vim-version as X-Editor in mail headers
-	au FileType mail sil 1  | call search("^$")
-				 \ | sil put! ='X-Editor: Vim-' . Version()
-
 	" kill calltip window if we move cursor or leave insert mode
 	au CursorMovedI * if pumvisible() == 0|pclose|endif
 	au InsertLeave * if pumvisible() == 0|pclose|endif
