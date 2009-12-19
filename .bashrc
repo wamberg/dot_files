@@ -111,3 +111,9 @@ export JAVA_HOME=/usr
 export EC2_HOME=/usr
 export EC2_PRIVATE_KEY=/home/wamberg/.ec2/pk-K3ERZSYZOJQBUA4Z3ZKUZ2W6LGR7A6PE.pem
 export EC2_CERT=/home/wamberg/.ec2/cert-K3ERZSYZOJQBUA4Z3ZKUZ2W6LGR7A6PE.pem
+
+# Go
+export GOROOT=/home/wamberg/dev/go/go
+export GOARCH=386
+export GOOS=linux
+export GOBIN=/usr/local/bin
