@@ -97,6 +97,7 @@ fi
 # some more ls aliases
 alias ack=ack-grep
 alias xclip='xclip -selection c'
+alias rs='rsync -avP'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
