@@ -60,6 +60,14 @@ set wildignore=*.o,*.obj,*.bak,*.exe,*.pyc,*.swp
 """" Coding
 set history=100							" 100 Lines of history
 set showfulltag							" Show more information while completing tags
+
+""" Do our little pathogen dance
+filetype plugin off						" Enable filetype plugins
+filetype plugin indent off				" Let filetype plugins indent for me
+
+""" Load pathogen
+call pathogen#runtime_append_all_bundles()
+
 filetype plugin on						" Enable filetype plugins
 filetype plugin indent on				" Let filetype plugins indent for me
 syntax on								" Turn on syntax highlighting
