@@ -118,3 +118,8 @@ export GOROOT=/home/wamberg/dev/go/go
 export GOARCH=386
 export GOOS=linux
 export GOBIN=/usr/local/bin
+
+# Clojure
+export CLOJURE_EXT=~/.clojure
+PATH=$PATH:~/dev/clojure/clojure-contrib/launchers/bash
+alias clj=clj-env-dir
