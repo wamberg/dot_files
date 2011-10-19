@@ -13,7 +13,7 @@ shell -$SHELL # loads .bash_profile aliases
 termcapinfo xterm ti@:te@ # allow scrolling with xterm
 
 # status line
-caption always "%{yK} $LOGNAME@%H | %w | "
+caption always "%{yK} $USER@%H | %w | "
 
 # clear the scroll buffer
 bind / eval "scrollback 0" "scrollback 1000"
