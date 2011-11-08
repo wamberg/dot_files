@@ -27,7 +27,6 @@ set scrolloff=3							" Keep 3 lines below and above the cursor
 set ruler								" line numbers and column the cursor is on
 set number								" Show line numbering
 set numberwidth=1						" Use 1 col + 1 space for numbers
-colorscheme tango						" Use tango colors
 
 " Ctrl-N twice toggle line numbers
 nnoremap <silent> <C-N><C-N> :set invnumber<CR>
@@ -71,6 +70,7 @@ call pathogen#runtime_append_all_bundles()
 filetype plugin on						" Enable filetype plugins
 filetype plugin indent on				" Let filetype plugins indent for me
 syntax on								" Turn on syntax highlighting
+colorscheme vividchalk					" Use vividchalk colors
 
 " set up tags
 "set tags=./.tags;/
