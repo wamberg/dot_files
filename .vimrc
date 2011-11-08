@@ -66,6 +66,7 @@ filetype plugin indent off				" Let filetype plugins indent for me
 
 """ Load pathogen
 call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
 
 filetype plugin on						" Enable filetype plugins
 filetype plugin indent on				" Let filetype plugins indent for me
@@ -79,7 +80,7 @@ colorscheme vividchalk					" Use vividchalk colors
 
 """"" Folding
 set foldmethod=syntax					" By default, use syntax to determine folds
-set foldlevelstart=0					" All folds open by default
+set foldlevelstart=99					" All folds open by default
 
 """" Command Line
 set wildmenu							" Autocomplete features in the status bar
@@ -105,8 +106,6 @@ au!
 endif
 
 """" Key Mappings
-" bind ;; for omnicompletion
-inoremap ;; <C-x><C-o>
 " bind ctrl+space for command mode
 inoremap <Nul> <esc>
 
@@ -157,5 +156,9 @@ map st oimport pdb; pdb.set_trace()<esc>
 
 """ Convert a file to hex - don't forget 'ga' shows you the hex for a char
 nmap <C-F6> :%!xxd<CR>
+
+""" Command-T mappings
+nnoremap <silent> <Leader>t :CommandT<CR>
+nnoremap <silent> <Leader>b :CommandTBuffer<CR>
 
 endif

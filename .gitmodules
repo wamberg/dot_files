@@ -37,3 +37,6 @@
 [submodule ".vim/bundle/vim-tcomment"]
 	path = .vim/bundle/vim-tcomment
 	url = git://github.com/tsaleh/vim-tcomment.git
+[submodule ".vim/bundle/command-t"]
+	path = .vim/bundle/command-t
+	url = git://github.com/wincent/Command-T.git
