@@ -160,5 +160,7 @@ nmap <C-F6> :%!xxd<CR>
 """ Command-T mappings
 nnoremap <silent> <Leader>t :CommandT<CR>
 nnoremap <silent> <Leader>b :CommandTBuffer<CR>
+let g:CommandTAcceptSelectionMap = '<C-t>'
+let g:CommandTAcceptSelectionTabMap = '<CR>'
 
 endif
