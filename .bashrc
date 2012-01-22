@@ -114,7 +114,9 @@ export GOBIN=/usr/local/bin
 
 # Clojure
 export CLOJURE_EXT=~/.clojure
-PATH=$PATH:~/dev/clojure/clojure-contrib/launchers/bash
 alias clj=clj-env-dir
 
-source ~/.bashrc_local
+# Load local .bashrc
+if [ -f ~/.bashrc_local ]; then
+    . ~/.bashrc_local
+fi
