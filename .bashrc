@@ -106,13 +106,6 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-# AWS
-export AWS_ACCOUNT=528814737533
-export JAVA_HOME=/usr
-export EC2_HOME=/usr
-export EC2_PRIVATE_KEY=/home/wamberg/.ec2/pk-K3ERZSYZOJQBUA4Z3ZKUZ2W6LGR7A6PE.pem
-export EC2_CERT=/home/wamberg/.ec2/cert-K3ERZSYZOJQBUA4Z3ZKUZ2W6LGR7A6PE.pem
-
 # Go
 export GOROOT=/home/wamberg/dev/go/go
 export GOARCH=386
@@ -123,3 +116,5 @@ export GOBIN=/usr/local/bin
 export CLOJURE_EXT=~/.clojure
 PATH=$PATH:~/dev/clojure/clojure-contrib/launchers/bash
 alias clj=clj-env-dir
+
+source ~/.bashrc_local
