@@ -106,9 +106,6 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-# screeninator configuration
-if [[ -s $HOME/.screeninator/scripts/screeninator ]] ; then source $HOME/.screeninator/scripts/screeninator ; fi
-
 # Load local .bashrc
 if [ -f ~/.bashrc_local ]; then
     . ~/.bashrc_local
