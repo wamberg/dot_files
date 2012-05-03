@@ -106,15 +106,8 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-# Go
-export GOROOT=/home/wamberg/dev/go/go
-export GOARCH=386
-export GOOS=linux
-export GOBIN=/usr/local/bin
-
-# Clojure
-export CLOJURE_EXT=~/.clojure
-alias clj=clj-env-dir
+# screeninator configuration
+if [[ -s $HOME/.screeninator/scripts/screeninator ]] ; then source $HOME/.screeninator/scripts/screeninator ; fi
 
 # Load local .bashrc
 if [ -f ~/.bashrc_local ]; then
