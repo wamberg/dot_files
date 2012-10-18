@@ -157,10 +157,12 @@ map st oimport pdb; pdb.set_trace()<esc>
 """ Convert a file to hex - don't forget 'ga' shows you the hex for a char
 nmap <C-F6> :%!xxd<CR>
 
-""" Command-T mappings
-nnoremap <silent> <Leader>t :CommandT<CR>
-nnoremap <silent> <Leader>b :CommandTBuffer<CR>
-let g:CommandTAcceptSelectionMap = '<C-t>'
-let g:CommandTAcceptSelectionTabMap = '<CR>'
+""" CtrlP mappings
+nnoremap <silent> <Leader>t :CtrlP<CR>
+nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
+let g:ctrlp_prompt_mappings = {
+  \ 'AcceptSelection("e")': [],
+  \ 'AcceptSelection("t")': ['<cr>', '<c-m>'],
+  \ }
 
 endif
