@@ -25,3 +25,6 @@
 [submodule ".vim/bundle/flake8"]
 	path = .vim/bundle/flake8
 	url = git://github.com/nvie/vim-flake8.git
+[submodule ".vim/bundle/jade"]
+	path = .vim/bundle/jade
+	url = git://github.com/digitaltoad/vim-jade.git
