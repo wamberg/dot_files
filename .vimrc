@@ -65,8 +65,7 @@ filetype plugin off						" Enable filetype plugins
 filetype plugin indent off				" Let filetype plugins indent for me
 
 """ Load pathogen
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+execute pathogen#infect()
 
 filetype plugin on						" Enable filetype plugins
 filetype plugin indent on				" Let filetype plugins indent for me
