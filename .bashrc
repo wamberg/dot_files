@@ -98,6 +98,9 @@ fi
 alias ack=ack-grep
 alias xclip='xclip -selection c'
 alias rs='rsync -avP'
+alias t='tmux new-session -s'
+alias ta='tmux attach-session -t'
+alias tls='tmux list-sessions'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
