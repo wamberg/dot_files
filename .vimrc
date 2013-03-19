@@ -165,3 +165,9 @@ let g:ctrlp_prompt_mappings = {
   \ }
 
 endif
+
+""" Window navigation shortcuts
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-h> <C-w>h
+map <C-l> <C-w>l
