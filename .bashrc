@@ -24,6 +24,9 @@ export HISTFILE=~/.bash_history_safe
 # Write unsaved history immediately before emitting each prompt
 export PROMPT_COMMAND='history -a'
 
+# keep a cache of pip downloads
+export PIP_DOWNLOAD_CACHE=$HOME/.pip_download_cache
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
