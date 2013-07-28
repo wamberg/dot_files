@@ -70,7 +70,6 @@ execute pathogen#infect()
 filetype plugin on						" Enable filetype plugins
 filetype plugin indent on				" Let filetype plugins indent for me
 syntax on								" Turn on syntax highlighting
-colorscheme vividchalk					" Use vividchalk colors
 
 " set up tags
 "set tags=./.tags;/

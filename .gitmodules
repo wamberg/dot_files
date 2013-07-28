@@ -28,3 +28,6 @@
 [submodule ".vim/bundle/jade"]
 	path = .vim/bundle/jade
 	url = git://github.com/digitaltoad/vim-jade.git
+[submodule ".vim/bundle/markdown"]
+	path = .vim/bundle/markdown
+	url = https://github.com/tpope/vim-markdown.git
