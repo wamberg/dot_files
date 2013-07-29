@@ -28,6 +28,9 @@
 [submodule ".vim/bundle/jade"]
 	path = .vim/bundle/jade
 	url = git://github.com/digitaltoad/vim-jade.git
+[submodule ".vim/bundle/markdown"]
+	path = .vim/bundle/markdown
+	url = https://github.com/tpope/vim-markdown.git
 [submodule ".vim/bundle/python-pep8-indent"]
 	path = .vim/bundle/python-pep8-indent
 	url = https://github.com/hynek/vim-python-pep8-indent.git
