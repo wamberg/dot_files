@@ -107,15 +107,11 @@ endif
 " bind ctrl+space for command mode
 inoremap <Nul> <esc>
 
-" set Ctrl-n and Ctrl-p for next and previous tab
-nnoremap <silent> <C-n> :tabnext<CR>
-nnoremap <silent> <C-p> :tabprevious<CR>
-
 " CTRL-g shows filename and buffer number, too.
 nnoremap <C-g> 2<C-g>
 
 " <C-l> redraws the screen and removes any search highlighting.
-nnoremap <silent> <C-l> :nohl<CR><C-l>
+nnoremap <silent> <Leader>c :noh<CR>
 
 " Q formats paragraphs, instead of entering ex mode
 noremap Q gq
