@@ -101,8 +101,8 @@ fi
 alias ack=ack-grep
 alias xclip='xclip -selection c'
 alias rs='rsync -avP'
-alias t='tmux new-session -s'
-alias ta='tmux attach-session -t'
+alias t='tmux -2 new-session -s'
+alias ta='tmux -2 attach-session -t'
 alias tls='tmux list-sessions'
 alias g='grep -r'
 alias gl='grep -rl'
@@ -117,6 +117,10 @@ fi
 # Load local .bashrc
 if [ -f ~/.bashrc_local ]; then
     . ~/.bashrc_local
+fi
+
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

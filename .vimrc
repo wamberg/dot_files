@@ -21,7 +21,6 @@ if 1
     set hlsearch							" Highlight matches to the search
 
     """" Display
-    set background=dark						" I use dark background
     set lazyredraw							" Don't repaint when scripts are running
     set scrolloff=3							" Keep 3 lines below and above the cursor
     set ruler								" line numbers and column the cursor is on
@@ -70,6 +69,12 @@ if 1
     filetype plugin on						" Enable filetype plugins
     filetype plugin indent on				" Let filetype plugins indent for me
     syntax on								" Turn on syntax highlighting
+    set term=screen-256color-bce
+    let g:solarized_termcolors=256
+    set t_Co=256
+    set background=dark						" I use dark background
+    colorscheme default
+    hi LineNr ctermfg=darkgrey
 
     " set up tags
     "set tags=./.tags;/
@@ -104,13 +109,10 @@ if 1
     endif
 
     """" Key Mappings
-    " bind ctrl+space for command mode
-    inoremap <Nul> <esc>
-
     " CTRL-g shows filename and buffer number, too.
     nnoremap <C-g> 2<C-g>
 
-    " <C-l> redraws the screen and removes any search highlighting.
+    " \+c redraws the screen and removes any search highlighting.
     nnoremap <silent> <Leader>c :noh<CR>
 
     " Q formats paragraphs, instead of entering ex mode
