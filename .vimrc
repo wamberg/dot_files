@@ -148,7 +148,7 @@ if 1
     map <F9> :set invpaste<CR>
 
     """ python debugging set_trace
-    map st oimport pdb; pdb.set_trace()<esc>
+    map st oimport ipdb; ipdb.set_trace()<esc>
 
     """ Convert a file to hex - don't forget 'ga' shows you the hex for a char
     nmap <C-F6> :%!xxd<CR>
@@ -160,6 +160,7 @@ if 1
                 \ 'AcceptSelection("e")': [],
                 \ 'AcceptSelection("t")': ['<cr>', '<c-m>'],
                 \ }
+    let g:ctrlp_custom_ignore = 'node_modules'
 endif
 
 """ Window navigation shortcuts
