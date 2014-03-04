@@ -148,7 +148,7 @@ if 1
     map <F9> :set invpaste<CR>
 
     """ python debugging set_trace
-    map st oimport pdb; pdb.set_trace()<esc>
+    map st oimport ipdb; ipdb.set_trace()<esc>
 
     """ Convert a file to hex - don't forget 'ga' shows you the hex for a char
     nmap <C-F6> :%!xxd<CR>
@@ -167,3 +167,6 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-h> <C-w>h
 map <C-l> <C-w>l
+
+" Editing a protected file as 'sudo'
+cmap W w !sudo tee % >/dev/null<CR>
