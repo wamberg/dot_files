@@ -160,6 +160,7 @@ if 1
                 \ 'AcceptSelection("e")': [],
                 \ 'AcceptSelection("t")': ['<cr>', '<c-m>'],
                 \ }
+    let g:ctrlp_custom_ignore = 'node_modules'
 endif
 
 """ Window navigation shortcuts
