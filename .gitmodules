@@ -10,12 +10,6 @@
 [submodule ".vim/bundle/javascript"]
 	path = .vim/bundle/javascript
 	url = git://github.com/pangloss/vim-javascript.git
-[submodule ".vim/bundle/vividchalk"]
-	path = .vim/bundle/vividchalk
-	url = git://github.com/tpope/vim-vividchalk.git
-[submodule ".vim/bundle/matchit"]
-	path = .vim/bundle/matchit
-	url = git://github.com/tsaleh/vim-matchit.git
 [submodule ".vim/bundle/smartinput"]
 	path = .vim/bundle/smartinput
 	url = git://github.com/kana/vim-smartinput.git
@@ -46,9 +40,6 @@
 [submodule ".vim/bundle/go"]
 	path = .vim/bundle/go
 	url = https://github.com/uggedal/go-vim.git
-[submodule ".vim/bundle/solarized"]
-	path = .vim/bundle/solarized
-	url = git://github.com/altercation/vim-colors-solarized.git
 [submodule ".vim/bundle/jsx"]
 	path = .vim/bundle/jsx
 	url = https://github.com/mxw/vim-jsx.git
