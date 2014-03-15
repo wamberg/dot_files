@@ -168,3 +168,6 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-h> <C-w>h
 map <C-l> <C-w>l
+
+" Editing a protected file as 'sudo'
+cmap W w !sudo tee % >/dev/null<CR>
