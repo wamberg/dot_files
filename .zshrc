@@ -49,6 +49,13 @@ plugins=(django docker git git-flow tmux virtualenv)
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+### User configuration ###
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# customize dircolors
+if [ "$TERM" != "dumb" ]; then
+    [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
+    [ -e "$DIR_COLORS" ] || DIR_COLORS=""
+    eval "`dircolors -b $DIR_COLORS`"
+fi
