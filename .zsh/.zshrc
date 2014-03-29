@@ -59,3 +59,6 @@ if [ "$TERM" != "dumb" ]; then
     [ -e "$DIR_COLORS" ] || DIR_COLORS=""
     eval "`dircolors -b $DIR_COLORS`"
 fi
+
+# aliases
+alias rs="rsync -avP"
