@@ -6,25 +6,23 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/vundle'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
+Plugin 'cohama/vim-smartinput-endwise'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'gmarik/vundle'
+Plugin 'kana/vim-smartinput'
+Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'kien/ctrlp.vim'
 Plugin 'nvie/vim-flake8'
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'digitaltoad/vim-jade'
 Plugin 'pangloss/vim-javascript'
+Plugin 'slim-template/vim-slim'
+Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
-Plugin 'hynek/vim-python-pep8-indent'
-Plugin 'kana/vim-smartinput'
-Plugin 'cohama/vim-smartinput-endwise'
-Plugin 'slim-template/vim-slim'
-
 
 call smartinput_endwise#define_default_rules()
-
 
 " work more logically with wrapped lines
 noremap j gj
@@ -33,12 +31,10 @@ noremap k gk
 """" Searching and Patterns
 set ignorecase							" search is case insensitive
 set smartcase							" search case sensitive if caps on
-" set incsearch							" show best match so far
 set hlsearch							" Highlight matches to the search
 
 """" Display
 set lazyredraw							" Don't repaint when scripts are running
-set scrolloff=3							" Keep 3 lines below and above the cursor
 set ruler								" line numbers and column the cursor is on
 set number								" Show line numbering
 set numberwidth=1						" Use 1 col + 1 space for numbers
@@ -51,15 +47,11 @@ set guitablabel=%N/\ %t\ %M
 
 """" Messages, Info, Status
 set shortmess+=a						" Use [+] [RO] [w] for modified, read-only, modified
-set showcmd								" Display what command is waiting for an operator
-set ruler								" Show pos below the win if there's no status line
-set laststatus=2						" Always show statusline, even if only 1 window
 set report=0							" Notify me whenever any lines have changed
 set confirm								" Y-N-C prompt if closing with unsaved changes
 set vb t_vb=							" Disable visual bell!  I hate that flashing.
 
 """" Editing
-set backspace=2							" Backspace over anything! (Super backspace!)
 set showmatch							" Briefly jump to the previous matching paren
 set matchtime=2							" For .2 seconds
 set formatoptions-=tc					" I can format for myself, thank you very much
@@ -72,7 +64,6 @@ set expandtab
 set wildignore=*.o,*.obj,*.bak,*.exe,*.pyc,*.swp
 
 """" Coding
-set history=100							" 100 Lines of history
 set showfulltag							" Show more information while completing tags
 
 
@@ -81,9 +72,6 @@ filetype plugin indent on				" Let filetype plugins indent for me
 """"" Folding
 set foldmethod=syntax					" By default, use syntax to determine folds
 set foldlevelstart=99					" All folds open by default
-
-"""" Command Line
-set wildmenu							" Autocomplete features in the status bar
 
 """" Autocommands
 if has("autocmd")
