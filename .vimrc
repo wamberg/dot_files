@@ -7,6 +7,7 @@ call vundle#rc()
 
 " let Vundle manage Vundle, required
 Plugin 'airblade/vim-gitgutter'
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
 Plugin 'cohama/vim-smartinput-endwise'
 Plugin 'digitaltoad/vim-jade'
@@ -23,6 +24,11 @@ Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 
 call smartinput_endwise#define_default_rules()
+
+syntax enable
+set background=dark
+let g:solarized_termtrans=1
+colorscheme solarized
 
 " work more logically with wrapped lines
 noremap j gj
