@@ -42,3 +42,11 @@ ${git_info} \
 %{$fg[white]%}[%*]
 %{$terminfo[bold]$fg[red]%}$ %{$reset_color%}"
 fi
+
+# right prompt
+if type "virtualenv_prompt_info" > /dev/null
+then
+	RPROMPT='$(virtualenv_prompt_info)%{$reset_color%}%'
+else
+	RPROMPT=''
+fi
