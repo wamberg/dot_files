@@ -142,8 +142,11 @@ nmap <C-F6> :%!xxd<CR>
 nnoremap <silent> <Leader>t :CtrlP<CR>
 nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
 let g:ctrlp_prompt_mappings = {
-            \ 'AcceptSelection("e")': [],
-            \ 'AcceptSelection("t")': ['<cr>', '<c-m>'],
+            \ 'AcceptSelection("e")': ['<c-e>'],
+            \ 'AcceptSelection("h")': ['<c-h>'],
+            \ 'AcceptSelection("t")': ['<cr>'],
+            \ 'AcceptSelection("v")': ['<c-x>'],
+            \ 'PrtCurEnd()':          ['']
             \ }
 let g:ctrlp_custom_ignore = 'node_modules'
 
