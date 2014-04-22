@@ -14,8 +14,8 @@ source $ZSH/oh-my-zsh.sh
 ### User configuration ###
 
 # GO env vars
-export GOROOT=$HOME/dev/go
-export GOPATH=$HOME/dev/gocode
+export GOROOT=/usr/local/src/go
+export GOPATH=$HOME/dev/projects/go
 # virtualenvwrapper env vars
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/dev/projects
