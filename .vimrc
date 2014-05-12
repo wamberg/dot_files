@@ -6,17 +6,19 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle, required
+Plugin 'gmarik/vundle'
+
 Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
 Plugin 'cohama/vim-smartinput-endwise'
 Plugin 'digitaltoad/vim-jade'
-Plugin 'gmarik/vundle'
 Plugin 'kana/vim-smartinput'
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'kien/ctrlp.vim'
 Plugin 'nvie/vim-flake8'
 Plugin 'pangloss/vim-javascript'
+Plugin 'scrooloose/syntastic'
 Plugin 'slim-template/vim-slim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-markdown'
