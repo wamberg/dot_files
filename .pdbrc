@@ -1,0 +1,2 @@
+alias d pp dir(%1)
+alias loc locals().keys()
