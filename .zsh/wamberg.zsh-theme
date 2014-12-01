@@ -10,6 +10,7 @@ function box_name {
 
 # Directory info.
 local current_dir='${PWD/#$HOME/~}'
+local vi_mode_info='$(vi_mode_prompt_info)'
 
 # Git info.
 local git_info='$(git_prompt_info)'
@@ -27,21 +28,9 @@ PROMPT="
 %{$fg[white]%}at \
 %{$fg[green]%}$(box_name)\
 ${git_info} \
-%{$fg[white]%}[%*]
+%{$fg[white]%}[%*] \
+${vi_mode_info}
 %{$terminfo[bold]$fg[red]%}$ %{$reset_color%}"
-
-if [[ "$(whoami)" == "root" ]]; then
-PROMPT="
-%{$terminfo[bold]$fg[blue]%}#%{$reset_color%} \
-%{$terminfo[bold]$fg[yellow]%}${current_dir}%{$reset_color%} \
-%{$fg[white]%}as \
-%{$bg[yellow]%}%{$fg[cyan]%}%n%{$reset_color%} \
-%{$fg[white]%}at \
-%{$fg[green]%}$(box_name)\
-${git_info} \
-%{$fg[white]%}[%*]
-%{$terminfo[bold]$fg[red]%}$ %{$reset_color%}"
-fi
 
 # right prompt
 if type "virtualenv_prompt_info" > /dev/null
