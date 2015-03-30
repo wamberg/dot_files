@@ -12,14 +12,12 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
 Plugin 'cohama/vim-smartinput-endwise'
-Plugin 'digitaltoad/vim-jade'
 Plugin 'kana/vim-smartinput'
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'kien/ctrlp.vim'
 Plugin 'nvie/vim-flake8'
 Plugin 'pangloss/vim-javascript'
 Plugin 'scrooloose/syntastic'
-Plugin 'slim-template/vim-slim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-sensible'
@@ -80,6 +78,9 @@ filetype plugin indent on				" Let filetype plugins indent for me
 """"" Folding
 set foldmethod=syntax					" By default, use syntax to determine folds
 set foldlevelstart=99					" All folds open by default
+
+set list
+set listchars=tab:>.,trail:.,nbsp:.
 
 """" Autocommands
 if has("autocmd")
