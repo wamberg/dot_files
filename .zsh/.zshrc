@@ -20,7 +20,7 @@ export GOPATH=$HOME/dev/projects/go
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/dev/projects
 
-export PATH=$GOROOT/bin:$GOPATH/bin:/usr/local/bin:$PATH
+export PATH=$GOROOT/bin:$GOPATH/bin:/usr/local/bin:$HOME/.local/bin:$PATH
 
 source /usr/local/bin/virtualenvwrapper.sh
 source /usr/local/bin/activate.sh

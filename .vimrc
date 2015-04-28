@@ -12,8 +12,9 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
 Plugin 'cohama/vim-smartinput-endwise'
-Plugin 'kana/vim-smartinput'
+Plugin 'fisadev/vim-isort'
 Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'kana/vim-smartinput'
 Plugin 'kien/ctrlp.vim'
 Plugin 'nvie/vim-flake8'
 Plugin 'pangloss/vim-javascript'
@@ -137,6 +138,16 @@ map <F9> :set invpaste<CR>
 
 """ python debugging set_trace
 map st oimport ipdb; ipdb.set_trace()<esc>
+
+""" Set a virtualenv if one is activated
+:python << EOF
+import os
+virtualenv = os.environ.get('VIRTUAL_ENV')
+if virtualenv:
+    activate_this = os.path.join(virtualenv, 'bin', 'activate_this.py')
+    if os.path.exists(activate_this):
+        execfile(activate_this, dict(__file__=activate_this))
+EOF
 
 """ Convert a file to hex - don't forget 'ga' shows you the hex for a char
 nmap <C-F6> :%!xxd<CR>
