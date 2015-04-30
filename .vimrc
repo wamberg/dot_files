@@ -139,6 +139,9 @@ map <F9> :set invpaste<CR>
 """ python debugging set_trace
 map st oimport ipdb; ipdb.set_trace()<esc>
 
+""" python quick logging
+map sl oimport logging, sys; logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)<esc>
+
 """ Set a virtualenv if one is activated
 :python << EOF
 import os
