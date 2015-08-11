@@ -2,7 +2,7 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="wamberg"
 CASE_SENSITIVE="true"
 DISABLE_AUTO_TITLE="true"
-plugins=(debian django docker git git-flow tmux virtualenv vi-mode)
+plugins=(debian django docker docker-compose git git-flow tmux virtualenv vi-mode)
 
 ### Plugin configuration ###
 
