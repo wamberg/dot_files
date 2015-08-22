@@ -1,0 +1,59 @@
+# debug
+snippet st
+import ipdb; ipdb.set_trace()
+endsnippet
+
+# logging
+snippet debug_log
+import sys
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(message)s'
+        }
+    },
+    'handlers': {
+        'stream': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'stream': sys.stdout,
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+        '${0:logger}': {
+            'handlers': ['stream'],
+            'level': 'DEBUG',
+            'propagate': True
+        }
+    },
+}
+endsnippet
+
+# glog = get log
+snippet glog
+import logging
+logger = logging.getLogger(${0:__name__})
+endsnippet
+
+snippet le
+logger.error(${0:msg})
+endsnippet
+
+snippet lg
+logger.debug(${0:msg})
+endsnippet
+
+snippet lw
+logger.warning(${0:msg})
+endsnippet
+
+snippet lc
+logger.critical(${0:msg})
+endsnippet
+
+snippet li
+logger.info(${0:msg})
+endsnippet

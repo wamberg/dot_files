@@ -23,6 +23,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
+Plugin 'SirVer/ultisnips'
 
 call smartinput_endwise#define_default_rules()
 
@@ -136,12 +137,6 @@ map <F8> :w!<CR>:!aspell check %<CR>:e! %<CR>
 """ toggle formatting for pasting
 map <F9> :set invpaste<CR>
 
-""" python debugging set_trace
-map st oimport ipdb; ipdb.set_trace()<esc>
-
-""" python quick logging
-map sl oimport logging, sys; logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)<esc>
-
 """ Set a virtualenv if one is activated
 :python << EOF
 import os
@@ -166,6 +161,14 @@ let g:ctrlp_prompt_mappings = {
             \ 'PrtCurEnd()':          ['']
             \ }
 let g:ctrlp_custom_ignore = 'node_modules'
+
+""" Snippet control
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 """ Window navigation shortcuts
 map <C-j> <C-w>j
