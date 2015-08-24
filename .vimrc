@@ -160,7 +160,7 @@ let g:ctrlp_prompt_mappings = {
             \ 'AcceptSelection("v")': ['<c-x>'],
             \ 'PrtCurEnd()':          ['']
             \ }
-let g:ctrlp_custom_ignore = 'node_modules'
+let g:ctrlp_custom_ignore = '\v[\/](node_modules)|(\.(swp|git|png|jpg|gif))$'
 
 """ Snippet control
 let g:UltiSnipsExpandTrigger="<tab>"
