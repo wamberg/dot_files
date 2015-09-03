@@ -11,12 +11,10 @@ Plugin 'gmarik/vundle'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
-Plugin 'cohama/vim-smartinput-endwise'
 Plugin 'fisadev/vim-isort'
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'kana/vim-smartinput'
 Plugin 'kien/ctrlp.vim'
-Plugin 'nvie/vim-flake8'
 Plugin 'pangloss/vim-javascript'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
@@ -24,8 +22,6 @@ Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 Plugin 'SirVer/ultisnips'
-
-call smartinput_endwise#define_default_rules()
 
 syntax enable
 set background=dark
@@ -117,16 +113,6 @@ noremap Q gq
 " * and # search for next/previous of selected text when used in visual mode
 vnoremap * y/<C-R>"<CR>
 vnoremap # y?<C-R>"<CR>
-
-""" Abbreviations
-function! EatChar(pat)
-    let c = nr2char(getchar(0))
-    return (c =~ a:pat) ? '' : c
-endfunc
-
-""" Pylint compiler
-autocmd FileType python compiler pylint
-let g:pylint_onwrite = 0
 
 """ Find lines longer than 80 characters
 nmap <F12> /\%81c<CR>
