@@ -3,10 +3,8 @@ set -e
 PATH="/usr/local/bin:$PATH"
 trap "rm -f .git/tags.$$" EXIT
 if [ -z "$VIRTUAL_ENV" ]; then
-    echo "no Virtualenv"
     ctags -Rf.git/tags.$$ --exclude=.git --exclude=node_modules --languages=-javascript,sql --tag-relative=yes
 else
-    echo "virtualenv: $VIRTUALENV"
     ctags -Rf.git/tags.$$ --exclude=.git --exclude=node_modules --languages=-javascript,sql $VIRTUAL_ENV
     ctags -Rf.git/tags.$$ --exclude=.git --exclude=node_modules --languages=-javascript,sql --tag-relative=yes --append=yes
 fi
