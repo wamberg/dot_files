@@ -156,6 +156,10 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+
+""" Syntastic settings
+let g:syntastic_javascript_checkers = ['eslint']
+
 """ Window navigation shortcuts
 map <C-j> <C-w>j
 map <C-k> <C-w>k
