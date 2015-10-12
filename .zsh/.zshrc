@@ -36,3 +36,4 @@ fi
 alias rs="rsync -avP"
 alias grr="grep -r"
 alias grl="grep -rl"
+alias dm="docker-machine"
