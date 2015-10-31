@@ -10,15 +10,11 @@ plugins=(
     git
     git-flow
     tmux
+    tmuxinator
     vi-mode
     virtualenv
     virtualenvwrapper
 )
-
-### Plugin configuration ###
-
-# autostart tmux
-export ZSH_TMUX_AUTOSTART=true
 
 source $ZSH/oh-my-zsh.sh
 
@@ -27,7 +23,10 @@ source $ZSH/oh-my-zsh.sh
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/dev/projects
 
+# common exports
 export PATH=$HOME/.local/bin:$PATH
+export EDITOR=vim
+export SHELL=zsh
 
 # customize dircolors
 if [ "$TERM" != "dumb" ]; then
@@ -40,6 +39,10 @@ fi
 alias rs="rsync -avP"
 alias grr="grep -r"
 alias grl="grep -rl"
+# docker base commands
 alias d="docker"
 alias dm="docker-machine"
 alias dc="docker-compose"
+# docker custom commands
+alias dcp="docker-compose -f production.yml"
+alias dps="d ps --format='{{.Label \"com.docker.compose.project\"}}\t{{.Label \"com.docker.compose.service\"}}\t{{.Ports}}' | sort"
