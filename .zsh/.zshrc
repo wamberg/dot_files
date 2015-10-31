@@ -2,7 +2,18 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="wamberg"
 CASE_SENSITIVE="true"
 DISABLE_AUTO_TITLE="true"
-plugins=(debian django docker docker-compose git git-flow tmux virtualenv vi-mode)
+plugins=(
+    debian
+    django
+    docker
+    docker-compose
+    git
+    git-flow
+    tmux
+    vi-mode
+    virtualenv
+    virtualenvwrapper
+)
 
 ### Plugin configuration ###
 
@@ -21,9 +32,6 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/dev/projects
 
 export PATH=$GOROOT/bin:$GOPATH/bin:/usr/local/bin:$HOME/.local/bin:$PATH
-
-source /usr/local/bin/virtualenvwrapper.sh
-source /usr/local/bin/activate.sh
 
 # customize dircolors
 if [ "$TERM" != "dumb" ]; then
