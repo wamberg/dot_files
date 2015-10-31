@@ -23,15 +23,11 @@ export ZSH_TMUX_AUTOSTART=true
 source $ZSH/oh-my-zsh.sh
 
 ### User configuration ###
-
-# GO env vars
-export GOROOT=/usr/local/src/go
-export GOPATH=$HOME/dev/projects/go
 # virtualenvwrapper env vars
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/dev/projects
 
-export PATH=$GOROOT/bin:$GOPATH/bin:/usr/local/bin:$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 
 # customize dircolors
 if [ "$TERM" != "dumb" ]; then
