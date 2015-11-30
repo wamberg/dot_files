@@ -130,6 +130,7 @@ nmap <C-F6> :%!xxd<CR>
 """ CtrlP mappings
 nnoremap <silent> <Leader>t :CtrlP<CR>
 nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
+nnoremap <silent> <Leader>x :CtrlPTag<CR>
 let g:ctrlp_prompt_mappings = {
             \ 'AcceptSelection("e")': ['<c-e>'],
             \ 'AcceptSelection("h")': ['<c-h>'],
@@ -168,11 +169,6 @@ let g:UltiSnipsEditSplit="vertical"
 """ Syntastic settings
 let g:syntastic_javascript_checkers = ['eslint']
 
-""" Window navigation shortcuts
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-h> <C-w>h
-map <C-l> <C-w>l
 """ Natural splits
 set splitbelow
 set splitright
