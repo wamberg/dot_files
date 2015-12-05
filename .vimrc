@@ -138,7 +138,7 @@ let g:ctrlp_prompt_mappings = {
             \ 'AcceptSelection("v")': ['<c-x>'],
             \ 'PrtCurEnd()':          ['']
             \ }
-let g:ctrlp_custom_ignore = '\v[\/](node_modules)|(\.(swp|git|png|jpg|gif))$'
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 " Use ag over grep
 if executable('/usr/bin/ag')
