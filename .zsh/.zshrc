@@ -38,7 +38,7 @@ fi
 # aliases
 alias rs="rsync -avP"
 alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
-# docker
+# docker base commands
 alias d="docker"
 alias dc="docker-compose"
 alias dm="docker-machine"
