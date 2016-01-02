@@ -37,8 +37,7 @@ fi
 
 # aliases
 alias rs="rsync -avP"
-alias grr="grep -r"
-alias grl="grep -rl"
+alias vgst="vim -p `git status --porcelain | awk '{print $2}' | tr '\n' ' '`"
 # docker base commands
 alias d="docker"
 alias dc="docker-compose"
