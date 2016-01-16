@@ -39,6 +39,7 @@ fi
 alias rs="rsync -avP"
 alias grr="grep -r"
 alias grl="grep -rl"
+alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
 # docker base commands
 alias d="docker"
 alias dm="docker-machine"
