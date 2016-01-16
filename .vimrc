@@ -8,9 +8,11 @@ call vundle#rc()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/vundle'
 
+Plugin 'SirVer/ultisnips'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
+Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'fisadev/vim-isort'
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'kana/vim-smartinput'
@@ -21,12 +23,9 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
-Plugin 'SirVer/ultisnips'
 
 syntax enable
-set background=dark
-let g:solarized_termtrans=1
-colorscheme solarized
+set t_Co=16
 
 " work more logically with wrapped lines
 noremap j gj
