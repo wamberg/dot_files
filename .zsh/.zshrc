@@ -37,8 +37,8 @@ fi
 
 # aliases
 alias rs="rsync -avP"
-alias grr="grep -r"
-alias grl="grep -rl"
+alias grr="/usr/bin/ag -r --hidden"
+alias grl="/usr/bin/ag -rl --hidden"
 alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
 # docker base commands
 alias d="docker"
