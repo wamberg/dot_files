@@ -45,5 +45,5 @@ alias d="docker"
 alias dm="docker-machine"
 alias dc="docker-compose"
 # docker custom commands
-alias dcp="docker-compose -f production.yml"
+alias dcn="docker-compose --x-networking"
 alias dps="d ps --format='{{.Label \"com.docker.compose.project\"}}\t{{.Label \"com.docker.compose.service\"}}\t{{.Ports}}' | sort"
