@@ -25,7 +25,7 @@ Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 
 syntax enable
-set t_Co=16
+set t_Co=16  " Play nicely with terminal's theme
 
 " work more logically with wrapped lines
 noremap j gj
@@ -68,8 +68,6 @@ set wildignore=*.o,*.obj,*.bak,*.exe,*.pyc,*.swp
 
 """" Coding
 set showfulltag							" Show more information while completing tags
-
-
 filetype plugin indent on				" Let filetype plugins indent for me
 
 """"" Folding
@@ -83,9 +81,6 @@ set listchars=tab:>.,trail:.,nbsp:.
 if has("autocmd")
     augroup vimrcEx
         au!
-        " In plain-text files and svn commit buffers, wrap automatically at 78 chars
-        au FileType text,svn setlocal tw=78 fo+=t
-
         " In all files, try to jump back to the last spot cursor was in before exiting
         au BufReadPost *
                     \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -112,9 +107,6 @@ noremap Q gq
 " * and # search for next/previous of selected text when used in visual mode
 vnoremap * y/<C-R>"<CR>
 vnoremap # y?<C-R>"<CR>
-
-""" Find lines longer than 80 characters
-nmap <F12> /\%81c<CR>
 
 """ Check spelling
 map <F8> :w!<CR>:!aspell check %<CR>:e! %<CR>
@@ -147,6 +139,24 @@ let g:ctrlp_prompt_mappings = {
             \ }
 let g:ctrlp_custom_ignore = '\v[\/](node_modules)|(\.(swp|git|png|jpg|gif))$'
 
+" Use ag over grep
+if executable('/usr/bin/ag')
+  set grepprg=/usr/bin/ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = '/usr/bin/ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" bind \ (backward slash) to grep shortcut
+command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+nnoremap <Leader>a :Ag<SPACE>
+
 """ Snippet control
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -154,7 +164,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-
 
 """ Syntastic settings
 let g:syntastic_javascript_checkers = ['eslint']
