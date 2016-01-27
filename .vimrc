@@ -71,7 +71,7 @@ set showfulltag							" Show more information while completing tags
 filetype plugin indent on				" Let filetype plugins indent for me
 
 """"" Folding
-set foldmethod=syntax					" By default, use syntax to determine folds
+set foldmethod=indent					" By default, use indent to determine folds
 set foldlevelstart=99					" All folds open by default
 
 set list
