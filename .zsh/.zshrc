@@ -2,7 +2,7 @@ export ZSH=$HOME/.oh-my-zsh
 export ZSH_THEME="wamberg"
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_TITLE="true"
-export plugins=(
+plugins=(
     django
     docker
     docker-compose
@@ -14,6 +14,7 @@ export plugins=(
     virtualenv
     virtualenvwrapper
 )
+export plugins
 
 ### Plugin configuration ###
 source $ZSH/oh-my-zsh.sh
