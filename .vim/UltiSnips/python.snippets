@@ -35,25 +35,25 @@ endsnippet
 # glog = get log
 snippet glog
 import logging
-logger = logging.getLogger(${0:__name__})
+LOGGER = logging.getLogger(${0:__name__})
 endsnippet
 
 snippet le
-logger.error(${0:msg})
+LOGGER.error(${0:msg})
 endsnippet
 
 snippet lg
-logger.debug(${0:msg})
+LOGGER.debug(${0:msg})
 endsnippet
 
 snippet lw
-logger.warning(${0:msg})
+LOGGER.warning(${0:msg})
 endsnippet
 
 snippet lc
-logger.critical(${0:msg})
+LOGGER.critical(${0:msg})
 endsnippet
 
 snippet li
-logger.info(${0:msg})
+LOGGER.info(${0:msg})
 endsnippet

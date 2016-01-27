@@ -3,19 +3,19 @@ export ZSH_THEME="wamberg"
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_TITLE="true"
 export plugins=(
-    debian
     django
     docker
     docker-compose
     git
     git-flow
+    jira
     tmux
-    tmuxinator
     vi-mode
     virtualenv
     virtualenvwrapper
 )
 
+### Plugin configuration ###
 source $ZSH/oh-my-zsh.sh
 
 ### User configuration ###
@@ -37,13 +37,11 @@ fi
 
 # aliases
 alias rs="rsync -avP"
-alias grr="/usr/bin/ag -r --hidden"
-alias grl="/usr/bin/ag -rl --hidden"
 alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
 # docker base commands
 alias d="docker"
-alias dm="docker-machine"
 alias dc="docker-compose"
+alias dm="docker-machine"
 # docker custom commands
 alias dcn="docker-compose --x-networking"
 alias dps="d ps --format='{{.Label \"com.docker.compose.project\"}}\t{{.Label \"com.docker.compose.service\"}}\t{{.Ports}}' | sort"

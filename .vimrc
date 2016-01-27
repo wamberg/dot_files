@@ -71,7 +71,7 @@ set showfulltag							" Show more information while completing tags
 filetype plugin indent on				" Let filetype plugins indent for me
 
 """"" Folding
-set foldmethod=syntax					" By default, use syntax to determine folds
+set foldmethod=indent					" By default, use indent to determine folds
 set foldlevelstart=99					" All folds open by default
 
 set list
@@ -130,6 +130,7 @@ nmap <C-F6> :%!xxd<CR>
 """ CtrlP mappings
 nnoremap <silent> <Leader>t :CtrlP<CR>
 nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
+nnoremap <silent> <Leader>x :CtrlPTag<CR>
 let g:ctrlp_prompt_mappings = {
             \ 'AcceptSelection("e")': ['<c-e>'],
             \ 'AcceptSelection("h")': ['<c-h>'],
@@ -137,7 +138,7 @@ let g:ctrlp_prompt_mappings = {
             \ 'AcceptSelection("v")': ['<c-x>'],
             \ 'PrtCurEnd()':          ['']
             \ }
-let g:ctrlp_custom_ignore = '\v[\/](node_modules)|(\.(swp|git|png|jpg|gif))$'
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 " Use ag over grep
 if executable('/usr/bin/ag')
@@ -168,11 +169,6 @@ let g:UltiSnipsEditSplit="vertical"
 """ Syntastic settings
 let g:syntastic_javascript_checkers = ['eslint']
 
-""" Window navigation shortcuts
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-h> <C-w>h
-map <C-l> <C-w>l
 """ Natural splits
 set splitbelow
 set splitright
