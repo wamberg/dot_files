@@ -26,6 +26,7 @@ Plugin 'tpope/vim-surround'
 
 syntax enable
 set t_Co=16  " Play nicely with terminal's theme
+colorscheme solarized
 
 " work more logically with wrapped lines
 noremap j gj
