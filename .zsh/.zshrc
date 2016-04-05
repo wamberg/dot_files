@@ -45,5 +45,5 @@ alias dc="docker-compose"
 alias dm="docker-machine"
 # docker custom commands
 alias dcs="docker-compose -f staging.yml"
-alias drmd="docker images --quiet --filter=dangling=true | xargs --no-run-if-empty docker rmi"  # remove dangling images
+alias drmd="docker images --quiet --filter=dangling=true | xargs docker rmi"  # remove dangling images
 alias dps="d ps --format='{{.Label \"com.docker.compose.project\"}}\t{{.Label \"com.docker.compose.service\"}}\t{{.Ports}}' | sort"
