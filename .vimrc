@@ -10,7 +10,6 @@ Plugin 'gmarik/vundle'
 
 Plugin 'SirVer/ultisnips'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'fisadev/vim-isort'
@@ -26,7 +25,6 @@ Plugin 'tpope/vim-surround'
 
 syntax enable
 set t_Co=16  " Play nicely with terminal's theme
-colorscheme solarized
 
 " work more logically with wrapped lines
 noremap j gj
