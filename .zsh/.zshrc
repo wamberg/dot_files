@@ -40,6 +40,7 @@ fi
 # aliases
 alias rs="rsync -avP"
 alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
+alias vimw="vim -u ~/.vimrc-writing"
 # docker base commands
 alias d="docker"
 alias dc="docker-compose"
