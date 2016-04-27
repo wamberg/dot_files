@@ -8,6 +8,7 @@ plugins=(
     docker-compose
     git
     git-flow
+    gpg-agent
     jira
     tmux
     vi-mode

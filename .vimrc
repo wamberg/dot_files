@@ -24,7 +24,7 @@ Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 
 syntax enable
-set t_Co=16  " Play nicely with terminal's theme
+set t_Co=256  " Play nicely with terminal's theme
 
 " work more logically with wrapped lines
 noremap j gj
@@ -113,7 +113,7 @@ map <F8> :w!<CR>:!aspell check %<CR>:e! %<CR>
 """ toggle formatting for pasting
 map <F9> :set invpaste<CR>
 
-""" Set a virtualenv if one is activated
+""" Set a virtualenv if one is activated only works for py2
 :python << EOF
 import os
 virtualenv = os.environ.get('VIRTUAL_ENV')
@@ -151,7 +151,7 @@ endif
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
-" bind \ (backward slash) to grep shortcut
+" bind \ (backward slash) + a to grep shortcut
 command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap <Leader>a :Ag<SPACE>
 
