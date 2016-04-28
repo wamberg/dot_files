@@ -3,7 +3,6 @@ export ZSH_THEME="wamberg"
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_TITLE="true"
 plugins=(
-    django
     docker
     docker-compose
     git
@@ -47,4 +46,3 @@ alias dm="docker-machine"
 # docker custom commands
 alias dcs="docker-compose -f staging.yml"
 alias drmd="docker images --quiet --filter=dangling=true | xargs docker rmi"  # remove dangling images
-alias dps="d ps --format='{{.Label \"com.docker.compose.project\"}}\t{{.Label \"com.docker.compose.service\"}}\t{{.Ports}}' | sort"
