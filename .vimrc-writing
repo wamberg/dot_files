@@ -10,6 +10,7 @@ Plugin 'gmarik/vundle'
 
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Bundle 'Rykka/riv.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
