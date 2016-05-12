@@ -131,12 +131,19 @@ nnoremap <silent> <Leader>t :CtrlP<CR>
 nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
 nnoremap <silent> <Leader>x :CtrlPTag<CR>
 let g:ctrlp_prompt_mappings = {
-            \ 'AcceptSelection("e")': ['<c-e>'],
+            \ 'AcceptSelection("e")': ['<cr>'],
             \ 'AcceptSelection("h")': ['<c-h>'],
-            \ 'AcceptSelection("t")': ['<cr>'],
+            \ 'AcceptSelection("t")': ['<c-t>'],
             \ 'AcceptSelection("v")': ['<c-x>'],
             \ 'PrtCurEnd()':          ['']
             \ }
+
+""" Buffer navigation
+map <Leader>a :bprev<Return>
+map <Leader>s :bnext<Return>
+map <Leader>d :bd<Return>
+
+
 " Use ag over grep
 if executable('/usr/bin/ag') || executable('/usr/local/bin/ag')
   set grepprg=ag\ --nogroup\ --nocolor\ --hidden
@@ -153,7 +160,7 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " bind \ (backward slash) + a to grep shortcut
 command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-nnoremap <Leader>a :Ag<SPACE>
+nnoremap <Leader>f :Ag<SPACE>
 
 """ Snippet control
 let g:UltiSnipsExpandTrigger="<tab>"
