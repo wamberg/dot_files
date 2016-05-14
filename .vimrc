@@ -133,7 +133,7 @@ nnoremap <silent> <Leader>x :CtrlPTag<CR>
 let g:ctrlp_prompt_mappings = {
             \ 'AcceptSelection("e")': ['<cr>'],
             \ 'AcceptSelection("h")': ['<c-h>'],
-            \ 'AcceptSelection("t")': ['<c-t>'],
+            \ 'AcceptSelection("t")': ['<c-b>'],
             \ 'AcceptSelection("v")': ['<c-x>'],
             \ 'PrtCurEnd()':          ['']
             \ }
