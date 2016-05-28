@@ -113,8 +113,8 @@ map <F8> :w!<CR>:!aspell check %<CR>:e! %<CR>
 """ toggle formatting for pasting
 map <F9> :set invpaste<CR>
 
-""" Set a virtualenv if one is activated only works for py2
-:python << EOF
+""" Set a virtualenv if one is activated: Tested on Linux
+:python3 << EOF
 import os
 virtualenv = os.environ.get('VIRTUAL_ENV')
 if virtualenv:
