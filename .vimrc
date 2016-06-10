@@ -27,7 +27,6 @@ Plugin 'tpope/vim-surround'
 
 
 syntax enable
-set t_Co=256  " Play nicely with terminal's theme
 
 " work more logically with wrapped lines
 noremap j gj
@@ -169,6 +168,7 @@ nnoremap <Leader>f :Ag<SPACE>
 
 """ Snippet control
 let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsListSnippets="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 

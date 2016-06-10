@@ -25,16 +25,10 @@ export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 export PATH=$HOME/.local/bin:$PATH
 export EDITOR=vim
 export SHELL=zsh
+export TERM=screen-256color
 
 ### Plugin configuration ###
 source $ZSH/oh-my-zsh.sh
-
-# customize dircolors
-if [ "$TERM" != "dumb" ]; then
-    [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
-    [ -e "$DIR_COLORS" ] || DIR_COLORS=""
-    eval "`dircolors -b $DIR_COLORS`"
-fi
 
 # aliases
 alias rs="rsync -avP"
