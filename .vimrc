@@ -8,6 +8,7 @@ call vundle#rc()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/vundle'
 
+Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'SirVer/ultisnips'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
@@ -22,6 +23,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
+
 
 syntax enable
 set t_Co=256  " Play nicely with terminal's theme
