@@ -8,12 +8,15 @@ call vundle#rc()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/vundle'
 
+Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'SirVer/ultisnips'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'fisadev/vim-isort'
+Plugin 'honza/vim-snippets'
 Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'isRuslan/vim-es6'
 Plugin 'kana/vim-smartinput'
 Plugin 'kien/ctrlp.vim'
 Plugin 'pangloss/vim-javascript'
@@ -23,8 +26,8 @@ Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 
+
 syntax enable
-set t_Co=256  " Play nicely with terminal's theme
 
 " work more logically with wrapped lines
 noremap j gj
@@ -166,6 +169,7 @@ nnoremap <Leader>f :Ag<SPACE>
 
 """ Snippet control
 let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsListSnippets="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
