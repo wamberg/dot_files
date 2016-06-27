@@ -19,6 +19,7 @@ Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'isRuslan/vim-es6'
 Plugin 'kana/vim-smartinput'
 Plugin 'kien/ctrlp.vim'
+Plugin 'mxw/vim-jsx'
 Plugin 'pangloss/vim-javascript'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
@@ -182,3 +183,6 @@ let g:syntastic_javascript_checkers = ['eslint']
 """ Natural splits
 set splitbelow
 set splitright
+
+""" mxw/vim-jsx settings
+let g:jsx_ext_required = 0
