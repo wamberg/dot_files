@@ -16,7 +16,6 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'fisadev/vim-isort'
 Plugin 'hynek/vim-python-pep8-indent'
-Plugin 'isRuslan/vim-es6'
 Plugin 'kana/vim-smartinput'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mxw/vim-jsx'
@@ -179,6 +178,9 @@ let g:UltiSnipsEditSplit="vertical"
 
 """ Syntastic settings
 let g:syntastic_javascript_checkers = ['eslint']
+
+""" vim-javascript
+let g:javascript_plugin_jsdoc = 1
 
 """ Natural splits
 set splitbelow
