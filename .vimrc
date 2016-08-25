@@ -11,7 +11,7 @@ Plugin 'gmarik/vundle'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'SirVer/ultisnips'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'fisadev/vim-isort'
@@ -174,8 +174,20 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+""" vim-airline settings
+set encoding=utf-8
+set laststatus=2
+let g:airline#extensions#tabline#enabled = 1
+
+
 """ Syntastic settings
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+
 let g:syntastic_javascript_checkers = ['eslint']
+if executable('node_modules/.bin/eslint')
+  let b:syntastic_javascript_eslint_exec = 'node_modules/.bin/eslint'
+endif
 
 """ vim-javascript
 let g:javascript_plugin_jsdoc = 1
