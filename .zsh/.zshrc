@@ -3,6 +3,7 @@ export ZSH_THEME="wamberg"
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_TITLE="true"
 plugins=(
+    colored-man-pages
     docker
     docker-compose
     git
