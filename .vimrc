@@ -12,6 +12,7 @@ Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'SirVer/ultisnips'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'fisadev/vim-isort'
@@ -178,6 +179,7 @@ let g:UltiSnipsEditSplit="vertical"
 set encoding=utf-8
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='molokai'
 
 
 """ Syntastic settings
