@@ -9,7 +9,6 @@ plugins=(
     git
     git-flow
     jira
-    tmux
     vi-mode
     virtualenv
     virtualenvwrapper
