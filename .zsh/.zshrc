@@ -5,7 +5,6 @@ export DISABLE_AUTO_TITLE="true"
 plugins=(
     colored-man-pages
     docker
-    docker-compose
     git
     git-flow
     jira
