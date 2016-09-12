@@ -3,12 +3,12 @@ export ZSH_THEME="wamberg"
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_TITLE="true"
 plugins=(
+    vi-mode
     colored-man-pages
     docker
     git
     git-flow
     jira
-    vi-mode
     virtualenv
     virtualenvwrapper
 )
