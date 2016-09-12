@@ -43,4 +43,6 @@ alias dc="docker-compose"
 alias dm="docker-machine"
 # docker custom commands
 alias dcs="docker-compose -f staging.yml"
+alias dcp="docker-compose -f production.yml"
+alias dcd="docker-compose -f docs.yml"
 alias drmd="docker images --quiet --filter=dangling=true | xargs docker rmi"  # remove dangling images
