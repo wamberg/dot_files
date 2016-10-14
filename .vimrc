@@ -36,6 +36,7 @@ noremap k gk
 set ignorecase							" search is case insensitive
 set smartcase							" search case sensitive if caps on
 set hlsearch							" Highlight matches to the search
+set incsearch							" Show matches while typing
 
 """" Display
 set lazyredraw							" Don't repaint when scripts are running
