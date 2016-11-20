@@ -3,3 +3,4 @@
 *.egg
 *.pyc
 .agignore
+_vimrc_local.vim
