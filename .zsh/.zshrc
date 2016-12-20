@@ -26,6 +26,9 @@ export EDITOR=vim
 export SHELL=zsh
 export TERM=screen-256color
 
+# no history for commands that begin with space
+setopt histignorespace
+
 ### Plugin configuration ###
 source $ZSH/oh-my-zsh.sh
 
