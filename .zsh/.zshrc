@@ -21,7 +21,7 @@ export PROJECT_HOME=$HOME/dev/projects
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 
 # common exports
-export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 export EDITOR=vim
 export SHELL=zsh
 export TERM=screen-256color
