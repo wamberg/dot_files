@@ -183,6 +183,8 @@ let g:UltiSnipsEditSplit="vertical"
 set encoding=utf-8
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#branch#enabled = 0
+let g:airline#extensions#hunks#enabled = 0
 let g:airline_theme='molokai'
 
 
