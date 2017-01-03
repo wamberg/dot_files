@@ -8,7 +8,6 @@ plugins=(
     docker
     git
     git-flow
-    jira
     ssh-agent
     virtualenv
     virtualenvwrapper
