@@ -15,7 +15,6 @@ Plugin 'SirVer/ultisnips'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'fisadev/vim-isort'
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'kana/vim-smartinput'
 Plugin 'kien/ctrlp.vim'
@@ -129,6 +128,9 @@ if virtualenv:
             code = compile(f.read(), activate_this, 'exec')
             exec(code, {'__file__': activate_this})
 EOF
+
+""" isort shortcut
+command! -range=% Isort :<line1>,<line2>! isort -
 
 """ Convert a file to hex - don't forget 'ga' shows you the hex for a char
 nmap <C-F6> :%!xxd<CR>
