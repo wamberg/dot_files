@@ -40,6 +40,7 @@ alias vimw="vim -u ~/.vimrc-writing"
 alias xp="xclip -selection clipboard -o"
 alias xc="xclip -selection clipboard"
 alias xr="xclip -selection clipboard -o | zsh"
+alias tpl="tmuxp load"
 # docker base commands
 alias d="docker"
 alias dc="docker-compose"
