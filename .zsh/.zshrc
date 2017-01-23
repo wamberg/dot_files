@@ -8,6 +8,7 @@ plugins=(
     docker
     git
     git-flow
+    nvm
     ssh-agent
     virtualenv
     virtualenvwrapper
