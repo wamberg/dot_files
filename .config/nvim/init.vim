@@ -2,11 +2,13 @@
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'SirVer/ultisnips'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 """ Display
