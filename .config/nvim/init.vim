@@ -73,6 +73,9 @@ let g:UltiSnipsEditSplit="vertical"
 
 """ Preferences
 
+" two spaces over tabs
+set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab
+
 " Use ag over grep
 if executable('/usr/bin/ag') || executable('/usr/local/bin/ag')
   set grepprg=ag\ --nogroup\ --nocolor\ --hidden
