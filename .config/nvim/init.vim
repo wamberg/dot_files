@@ -10,6 +10,7 @@ Plug 'hynek/vim-python-pep8-indent'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 call plug#end()
 
 """ Display
