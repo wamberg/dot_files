@@ -8,6 +8,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'mxw/vim-jsx'
+Plug 'neomake/neomake'
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -97,3 +98,20 @@ autocmd BufReadPost *
 	\ if line("'\"") > 1 && line("'\"") <= line("$") |
 	\   exe "normal! g`\"" |
 	\ endif
+
+
+""" Plugin preferences
+
+"" Neomake
+" Lint on write
+autocmd! BufWritePost * Neomake
+
+" Change warning and error signs in gutter
+let g:neomake_warning_sign = {
+  \ 'text': 'W',
+  \ 'texthl': 'WarningMsg',
+  \ }
+let g:neomake_error_sign = {
+  \ 'text': 'E',
+  \ 'texthl': 'ErrorMsg',
+  \ }
