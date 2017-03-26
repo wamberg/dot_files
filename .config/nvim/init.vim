@@ -100,6 +100,10 @@ autocmd BufReadPost *
 	\   exe "normal! g`\"" |
 	\ endif
 
+" run local rc files
+set exrc
+set secure
+
 
 """ Plugin preferences
 

@@ -1,0 +1,3 @@
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_javascript_eslint_exe = './frontend/node_modules/eslint/bin/eslint.js'
+let g:neomake_javascript_eslint_args = ['-f', 'compact', '--no-eslintrc', '--config', './frontend/.eslintrc']
