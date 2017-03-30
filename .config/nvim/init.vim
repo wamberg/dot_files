@@ -109,7 +109,7 @@ set secure
 
 "" Neomake
 " Lint on write
-autocmd! BufWritePost * Neomake
+autocmd! BufReadPost,BufWritePost * Neomake
 
 " Change warning and error signs in gutter
 let g:neomake_warning_sign = {
