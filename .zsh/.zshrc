@@ -3,12 +3,13 @@ export ZSH_THEME="steeef"
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_TITLE="true"
 plugins=(
-    vi-mode
     colored-man-pages
     docker
     git
     git-flow
+    nvm
     ssh-agent
+    vi-mode
     virtualenv
     virtualenvwrapper
 )
