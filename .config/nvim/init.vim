@@ -104,6 +104,9 @@ autocmd BufReadPost *
 set exrc
 set secure
 
+" Specify python3 for plugins
+let g:python3_host_prog = $HOME.'/.local/share/nvim/venv/bin/python3.6'
+
 
 """ Plugin preferences
 
