@@ -29,7 +29,7 @@ noremap j gj
 noremap k gk
 
 " Check spelling
-map <F8> :w!<CR>:!aspell check %<CR>:e! %<CR>
+set spell spelllang=en_us
 
 " Ctrl-N twice toggle line numbers
 nnoremap <silent> <C-N><C-N> :set invnumber<CR>
