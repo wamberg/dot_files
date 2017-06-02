@@ -45,6 +45,9 @@ alias tpl="tmuxp load"
 alias d="docker"
 alias dc="docker-compose"
 alias dm="docker-machine"
+# kubernetes base commands
+alias k="kubectl"
+alias kn="kubectl --namespace=$K8S_NAMESPACE"
 # docker custom commands
 alias dcs="docker-compose -f staging.yml"
 alias dcp="docker-compose -f production.yml"
