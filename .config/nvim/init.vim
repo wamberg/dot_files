@@ -30,6 +30,8 @@ noremap k gk
 
 " Check spelling
 set spell spelllang=en_us
+map <F8> :set spell!<CR>
+set nospell
 
 " Ctrl-N twice toggle line numbers
 nnoremap <silent> <C-N><C-N> :set invnumber<CR>
