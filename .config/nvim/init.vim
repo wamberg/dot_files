@@ -1,5 +1,6 @@
 """ Plugins
 call plug#begin('~/.local/share/nvim/plugged')
+Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja' }
 Plug 'Rykka/riv.vim', { 'for': 'rst' }
 Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-gitgutter'
