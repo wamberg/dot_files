@@ -9,6 +9,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'fisadev/vim-isort', { 'for': 'python' }
 Plug 'hynek/vim-python-pep8-indent'
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'mxw/vim-jsx'
 Plug 'neomake/neomake'
 Plug 'pangloss/vim-javascript'
