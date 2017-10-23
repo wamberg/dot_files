@@ -7,6 +7,7 @@ plugins=(
     docker
     git
     git-flow
+    jira
     nvm
     ssh-agent
     vi-mode
