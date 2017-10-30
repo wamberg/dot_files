@@ -11,10 +11,10 @@ Plug 'fisadev/vim-isort', { 'for': 'python' }
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'mxw/vim-jsx'
-Plug 'neomake/neomake'
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'w0rp/ale'
 call plug#end()
 
 """ Display
@@ -113,17 +113,3 @@ let g:python3_host_prog = $HOME.'/.local/share/nvim/venv/bin/python3.6'
 
 
 """ Plugin preferences
-
-"" Neomake
-" Lint on write
-autocmd! BufReadPost,BufWritePost * Neomake
-
-" Change warning and error signs in gutter
-let g:neomake_warning_sign = {
-  \ 'text': 'W',
-  \ 'texthl': 'WarningMsg',
-  \ }
-let g:neomake_error_sign = {
-  \ 'text': 'E',
-  \ 'texthl': 'ErrorMsg',
-  \ }
