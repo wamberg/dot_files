@@ -1,5 +1,5 @@
 export ZSH=$HOME/.oh-my-zsh
-export ZSH_THEME="steeef"
+export ZSH_THEME="wamberg"
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_TITLE="true"
 plugins=(
@@ -8,24 +8,17 @@ plugins=(
     git
     git-flow
     jira
-    nvm
     ssh-agent
     vi-mode
-    virtualenv
-    virtualenvwrapper
 )
 export plugins
 
 ### User configuration ###
-# virtualenvwrapper env vars
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/dev/projects
-export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 
 # common exports
 export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
-export EDITOR=vim
-export SHELL=zsh
+export EDITOR=$(which nvim)
+export SHELL=$(which zsh)
 export TERM=screen-256color
 
 # no history for commands that begin with space
