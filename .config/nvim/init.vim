@@ -9,6 +9,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'fisadev/vim-isort', { 'for': 'python' }
+Plug 'godlygeek/tabular'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
