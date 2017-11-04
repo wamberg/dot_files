@@ -114,3 +114,6 @@ let g:python3_host_prog = $HOME.'/.local/share/nvim/venv/bin/python3.6'
 
 
 """ Plugin preferences
+
+" ALE
+let g:ale_lint_on_text_changed = 'never'
