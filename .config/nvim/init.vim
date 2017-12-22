@@ -7,13 +7,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'fisadev/vim-isort', { 'for': 'python' }
 Plug 'godlygeek/tabular'
-Plug 'hynek/vim-python-pep8-indent'
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
-Plug 'mxw/vim-jsx'
-Plug 'pangloss/vim-javascript'
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 call plug#end()
@@ -104,10 +99,6 @@ autocmd BufReadPost *
 	\ if line("'\"") > 1 && line("'\"") <= line("$") |
 	\   exe "normal! g`\"" |
 	\ endif
-
-" run local rc files
-set exrc
-set secure
 
 " Specify python3 for plugins
 let g:python3_host_prog = $HOME.'/.local/share/nvim/venv/bin/python3.6'
