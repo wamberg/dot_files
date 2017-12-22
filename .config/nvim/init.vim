@@ -13,6 +13,7 @@ Plug 'hynek/vim-python-pep8-indent'
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
