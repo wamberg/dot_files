@@ -9,6 +9,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
 Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 call plug#end()
@@ -74,7 +75,15 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+" vim-dispatch
+noremap <C-s> :Start!<CR>
+noremap <C-d> :Dispatch<CR>
+
 """ Preferences
+
+" run local rc files
+set exrc
+set secure
 
 " two spaces over tabs
 set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab
