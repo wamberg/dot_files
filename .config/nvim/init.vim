@@ -44,7 +44,7 @@ map <F9> :set invpaste<CR>
 " CtrlP mappings
 nnoremap <silent> <Leader>t :CtrlP<CR>
 nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
-nnoremap <silent> <Leader>x :CtrlPTag<CR>
+nnoremap <silent> <Leader>g :CtrlPTag<CR>
 let g:ctrlp_prompt_mappings = {
             \ 'AcceptSelection("e")': ['<cr>'],
             \ 'AcceptSelection("h")': ['<c-h>'],
@@ -56,7 +56,7 @@ let g:ctrlp_prompt_mappings = {
 " Buffer navigation
 map <Leader>a :bprev<Return>
 map <Leader>s :bnext<Return>
-map <Leader>d :bd%<Return> " delete current buffer
+map <Leader>x :bd%<Return> " delete current buffer (close)
 map gn :bn<cr> " <number> + 'gn' goes to buffer number
 
 " bind K to grep word under cursor
@@ -76,8 +76,9 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 
 " vim-dispatch
-noremap <C-s> :Start!<CR>
-noremap <C-d> :Dispatch<CR>
+noremap <Leader>ds :Start!<CR>
+noremap <Leader>dd :Dispatch<CR>
+noremap <Leader>dc :cclose<CR>
 
 """ Preferences
 
