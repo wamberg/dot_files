@@ -35,6 +35,7 @@ alias xp="xclip -selection clipboard -o"
 alias xc="xclip -selection clipboard"
 alias xr="xclip -selection clipboard -o | zsh"
 alias tpl="tmuxp load"
+alias gcbb='git checkout -b $(pbpaste) origin/$(pbpaste)' # OSX only
 # docker base commands
 alias d="docker"
 alias dc="docker-compose"
