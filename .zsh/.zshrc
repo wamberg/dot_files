@@ -42,7 +42,7 @@ alias dc="docker-compose"
 alias dm="docker-machine"
 # kubernetes base commands
 alias k="kubectl"
-alias kn="kubectl --namespace=$K8S_NAMESPACE"
+alias kn="kubectl --namespace=$(echo $K8S_NAMESPACE)"
 # docker custom commands
 alias dcd="docker-compose -f docs.yml"
 alias dcp="docker-compose -f production.yml"
