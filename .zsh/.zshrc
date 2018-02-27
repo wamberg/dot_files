@@ -36,15 +36,20 @@ alias xc="xclip -selection clipboard"
 alias xr="xclip -selection clipboard -o | zsh"
 alias tpl="tmuxp load"
 alias gcbb='git checkout -b $(pbpaste) origin/$(pbpaste)' # OSX only
-# docker base commands
+# docker
 alias d="docker"
 alias dc="docker-compose"
 alias dm="docker-machine"
-# kubernetes base commands
-alias k="kubectl"
-alias kn="kubectl --namespace=$(echo $K8S_NAMESPACE)"
-# docker custom commands
 alias dcd="docker-compose -f docs.yml"
 alias dcp="docker-compose -f production.yml"
 alias dcr="docker-compose run --rm"
 alias dcs="docker-compose -f staging.yml"
+# kubernetes
+alias k="kubectl"
+kn() {
+  kubectl --namespace=$K8S_NAMESPACE $@
+}
+# terraform
+alias tf="terraform"
+alias tfp="terraform plan"
+alias tfa="terraform apply"
