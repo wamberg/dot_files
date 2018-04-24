@@ -7,7 +7,7 @@ plugins=(
     docker
     git
     git-flow
-    jira
+    golang
     ssh-agent
     vi-mode
 )
@@ -16,7 +16,12 @@ export plugins
 ### User configuration ###
 
 # common exports
-export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
+export GOPATH=$HOME/dev/projects/go
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$HOME/.local/bin:$PATH
+export PATH=/usr/local/bin:$PATH
+export PATH=$GOPATH/bin:$PATH
+export PATH=$GOROOT/bin:$PATH
 export EDITOR=$(which nvim)
 export SHELL=$(which zsh)
 export TERM=screen-256color
