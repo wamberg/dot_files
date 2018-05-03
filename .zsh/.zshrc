@@ -1,5 +1,5 @@
 export ZSH=$HOME/.oh-my-zsh
-export ZSH_THEME="wamberg"
+export ZSH_THEME="steeef"
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_TITLE="true"
 plugins=(
@@ -41,6 +41,16 @@ alias xc="xclip -selection clipboard"
 alias xr="xclip -selection clipboard -o | zsh"
 alias tpl="tmuxp load"
 alias gcbb='git checkout -b $(pbpaste) origin/$(pbpaste)' # OSX only
+# git
+gmd () {
+  # usage: gcm && gmd feature/x
+  git merge --no-ff $@
+  git branch -D $@
+  read -p "Delete the remote branch? [y|n]" yn
+  if [ $yn == 'y' ]; then
+    git push --delete origin $@
+  fi
+}
 # docker
 alias d="docker"
 alias dc="docker-compose"
