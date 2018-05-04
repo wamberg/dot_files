@@ -46,7 +46,8 @@ gmd () {
   # usage: gcm && gmd feature/x
   git merge --no-ff $@
   git branch -D $@
-  read -p "Delete the remote branch? [y|n]" yn
+  echo "Delete the remote branch? [y|n]: "
+  read yn
   if [ $yn == 'y' ]; then
     git push --delete origin $@
   fi
