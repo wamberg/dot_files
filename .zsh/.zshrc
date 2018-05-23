@@ -33,14 +33,15 @@ setopt histignorespace
 source $ZSH/oh-my-zsh.sh
 
 # aliases
-alias rs="rsync -avP"
-alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
-alias vimw="vim -u ~/.vimrc-writing"
-alias xp="xclip -selection clipboard -o"
-alias xc="xclip -selection clipboard"
-alias xr="xclip -selection clipboard -o | zsh"
-alias tpl="tmuxp load"
 alias gcbb='git checkout -b $(pbpaste) origin/$(pbpaste)' # OSX only
+alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
+alias rs="rsync -avP"
+alias t="task"
+alias tpl="tmuxp load"
+alias vimw="vim -u ~/.vimrc-writing"
+alias xc="xclip -selection clipboard"
+alias xp="xclip -selection clipboard -o"
+alias xr="xclip -selection clipboard -o | zsh"
 # git
 gmd () {
   # usage: gcm && gmd feature/x
