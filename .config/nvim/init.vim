@@ -110,7 +110,7 @@ autocmd BufReadPost *
 	\ endif
 
 " Specify python3 for plugins
-let g:python3_host_prog = $HOME.'/.local/share/nvim/venv/bin/python3.6'
+let g:python3_host_prog = $HOME.'/.local/share/nvim/venv/bin/python3.7'
 
 
 """ Plugin preferences
