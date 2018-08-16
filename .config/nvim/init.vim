@@ -8,7 +8,6 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
-Plug 'jez/vim-colors-solarized'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
@@ -113,7 +112,4 @@ let g:python3_host_prog = $HOME.'/.local/share/nvim/venv/bin/python3.7'
 
 
 """ Plugin preferences
-set background=light
-colorscheme solarized
-
 let g:javascript_plugin_flow = 1
