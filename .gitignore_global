@@ -1,6 +1,8 @@
-*.swp
 *.cache
 *.egg
 *.pyc
+*.swp
 .agignore
 .exrc
+.python-version
+.vscode/
