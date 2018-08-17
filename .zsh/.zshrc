@@ -10,6 +10,7 @@ plugins=(
     golang
     ssh-agent
     vi-mode
+    zsh-nvm
 )
 export plugins
 
