@@ -23,6 +23,8 @@ export PATH=/usr/local/bin:$PATH
 export PATH=$GOPATH/bin:$PATH
 export PATH=$GOROOT/bin:$PATH
 export EDITOR=$(which nvim)
+export LANG='en_US.UTF-8'
+export LC_ALL='en_US.UTF-8'
 export SHELL=$(which zsh)
 export TERM=screen-256color
 
@@ -31,6 +33,7 @@ setopt histignorespace
 
 ### Plugin configuration ###
 source $ZSH/oh-my-zsh.sh
+eval "$(pyenv init -)"
 
 # aliases
 alias gcbb='git checkout -b $(pbpaste) origin/$(pbpaste)' # OSX only
