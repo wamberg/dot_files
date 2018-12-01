@@ -27,6 +27,12 @@ set smartcase
 noremap j gj
 noremap k gk
 
+"" Move viewport
+" scroll up
+noremap <silent> <C-U> <C-Y>
+" scroll down
+noremap <silent> <C-D> <C-E>
+
 " Check spelling
 set spell spelllang=en_us
 map <F8> :set spell!<CR>
@@ -108,7 +114,7 @@ autocmd BufReadPost *
 	\ endif
 
 " Specify python3 for plugins
-let g:python3_host_prog = $HOME.'/.local/share/nvim/venv/bin/python3.7'
+let g:python3_host_prog = $HOME.'/.pyenv/shims/python'
 
 
 """ Plugin preferences
