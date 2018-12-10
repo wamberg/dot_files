@@ -1,11 +1,8 @@
 #!/bin/sh
 set -e
-PATH="/usr/local/bin:$PATH"
-trap "rm -f .git/tags.$$" EXIT
-if [ -z "$VIRTUAL_ENV" ]; then
-    ctags -Rf.git/tags.$$ --exclude=.git --exclude=node_modules --languages=-javascript,sql --tag-relative=yes
-else
-    ctags -Rf.git/tags.$$ --exclude=.git --exclude=node_modules --languages=-javascript,sql $VIRTUAL_ENV
-    ctags -Rf.git/tags.$$ --exclude=.git --exclude=node_modules --languages=-javascript,sql --tag-relative=yes --append=yes
-fi
-mv .git/tags.$$ .git/tags
+PATH="~/.local/bin:$PATH"
+dir="`git rev-parse --git-dir`"
+trap 'rm -f "$dir/$$.tags"' EXIT
+git ls-files | \
+  ctags --tag-relative -L - -f"$dir/$$.tags" --languages=-javascript,sql
+mv "$dir/$$.tags" "$dir/tags"
