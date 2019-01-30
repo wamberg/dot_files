@@ -46,6 +46,7 @@ alias vimw="vim -u ~/.vimrc-writing"
 alias xc="xclip -selection clipboard"
 alias xp="xclip -selection clipboard -o"
 alias xr="xclip -selection clipboard -o | zsh"
+alias dcli="docker run --rm -it -v $(pwd):/home/wamberg/src -v ${HOME}/.ssh:/home/wamberg/.ssh wamberg/cli:latest zsh"
 # git
 gmd () {
   # usage: gcm && gmd feature/x
