@@ -57,17 +57,6 @@ dcli () {
   docker attach "${CONTAINER_NAME}"
 }
 
-# git
-gmd () {
-  # usage: gcm && gmd feature/x
-  git merge --no-ff $@
-  git branch -D $@
-  echo "Delete the remote branch? [y|n]: "
-  read yn
-  if [ $yn == 'y' ]; then
-    git push --delete origin $@
-  fi
-}
 # docker
 alias d="docker"
 alias dc="docker-compose"
