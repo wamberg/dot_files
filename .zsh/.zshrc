@@ -54,6 +54,7 @@ dcli () {
     --mount="type=bind,src=$(pwd),target=/home/wamberg/src" \
     --mount="type=bind,src=${HOME}/.ssh,target=/home/wamberg/.ssh" \
     wamberg/cli:latest
+  docker attach "${CONTAINER_NAME}"
 }
 
 # git
