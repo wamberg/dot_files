@@ -70,15 +70,16 @@ RUN pip install --user neovim tmuxp
 
 # setup dev configuration
 RUN git clone --depth 1 git://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
+RUN curl -sfLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 RUN git clone --depth 1 git://github.com/wamberg/dot_files.git \
   && mv dot_files/.zsh/.zshrc ./ \
   && mv dot_files/.config ./ \
   && mv dot_files/.tmux.conf ./ \
   && mv dot_files/.gitignore_global ./ \
   && rm -rf dot_files \
-  && curl -sfLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim \
   && nvim --headless +'PlugInstall' +qall \
-  && git config --global core.excludesfile ~/.gitignore_global
+  && git config --global core.excludesfile ~/.gitignore_global \
+  && mkdir src
 
 CMD ["zsh"]
