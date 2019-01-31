@@ -48,9 +48,11 @@ alias xp="xclip -selection clipboard -o"
 alias xr="xclip -selection clipboard -o | zsh"
 
 dcli () {
-  docker run --rm -it --user 999 \
-    --mount type=bind,src=$(pwd),target=/home/wamberg/src \
-    --mount type=bind,src=$HOME/.ssh,target=/home/wamberg/.ssh \
+  CONTAINER_NAME='cli_'$(basename "$(pwd)")
+  docker run --rm -it -d \
+    --name="${CONTAINER_NAME}" --hostname="${CONTAINER_NAME}" \
+    --mount="type=bind,src=$(pwd),target=/home/wamberg/src" \
+    --mount="type=bind,src=${HOME}/.ssh,target=/home/wamberg/.ssh" \
     wamberg/cli:latest
 }
 

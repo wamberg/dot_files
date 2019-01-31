@@ -76,6 +76,7 @@ RUN git clone --depth 1 git://github.com/wamberg/dot_files.git \
   && mv dot_files/.zsh/.zshrc ./ \
   && mv dot_files/.config ./ \
   && mv dot_files/.tmux.conf ./ \
+  && mv dot_files/.tmuxp ./ \
   && mv dot_files/.gitignore_global ./ \
   && rm -rf dot_files \
   && nvim --headless +'PlugInstall' +qall \
