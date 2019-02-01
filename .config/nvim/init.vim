@@ -1,15 +1,14 @@
 """ Plugins
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja' }
-Plug 'gu-fan/riv.vim', { 'for': 'rst' }
 Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-gitgutter'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
+Plug 'gu-fan/riv.vim', { 'for': 'rst' }
 Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 call plug#end()
@@ -81,11 +80,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
-" vim-dispatch
-noremap <Leader>ds :Start!<CR>
-noremap <Leader>dd :Dispatch<CR>
-noremap <Leader>dc :cclose<CR>
-
 """ Preferences
 
 " run local rc files
@@ -115,7 +109,3 @@ autocmd BufReadPost *
 
 " Specify python3 for plugins
 let g:python3_host_prog = $HOME.'/.pyenv/shims/python'
-
-
-""" Plugin preferences
-let g:javascript_plugin_flow = 1

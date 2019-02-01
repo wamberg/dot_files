@@ -40,7 +40,6 @@ eval "$(pyenv init -)"
 alias gcbb='git checkout -b $(pbpaste) origin/$(pbpaste)' # OSX only
 alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
 alias rs="rsync -avP"
-alias t="task"
 alias tpl="tmuxp load"
 alias vimw="vim -u ~/.vimrc-writing"
 alias xc="xclip -selection clipboard"
