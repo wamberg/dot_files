@@ -3,11 +3,9 @@ export ZSH_THEME="steeef"
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_TITLE="true"
 plugins=(
-    colored-man-pages
     docker
     git
     git-flow
-    golang
     ssh-agent
     vi-mode
     zsh-nvm
