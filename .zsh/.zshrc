@@ -15,12 +15,8 @@ export plugins
 ### User configuration ###
 
 # common exports
-export GOPATH=$HOME/dev/projects/go
-export GOROOT=/usr/local/opt/go/libexec
 export PATH=$HOME/.local/bin:$PATH
 export PATH=/usr/local/bin:$PATH
-export PATH=$GOPATH/bin:$PATH
-export PATH=$GOROOT/bin:$PATH
 export EDITOR=$(which nvim)
 export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
