@@ -19,6 +19,7 @@ set numberwidth=1
 set showcmd
 set ignorecase
 set smartcase
+set foldmethod=indent
 
 """ Key Mappings
 

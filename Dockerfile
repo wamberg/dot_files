@@ -52,8 +52,7 @@ ENV HOME /home/wamberg
 RUN groupdel users \
   && groupadd -r wamberg \
   && useradd \
-    --create-home --home-dir $HOME \
-    --system -g wamberg \
+    --create-home --home-dir $HOME -g wamberg \
     --shell /bin/zsh \
     wamberg
 USER wamberg
@@ -68,7 +67,10 @@ RUN pyenv global 3.7.2
 RUN pyenv rehash
 
 # setup dev dependencies
-RUN pip install --user neovim tmuxp
+RUN pip install --user \
+  neovim \
+  pre-commit \
+  tmuxp
 RUN git clone --depth 1 git://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
 RUN git clone --depth 1 https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
 RUN git clone --depth 1 git://github.com/wamberg/dot_files.git \
