@@ -1,0 +1,37 @@
+### ES2015 ###
+snippet imp
+import $1 from '$2';
+endsnippet
+
+snippet =>
+($1) => $2
+endsnippet
+
+snippet c=>
+const $1 = ($2) => {
+  $3
+};
+endsnippet
+
+snippet c=
+const $1 = $2;
+endsnippet
+
+snippet l=
+let $1 = $2;
+endsnippet
+
+snippet it
+it("$1", () => {
+  // arrange
+  $2
+  // act
+  // assert
+});
+endsnippet
+
+
+### until Node support ES2015 modules ###
+snippet c=r
+const $1 = require('$2');
+endsnippet
