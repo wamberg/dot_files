@@ -31,7 +31,7 @@ source $ZSH/oh-my-zsh.sh
 eval "$(pyenv init -)"
 
 # aliases
-alias gcbb='git checkout -b $(pbpaste) origin/$(pbpaste)' # OSX only
+alias gbdm="git branch --merged | egrep -v \"(^\*|master)\" | xargs git branch -d"
 alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
 alias rs="rsync -avP"
 alias tpl="tmuxp load"

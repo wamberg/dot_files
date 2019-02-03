@@ -68,9 +68,13 @@ RUN pyenv rehash
 
 # setup dev dependencies
 RUN pip install --user \
+  black \
+  flake8 \
+  isort \
   neovim \
   pre-commit \
-  tmuxp
+  tmuxp \
+  tox
 RUN git clone --depth 1 git://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
 RUN git clone --depth 1 https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
 RUN git clone --depth 1 git://github.com/wamberg/dot_files.git \
@@ -79,7 +83,9 @@ RUN git clone --depth 1 git://github.com/wamberg/dot_files.git \
   && mv dot_files/.tmux.conf ./ \
   && mv dot_files/.tmuxp ./ \
   && mv dot_files/.gitignore_global ./ \
-  && rm -rf dot_files
+  && rm -rf dot_files \
+  && git config --global user.email "wamberg@accelerate.delivery" \
+  && git config --global user.name "Bill Amberg"
 
 # setup nvm
 RUN /bin/zsh -c "source ~/.zshrc && nvm install lts/dubnium"
