@@ -21,6 +21,7 @@ RUN echo "deb $DEBIAN_URL testing main contrib non-free" >> /etc/apt/sources.lis
     libtool-bin \
     locales \
     lua5.3 \
+    netcat \
     openssl \
     pkg-config \
     silversearcher-ag \

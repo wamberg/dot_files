@@ -15,13 +15,13 @@ export plugins
 ### User configuration ###
 
 # common exports
-export PATH=$HOME/.local/bin:$PATH
-export PATH=/usr/local/bin:$PATH
 export EDITOR=$(which nvim)
 export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
 export SHELL=$(which zsh)
 export TERM=screen-256color
+export PYENV_ROOT=$HOME/.pyenv
+export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$HOME/.local/bin:/usr/local/bin:${PATH}"
 
 # no history for commands that begin with space
 setopt histignorespace
