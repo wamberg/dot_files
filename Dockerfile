@@ -12,6 +12,7 @@ RUN echo "deb $DEBIAN_URL testing main contrib non-free" >> /etc/apt/sources.lis
     g++ \
     gettext \
     git \
+    libbz2-dev \
     libffi-dev \
     libreadline-dev \
     libsqlite3-dev \
