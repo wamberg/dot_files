@@ -86,6 +86,7 @@ RUN pyenv rehash
 
 # setup dev dependencies
 RUN pip install --user \
+  awscli \
   black \
   flake8 \
   isort \
