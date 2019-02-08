@@ -34,6 +34,7 @@ RUN echo "deb $DEBIAN_URL testing main contrib non-free" >> /etc/apt/sources.lis
     silversearcher-ag \
     sqlite3 \
     tmux \
+    tree \
     unzip \
     xclip \
     xfonts-utils \
