@@ -63,6 +63,7 @@ let g:ctrlp_prompt_mappings = {
 map <Leader>a :bprev<Return>
 map <Leader>s :bnext<Return>
 map <Leader>x :bd%<Return> " delete current buffer (close)
+map <Leader>q :%bd\|e#<Return> " delete all other buffers
 map gn :bn<cr> " <number> + 'gn' goes to buffer number
 
 " bind K to grep word under cursor
