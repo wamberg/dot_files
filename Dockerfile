@@ -90,7 +90,9 @@ RUN pyenv rehash
 RUN pip install --user \
   awscli \
   black \
+  bumpversion \
   flake8 \
+  ipython \
   isort \
   neovim \
   pre-commit \
