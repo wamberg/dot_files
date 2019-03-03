@@ -102,6 +102,7 @@ RUN git clone --depth 1 git://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
 RUN git clone --depth 1 https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
 RUN git clone --depth 1 git://github.com/wamberg/dot_files.git \
   && mv dot_files/.zsh/.zshrc ./ \
+  && mv dot_files/.zsh/wamberg.zsh-theme ./.oh-my-zsh/themes/ \
   && mv dot_files/.config ./ \
   && mv dot_files/.tmux.conf ./ \
   && mv dot_files/.tmuxp ./ \
