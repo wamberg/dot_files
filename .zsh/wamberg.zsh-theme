@@ -1,16 +1,16 @@
 # prompt style and colors based on Steve Losh's Prose theme:
-# http://github.com/sjl/oh-my-zsh/blob/master/themes/prose.zsh-theme
+# https://github.com/sjl/oh-my-zsh/blob/master/themes/prose.zsh-theme
 #
 # vcs_info modifications from Bart Trojanowski's zsh prompt:
 # http://www.jukie.net/bart/blog/pimping-out-zsh-prompt
 #
 # git untracked files modification from Brian Carper:
-# http://briancarper.net/blog/570/git-info-in-your-zsh-prompt
+# https://briancarper.net/blog/570/git-info-in-your-zsh-prompt
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 function virtualenv_info {
-    [ $VIRTUAL_ENV ] && echo '('%F{blue}venv%f') '
+    [ $VIRTUAL_ENV ] && echo '('%F{blue}`basename $VIRTUAL_ENV`%f') '
 }
 PR_GIT_UPDATE=1
 
@@ -62,8 +62,11 @@ zstyle ':vcs_info:*:prompt:*' nvcsformats   ""
 
 
 function steeef_preexec {
-    case "$(history $HISTCMD)" in
+    case "$2" in
         *git*)
+            PR_GIT_UPDATE=1
+            ;;
+        *hub*)
             PR_GIT_UPDATE=1
             ;;
         *svn*)
@@ -83,7 +86,7 @@ function steeef_precmd {
         # check for untracked files or updated submodules, since vcs_info doesn't
         if git ls-files --other --exclude-standard 2> /dev/null | grep -q "."; then
             PR_GIT_UPDATE=1
-            FMT_BRANCH="(%{$turquoise%}%b%u%c%{$hotpink%}●${PR_RST})"
+            FMT_BRANCH="(%{$turquoise%}%b%u%c%{$limegreen%}●${PR_RST})"
         else
             FMT_BRANCH="(%{$turquoise%}%b%u%c${PR_RST})"
         fi
@@ -96,5 +99,5 @@ function steeef_precmd {
 add-zsh-hook precmd steeef_precmd
 
 PROMPT=$'
-%{$purple%}%n${PR_RST} at %{$orange%}%m${PR_RST} in %{$limegreen%}%~${PR_RST} $vcs_info_msg_0_$(virtualenv_info)
+%{$purple%}%n${PR_RST} at %{$hotpink%}%m${PR_RST} in %{$limegreen%}%~${PR_RST} $vcs_info_msg_0_$(virtualenv_info)
 $ '
