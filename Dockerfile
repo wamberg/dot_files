@@ -109,7 +109,8 @@ RUN git clone --depth 1 git://github.com/wamberg/dot_files.git \
   && mv dot_files/.gitignore_global ./ \
   && rm -rf dot_files \
   && git config --global user.email "wamberg@accelerate.delivery" \
-  && git config --global user.name "Bill Amberg"
+  && git config --global user.name "Bill Amberg" \
+  && git config --global pager.branch false
 
 # setup nvm
 RUN /bin/zsh -c "source ~/.zshrc && nvm install lts/dubnium"
