@@ -15,6 +15,7 @@ RUN echo "deb $DEBIAN_URL testing main contrib non-free" >> /etc/apt/sources.lis
     g++ \
     gettext \
     git \
+    jq \
     libbz2-dev \
     libcurl4  \
     libcurl4-openssl-dev  \
