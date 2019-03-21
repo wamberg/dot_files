@@ -50,6 +50,10 @@ dcli () {
   docker attach "${CONTAINER_NAME}"
 }
 
+lps () {
+  lpass ls | grep -i "$1" | grep -o '\[id.*' | grep -Eo '[0-9]*' | xargs lpass show
+}
+
 # docker
 alias d="docker"
 alias dc="docker-compose"
