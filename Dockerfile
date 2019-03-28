@@ -96,7 +96,6 @@ RUN pip install --user \
   ipython \
   isort \
   neovim \
-  pre-commit \
   tmuxp \
   tox
 RUN git clone --depth 1 git://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
@@ -112,6 +111,9 @@ RUN git clone --depth 1 git://github.com/wamberg/dot_files.git \
   && git config --global user.email "wamberg@accelerate.delivery" \
   && git config --global user.name "Bill Amberg" \
   && git config --global pager.branch false
+RUN mkdir -p .config/tmux/plugins \
+  && git clone --depth 1 https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm \
+  && ~/.config/tmux/plugins/tpm/bin/install_plugins
 
 # setup nvm
 RUN /bin/zsh -c "source ~/.zshrc && nvm install lts/dubnium"
