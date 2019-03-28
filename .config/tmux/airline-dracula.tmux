@@ -28,8 +28,8 @@ main() {
   tmux set-option -g message-command-fg "${white}"
   tmux set-option -g status-left " #I #[fg=${dark_gray},reverse]${right_sep} "
   tmux set-option -g status-left-style "fg=${white},bg=${dark_purple},bold"
-  tmux set-option -g status-right "${left_sep}#[bg=${black},reverse]#(whoami)@#H "
-  tmux set-option -g status-right-style "fg=${light_purple},bg=${dark_gray}"
+  tmux set-option -g status-right ""
+  tmux set-option -g status-right-style ""
   tmux set-window-option -g window-status-activity-style "fg=${white},bg=${gray}"
   tmux set-window-option -g window-status-separator ''
   tmux set-window-option -g window-status-format ' #I #W '
