@@ -50,6 +50,22 @@ dcli () {
   docker attach "${CONTAINER_NAME}"
 }
 
+n () {
+  CONTAINER_NAME='nvim_'$(basename "$(pwd)")
+  if [[ -z "$1" ]]; then
+    MOUNT_SRC="$(pwd)"
+    MOUNT_TARGET="/home/wamberg/src"
+  else
+    MOUNT_SRC="$(pwd)/$1"
+    MOUNT_TARGET="/home/wamberg/src/$1"
+  fi
+  docker run --rm -it \
+    --name="${CONTAINER_NAME}" --hostname="${CONTAINER_NAME}" \
+    --mount="type=bind,src=${MOUNT_SRC},target=${MOUNT_TARGET}" \
+    wamberg/cli:latest \
+    nvim --cmd "cd src" ${MOUNT_TARGET}
+}
+
 lps () {
   lpass ls | grep -i "$1" | grep -o '\[id.*' | grep -Eo '[0-9]*' | xargs lpass show
 }
