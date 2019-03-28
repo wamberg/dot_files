@@ -10,6 +10,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
 Plug 'gu-fan/riv.vim', { 'for': 'rst' }
 Plug 'sheerun/vim-polyglot'
+Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 call plug#end()
