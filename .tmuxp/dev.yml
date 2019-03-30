@@ -1,7 +1,9 @@
 session_name: cli
 windows:
 - window_name: dev
-  layout: main-horizontal
+  layout: main-vertical
+  options:
+    main-pane-width: 176
   panes:
   -
   -
