@@ -67,7 +67,19 @@ n () {
 }
 
 lps () {
-  lpass ls | grep -i "$1" | grep -o '\[id.*' | grep -Eo '[0-9]*' | xargs lpass show
+  limegreen="%F{118}"
+  purple="%F{135}"
+  lpass ls | grep -i "$1" | while read -r record
+  do
+    id=$(grep -o '\[id.*' <<< "$record" | grep -Eo '[0-9]*')
+    username=$(lpass show --username "$id")
+    password=$(lpass show --password "$id")
+    url=$(lpass show --url "$id")
+    print -P "$limegreen$record%f"
+    print -P "$purple username:%f $username"
+    print -P "$purple password:%f $password"
+    print -P "$purple url:%f $url"
+  done
 }
 
 # docker
