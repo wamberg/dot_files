@@ -49,6 +49,9 @@ nnoremap <silent> <Leader>c :noh<CR>
 " toggle formatting for pasting
 map <F9> :set invpaste<CR>
 
+" sort selected space-separated list
+nnoremap <C-s> f"i<Space><Esc>vi":s/\%V.*\%V"\@!/\=join(sort(split(submatch(0), '\s* \s*')), ' ')<CR>gv<Esc>x
+
 " CtrlP mappings
 nnoremap <silent> <Leader>t :CtrlP<CR>
 nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
