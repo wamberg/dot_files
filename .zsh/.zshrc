@@ -31,6 +31,7 @@ eval "$(pyenv init -)"
 
 # aliases
 alias gbdm="git branch --merged | egrep -v \"(^\*|master)\" | xargs git branch -d"
+alias grbe="git diff --name-only --diff-filter=U | uniq  | xargs $EDITOR"
 alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
 alias rs="rsync -avP"
 alias tpl="tmuxp load"
