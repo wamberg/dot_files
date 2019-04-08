@@ -87,6 +87,7 @@ lps () {
 alias d="docker"
 alias dc="docker-compose"
 alias dm="docker-machine"
+alias dcup="docker-compose up -d"
 alias dcd="docker-compose -f docs.yml"
 alias dcp="docker-compose -f docker-compose.yml -f docker-compose.production.yml"
 alias dcr="docker-compose run --rm"
