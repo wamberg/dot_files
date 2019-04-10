@@ -4,7 +4,7 @@ export CASE_SENSITIVE="true"
 export DISABLE_AUTO_TITLE="true"
 plugins=(
     docker
-    gitfast
+    git
     ssh-agent
     vi-mode
     zsh-nvm
