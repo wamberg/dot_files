@@ -12,4 +12,7 @@ set nohlsearch
 set incsearch
 set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
 set grepprg='ag --line-numbers %i %a %s'
+
+mark h ~/
+
 colorscheme dracula
