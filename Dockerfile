@@ -39,6 +39,7 @@ RUN echo "deb $DEBIAN_URL testing main contrib non-free" >> /etc/apt/sources.lis
     tmux \
     tree \
     unzip \
+    vifm \
     xclip \
     xfonts-utils \
     zlib1g-dev \

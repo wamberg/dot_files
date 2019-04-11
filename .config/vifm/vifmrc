@@ -1,0 +1,15 @@
+set vicmd=$EDITOR
+set syscalls
+set nofollowlinks
+set sortnumbers
+set undolevels=100
+set wildmenu
+set wildstyle=popup
+set scrolloff=4
+set ignorecase
+set smartcase
+set nohlsearch
+set incsearch
+set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
+set grepprg='ag --line-numbers %i %a %s'
+colorscheme dracula
