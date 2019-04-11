@@ -29,6 +29,7 @@ RUN echo "deb $DEBIAN_URL testing main contrib non-free" >> /etc/apt/sources.lis
     libxml2-dev  \
     locales \
     lua5.3 \
+    mosh \
     netcat \
     openssl \
     pkg-config \
