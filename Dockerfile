@@ -7,7 +7,6 @@ RUN echo "deb $DEBIAN_URL testing main contrib non-free" >> /etc/apt/sources.lis
   && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     autoconf \
     automake \
-    bash-completion \
     build-essential \
     bzip2 \
     ca-certificates \
@@ -17,8 +16,6 @@ RUN echo "deb $DEBIAN_URL testing main contrib non-free" >> /etc/apt/sources.lis
     git \
     jq \
     libbz2-dev \
-    libcurl4  \
-    libcurl4-openssl-dev  \
     libffi-dev \
     libreadline-dev \
     libsqlite3-dev \
@@ -40,7 +37,6 @@ RUN echo "deb $DEBIAN_URL testing main contrib non-free" >> /etc/apt/sources.lis
     tree \
     unzip \
     vifm \
-    xclip \
     xfonts-utils \
     zlib1g-dev \
     zsh \
@@ -60,15 +56,6 @@ RUN cd /usr/src \
     CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=/usr/local" \
   && make install \
   && rm -r /usr/src/neovim
-
-# setup lastpass
-RUN cd /usr/src \
-  && git clone --depth 1 git://github.com/lastpass/lastpass-cli.git \
-  && cd lastpass-cli \
-  && make CMAKE_BUILD_TYPE=RelWithDebInfo \
-    CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=/usr/local" \
-  && make install \
-  && rm -r /usr/src/lastpass-cli
 
 # setup user
 ENV HOME /home/wamberg
