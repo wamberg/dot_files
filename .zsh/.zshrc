@@ -44,9 +44,9 @@ dcli () {
   CONTAINER_NAME='cli_'$(basename "$(pwd)")
   docker run --rm -it -d \
     --name="${CONTAINER_NAME}" --hostname="${CONTAINER_NAME}" \
-    --mount="type=bind,src=$(pwd),target=/home/wamberg/src,consistency=cached" \
-    --mount="type=bind,src=${HOME}/.ssh,target=/home/wamberg/.ssh,consistency=cached" \
-    --mount="type=bind,src=${HOME}/.aws,target=/home/wamberg/.aws,consistency=cached" \
+    --mount="type=bind,src=$(pwd),target=/home/wamberg/src" \
+    --mount="type=bind,src=${HOME}/.ssh,target=/home/wamberg/.ssh" \
+    --mount="type=bind,src=${HOME}/.aws,target=/home/wamberg/.aws" \
     wamberg/cli:latest
   docker attach "${CONTAINER_NAME}"
 }
