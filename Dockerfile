@@ -96,6 +96,7 @@ RUN git clone --depth 1 git://github.com/wamberg/dot_files.git \
   && mv dot_files/.tmux.conf ./ \
   && mv dot_files/.tmuxp ./ \
   && mv dot_files/.gitignore_global ./ \
+  && mv dot_files/.editorconfig ./ \
   && rm -rf dot_files \
   && git config --global user.email "wamberg@accelerate.delivery" \
   && git config --global user.name "Bill Amberg" \
