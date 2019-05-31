@@ -30,6 +30,7 @@ RUN echo "deb $DEBIAN_URL testing main contrib non-free" >> /etc/apt/sources.lis
     netcat \
     openssl \
     pkg-config \
+    postgresql-client \
     rsync \
     silversearcher-ag \
     sqlite3 \
