@@ -2,6 +2,7 @@
 *.egg
 *.pyc
 *.swp
+.DS_Store
 .agignore
 .exrc
 .mypy_cache/
