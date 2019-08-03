@@ -14,6 +14,7 @@ RUN echo "deb $DEBIAN_URL testing main contrib non-free" >> /etc/apt/sources.lis
     g++ \
     gettext \
     git \
+    git-lfs \
     jq \
     libbz2-dev \
     libffi-dev \
