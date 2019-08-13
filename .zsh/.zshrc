@@ -4,7 +4,6 @@ export CASE_SENSITIVE="true"
 export DISABLE_AUTO_TITLE="true"
 plugins=(
     docker
-    git
     ssh-agent
     vi-mode
     zsh-nvm
@@ -20,7 +19,12 @@ export LC_ALL='en_US.UTF-8'
 export SHELL=$(which zsh)
 export TERM=screen-256color
 export PYENV_ROOT=$HOME/.pyenv
-export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$HOME/.local/bin:/usr/local/bin:${PATH}"
+export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$HOME/.local/bin:/usr/local/bin:${PATH}:/usr/local/go/bin"
+
+#
+export PATH="${PATH}:/usr/local/go/bin"
+export GOPATH=~/dev/golib
+export PATH="${PATH}:${GOPATH}/bin"
 
 # no history for commands that begin with space
 setopt histignorespace
@@ -44,7 +48,7 @@ dcli () {
   CONTAINER_NAME='cli_'$(basename "$(pwd)")
   docker run --rm -it -d \
     --name="${CONTAINER_NAME}" --hostname="${CONTAINER_NAME}" \
-    --mount="type=bind,src=$(pwd),target=/home/wamberg/src" \
+    --mount="type=bind,src=$(pwd),target=/home/wamberg/dev" \
     --mount="type=bind,src=${HOME}/.ssh,target=/home/wamberg/.ssh" \
     --mount="type=bind,src=${HOME}/.aws,target=/home/wamberg/.aws" \
     wamberg/cli:latest
@@ -55,7 +59,7 @@ n () {
   CONTAINER_NAME='nvim_'$(basename "$(pwd)")
   if [[ -z "$1" ]]; then
     MOUNT_SRC="$(pwd)"
-    MOUNT_TARGET="/home/wamberg/src"
+    MOUNT_TARGET="/home/wamberg/dev"
   else
     MOUNT_SRC="$(pwd)/$1"
     MOUNT_TARGET="/home/wamberg/src/$1"

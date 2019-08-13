@@ -60,6 +60,13 @@ RUN cd /usr/src \
   && make install \
   && rm -r /usr/src/neovim
 
+# setup go
+ENV GO_VERSION "1.12.8"
+RUN curl -sfLo /tmp/golang.tgz --create-dirs \
+    "https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz" \
+  && tar -C /usr/local -xzf /tmp/golang.tgz \
+  && rm /tmp/golang.tgz
+
 # setup user
 ENV HOME /home/wamberg
 RUN groupdel users \
@@ -116,6 +123,6 @@ RUN curl -sfLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
   && nvim --headless +PlugInstall +qall > /dev/null \
   && /bin/zsh -c "source ~/.zshrc && cd ~/.config/coc/extensions && npm install --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod" \
   && git config --global core.excludesfile ~/.gitignore_global \
-  && mkdir src
+  && mkdir dev
 
 CMD ["zsh"]
