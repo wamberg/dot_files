@@ -1,0 +1,5 @@
+{
+  "suggest.autoTrigger": "trigger",
+  "suggest.noselect": true,
+  "suggest.minTriggerInputLength": 2
+}

@@ -81,29 +81,28 @@ RUN pyenv rehash
 
 # setup dev dependencies
 RUN pip install --user \
-  awscli \
-  black \
-  bumpversion \
-  flake8 \
-  ipython \
-  isort \
-  neovim \
-  tmuxp \
-  tox
-RUN git clone --depth 1 git://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
-RUN git clone --depth 1 https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
-RUN git clone --depth 1 git://github.com/wamberg/dot_files.git \
-  && mv dot_files/.zsh/.zshrc ./ \
-  && mv dot_files/.zsh/wamberg.zsh-theme ./.oh-my-zsh/themes/ \
-  && mv dot_files/.config ./ \
-  && mv dot_files/.tmux.conf ./ \
-  && mv dot_files/.tmuxp ./ \
-  && mv dot_files/.gitignore_global ./ \
-  && mv dot_files/.editorconfig ./ \
-  && rm -rf dot_files \
+    awscli \
+    black \
+    bumpversion \
+    flake8 \
+    ipython \
+    isort \
+    neovim \
+    tmuxp \
+    tox \
   && git config --global user.email "wamberg@accelerate.delivery" \
   && git config --global user.name "Bill Amberg" \
   && git config --global pager.branch false
+RUN git clone --depth 1 git://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
+RUN git clone --depth 1 https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
+COPY --chown=wamberg .zsh/.zshrc ./
+COPY --chown=wamberg .zsh/wamberg.zsh-theme ./.oh-my-zsh/themes/
+COPY --chown=wamberg .config ./.config
+COPY --chown=wamberg .tmux.conf ./
+COPY --chown=wamberg .tmuxp ./.tmuxp
+COPY --chown=wamberg .gitignore_global ./
+COPY --chown=wamberg .editorconfig ./
+
 RUN mkdir -p .config/tmux/plugins \
   && git clone --depth 1 https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm \
   && ~/.config/tmux/plugins/tpm/bin/install_plugins
@@ -114,7 +113,8 @@ RUN /bin/zsh -c "source ~/.zshrc && nvm install lts/dubnium"
 # setup dev configuration
 RUN curl -sfLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim \
-  && nvim --headless +'PlugInstall' +qall \
+  && nvim --headless +PlugInstall +qall > /dev/null \
+  && /bin/zsh -c "source ~/.zshrc && cd ~/.config/coc/extensions && npm install --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod" \
   && git config --global core.excludesfile ~/.gitignore_global \
   && mkdir src
 
