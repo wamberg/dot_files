@@ -1,0 +1,25 @@
+snippet func
+func ${1:main}() {
+	$2
+}
+endsnippet
+
+snippet imp
+import (
+	"$1"
+)
+endsnippet
+
+snippet map
+${1:var} := map[${2:key type}]${3:value type}{$4}
+endsnippet
+
+snippet pack
+package ${1:main}
+endsnippet
+
+snippet range
+for ${1:var} := range ${2:iterable} {
+	$3
+}
+endsnippet
