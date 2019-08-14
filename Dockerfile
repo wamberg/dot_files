@@ -95,6 +95,7 @@ RUN pip install --user \
     ipython \
     isort \
     neovim \
+    pipenv \
     tmuxp \
     tox \
   && git config --global user.email "wamberg@accelerate.delivery" \
