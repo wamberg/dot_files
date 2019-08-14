@@ -62,8 +62,6 @@ let g:ctrlp_prompt_mappings = {
             \ }
 
 " Buffer navigation
-map <Leader>a :bprev<Return>
-map <Leader>s :bnext<Return>
 map <Leader>x :bp\|bd #<Return> " delete current buffer (close)
 map <Leader>q :%bd\|e#<Return> " delete all other buffers
 map gn :bn<cr> " <number> + 'gn' goes to buffer number
@@ -119,6 +117,5 @@ function! s:check_back_space() abort
 endfunction
 
 let g:coc_snippet_next = '<tab>'
-
-" Format on save
-autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+nmap <silent> <leader>a <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>s <Plug>(coc-diagnostic-next)
