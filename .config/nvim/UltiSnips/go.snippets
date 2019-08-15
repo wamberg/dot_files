@@ -1,5 +1,21 @@
+snippet :
+${1:var} := ${2:value}
+endsnippet
+
 snippet func
-func ${1:main}() {
+func ${1:main}($2) $3{
+	$4
+}
+endsnippet
+
+snippet func(
+func ($1) ${2:Name}(${3:args}) ${4:return}{
+	$5
+}
+endsnippet
+
+snippet inter
+type ${1:Name} interface {
 	$2
 }
 endsnippet
@@ -21,5 +37,11 @@ endsnippet
 snippet range
 for ${1:var} := range ${2:iterable} {
 	$3
+}
+endsnippet
+
+snippet struct
+type ${1:Name} struct {
+	$2
 }
 endsnippet
