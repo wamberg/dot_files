@@ -1,12 +1,11 @@
 export ZSH=$HOME/.oh-my-zsh
-export ZSH_THEME="wamberg"
+export ZSH_THEME=""
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_TITLE="true"
 plugins=(
     docker
     git
     ssh-agent
-    vi-mode
     zsh-nvm
 )
 export plugins
@@ -33,6 +32,13 @@ setopt histignorespace
 ### Plugin configuration ###
 source $ZSH/oh-my-zsh.sh
 eval "$(pyenv init -)"
+
+# Pure prompt configuration
+bindkey -v  # Set Vi mode
+fpath=("$HOME/.zfunctions" $fpath)
+autoload -U promptinit; promptinit
+PURE_GIT_UNTRACKED_DIRTY=0
+prompt pure
 
 # aliases
 alias gbdm="git branch --merged | egrep -v \"(^\*|master)\" | xargs git branch -d"

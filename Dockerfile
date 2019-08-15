@@ -100,11 +100,13 @@ RUN pip install --user \
     tox \
   && git config --global user.email "wamberg@accelerate.delivery" \
   && git config --global user.name "Bill Amberg" \
-  && git config --global pager.branch false
+  && git config --global pager.branch false \
+  && mkdir .zfunctions
 RUN git clone --depth 1 git://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
 RUN git clone --depth 1 https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
 COPY --chown=wamberg .zsh/.zshrc ./
-COPY --chown=wamberg .zsh/wamberg.zsh-theme ./.oh-my-zsh/themes/
+COPY --chown=wamberg .zsh/pure/pure.zsh ./.zfunctions/prompt_pure_setup
+COPY --chown=wamberg .zsh/pure/async.zsh ./.zfunctions/async
 COPY --chown=wamberg .config ./.config
 COPY --chown=wamberg .tmux.conf ./
 COPY --chown=wamberg .tmuxp ./.tmuxp
