@@ -2,6 +2,12 @@ snippet :
 ${1:var} := ${2:value}
 endsnippet
 
+snippet err!
+if err != nil {
+	$1
+}
+endsnippet
+
 snippet func
 func ${1:main}($2) $3{
 	$4
@@ -11,6 +17,12 @@ endsnippet
 snippet func(
 func ($1) ${2:Name}(${3:args}) ${4:return}{
 	$5
+}
+endsnippet
+
+snippet iferr
+if err := $1; err != nil {
+	$2
 }
 endsnippet
 
