@@ -28,7 +28,6 @@ RUN echo "deb $DEBIAN_URL testing main contrib non-free" >> /etc/apt/sources.lis
     locales \
     lua5.3 \
     mosh \
-    mysql-client \
     netcat \
     openssl \
     pkg-config \
