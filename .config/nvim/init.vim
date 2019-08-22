@@ -105,17 +105,49 @@ autocmd BufReadPost *
 let g:python3_host_prog = $HOME.'/.pyenv/shims/python'
 
 "" CoC
+"" Largely taken from https://github.com/neoclide/coc.nvim/blob/master/Readme.md
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-let g:coc_snippet_next = '<tab>'
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" navigate within a snippet
+let g:coc_snippet_prev = '<C-a>'
+let g:coc_snippet_next = '<C-s>'
 nmap <silent> <leader>a <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>s <Plug>(coc-diagnostic-next)
+
+" Use [+d to jump to defintion
+nnoremap <silent> [d :call CocActionAsync('jumpDefinition')<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Use ]+d to show documentation in preview window
+nnoremap <silent> ]d :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
