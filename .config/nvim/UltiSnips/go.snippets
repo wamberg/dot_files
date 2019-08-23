@@ -8,6 +8,10 @@ if err != nil {
 }
 endsnippet
 
+snippet fatal
+log.Fatalf("$1%s", err)
+endsnippet
+
 snippet func
 func ${1:main}($2) $3{
 	$4
