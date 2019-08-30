@@ -126,5 +126,6 @@ RUN curl -sfLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
   && /bin/zsh -c "source ~/.zshrc && cd ~/.config/coc/extensions && npm install --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod" \
   && git config --global core.excludesfile ~/.gitignore_global \
   && mkdir dev
+RUN /bin/zsh -c "source ~/.zshrc && npm install --global yarn"
 
 CMD ["zsh"]
