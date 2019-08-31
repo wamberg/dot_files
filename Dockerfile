@@ -113,6 +113,7 @@ COPY --chown=wamberg .gitignore_global ./
 COPY --chown=wamberg .editorconfig ./
 
 RUN mkdir -p .config/tmux/plugins \
+  && if [ -d ~/.config/tmux/plugins/tpm ]; then rm -Rf ~/.config/tmux/plugins/tpm; fi \
   && git clone --depth 1 https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm \
   && ~/.config/tmux/plugins/tpm/bin/install_plugins
 
