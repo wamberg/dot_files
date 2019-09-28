@@ -1,5 +1,10 @@
 FROM debian:stretch
 
+# variables
+ENV GO_VERSION "1.12.8"
+ENV NODE_VERSION "12.11.0"
+ENV PYTHON_VERSION "3.7.3"
+
 # setup debian
 ENV DEBIAN_URL "http://ftp.us.debian.org/debian"
 RUN echo "deb $DEBIAN_URL testing main contrib non-free" >> /etc/apt/sources.list \
@@ -60,7 +65,6 @@ RUN cd /usr/src \
   && rm -r /usr/src/neovim
 
 # setup go
-ENV GO_VERSION "1.12.8"
 RUN curl -sfLo /tmp/golang.tgz --create-dirs \
     "https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz" \
   && tar -C /usr/local -xzf /tmp/golang.tgz \
@@ -81,8 +85,8 @@ WORKDIR $HOME
 ENV PYENV_ROOT $HOME/.pyenv
 ENV PATH "$PYENV_ROOT/shims:$PYENV_ROOT/bin:$HOME/.local/bin:${PATH}"
 RUN git clone --depth 1 git://github.com/yyuu/pyenv.git .pyenv
-RUN pyenv install 3.7.2
-RUN pyenv global 3.7.2
+RUN pyenv install $PYTHON_VERSION
+RUN pyenv global $PYTHON_VERSION
 RUN pyenv rehash
 
 # setup dev dependencies
@@ -118,7 +122,7 @@ RUN mkdir -p .config/tmux/plugins \
   && ~/.config/tmux/plugins/tpm/bin/install_plugins
 
 # setup nvm
-RUN /bin/zsh -c "source ~/.zshrc && nvm install lts/dubnium"
+RUN /bin/zsh -c "source ~/.zshrc && nvm install ${NODE_VERSION}"
 
 # setup dev configuration
 RUN curl -sfLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
