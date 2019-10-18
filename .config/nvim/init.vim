@@ -70,7 +70,7 @@ map gn :bn<cr> " <number> + 'gn' goes to buffer number
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " bind \ (backward slash) + f to grep shortcut
-command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap <Leader>f :Ag<SPACE>
 
 
@@ -105,28 +105,27 @@ autocmd BufReadPost *
 let g:python3_host_prog = $HOME.'/.pyenv/shims/python'
 
 "" CoC
-"" Largely taken from https://github.com/neoclide/coc.nvim/blob/master/Readme.md
 
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+" Make <tab> used for trigger completion, completion confirm, snippet expand and jump
+" https://github.com/neoclide/coc-snippets/blob/master/Readme.md
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+let g:coc_snippet_next = '<tab>'
 
-" navigate within a snippet
-let g:coc_snippet_prev = '<C-a>'
-let g:coc_snippet_next = '<C-s>'
+" Edit snippets for current filetype
+nnoremap <silent> <Leader>es :CocCommand snippets.openSnippetFiles<CR>
+
+
+" Jump to CoC diagnostic messages
 nmap <silent> <leader>a <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>s <Plug>(coc-diagnostic-next)
 
