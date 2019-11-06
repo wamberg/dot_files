@@ -60,7 +60,7 @@ RUN cd /usr/src \
   && rm -r /usr/src/neovim
 
 # setup go
-ENV GO_VERSION "1.12.8"
+ENV GO_VERSION "1.13.4"
 RUN curl -sfLo /tmp/golang.tgz --create-dirs \
     "https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz" \
   && tar -C /usr/local -xzf /tmp/golang.tgz \
@@ -119,7 +119,7 @@ RUN mkdir -p .config/tmux/plugins \
   && ~/.config/tmux/plugins/tpm/bin/install_plugins
 
 # setup nvm
-ENV NODE_VERSION "12.11.0"
+ENV NODE_VERSION "12.13.0"
 RUN /bin/zsh -c "source ~/.zshrc && nvm install ${NODE_VERSION}"
 
 # setup dev configuration
