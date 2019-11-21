@@ -7,3 +7,4 @@
 .exrc
 .mypy_cache/
 .python-version
+node_modules/

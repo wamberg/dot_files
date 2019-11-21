@@ -50,6 +50,7 @@ alias vimw="vim -u ~/.vimrc-writing"
 alias xc="xclip -selection clipboard"
 alias xp="xclip -selection clipboard -o"
 alias xr="xclip -selection clipboard -o | zsh"
+alias ag="ag --path-to-ignore ~/.gitignore_global"
 
 dcli () {
   CONTAINER_NAME='cli_'$(basename "$(pwd)")
