@@ -78,7 +78,7 @@ USER wamberg
 WORKDIR $HOME
 
 # setup pyenv
-ENV PYTHON_VERSION "3.7.3"
+ENV PYTHON_VERSION "3.8.0"
 ENV PYENV_ROOT $HOME/.pyenv
 ENV PATH "$PYENV_ROOT/shims:$PYENV_ROOT/bin:$HOME/.local/bin:${PATH}"
 RUN git clone --depth 1 git://github.com/yyuu/pyenv.git .pyenv
@@ -119,7 +119,7 @@ RUN mkdir -p .config/tmux/plugins \
   && ~/.config/tmux/plugins/tpm/bin/install_plugins
 
 # setup nvm
-ENV NODE_VERSION "12.13.0"
+ENV NODE_VERSION "12.13.1"
 RUN /bin/zsh -c "source ~/.zshrc && nvm install ${NODE_VERSION}"
 
 # setup dev configuration
