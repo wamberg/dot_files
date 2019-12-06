@@ -1,18 +1,22 @@
-set vicmd=$EDITOR
-set syscalls
+set dotfiles
+set grepprg='ag --line-numbers %i %a %s'
+set ignorecase
+set incsearch
 set nofollowlinks
+set nohlsearch
+set scrolloff=4
+set smartcase
 set sortnumbers
+set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
+set syscalls
 set undolevels=100
+set vicmd=$EDITOR
+set viewcolumns=-{name}..,6{size},11{perms}
 set wildmenu
 set wildstyle=popup
-set scrolloff=4
-set ignorecase
-set smartcase
-set nohlsearch
-set incsearch
-set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
-set grepprg='ag --line-numbers %i %a %s'
+only
 
 mark h ~/
 
 colorscheme dracula
+
