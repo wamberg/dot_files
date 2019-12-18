@@ -59,6 +59,7 @@ dcli () {
     --mount="type=bind,src=$(pwd),target=/home/wamberg/dev" \
     --mount="type=bind,src=${HOME}/.ssh,target=/home/wamberg/.ssh" \
     --mount="type=bind,src=${HOME}/.aws,target=/home/wamberg/.aws" \
+    --mount="type=bind,src=/var/run/docker.sock,target=/var/run/docker.sock" \
     wamberg/cli:latest
   docker attach "${CONTAINER_NAME}"
 }

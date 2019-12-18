@@ -1,4 +1,5 @@
 FROM debian:stretch
+ARG DOCKER_GROUP_ID
 
 # setup debian
 ENV DEBIAN_URL "http://ftp.us.debian.org/debian"
@@ -66,12 +67,18 @@ RUN curl -sfLo /tmp/golang.tgz --create-dirs \
   && tar -C /usr/local -xzf /tmp/golang.tgz \
   && rm /tmp/golang.tgz
 
+# setup docker
+ENV DOCKERVERSION "19.03.5"
+RUN curl -fsSL "https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKERVERSION}.tgz" | \
+  tar zxvf - --strip 1 -C /usr/bin docker/docker
+
 # setup user
 ENV HOME /home/wamberg
 RUN groupdel users \
   && groupadd -r wamberg \
+  && groupadd -g "${DOCKER_GROUP_ID}" docker \
   && useradd \
-    --create-home --home-dir $HOME -g wamberg \
+    --create-home --home-dir $HOME --gid wamberg --groups docker \
     --shell /bin/zsh \
     wamberg
 USER wamberg
@@ -91,6 +98,7 @@ RUN pip install --user \
     awscli \
     black \
     bumpversion \
+    docker-compose \
     flake8 \
     ipython \
     isort \
