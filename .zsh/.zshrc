@@ -6,6 +6,7 @@ plugins=(
     docker
     git
     ssh-agent
+    yarn
     zsh-nvm
 )
 export plugins
