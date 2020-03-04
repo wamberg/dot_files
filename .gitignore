@@ -1,4 +1,10 @@
 *.swp
+.config/coc/extensions/db.json
+.config/coc/memos.json
+.config/coc/snippets-mru
 .config/tmux/plugins
+.config/vifm/vifm-help.txt
+.config/vifm/vifminfo
 .vim/.netrwhist
 .vim/bundle
+node_modules/
