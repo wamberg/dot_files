@@ -20,6 +20,8 @@ set showcmd
 set ignorecase
 set smartcase
 set foldmethod=indent
+syntax enable
+colorscheme dracula
 
 """ Key Mappings
 
