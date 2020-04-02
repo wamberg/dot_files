@@ -8,7 +8,7 @@
 .config/nvim/.netrwhist
 .config/tmux/plugins
 .config/vifm/vifm-help.txt
-.config/vifm/vifminfo
+.config/vifm/vifminfo*
 .vim/.netrwhist
 .vim/bundle
 node_modules/
