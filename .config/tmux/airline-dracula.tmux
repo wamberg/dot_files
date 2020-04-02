@@ -37,6 +37,10 @@ main() {
   tmux set-window-option -g window-status-current-format \
     "${right_sep}#[fg=${black}] #I ${right_alt_sep} #W #[fg=${dark_gray},reverse]${right_sep}"
   tmux set-window-option -g window-status-current-style "fg=${dark_gray},bg=${light_purple}"
+
+  # Set inactive/active window styles
+  tmux set-option -g window-style "fg=${gray},bg=#5B5D69"
+  tmux set-option -g window-active-style "fg=${white},bg=#282A36"
 }
 
 main
