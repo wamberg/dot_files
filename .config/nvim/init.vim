@@ -20,6 +20,7 @@ set showcmd
 set ignorecase
 set smartcase
 set foldmethod=indent
+let g:dracula_colorterm = 0
 syntax enable
 colorscheme dracula
 
