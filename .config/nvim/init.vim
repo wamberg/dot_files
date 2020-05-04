@@ -127,30 +127,3 @@ let g:coc_snippet_next = '<tab>'
 
 " Edit snippets for current filetype
 nnoremap <silent> <Leader>es :CocCommand snippets.openSnippetFiles<CR>
-
-
-" Jump to CoC diagnostic messages
-nmap <silent> <leader>a <Plug>(coc-diagnostic-prev)
-nmap <silent> <leader>s <Plug>(coc-diagnostic-next)
-
-" Use [+d to jump to defintion
-nnoremap <silent> [d :call CocActionAsync('jumpDefinition')<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Use ]+d to show documentation in preview window
-nnoremap <silent> ]d :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
