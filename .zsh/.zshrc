@@ -48,6 +48,17 @@ alias rs="rsync -avP"
 alias tpl="tmuxp load"
 alias ag="ag --path-to-ignore ~/.gitignore_global"
 
+j () {
+  # "journal" - open a new file in work-log
+  FILENAME="$(date -Iseconds).md"
+  nvim "${HOME}/dev/work-log/${FILENAME}"
+}
+
+t () {
+  # "todo" - open todo file in work-log
+  nvim "${HOME}/dev/work-log/todo.md"
+}
+
 # docker
 alias d="docker"
 alias dc="docker-compose"
