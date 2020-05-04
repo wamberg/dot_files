@@ -43,60 +43,10 @@ prompt pure
 
 # aliases
 alias gbdm="git branch --merged | egrep -v \"(^\*|master)\" | xargs git branch -d"
-alias grbe="git diff --name-only --diff-filter=U | uniq  | xargs $EDITOR"
 alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
 alias rs="rsync -avP"
 alias tpl="tmuxp load"
-alias vimw="vim -u ~/.vimrc-writing"
-alias xc="xclip -selection clipboard"
-alias xp="xclip -selection clipboard -o"
-alias xr="xclip -selection clipboard -o | zsh"
 alias ag="ag --path-to-ignore ~/.gitignore_global"
-
-dcli () {
-  CONTAINER_NAME='cli_'$(basename "$(pwd)")
-  docker run --rm -it -d \
-    --name="${CONTAINER_NAME}" --hostname="${CONTAINER_NAME}" \
-    --mount="type=bind,src=$(pwd),target=/home/wamberg/dev" \
-    --mount="type=bind,src=${HOME}/.ssh,target=/home/wamberg/.ssh" \
-    --mount="type=bind,src=${HOME}/.aws,target=/home/wamberg/.aws" \
-    --mount="type=bind,src=/var/run/docker.sock,target=/var/run/docker.sock" \
-    --mount="type=bind,src=${HOME}/.zsh_history,target=/home/wamberg/.zsh_history" \
-    wamberg/cli:latest
-  docker attach "${CONTAINER_NAME}"
-}
-
-n () {
-  CONTAINER_NAME='nvim_'$(basename "$(pwd)")
-  if [[ -z "$1" ]]; then
-    MOUNT_SRC="$(pwd)"
-    MOUNT_TARGET="/home/wamberg/dev"
-  else
-    MOUNT_SRC="$(pwd)/$1"
-    MOUNT_TARGET="/home/wamberg/src/$1"
-  fi
-  docker run --rm -it \
-    --name="${CONTAINER_NAME}" --hostname="${CONTAINER_NAME}" \
-    --mount="type=bind,src=${MOUNT_SRC},target=${MOUNT_TARGET}" \
-    wamberg/cli:latest \
-    nvim --cmd "cd src" ${MOUNT_TARGET}
-}
-
-lps () {
-  limegreen="%F{118}"
-  purple="%F{135}"
-  lpass ls | grep -i "$1" | while read -r record
-  do
-    id=$(grep -o '\[id.*' <<< "$record" | grep -Eo '[0-9]*')
-    username=$(lpass show --username "$id")
-    password=$(lpass show --password "$id")
-    url=$(lpass show --url "$id")
-    print -P "$limegreen$record%f"
-    print -P "$purple username:%f $username"
-    print -P "$purple password:%f $password"
-    print -P "$purple url:%f $url"
-  done
-}
 
 # docker
 alias d="docker"
