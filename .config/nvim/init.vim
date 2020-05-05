@@ -1,12 +1,13 @@
 """ Plugins
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'airblade/vim-gitgutter'
+Plug 'alvan/vim-closetag'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'editorconfig/editorconfig-vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/goyo.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-fugitive'
@@ -107,6 +108,9 @@ autocmd BufReadPost *
 
 " Specify python3 for plugins
 let g:python3_host_prog = $HOME.'/.pyenv/shims/python'
+
+" Specify react files for vim-closetag
+let g:closetag_filetypes = 'html,xhtml,phtml,javascriptreact,typescriptreact'
 
 "" CoC
 
