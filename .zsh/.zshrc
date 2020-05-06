@@ -51,7 +51,7 @@ alias ag="ag --path-to-ignore ~/.gitignore_global"
 j () {
   # "journal" - open a new file in work-log
   FILENAME="$(date -Iseconds).md"
-  nvim "${HOME}/dev/work-log/${FILENAME}"
+  nvim -c ":Goyo" "${HOME}/dev/work-log/${FILENAME}"
 }
 
 t () {
