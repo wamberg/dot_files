@@ -137,7 +137,7 @@ module.exports = {
     // rendering (slower, but supports transparent backgrounds)
     webGLRenderer: true,
 
-    windowSize: [1980],
+    windowSize: [2087],
 
     // for advanced config flags please refer to https://hyper.is/#cfg
   },
