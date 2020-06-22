@@ -2,11 +2,14 @@
   "coc.preferences.jumpCommand": "split",
   "suggest.autoTrigger": "none",
   "suggest.noselect": false,
-  "languageserver": {
+    "languageserver": {
     "golang": {
       "command": "gopls",
       "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["go"]
+      "filetypes": ["go"],
+      "initializationOptions": {
+        "usePlaceholders": true
+      }
     }
   },
   "snippets.extends": {

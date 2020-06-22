@@ -20,11 +20,11 @@ export LC_ALL='en_US.UTF-8'
 export SHELL=$(which zsh)
 export TERM=screen-256color
 export PYENV_ROOT=$HOME/.pyenv
-export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$HOME/.local/bin:/usr/local/bin:${PATH}:/usr/local/go/bin"
+export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$HOME/.local/bin:/usr/local/bin:${PATH}:$HOME/.local/go/bin"
 
 #
 export PATH="${PATH}:/usr/local/go/bin"
-export GOPATH=~/dev/golib
+export GOPATH=~/dev/go
 export PATH="${PATH}:${GOPATH}/bin"
 
 # no history for commands that begin with space
