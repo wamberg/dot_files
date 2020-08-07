@@ -42,11 +42,16 @@ PURE_GIT_UNTRACKED_DIRTY=0
 prompt pure
 
 # aliases
+alias ag="ag --path-to-ignore ~/.gitignore_global"
 alias gbdm="git branch --merged | egrep -v \"(^\*|master)\" | xargs git branch -d"
+alias o="./omks"
+alias ob="./omks build"
+alias or="./omks run"
+alias os="./omks stop"
+alias ov="./omks vars"
 alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
 alias rs="rsync -avP"
 alias tpl="tmuxp load"
-alias ag="ag --path-to-ignore ~/.gitignore_global"
 
 j () {
   # "journal" - open a new file in work-log
