@@ -3,11 +3,11 @@ export ZSH_THEME=""
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_TITLE="true"
 plugins=(
-    docker
-    git
-    ssh-agent
-    yarn
-    zsh-nvm
+  asdf
+  docker
+  git
+  ssh-agent
+  yarn
 )
 export plugins
 
@@ -19,7 +19,6 @@ export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
 export SHELL=$(which zsh)
 export TERM=screen-256color
-export PYENV_ROOT=$HOME/.pyenv
 export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$HOME/.local/bin:/usr/local/bin:${PATH}:$HOME/.local/go/bin"
 
 #
@@ -32,11 +31,10 @@ setopt histignorespace
 
 ### Plugin configuration ###
 source $ZSH/oh-my-zsh.sh
-eval "$(pyenv init -)"
 
 # Pure prompt configuration
 bindkey -v  # Set Vi mode
-fpath=("$HOME/.zfunctions" $fpath)
+fpath=("$HOME/dev/dot_files/.zsh/pure" $fpath)
 autoload -U promptinit; promptinit
 PURE_GIT_UNTRACKED_DIRTY=0
 prompt pure
