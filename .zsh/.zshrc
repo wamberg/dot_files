@@ -5,6 +5,7 @@ export DISABLE_AUTO_TITLE="true"
 plugins=(
   asdf
   docker
+  fzf
   git
   ssh-agent
   yarn
