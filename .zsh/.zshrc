@@ -40,6 +40,10 @@ autoload -U promptinit; promptinit
 PURE_GIT_UNTRACKED_DIRTY=0
 prompt pure
 
+
+# Eliminate vi-mode normal mode delay
+KEYTIMEOUT=1
+
 # aliases
 alias ag="ag --path-to-ignore ~/.gitignore_global"
 alias gbdm="git branch --merged | egrep -v \"(^\*|master)\" | xargs git branch -d"
