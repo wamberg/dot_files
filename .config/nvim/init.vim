@@ -1,5 +1,6 @@
 """ Plugins
 call plug#begin('~/.local/share/nvim/plugged')
+Plug 'Glench/Vim-Jinja2-Syntax', { 'for': ['jinja', 'html'] }
 Plug 'airblade/vim-gitgutter'
 Plug 'alvan/vim-closetag'
 Plug 'christoomey/vim-tmux-navigator'
