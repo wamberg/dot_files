@@ -15,6 +15,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 """ Display
@@ -137,3 +138,13 @@ nnoremap <silent> <Leader>es :CocCommand snippets.openSnippetFiles<CR>
 
 " auto-format golang
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+
+"" vimwiki
+let g:vimwiki_list = [{'path': '~/dev/garden/',
+                      \ 'path_html': '/tmp/garden_html/',
+                      \ 'syntax': 'markdown',
+                      \ 'ext': '.md'}]
+let g:vimwiki_global_ext = 0
+hi VimwikiLink term=underline ctermfg=cyan guifg=cyan gui=underline
+hi VimwikiHeader2 ctermfg=DarkMagenta guifg=DarkMagenta
+hi VimwikiHeader3 ctermfg=DarkBlue guifg=DarkBlue

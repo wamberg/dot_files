@@ -12,8 +12,11 @@ windows:
 - layout: 8aa0,114x27,0,0[114x8,0,0{57x8,0,0,3,56x8,58,0,5},114x18,0,9,4]
   options: {}
   panes:
-  - t
   -
-  - focus: 'true'
+  -
+  - shell_command:
+    - cd garden
+    - nvim index.wiki
+    focus: 'true'
   start_directory: $HOME/dev
   window_name: log
