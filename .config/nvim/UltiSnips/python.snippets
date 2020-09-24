@@ -48,23 +48,23 @@ LOGGER = logging.getLogger(${0:__name__})
 endsnippet
 
 snippet le
-LOGGER.error(${0:msg})
+LOGGER.error(f"$1: {$1}")
 endsnippet
 
 snippet lg
-LOGGER.debug(${0:msg})
+LOGGER.debug(f"$1: {$1}")
 endsnippet
 
 snippet lw
-LOGGER.warning(${0:msg})
+LOGGER.warning(f"$1: {$1}")
 endsnippet
 
 snippet lc
-LOGGER.critical(${0:msg})
+LOGGER.critical(f"$1: {$1}")
 endsnippet
 
 snippet li
-LOGGER.info(${0:msg})
+LOGGER.info(f"$1: {$1}")
 endsnippet
 
 # Testing
