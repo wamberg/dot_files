@@ -147,3 +147,7 @@ let g:vimwiki_global_ext = 0
 hi VimwikiLink term=underline ctermfg=cyan guifg=cyan gui=underline
 hi VimwikiHeader2 ctermfg=DarkMagenta guifg=DarkMagenta
 hi VimwikiHeader3 ctermfg=DarkBlue guifg=DarkBlue
+" Disable table_mappings that override <tab>
+let g:vimwiki_key_mappings = {
+      \ 'table_mappings': 0,
+      \ }
