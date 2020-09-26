@@ -16,7 +16,7 @@ windows:
   -
   - shell_command:
     - cd garden
-    - nvim index.wiki
+    - nvim index.md
     focus: 'true'
   start_directory: $HOME/dev
   window_name: log
