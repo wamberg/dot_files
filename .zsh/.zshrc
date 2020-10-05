@@ -21,10 +21,13 @@ export SHELL=$(which zsh)
 export TERM=screen-256color
 export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$HOME/.local/bin:/usr/local/bin:${PATH}:$HOME/.local/go/bin"
 
-#
+# Golang
 export PATH="${PATH}:/usr/local/go/bin"
 export GOPATH=~/dev/go
 export PATH="${PATH}:${GOPATH}/bin"
+
+# fzf
+export FZF_DEFAULT_COMMAND='rg --hidden --no-ignore --follow --files --ignore-file ~/.gitignore_global'
 
 # no history for commands that begin with space
 setopt histignorespace

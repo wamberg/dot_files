@@ -3,9 +3,10 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'alvan/vim-closetag'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'editorconfig/editorconfig-vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'micarmst/vim-spellsync'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -54,20 +55,10 @@ nnoremap <silent> <Leader>c :noh<CR>
 " toggle formatting for pasting
 map <F9> :set invpaste<CR>
 
-" sort selected space-separated list
-nnoremap <C-s> f"i<Space><Esc>vi":s/\%V.*\%V"\@!/\=join(sort(split(submatch(0), '\s* \s*')), ' ')<CR>gv<Esc>x
-
-" CtrlP mappings
-nnoremap <silent> <Leader>t :CtrlP<CR>
-nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
-nnoremap <silent> <Leader>g :CtrlPTag<CR>
-let g:ctrlp_prompt_mappings = {
-            \ 'AcceptSelection("e")': ['<cr>'],
-            \ 'AcceptSelection("h")': ['<c-h>'],
-            \ 'AcceptSelection("t")': ['<c-b>'],
-            \ 'AcceptSelection("v")': ['<c-x>'],
-            \ 'PrtCurEnd()':          ['']
-            \ }
+" fzf mappings
+nnoremap <silent> <Leader>t :Files<CR>
+nnoremap <silent> <Leader>b :Buffers<CR>
+nnoremap <silent> <Leader>g :Tags<CR>
 
 " Buffer navigation
 map <Leader>x :bp\|bd #<Return> " delete current buffer (close)
@@ -75,11 +66,10 @@ map <Leader>q :%bd\|e#<Return> " delete all other buffers
 map gn :bn<cr> " <number> + 'gn' goes to buffer number
 
 " bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+nnoremap K :Rg <C-r><C-w><CR>
 
 " bind \ (backward slash) + f to grep shortcut
-command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-nnoremap <Leader>f :Ag<SPACE>
+nnoremap <Leader>f :Rg<CR>
 
 
 """ Preferences
@@ -88,16 +78,8 @@ nnoremap <Leader>f :Ag<SPACE>
 set exrc
 set secure
 
-" Use ag over grep
-if executable('/usr/bin/ag') || executable('/usr/local/bin/ag')
-  set grepprg=ag\ --nogroup\ --nocolor\ --hidden
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-
-  " No caching ag for CtrlP
-  let g:ctrlp_use_caching = 0
-endif
+" Use rg over grep
+set grepprg=rg\ --vimgrep
 
 " Natural splits
 set splitbelow
@@ -151,3 +133,36 @@ hi VimwikiHeader3 ctermfg=DarkBlue guifg=DarkBlue
 let g:vimwiki_key_mappings = {
       \ 'table_mappings': 0,
       \ }
+
+"" fzf
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'vsplit',
+  \ 'ctrl-h': 'split' }
+
+" make_note_link: List -> Str
+" returned string: [Title](YYYYMMDDHH.md)
+function! s:make_note_link(l)
+  " fzf#vim#complete returns a list with all info in index 0
+  let line = split(a:l[0], ':')
+  let ztk_id = l:line[0]
+  try
+    let ztk_title = substitute(l:line[2], '\#\+\s\+', '', 'g')
+  catch
+    let ztk_title = substitute(l:line[1], '\#\+\s\+', '', 'g')
+  endtry
+  let mdlink = "[" . ztk_title ."](/". ztk_id .")"
+  return mdlink
+endfunction
+" mnemonic link ag
+inoremap <expr> <c-l>a fzf#vim#complete(fzf#vim#with_preview({
+      \ 'source':  'ag --hidden --smart-case --path-to-ignore ~/.gitignore_global ^\#',
+      \ 'reducer': function('<sid>make_note_link'),
+      \ 'options': '--multi --reverse --margin 15%,0',
+      \ 'down':    7}))
+
+
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
