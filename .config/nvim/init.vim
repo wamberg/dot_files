@@ -31,6 +31,8 @@ colorscheme dracula
 
 """ Key Mappings
 
+let mapleader = ";"
+
 " work more logically with wrapped lines
 noremap j gj
 noremap k gk
@@ -120,8 +122,15 @@ nnoremap <silent> <Leader>es :CocCommand snippets.openSnippetFiles<CR>
 " auto-format golang
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
+"" fzf
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'vsplit',
+  \ 'ctrl-h': 'split' }
+
 "" vimwiki
-let g:vimwiki_list = [{'path': '~/dev/garden/',
+let g:zettelkasten = '~/dev/garden/'
+let g:vimwiki_list = [{'path': zettelkasten,
                       \ 'path_html': '/tmp/garden_html/',
                       \ 'syntax': 'markdown',
                       \ 'ext': '.md'}]
@@ -129,16 +138,15 @@ let g:vimwiki_global_ext = 0
 hi VimwikiLink term=underline ctermfg=cyan guifg=cyan gui=underline
 hi VimwikiHeader2 ctermfg=DarkMagenta guifg=DarkMagenta
 hi VimwikiHeader3 ctermfg=DarkBlue guifg=DarkBlue
+
 " Disable table_mappings that override <tab>
 let g:vimwiki_key_mappings = {
       \ 'table_mappings': 0,
       \ }
 
-"" fzf
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'vsplit',
-  \ 'ctrl-h': 'split' }
+" Create new notes
+command! NewNote :execute ":e" zettelkasten . strftime("%Y%m%d%H%M") . ".md"
+nnoremap <silent> <leader>nn :NewNote<CR>
 
 " make_note_link: List -> Str
 " returned string: [Title](YYYYMMDDHH.md)
@@ -157,12 +165,4 @@ endfunction
 " mnemonic link ag
 inoremap <expr> <c-l>a fzf#vim#complete(fzf#vim#with_preview({
       \ 'source':  'ag --hidden --smart-case --path-to-ignore ~/.gitignore_global ^\#',
-      \ 'reducer': function('<sid>make_note_link'),
-      \ 'options': '--multi --reverse --margin 15%,0',
-      \ 'down':    7}))
-
-
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview(), <bang>0)
+      \ 'reducer': function('<sid>make_note_link')}))

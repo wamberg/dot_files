@@ -5,6 +5,7 @@
 .DS_Store
 .agignore
 .exrc
+.git
 .mypy_cache/
 .python-version
 _next/
