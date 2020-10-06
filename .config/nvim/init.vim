@@ -163,6 +163,6 @@ function! s:make_note_link(l)
   return mdlink
 endfunction
 " mnemonic link ag
-inoremap <expr> <c-l>a fzf#vim#complete(fzf#vim#with_preview({
+inoremap <expr> <c-l>l fzf#vim#complete(fzf#vim#with_preview({
       \ 'source':  'ag --hidden --smart-case --path-to-ignore ~/.gitignore_global ^\#',
       \ 'reducer': function('<sid>make_note_link')}))
