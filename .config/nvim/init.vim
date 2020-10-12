@@ -73,6 +73,8 @@ nnoremap K :Rg <C-r><C-w><CR>
 " bind \ (backward slash) + f to grep shortcut
 nnoremap <Leader>f :Rg<CR>
 
+" three-way merge conflict
+nnoremap <Leader>c :Gvdiffsplit!<CR>
 
 """ Preferences
 
