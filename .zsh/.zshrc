@@ -69,6 +69,25 @@ t () {
   nvim "${HOME}/dev/work-log/todo.md"
 }
 
+c () {
+  # cd into a fuzzy (via fzf) directory
+  local dest="${1:-${HOME}/dev}"
+  D="$(\
+    rg \
+      --hidden \
+      --no-ignore \
+      --follow \
+      --files \
+      --ignore-file ~/.gitignore_global \
+      --null \
+      ${dest} \
+      2> /dev/null \
+    | xargs -0 dirname \
+    | sort -u \
+    | fzf)"
+  cd "${D}"
+}
+
 # docker
 alias d="docker"
 alias dc="docker-compose"
