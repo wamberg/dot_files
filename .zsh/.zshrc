@@ -48,6 +48,7 @@ KEYTIMEOUT=1
 # aliases
 alias ag="ag --path-to-ignore ~/.gitignore_global"
 alias gbdm="git branch --merged | egrep -v \"(^\*|master)\" | xargs git branch -d"
+alias mb="make build"
 alias o="./omks"
 alias ob="./omks build"
 alias or="./omks run"
