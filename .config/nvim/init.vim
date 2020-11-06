@@ -74,7 +74,7 @@ nnoremap K :Rg <C-r><C-w><CR>
 nnoremap <Leader>f :Rg<CR>
 
 " three-way merge conflict
-nnoremap <Leader>c :Gvdiffsplit!<CR>
+nnoremap <Leader>d :Gvdiffsplit!<CR>
 
 """ Preferences
 
