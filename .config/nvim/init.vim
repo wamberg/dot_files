@@ -74,6 +74,9 @@ nnoremap <Leader>f :Rg<CR>
 " three-way merge conflict
 nnoremap <Leader>d :Gvdiffsplit!<CR>
 
+" Open all folds in current fold
+nnoremap <leader>o zczA
+
 """ Preferences
 
 " run local rc files
