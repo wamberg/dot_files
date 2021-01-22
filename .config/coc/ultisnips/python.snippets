@@ -16,6 +16,14 @@ snippet ist
 import ipdb; ipdb.set_trace()
 endsnippet
 
+snippet odb
+from remote_pdb import RemotePdb; pdb = RemotePdb("0.0.0.0", 4444)
+endsnippet
+
+snippet ost
+pdb.set_trace()
+endsnippet
+
 # logging
 snippet debug_log
 import sys
