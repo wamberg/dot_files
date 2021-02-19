@@ -14,6 +14,7 @@ windows:
   options:
     automatic-rename: 'off'
   panes:
+  -
   - focus: 'true'
   start_directory: $HOME/dev/garden
   window_name: log
