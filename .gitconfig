@@ -23,3 +23,5 @@
 	whitespace-error-style = 22 reverse
 	syntax-theme = Dracula
 	side-by-side = true
+[pull]
+	ff = only
