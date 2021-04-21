@@ -1,5 +1,6 @@
 *.swp
 .config/coc/commands
+.config/coc/extensions/coc-go-data/
 .config/coc/extensions/db.json
 .config/coc/history.json
 .config/coc/list-snippets-history.json

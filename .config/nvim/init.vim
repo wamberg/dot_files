@@ -122,9 +122,6 @@ let g:coc_snippet_next = '<tab>'
 " Edit snippets for current filetype
 nnoremap <silent> <Leader>es :CocCommand snippets.openSnippetFiles<CR>
 
-" auto-format golang
-autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
-
 "" fzf
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
