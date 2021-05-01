@@ -48,7 +48,6 @@ KEYTIMEOUT=1
 # aliases
 alias ag="ag --path-to-ignore ~/.gitignore_global"
 alias gbdm="git branch --merged | egrep -v \"(^\*|master)\" | xargs git branch -d"
-alias mb="make build"
 alias o="./omks"
 alias ob="./omks build"
 alias or="./omks run"
@@ -58,17 +57,8 @@ alias pca="pre-commit run --all-files"
 alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
 alias rs="rsync -avP"
 alias tpl="tmuxp load"
-
-j () {
-  # "journal" - open a new file in work-log
-  FILENAME="$(date -Iseconds).md"
-  nvim -c ":Goyo" "${HOME}/dev/work-log/${FILENAME}"
-}
-
-t () {
-  # "todo" - open todo file in work-log
-  nvim "${HOME}/dev/work-log/todo.md"
-}
+alias n="./node_modules/.bin/nx"
+alias nxr="./node_modules/.bin/nx run"
 
 c () {
   # cd into a fuzzy (via fzf) directory
@@ -92,7 +82,6 @@ c () {
 # docker
 alias d="docker"
 alias dc="docker-compose"
-alias dm="docker-machine"
 alias dcup="docker-compose up -d"
 alias dcd="docker-compose -f docs.yml"
 alias dcp="docker-compose -f docker-compose.yml -f docker-compose.production.yml"
