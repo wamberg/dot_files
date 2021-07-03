@@ -18,7 +18,7 @@ export EDITOR=$(which nvim)
 export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
 export SHELL=$(which zsh)
-export TERM=xterm-256color
+export TERM=tmux-256color
 export PATH="$HOME/.local/bin:${PATH}"
 
 # Golang
