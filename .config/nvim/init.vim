@@ -9,7 +9,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'micarmst/vim-spellsync'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'sheerun/vim-polyglot'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vimwiki/vimwiki'
@@ -21,9 +21,7 @@ set numberwidth=1
 set showcmd
 set ignorecase
 set smartcase
-set foldmethod=indent
 let g:dracula_colorterm = 0
-syntax enable
 colorscheme dracula
 
 """ Key Mappings
@@ -77,6 +75,21 @@ nnoremap <Leader>d :Gvdiffsplit!<CR>
 nnoremap <leader>o zczA
 
 """ Preferences
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+ensure_installed = {
+      \"javascript",
+      \"python",
+      \"tsx",
+      \"typescript",
+      \},
+  highlight = {
+    enable = true,
+  },
+}
+EOF
+
 
 " run local rc files
 set exrc

@@ -5,6 +5,7 @@ Akrasia
 Amberg
 Anki
 Bazel
+Bellotti
 Bitcoin
 Brandolini's
 Chromecast
@@ -45,6 +46,7 @@ XR
 admin
 akrasia
 akratic
+alignable
 blog
 counterfactual
 counterfactuals
@@ -59,6 +61,7 @@ incentivizes
 k8s
 metadata
 neovim
+nonalignable
 omakase
 podcast
 serverless
@@ -66,5 +69,3 @@ situational
 sophrosyne
 texted
 webhook
-alignable
-nonalignable
