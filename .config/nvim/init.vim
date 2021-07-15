@@ -84,6 +84,7 @@ ensure_installed = {
       \"toml",
       \"tsx",
       \"typescript",
+      \"yaml",
       \},
   highlight = {
     enable = true,
