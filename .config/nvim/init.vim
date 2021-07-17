@@ -16,13 +16,20 @@ Plug 'vimwiki/vimwiki'
 call plug#end()
 
 """ Display
-set number
-set numberwidth=1
 set showcmd
 set ignorecase
 set smartcase
 let g:dracula_colorterm = 0
 colorscheme dracula
+
+"" line numbers
+set number relativenumber
+set numberwidth=1
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
 """ Key Mappings
 
