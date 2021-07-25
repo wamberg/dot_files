@@ -48,6 +48,8 @@ KEYTIMEOUT=1
 # aliases
 alias ag="ag --path-to-ignore ~/.gitignore_global"
 alias gbdm="git branch --merged | egrep -v \"(^\*|master)\" | xargs git branch -d"
+alias n="./node_modules/.bin/nx"
+alias nxr="./node_modules/.bin/nx run"
 alias o="./omks"
 alias ob="./omks build"
 alias or="./omks run"
@@ -57,8 +59,7 @@ alias pca="pre-commit run --all-files"
 alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
 alias rs="rsync -avP"
 alias tpl="tmuxp load"
-alias n="./node_modules/.bin/nx"
-alias nxr="./node_modules/.bin/nx run"
+alias vw="nvim -u ~/.config/nvim/writing.vim"
 
 c () {
   # cd into a fuzzy (via fzf) directory
