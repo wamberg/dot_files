@@ -59,7 +59,6 @@ alias pca="pre-commit run --all-files"
 alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
 alias rs="rsync -avP"
 alias tpl="tmuxp load"
-alias vw="nvim -u ~/.config/nvim/writing.vim"
 
 c () {
   # cd into a fuzzy (via fzf) directory

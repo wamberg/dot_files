@@ -7,6 +7,7 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/goyo.vim'
 Plug 'micarmst/vim-spellsync'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -80,6 +81,9 @@ nnoremap <Leader>d :Gvdiffsplit!<CR>
 
 " Open all folds in current fold
 nnoremap <leader>o zczA
+
+" Start Goyo
+nnoremap <silent><leader>w :Goyo<cr>
 
 """ Preferences
 
@@ -167,6 +171,28 @@ let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'vsplit',
   \ 'ctrl-h': 'split' }
+
+" Goyo overrides
+function! s:goyo_enter()
+  set noshowmode
+  set noshowcmd
+  set scrolloff=999
+  set linebreak
+  set wrap
+  set nonumber
+  set norelativenumber
+endfunction
+
+function! s:goyo_leave()
+  set showmode
+  set showcmd
+  set scrolloff=5
+  set number
+  set relativenumber
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 "" vimwiki
 let g:zettelkasten = '~/dev/garden/'
