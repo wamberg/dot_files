@@ -20,6 +20,7 @@ ETL
 EconTalk
 Ethereum
 Eudaimonic
+Evangelion
 GitHub
 Hedonic
 JS
@@ -33,6 +34,7 @@ Mischel
 Misogi
 NFT
 NFTs
+NPC
 Numantia
 Perell
 Refactor
@@ -41,9 +43,11 @@ SaaS
 Thiel
 Trello
 Useff
+Vulpes
 WASM
 WebXR
 WiP
+Workspace
 Wrex
 XR
 admin
@@ -66,6 +70,7 @@ metadata
 neovim
 nonalignable
 nvim
+observability
 omakase
 podcast
 serverless
@@ -74,7 +79,3 @@ sophrosyne
 texted
 treesitter
 webhook
-observability
-Vulpes
-NPC
-Workspace
