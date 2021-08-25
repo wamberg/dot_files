@@ -128,7 +128,7 @@ let g:python3_host_prog = $HOME.'/.asdf/shims/python'
 let g:closetag_filetypes = 'html,xhtml,phtml,javascriptreact,typescriptreact'
 
 " Centerpad
-nnoremap <silent><leader>c <cmd>lua require'centerpad'.toggle { leftpad = 50, rightpad = 30 }<cr>
+nnoremap <silent><leader>m <cmd>lua require'centerpad'.toggle { leftpad = 50, rightpad = 30 }<cr>
 
 "" CoC
 
