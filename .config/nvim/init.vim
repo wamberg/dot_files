@@ -24,6 +24,8 @@ let g:dracula_colorterm = 0
 colorscheme dracula
 
 "" line numbers
+set cursorline
+set cursorlineopt=number
 set number relativenumber
 set numberwidth=1
 augroup numbertoggle
