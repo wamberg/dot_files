@@ -86,6 +86,7 @@ nnoremap <leader>o zczA
 
 """ Preferences
 
+"" treesitter
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
 ensure_installed = {
@@ -105,6 +106,8 @@ local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.python.used_by = "bzl"
 EOF
 
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 
 " run local rc files
 set exrc
