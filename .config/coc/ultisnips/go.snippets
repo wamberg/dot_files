@@ -70,7 +70,7 @@ func Test${1:name}(t *testing.T) {
   actual := "false"
   // assert
   if actual != expected {
-    t.Errorf("actual %q expected %q", actual, expected)
+    t.Fatalf("actual %q expected %q", actual, expected)
   }
 }
 endsnippet
