@@ -90,6 +90,7 @@ nnoremap <leader>o zczA
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
 ensure_installed = {
+      \"go",
       \"javascript",
       \"python",
       \"toml",
