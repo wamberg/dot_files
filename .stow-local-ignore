@@ -1,5 +1,4 @@
 # custom ignore
-*backup.sh
 Dockerfile
 \.gitmodules
 \.git_template
