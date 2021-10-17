@@ -1,4 +1,13 @@
-*-backup.sh
+# custom ignore
+*backup.sh
 Dockerfile
 \.gitmodules
 \.git_template
+
+# stow defaults
+# https://www.gnu.org/software/stow/manual/html_node/Types-And-Syntax-Of-Ignore-Lists.html
+\.git
+\.gitignore
+^/README.*
+^/LICENSE.*
+^/COPYING

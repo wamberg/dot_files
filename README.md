@@ -1,3 +1,3 @@
 # Personal Config
 
-`stow --dir=~/dev/dot_files --target=~/`
+`stow --dir="${HOME}/dev/dot_files" --target="${HOME}/"`
