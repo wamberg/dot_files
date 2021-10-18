@@ -36,7 +36,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Pure prompt configuration
 bindkey -v  # Set Vi mode
-fpath=("$HOME/dev/dot_files/.zsh/pure" $fpath)
+fpath=("$HOME/dev/dot_files/zsh/pure" $fpath)
 autoload -U promptinit; promptinit
 PURE_GIT_UNTRACKED_DIRTY=0
 prompt pure
