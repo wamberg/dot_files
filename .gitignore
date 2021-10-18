@@ -1,4 +1,7 @@
 *.swp
+*.bak
+obs/.config/obs-studio/*
+!obs/.config/obs-studio/basic
 nvim/.config/coc/commands
 nvim/.config/coc/extensions/coc-go-data/
 nvim/.config/coc/extensions/db.json
