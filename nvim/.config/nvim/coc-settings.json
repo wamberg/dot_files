@@ -1,5 +1,5 @@
 {
-  "coc.preferences.jumpCommand": "split",
+  "coc.preferences.jumpCommand": "drop",
   "suggest.autoTrigger": "none",
   "suggest.noselect": false,
   "languageserver": {

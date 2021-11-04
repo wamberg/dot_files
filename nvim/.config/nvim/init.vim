@@ -20,6 +20,7 @@ call plug#end()
 set showcmd
 set ignorecase
 set smartcase
+set foldlevel=99
 let g:dracula_colorterm = 0
 colorscheme dracula
 
