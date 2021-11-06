@@ -3,13 +3,13 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'alvan/vim-closetag'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'micarmst/vim-spellsync'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'projekt0n/github-nvim-theme'
 Plug 'smithbm2316/centerpad.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -21,8 +21,7 @@ set showcmd
 set ignorecase
 set smartcase
 set foldlevel=99
-let g:dracula_colorterm = 0
-colorscheme dracula
+colorscheme github_light
 
 "" line numbers
 set cursorline
