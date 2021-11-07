@@ -4,8 +4,9 @@ Plug 'airblade/vim-gitgutter'
 Plug 'alvan/vim-closetag'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'micarmst/vim-spellsync'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -38,16 +39,6 @@ augroup END
 
 let mapleader = ";"
 
-" work more logically with wrapped lines
-noremap j gj
-noremap k gk
-
-"" Move viewport
-" scroll up
-noremap <silent> <C-U> <C-Y>
-" scroll down
-noremap <silent> <C-D> <C-E>
-
 " Check spelling
 set spell spelllang=en_us
 map <F8> :set spell!<CR>
@@ -62,21 +53,10 @@ nnoremap <silent> <Leader>c :noh<CR>
 " toggle formatting for pasting
 map <F9> :set invpaste<CR>
 
-" fzf mappings
-nnoremap <silent> <Leader>t :Files<CR>
-nnoremap <silent> <Leader>b :Buffers<CR>
-nnoremap <silent> <Leader>g :Tags<CR>
-
 " Buffer navigation
 map <Leader>x :bp\|bd #<Return> " delete current buffer (close)
 map <Leader>q :%bd\|e#<Return> " delete all other buffers
 map gn :bn<cr> " <number> + 'gn' goes to buffer number
-
-" bind K to grep word under cursor
-nnoremap K :Rg <C-r><C-w><CR>
-
-" bind \ (backward slash) + f to grep shortcut
-nnoremap <Leader>f :Rg<CR>
 
 " three-way merge conflict
 nnoremap <Leader>d :Gvdiffsplit!<CR>
@@ -175,12 +155,6 @@ function! s:show_documentation()
   endif
 endfunction
 
-"" fzf
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'vsplit',
-  \ 'ctrl-h': 'split' }
-
 "" vimwiki
 let g:zettelkasten = '~/dev/garden/'
 let g:vimwiki_list = [{'path': zettelkasten,
@@ -188,9 +162,9 @@ let g:vimwiki_list = [{'path': zettelkasten,
                       \ 'syntax': 'markdown',
                       \ 'ext': '.md'}]
 let g:vimwiki_global_ext = 0
-hi VimwikiLink term=underline ctermfg=cyan guifg=cyan gui=underline
+hi VimwikiLink term=underline ctermfg=DarkBlue guifg=DarkBlue gui=underline
 hi VimwikiHeader2 ctermfg=DarkMagenta guifg=DarkMagenta
-hi VimwikiHeader3 ctermfg=DarkBlue guifg=DarkBlue
+hi VimwikiHeader3 ctermfg=DarkGreen guifg=DarkBlue
 
 " Disable table_mappings that override <tab>
 let g:vimwiki_key_mappings = {
@@ -201,21 +175,4 @@ let g:vimwiki_key_mappings = {
 command! NewNote :execute ":e" zettelkasten . strftime("%Y%m%d%H%M") . ".md"
 nnoremap <silent> <leader>nn :NewNote<CR>
 
-" make_note_link: List -> Str
-" returned string: [Title](YYYYMMDDHH.md)
-function! s:make_note_link(l)
-  " fzf#vim#complete returns a list with all info in index 0
-  let line = split(a:l[0], ':')
-  let ztk_id = l:line[0]
-  try
-    let ztk_title = substitute(l:line[2], '\#\+\s\+', '', 'g')
-  catch
-    let ztk_title = substitute(l:line[1], '\#\+\s\+', '', 'g')
-  endtry
-  let mdlink = "[" . ztk_title ."](/". ztk_id .")"
-  return mdlink
-endfunction
-" mnemonic link ag
-inoremap <expr> <c-l>l fzf#vim#complete(fzf#vim#with_preview({
-      \ 'source':  'ag --hidden --smart-case --path-to-ignore ~/.gitignore_global ^\#',
-      \ 'reducer': function('<sid>make_note_link')}))
+lua require('config')
