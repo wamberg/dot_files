@@ -16,6 +16,7 @@ keymap('i', '<leader>fl', "<cmd>lua require('zettel').link_post()<cr>", {})
 -- Plugin Config
 ------------------
 
+--------------
 -- Telescope
 local actions = require('telescope.actions')
 require('telescope').setup {
@@ -32,5 +33,14 @@ require('telescope').setup {
 -- load_extension, somewhere after setup function:
 require('telescope').load_extension('fzf')
 
+-----------
+-- Lualine
+require('lualine').setup {
+  options = {
+    theme = 'github',
+  }
+}
+
+-----------
 -- Zettel
 require('zettel')
