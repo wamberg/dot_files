@@ -80,6 +80,11 @@ c () {
   cd "${D}"
 }
 
+tns () {
+  local name="${1:-${PWD##*/}}"
+  tmux new -s "${name}"
+}
+
 # docker
 alias d="docker"
 alias dc="docker-compose"
