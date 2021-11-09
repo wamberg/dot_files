@@ -52,6 +52,26 @@ require('lualine').setup {
 -- Zettel
 require('zettel')
 
+--------------------
+-- nvim-treesitter
+require'nvim-treesitter.configs'.setup {
+ensure_installed = {
+      "go",
+      "javascript",
+      "python",
+      "toml",
+      "tsx",
+      "typescript",
+      "yaml",
+      },
+  highlight = {
+    enable = true,
+  },
+}
+
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.python.used_by = "bzl"
+
 ---------------------
 -- neovim-lspconfig
 local nvim_lsp = require('lspconfig')
