@@ -38,6 +38,9 @@ require('telescope').load_extension('fzf')
 require('lualine').setup {
   options = {
     theme = 'github',
+  },
+  sections = {
+    lualine_x = {'encoding', 'filetype'},
   }
 }
 
