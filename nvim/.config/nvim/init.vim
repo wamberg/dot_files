@@ -1,18 +1,25 @@
 """ Plugins
 call plug#begin('~/.local/share/nvim/plugged')
+Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-gitgutter'
 Plug 'alvan/vim-closetag'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/nvim-cmp'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'micarmst/vim-spellsync'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'projekt0n/github-nvim-theme'
+Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'smithbm2316/centerpad.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -68,27 +75,6 @@ nnoremap <leader>o zczA
 
 """ Preferences
 
-"" treesitter
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-ensure_installed = {
-      \"go",
-      \"javascript",
-      \"python",
-      \"toml",
-      \"tsx",
-      \"typescript",
-      \"yaml",
-      \},
-  highlight = {
-    enable = true,
-  },
-}
-
-local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-parser_config.python.used_by = "bzl"
-EOF
-
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 
@@ -117,45 +103,6 @@ let g:closetag_filetypes = 'html,xhtml,phtml,javascriptreact,typescriptreact'
 
 " Centerpad
 nnoremap <silent><leader>m <cmd>lua require'centerpad'.toggle { leftpad = 50, rightpad = 30 }<cr>
-
-"" CoC
-
-" Make <tab> used for trigger completion, completion confirm, snippet expand and jump
-" https://github.com/neoclide/coc-snippets/blob/master/Readme.md
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-let g:coc_snippet_next = '<tab>'
-
-" Edit snippets for current filetype
-nnoremap <silent> <Leader>es :CocCommand snippets.openSnippetFiles<CR>
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> U :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
 
 "" vimwiki
 let g:zettelkasten = '~/dev/garden/'

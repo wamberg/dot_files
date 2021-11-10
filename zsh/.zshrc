@@ -61,8 +61,8 @@ alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
 alias rs="rsync -avP"
 alias tpl="tmuxp load"
 
+# cd into a fuzzy (via fzf) directory
 c () {
-  # cd into a fuzzy (via fzf) directory
   local dest="${1:-${HOME}/dev}"
   D="$(\
     rg \
@@ -77,12 +77,29 @@ c () {
     | xargs -0 dirname \
     | sort -u \
     | fzf)"
+  [ $? -eq 0 ] || return 1
   cd "${D}"
 }
 
+# Open a named tmux session. Use the last directory in current path as the
+# session name.
 tns () {
   local name="${1:-${PWD##*/}}"
-  tmux new -s "${name}"
+  tmux new-session -ds "${name}"
+  tmux rename-window -t "${name}":0 "manage"
+  tmux new-window -t "${name}" -n "code"
+  tmux send-keys -t "${name}":1 nvim C-m
+  tmux new-window -t "${name}" -n "nav"
+  tmux last-window -t "${name}"
+  tmux attach-session -t "${name}"
+}
+
+# Fuzzy change into a directory. Open a named tmux session there.
+ct () {
+  local dest="${1:-${HOME}/dev}"
+  c "${dest}"
+  [ $? -eq 0 ] || return 1
+  tns
 }
 
 # docker
