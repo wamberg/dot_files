@@ -54,8 +54,10 @@ require('zettel')
 
 --------------------
 -- nvim-treesitter
+-- See available: https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
 require'nvim-treesitter.configs'.setup {
 ensure_installed = {
+      "bash",
       "go",
       "javascript",
       "python",
@@ -158,8 +160,10 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
+-- See available: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 local servers = {
   'gopls',
+  'bashls',
 }
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 for _, lsp in ipairs(servers) do
