@@ -260,8 +260,9 @@ end
 -- map buffer local keybindings when the language server attaches
 -- See available: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 local servers = {
-  'gopls',
   'bashls',
+  'gopls',
+  'pyright',
 }
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 for _, lsp in ipairs(servers) do
@@ -273,3 +274,8 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+
+-- Disable nvim-cmp for certain filetypes
+vim.api.nvim_command([[
+  autocmd FileType markdown,vimwiki lua require('cmp').setup.buffer { enabled = false }
+]])
