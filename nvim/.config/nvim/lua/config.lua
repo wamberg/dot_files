@@ -82,6 +82,9 @@ vim.g.UltiSnipsSnippetDirectories = { '~/.config/nvim/ultisnips' }
 local cmp = require'cmp'
 
 cmp.setup({
+  completion = {
+    autocomplete = false
+  },
   snippet = {
     expand = function(args)
       vim.fn["UltiSnips#Anon"](args.body)
