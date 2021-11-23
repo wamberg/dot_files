@@ -46,7 +46,7 @@ augroup END
 
 """ Key Mappings
 
-let mapleader = ";"
+let mapleader = " "
 
 " Check spelling
 set spell spelllang=en_us
