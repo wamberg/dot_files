@@ -11,6 +11,7 @@ keymap('n', '<leader>fb', '<cmd>Telescope buffers<cr>', {})
 keymap('n', '<leader>fw', '<cmd>Telescope grep_string<cr>', {})
 keymap('n', '<leader>fh', '<cmd>Telescope grep_string search=^#\\  use_regex=true=<cr>', {})
 keymap('i', '<leader>fl', '<cmd>lua require("zettel").link_post()<cr>', {})
+keymap('n', '<leader>es', '<cmd>UltiSnipsEdit<cr>', {})
 
 ------------------
 -- Plugin Config
