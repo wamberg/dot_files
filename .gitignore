@@ -18,3 +18,4 @@ vifm/.config/vifm/vifminfo*
 
 obs/.config/obs-studio/*
 !obs/.config/obs-studio/basic
+obs/.config/obs-studio/basic/profiles/wamberg/service.json
