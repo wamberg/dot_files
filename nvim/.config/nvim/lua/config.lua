@@ -61,6 +61,7 @@ ensure_installed = {
       "bash",
       "go",
       "javascript",
+      "nix",
       "python",
       "toml",
       "tsx",
