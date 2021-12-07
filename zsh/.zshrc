@@ -47,10 +47,9 @@ prompt pure
 KEYTIMEOUT=1
 
 # aliases
-alias ag="ag --path-to-ignore ~/.gitignore_global"
-alias gbdm="git branch --merged | egrep -v \"(^\*|master)\" | xargs git branch -d"
-alias n="./node_modules/.bin/nx"
-alias nxr="./node_modules/.bin/nx run"
+alias ahm="~/dev/dot_files/nix/apply-users.sh"
+alias asys="~/dev/dot_files/nix/apply-system.sh"
+alias ns="nix search nixpkgs"
 alias o="./omks"
 alias ob="./omks build"
 alias or="./omks run"
@@ -59,7 +58,7 @@ alias ov="./omks vars"
 alias pca="pre-commit run --all-files"
 alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
 alias rs="rsync -avP"
-alias tpl="tmuxp load"
+alias upd="~/dev/dot_files/nix/update.sh"
 
 # cd into a fuzzy (via fzf) directory
 c () {
