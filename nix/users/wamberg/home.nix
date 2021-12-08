@@ -13,6 +13,7 @@
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
     delta
     firefox
+    flameshot
     fzf
     gcc
     git
@@ -41,7 +42,6 @@
   services.gpg-agent = {
     enable = true;
     pinentryFlavor = "qt";
-
   };
 
   # This value determines the Home Manager release that your
