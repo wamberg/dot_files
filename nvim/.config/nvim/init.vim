@@ -95,9 +95,6 @@ autocmd BufReadPost *
 	\   exe "normal! g`\"" |
 	\ endif
 
-" Specify python3 for plugins
-let g:python3_host_prog = $HOME.'/.asdf/shims/python'
-
 " Specify react files for vim-closetag
 let g:closetag_filetypes = 'html,xhtml,phtml,javascriptreact,typescriptreact'
 

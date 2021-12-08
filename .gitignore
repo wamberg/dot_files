@@ -1,15 +1,7 @@
-*.swp
 *.bak
+*.swp
+nix/result
 node_modules/
-nvim/.config/coc/commands
-nvim/.config/coc/extensions/coc-go-data/
-nvim/.config/coc/extensions/db.json
-nvim/.config/coc/history.json
-nvim/.config/coc/list-location-history.json
-nvim/.config/coc/list-snippets-history.json
-nvim/.config/coc/memos.json
-nvim/.config/coc/mru
-nvim/.config/coc/snippets-mru
 nvim/.config/nvim/.netrwhist
 nvim/.config/nvim/plugin/packer_compiled.lua
 tmux/.config/tmux/plugins
