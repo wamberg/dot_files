@@ -54,7 +54,7 @@ map <F8> :set spell!<CR>
 set nospell
 
 " Ctrl-N twice toggle line numbers
-nnoremap <silent> <C-N><C-N> :set invnumber<CR>
+nnoremap <silent> <C-N><C-N> :set number! relativenumber!<CR>
 
 " \+c redraws the screen and removes any search highlighting.
 nnoremap <silent> <Leader>c :noh<CR>
