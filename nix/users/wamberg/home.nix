@@ -21,6 +21,7 @@
     gnome.gnome-tweaks
     gnumake
     gnupg
+    go_1_17
     google-chrome
     neovim-nightly
     nodejs-16_x
@@ -33,6 +34,7 @@
     tdesktop
     tree
     tmux
+    universal-ctags
     unzip
     wget
     zoom-us
