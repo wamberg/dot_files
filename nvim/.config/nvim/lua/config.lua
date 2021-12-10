@@ -12,6 +12,7 @@ keymap('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', {})
 keymap('n', '<leader>fh', '<cmd>Telescope grep_string search=^#\\  use_regex=true=<cr>', {})
 keymap('n', '<leader>fl', '<cmd>lua require("zettel").link_post()<cr>', {})
 keymap('n', '<leader>fw', '<cmd>Telescope grep_string<cr>', {})
+keymap('n', '<leader>g', ':!ctags -R .<cr><cr>', {}) -- generate ctags
 
 ------------------
 -- Plugin Config
@@ -60,15 +61,17 @@ require('zettel')
 -- nvim-treesitter
 -- See available: https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = {
+ensure_installed = {
     "bash",
     "go",
     "javascript",
+    "lua",
     "nix",
     "python",
     "toml",
     "tsx",
     "typescript",
+    "vim",
     "yaml",
   },
   highlight = {
