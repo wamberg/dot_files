@@ -19,6 +19,7 @@
     git
     git-crypt
     gnome.gnome-tweaks
+    gnomeExtensions.gtile
     gnumake
     gnupg
     go_1_17
