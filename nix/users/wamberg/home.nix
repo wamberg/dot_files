@@ -29,6 +29,7 @@
     nodejs-16_x
     obs-studio
     pinentry_qt
+    pre-commit
     python310
     ripgrep
     rsync
