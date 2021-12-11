@@ -12,6 +12,7 @@
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
     delta
+    docker-compose
     firefox
     flameshot
     fzf
