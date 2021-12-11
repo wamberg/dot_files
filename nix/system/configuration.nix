@@ -33,9 +33,13 @@
   networking.useDHCP = false;
   networking.interfaces.wlp2s0.useDHCP = true;
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  networking.extraHosts =
+  ''
+    0.0.0.0 reliability.publicpower.dev
+    0.0.0.0 reliability.api.publicpower.dev
+    0.0.0.0 safety.publicpower.dev
+    0.0.0.0 account.publicpower.dev
+  '';
 
   # Select internationalisation properties.
   # i18n.defaultLocale = "en_US.UTF-8";
