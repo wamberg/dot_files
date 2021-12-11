@@ -24,6 +24,7 @@
     gnupg
     go_1_17
     google-chrome
+    mkcert
     neovim-nightly
     nodejs-16_x
     obs-studio
