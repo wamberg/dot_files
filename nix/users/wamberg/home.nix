@@ -25,10 +25,10 @@
     gnupg
     go_1_17
     google-chrome
+    jq
     mkcert
     neovim-nightly
     nodejs-16_x
-    unstable.obs-studio
     openssl
     pinentry_qt
     pre-commit
@@ -37,9 +37,10 @@
     rsync
     stow
     tdesktop
-    tree
     tmux
+    tree
     universal-ctags
+    unstable.obs-studio
     unzip
     wget
     zoom-us

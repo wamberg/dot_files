@@ -24,6 +24,11 @@
   networking.hostName = "lofty"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
+  # Enable kernel modules
+  boot.extraModulePackages = [
+    config.boot.kernelPackages.v4l2loopback.out
+  ];
+
   # Set your time zone.
   time.timeZone = "America/New_York";
 
