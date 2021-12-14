@@ -19,6 +19,7 @@
     gcc
     git
     git-crypt
+    glow
     gnome.gnome-tweaks
     gnomeExtensions.gtile
     gnumake
