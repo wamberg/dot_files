@@ -28,7 +28,7 @@
     mkcert
     neovim-nightly
     nodejs-16_x
-    obs-studio
+    unstable.obs-studio
     openssl
     pinentry_qt
     pre-commit
