@@ -13,6 +13,7 @@
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
     delta
     docker-compose
+    ffmpeg
     firefox
     flameshot
     fzf
@@ -32,6 +33,7 @@
     nodejs-16_x
     openssl
     pinentry_qt
+    pipewire
     pre-commit
     python310
     ripgrep
@@ -44,6 +46,7 @@
     unstable.obs-studio
     unzip
     wget
+    yamllint
     zoom-us
     zsh
   ];
