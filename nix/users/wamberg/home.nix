@@ -28,6 +28,7 @@
     go_1_17
     google-chrome
     jq
+    libreoffice
     mkcert
     neovim-nightly
     nodejs-16_x
