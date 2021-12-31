@@ -84,12 +84,10 @@ c () {
 # session name.
 tns () {
   local name="${1:-${PWD##*/}}"
-  tmux new-session -ds "${name}"
-  tmux rename-window -t "${name}":0 "manage"
-  tmux new-window -t "${name}" -n "code"
-  tmux send-keys -t "${name}":1 nvim C-m
-  tmux new-window -t "${name}" -n "nav"
-  tmux last-window -t "${name}"
+  tmux new-session -ds "${name}" -x "$(tput cols)" -y "$(tput lines)"
+  tmux rename-window -t "${name}":0 "code"
+  tmux split-window -p 70
+  tmux send-keys -t "${name}":0 nvim C-m
   tmux attach-session -t "${name}"
 }
 
