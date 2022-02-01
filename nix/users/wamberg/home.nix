@@ -38,6 +38,7 @@
     pipewire
     pre-commit
     python310
+    qt5.qtwayland
     ripgrep
     rsync
     stow
