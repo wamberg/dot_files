@@ -12,7 +12,15 @@ local config = {
     { "christoomey/vim-tmux-navigator" },
     { "editorconfig/editorconfig-vim" },
     { "micarmst/vim-spellsync" },
-    { "projekt0n/github-nvim-theme" },
+    {
+      "projekt0n/github-nvim-theme",
+      after = "lualine.nvim",
+      config = function()
+        require("github-theme").setup({
+          theme_style = "light_default"
+        })
+      end,
+    },
   },
 
   -- On/off virtual diagnostics text
