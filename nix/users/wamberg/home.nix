@@ -48,6 +48,7 @@
     universal-ctags
     unstable.obs-studio
     unzip
+    vifm
     wget
     yamllint
     zoom-us
