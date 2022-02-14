@@ -9,20 +9,21 @@
   home.username = "wamberg";
   home.homeDirectory = "/home/wamberg";
 
+  imports = [
+    ./gnome-paperwm.nix
+  ];
+
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
     delta
     docker-compose
     ffmpeg
     firefox
-    flameshot
     fzf
     gcc
     git
     git-crypt
     glow
-    gnome.gnome-tweaks
-    gnomeExtensions.gtile
     gnumake
     gnupg
     go_1_17
