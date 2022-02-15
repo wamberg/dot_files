@@ -12,15 +12,6 @@
 
   dconf.settings = {
 
-    # Use capslock as super key
-    "org/gnome/desktop/input-sources" = {
-      xkb-options = [
-        "caps:super"  # map capslock to windows/mac key
-        "numpad:mac"  # always enable numlock
-        "f:XF86AudioRaiseVolume"
-      ];
-    };
-
     "org/gnome/shell" = {
       enabled-extensions = [
         "instantworkspaceswitcher@amalantony.net" # fix some UI glitches gnome40+paperwm
