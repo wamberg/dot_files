@@ -16,11 +16,13 @@
       overlay-unstable = final: prev: {
         unstable = inputs.nixpkgs-unstable.legacyPackages.x86_64-linux;
       };
+      overlay-paperwm = import ./overlays/paperwm.nix;
       pkgs = import nixpkgs {
         inherit system;
         config = { allowUnfree = true; };
         overlays = [
           neovim-nightly-overlay.overlay
+          overlay-paperwm
           overlay-unstable
         ];
       };
