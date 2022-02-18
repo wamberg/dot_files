@@ -52,6 +52,7 @@
     unzip
     vifm
     wget
+    xclip
     yamllint
     zoom-us
     zsh
