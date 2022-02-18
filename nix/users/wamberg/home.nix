@@ -47,6 +47,7 @@
     tmux
     tree
     universal-ctags
+    unstable.alacritty
     unstable.obs-studio
     unzip
     vifm
