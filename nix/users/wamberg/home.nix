@@ -37,6 +37,7 @@
     openssl
     pinentry_qt
     pipewire
+    postman
     pre-commit
     python310
     qt5.qtwayland
