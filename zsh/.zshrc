@@ -20,11 +20,17 @@ export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
 export SHELL=$(which zsh)
 export TERM=tmux-256color
-export PATH="$HOME/.local/bin:${PATH}"
+export PATH="${PATH}:$HOME/.local/bin"
+
 
 # Golang
 export GOPATH=~/dev/go
 export PATH="${PATH}:${GOPATH}/bin"
+
+# Node
+export NODE_PATH=~/.npm-packages/lib/node_modules
+export PATH="${PATH}:$HOME/.npm-packages/bin"
+
 
 # fzf
 export FZF_DEFAULT_COMMAND='rg --hidden --no-ignore --follow --files --ignore-file ~/.gitignore_global'
