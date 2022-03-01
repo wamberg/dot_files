@@ -20,6 +20,7 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'projekt0n/github-nvim-theme'
+Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'smithbm2316/centerpad.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'

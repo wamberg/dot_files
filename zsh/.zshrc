@@ -20,12 +20,16 @@ export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
 export SHELL=$(which zsh)
 export TERM=tmux-256color
+export PATH="${PATH}:$HOME/.local/bin"
+
 
 # Golang
 export GOPATH=~/dev/go
+export PATH="${PATH}:${GOPATH}/bin"
 
 # Node
 export NODE_PATH=~/.npm-packages/lib/node_modules
+export PATH="${PATH}:$HOME/.npm-packages/bin"
 
 
 # fzf
