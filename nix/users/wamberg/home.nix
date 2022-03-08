@@ -39,6 +39,7 @@
     pipewire
     postman
     pre-commit
+    pyright
     python310
     qt5.qtwayland
     ripgrep
