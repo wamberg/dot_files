@@ -39,7 +39,7 @@ require('telescope').load_extension('fzf')
 -- Lualine
 require('lualine').setup {
   options = {
-    theme = 'github',
+    theme = 'auto',
   },
   sections = {
     lualine_c = {
