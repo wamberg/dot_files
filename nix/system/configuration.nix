@@ -24,6 +24,10 @@
   networking.hostName = "lofty"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
+  # Kernel settings
+  boot.kernel.sysctl = {
+    "vm.max_map_count" = 262144;
+  };
   # Enable kernel modules
   boot.extraModulePackages = [
     config.boot.kernelPackages.v4l2loopback.out
