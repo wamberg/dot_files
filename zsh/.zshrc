@@ -66,6 +66,7 @@ alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
 alias rs="rsync -avP"
 alias upd="~/dev/dot_files/nix/update.sh"
 alias xc="xclip -sel clip"
+alias gmd="glow --width 180 --style light"
 
 # cd into a fuzzy (via fzf) directory
 c () {
