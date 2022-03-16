@@ -8,9 +8,7 @@
         rev = "next-release";
         sha256 = "6AUUu63oWxRw9Wpxe0f7xvt7iilvQfhpAB8SYG4yP8Q=";
       };
-      patches = old.patches ++ [
-        ../patches/paperwm.patch
-      ];
+      patches = old.patches ++ [ ../patches/paperwm.patch ];
     });
   };
 })

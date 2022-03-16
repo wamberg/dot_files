@@ -9,9 +9,7 @@
   home.username = "wamberg";
   home.homeDirectory = "/home/wamberg";
 
-  imports = [
-    ./gnome-paperwm.nix
-  ];
+  imports = [ ./gnome-paperwm.nix ];
 
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" ]; })

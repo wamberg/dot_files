@@ -10,7 +10,8 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = inputs @ { nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, neovim-nightly-overlay, ... }:
+  outputs = inputs@{ nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware
+    , neovim-nightly-overlay, ... }:
     let
       system = "x86_64-linux";
       overlay-unstable = final: prev: {
@@ -20,25 +21,17 @@
       pkgs = import nixpkgs {
         inherit system;
         config = { allowUnfree = true; };
-        overlays = [
-          neovim-nightly-overlay.overlay
-          overlay-paperwm
-          overlay-unstable
-        ];
+        overlays =
+          [ neovim-nightly-overlay.overlay overlay-paperwm overlay-unstable ];
       };
-    in
-    {
+    in {
       homeManagerConfigurations = {
         wamberg = home-manager.lib.homeManagerConfiguration {
           inherit system pkgs;
           username = "wamberg";
           homeDirectory = "/home/wamberg";
           stateVersion = "21.11";
-          configuration = {
-            imports = [
-              ./users/wamberg/home.nix
-            ];
-          };
+          configuration = { imports = [ ./users/wamberg/home.nix ]; };
         };
       };
       nixosConfigurations = {

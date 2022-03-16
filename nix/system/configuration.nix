@@ -12,10 +12,9 @@
     '';
   };
 
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -25,13 +24,9 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Kernel settings
-  boot.kernel.sysctl = {
-    "vm.max_map_count" = 262144;
-  };
+  boot.kernel.sysctl = { "vm.max_map_count" = 262144; };
   # Enable kernel modules
-  boot.extraModulePackages = [
-    config.boot.kernelPackages.v4l2loopback.out
-  ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback.out ];
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -42,8 +37,7 @@
   networking.useDHCP = false;
   networking.interfaces.wlp2s0.useDHCP = true;
 
-  networking.extraHosts =
-  ''
+  networking.extraHosts = ''
     0.0.0.0 reliability.publicpower.dev
     0.0.0.0 reliability.api.publicpower.dev
     0.0.0.0 safety.publicpower.dev
@@ -60,11 +54,9 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
