@@ -48,13 +48,14 @@ autoload -U promptinit; promptinit
 PURE_GIT_UNTRACKED_DIRTY=0
 prompt pure
 
-
 # Eliminate vi-mode normal mode delay
 KEYTIMEOUT=1
 
 # aliases
 alias ahm="~/dev/dot_files/nix/apply-users.sh"
 alias asys="~/dev/dot_files/nix/apply-system.sh"
+alias gmd="glow --width 180 --style light"
+alias ngc="~/dev/dot_files/nix/collect-garbage.sh"
 alias ns="nix search nixpkgs"
 alias o="./omks"
 alias ob="./omks build"
@@ -66,7 +67,6 @@ alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
 alias rs="rsync -avP"
 alias upd="~/dev/dot_files/nix/update.sh"
 alias xc="xclip -sel clip"
-alias gmd="glow --width 180 --style light"
 
 # cd into a fuzzy (via fzf) directory
 c () {
