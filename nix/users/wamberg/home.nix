@@ -13,6 +13,7 @@
 
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
+    btop
     delta
     docker-compose
     ffmpeg
