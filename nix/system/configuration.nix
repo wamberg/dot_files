@@ -20,11 +20,10 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "lofty"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
   # Kernel settings
-  boot.kernel.sysctl = { "vm.max_map_count" = 262144; }; # For ElasticSearch (and Java in general)
+  boot.kernel.sysctl = {
+    "vm.max_map_count" = 262144;
+  }; # For ElasticSearch (and Java in general)
 
   # Enable kernel modules
   boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback.out ];
@@ -32,12 +31,15 @@
   # Set your time zone.
   time.timeZone = "America/New_York";
 
+  networking.hostName = "lofty"; # Define your hostname.
+
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.useDHCP = false;
 
   networking.networkmanager.enable = true;
+  networking.nameservers = [ "8.8.8.8" "8.8.4.4" ];
   networking.extraHosts = ''
     0.0.0.0 reliability.publicpower.dev
     0.0.0.0 reliability.api.publicpower.dev
@@ -68,7 +70,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.wamberg = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "docker" ];
+    extraGroups = [ "wheel" "docker" "networkmanager" ];
     shell = pkgs.zsh;
   };
 
