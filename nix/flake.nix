@@ -35,7 +35,7 @@
         };
       };
       nixosConfigurations = {
-        lofty = nixpkgs.lib.nixosSystem {
+        hearth = nixpkgs.lib.nixosSystem {
           inherit system;
 
           modules = [
