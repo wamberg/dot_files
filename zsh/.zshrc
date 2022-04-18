@@ -3,12 +3,10 @@ export ZSH_THEME=""
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_TITLE="true"
 plugins=(
-  asdf
   direnv
   docker
   git
   ssh-agent
-  yarn
 )
 export plugins
 
