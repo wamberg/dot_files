@@ -1,0 +1,23 @@
+{
+  "Import": {
+    "prefix": ["imp"],
+    "body": [
+      "import $1"
+    ],
+    "description": "Import from module"
+  },
+  "FromImport": {
+    "prefix": ["fimp"],
+    "body": [
+      "from $1 import $2"
+    ],
+    "description": "From module import"
+  },
+  "SetTrace": {
+    "prefix": ["st"],
+    "body": [
+      "import pdb; pdb.set_trace()"
+    ],
+    "description": "Set trace for debugging"
+  }
+}

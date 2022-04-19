@@ -5,14 +5,18 @@ local keymap = vim.api.nvim_set_keymap
 
 keymap('n', '<c-d>', '<c-e>', { silent = true }) -- move viewport down
 keymap('n', '<c-u>', '<c-y>', { silent = true }) -- move viewport up
-keymap('n', '<leader>es', '<cmd>UltiSnipsEdit<cr>', {})
+keymap('n', '<leader>es', '<cmd>VsnipOpen<cr>', {})
 keymap('n', '<leader>fb', '<cmd>Telescope buffers<cr>', {})
 keymap('n', '<leader>ff', '<cmd>Telescope git_files<cr>', {})
 keymap('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', {})
 keymap('n', '<leader>fh', '<cmd>Telescope grep_string search=^#\\  use_regex=true=<cr>', {})
 keymap('n', '<leader>fl', '<cmd>lua require("zettel").link_post()<cr>', {})
 keymap('n', '<leader>fw', '<cmd>Telescope grep_string<cr>', {})
-keymap('n', '<leader>g', ':!ctags -R .<cr><cr>', {}) -- generate ctags
+-- vsnip kepmap
+keymap('n', '<Tab>', '<Plug>(vsnip-jump-next)', {})
+keymap('i', '<Tab>', '<Plug>(vsnip-jump-next)', {})
+keymap('n', '<S-Tab>', '<Plug>(vsnip-jump-prev)', {})
+keymap('i', '<S-Tab>', '<Plug>(vsnip-jump-prev)', {})
 
 ------------------
 -- Plugin Config
@@ -82,9 +86,6 @@ ensure_installed = {
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.python.used_by = "bzl"
 
---------------
--- UltiSnips
-vim.g.UltiSnipsSnippetDirectories = { '~/.config/nvim/ultisnips' }
 
 --------------
 -- nvim-cmp
@@ -95,7 +96,7 @@ cmp.setup({
   snippet = {
     -- REQUIRED - you must specify a snippet engine
     expand = function(args)
-      vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
     end,
   },
 
@@ -111,8 +112,8 @@ cmp.setup({
 
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
+    { name = 'vsnip' },
     { name = 'path' },
-    { name = 'ultisnips' },
     { name = 'buffer', keyword_length = 5 },
   }),
 

@@ -1,6 +1,5 @@
 """ Plugins
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-gitgutter'
 Plug 'alvan/vim-closetag'
 Plug 'christoomey/vim-tmux-navigator'
@@ -9,7 +8,9 @@ Plug 'ggandor/lightspeed.nvim'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/vim-vsnip'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'micarmst/vim-spellsync'
 Plug 'neovim/nvim-lspconfig'
@@ -19,7 +20,6 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'projekt0n/github-nvim-theme'
-Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'smithbm2316/centerpad.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -75,6 +75,7 @@ nnoremap <leader>o zczA
 
 """ Preferences
 
+set completeopt=menu,menuone,noselect
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 

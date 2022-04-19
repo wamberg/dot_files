@@ -46,7 +46,6 @@
     tdesktop
     tmux
     tree
-    universal-ctags
     unstable.kitty
     unstable.obs-studio
     unzip
