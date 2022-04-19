@@ -4,7 +4,7 @@
 *.swp
 .DS_Store
 .agignore
-.envrc
+.direnv/
 .exrc
 .git
 .mypy_cache/
