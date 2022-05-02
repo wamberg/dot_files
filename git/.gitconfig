@@ -27,3 +27,5 @@
 	ff = only
 [init]
 	defaultBranch = main
+[safe]
+	directory = /home/wamberg/dev/dot_files
