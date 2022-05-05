@@ -9,7 +9,7 @@ keymap('n', '<leader>es', '<cmd>VsnipOpen<cr>', {})
 keymap('n', '<leader>fb', '<cmd>Telescope buffers<cr>', {})
 keymap('n', '<leader>ff', '<cmd>Telescope git_files<cr>', {})
 keymap('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', {})
-keymap('n', '<leader>fh', '<cmd>Telescope grep_string search=^#\\  use_regex=true=<cr>', {})
+keymap('n', '<leader>fh', '<cmd>Telescope grep_string use_regex=true search=^#\\ <cr>', {})
 keymap('n', '<leader>fl', '<cmd>lua require("zettel").link_post()<cr>', {})
 keymap('n', '<leader>fw', '<cmd>Telescope grep_string<cr>', {})
 -- vsnip kepmap
