@@ -23,7 +23,7 @@
   };
 
   swapDevices =
-    [{ device = "/dev/disk/by-uuid/8780c239-b532-4914-9e37-2246744a4890"; }];
+    [{ device = "/dev/disk/by-uuid/946119de-9d46-49aa-8407-740d76724d0b"; }];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode =
