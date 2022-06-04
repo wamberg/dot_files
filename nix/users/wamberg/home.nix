@@ -42,6 +42,7 @@
     qt5.qtwayland
     ripgrep
     rsync
+    shotcut
     stow
     tdesktop
     tmux
