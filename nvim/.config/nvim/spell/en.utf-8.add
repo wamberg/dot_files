@@ -89,6 +89,7 @@ metadata
 monorepo
 neovim
 nonalignable
+nonoccurrences
 nvim
 observability
 omakase
@@ -100,5 +101,5 @@ submodules
 substring
 texted
 treesitter
-webhook
 undead
+webhook

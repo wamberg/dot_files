@@ -64,6 +64,7 @@ alias ov="./omks vars"
 alias pca="pre-commit run --all-files"
 alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
 alias rs="rsync -avP"
+alias ta="tmux attach"
 alias upd="~/dev/dot_files/nix/update.sh"
 alias xc="xclip -sel clip"
 
