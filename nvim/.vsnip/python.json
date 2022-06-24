@@ -47,5 +47,19 @@
       "LOGGER.error(f\"$1: {$1}\")"
     ],
     "description": "Log error"
+  },
+  "Test": {
+    "prefix": ["test_"],
+    "body": [
+      "def test_$1($2):",
+      "    \"\"\"",
+      "    $3",
+      "    \"\"\"",
+      "    # arrange",
+      "    $4",
+      "    # act",
+      "    # assert"
+    ],
+    "description": "Log error"
   }
 }
