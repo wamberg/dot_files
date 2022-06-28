@@ -33,6 +33,9 @@ export PATH="${PATH}:$HOME/.npm-packages/bin"
 # fzf
 export FZF_DEFAULT_COMMAND='rg --hidden --no-ignore --follow --files --ignore-file ~/.gitignore_global'
 
+# nvim zen-mode
+export KITTY_LISTEN_ON="unix:/tmp/kitty-$(pidof kitty)"
+
 # no history for commands that begin with space
 setopt histignorespace
 
@@ -54,6 +57,7 @@ alias ahm="~/dev/dot_files/nix/apply-users.sh"
 alias asys="~/dev/dot_files/nix/apply-system.sh"
 alias gmd="glow --width 180 --style light"
 alias ngc="~/dev/dot_files/nix/collect-garbage.sh"
+alias nvim="lvim"
 alias ns="nix search nixpkgs"
 alias o="./omks"
 alias ob="./omks build"
