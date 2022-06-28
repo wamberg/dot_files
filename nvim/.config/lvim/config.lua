@@ -47,6 +47,7 @@ lvim.builtin.which_key.mappings["t"] = {
   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Wordspace Diagnostics" },
 }
+lvim.builtin.which_key.mappings["z"] = { "<cmd>ZenMode<CR>", "Zen Mode" }
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
@@ -172,6 +173,20 @@ lvim.plugins = {
     branch = "dev"
   },
   {"christoomey/vim-tmux-navigator"},
+  {
+    "folke/zen-mode.nvim",
+    config = function()
+    require("zen-mode").setup {
+      plugins = {
+        kitty = {
+          enabled = true,
+          font = "+4",
+        }
+      }
+    }
+  end
+
+  },
   {"editorconfig/editorconfig-vim"},
   {"micarmst/vim-spellsync"},
   {
