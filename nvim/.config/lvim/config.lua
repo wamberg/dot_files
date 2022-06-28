@@ -11,7 +11,7 @@ an executable
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = true
-lvim.colorscheme = "onedarker"
+lvim.colorscheme = "github_light"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -155,14 +155,24 @@ lvim.lsp.installer.setup.ensure_installed = {
 --   },
 -- }
 
+-- Customization
+vim.opt.mouse = "" -- disable mouse
+
+
 -- Additional Plugins
--- lvim.plugins = {
---     {"folke/tokyonight.nvim"},
---     {
---       "folke/trouble.nvim",
---       cmd = "TroubleToggle",
---     },
--- }
+lvim.plugins = {
+  {
+    "projekt0n/github-nvim-theme",
+    config = function()
+      require("github-theme").setup({
+        theme_style = "light"
+      })
+    end
+  },
+  {"christoomey/vim-tmux-navigator"},
+  {"editorconfig/editorconfig-vim"},
+  {"micarmst/vim-spellsync"},
+}
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
