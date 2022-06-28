@@ -1,6 +1,3 @@
--- local pickers = require "telescope.pickers"
--- local finders = require "telescope.finders"
--- local conf = require("telescope.config").values
 local actions = require "telescope.actions"
 local action_state = require "telescope.actions.state"
 
@@ -28,5 +25,14 @@ local function link_post()
   require('telescope.builtin').grep_string(opts)
 end
 
+local function new_note ()
+  local timestamp = os.date("%Y%m%d%H%M")
+  local filename = "~/dev/garden/" .. timestamp .. ".md"
+  vim.cmd('e '.. filename)
+end
 
-return { link_post = link_post }
+
+return {
+  link_post = link_post,
+  new_note = new_note,
+}

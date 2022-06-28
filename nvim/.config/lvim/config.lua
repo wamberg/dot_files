@@ -20,28 +20,24 @@ lvim.leader = "space"
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
 -- override a default keymapping
--- lvim.keys.normal_mode["<C-q>"] = ":q<cr>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
-
--- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
--- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
--- local _, actions = pcall(require, "telescope.actions")
--- lvim.builtin.telescope.defaults.mappings = {
---   -- for input mode
---   i = {
---     ["<C-j>"] = actions.move_selection_next,
---     ["<C-k>"] = actions.move_selection_previous,
---     ["<C-n>"] = actions.cycle_history_next,
---     ["<C-p>"] = actions.cycle_history_prev,
---   },
---   -- for normal mode
---   n = {
---     ["<C-j>"] = actions.move_selection_next,
---     ["<C-k>"] = actions.move_selection_previous,
---   },
--- }
+lvim.keys.normal_mode = {
+  ["<C-u>"] = "<C-y>", -- move viewport up
+  ["<C-d>"] = "<C-e>", -- move viewport down
+  ["<Space>f"] = false, -- Remove default Telescope git_files. Handle with which_key later.
+}
 
 -- Use which-key to add extra bindings with the leader-key prefix
--- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
+lvim.builtin.which_key.mappings["f"] = {
+  name = "+Files",
+  b = { "<cmd>Telescope buffers<cr>", "Buffers" },
+  f = { "<cmd>Telescope git_files<cr>", "Files" },
+  g = { "<cmd>Telescope live_grep<cr>", "Grep" },
+  h = { "<cmd>Telescope grep_string use_regex=true search=^#\\ <cr>", "Headers" },
+  l = { "<cmd>lua require('zettel').link_post()<cr>", "Link" },
+  n = { "<cmd>lua require('zettel').new_note()<cr>", "New note" },
+  w = { "<cmd>Telescope grep_string<cr>", "Word under cursor" },
+}
+
 lvim.builtin.which_key.mappings["t"] = {
   name = "+Trouble",
   r = { "<cmd>Trouble lsp_references<cr>", "References" },
@@ -54,7 +50,7 @@ lvim.builtin.which_key.mappings["t"] = {
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
-lvim.builtin.alpha.active = true
+lvim.builtin.alpha.active = false
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
@@ -153,9 +149,17 @@ lvim.lsp.installer.setup.ensure_installed = {
 --   },
 -- }
 
--- Customization
-vim.opt.mouse = "" -- disable mouse
 
+-----------------
+-- Customization
+-----------------
+vim.opt.mouse = "" -- disable mouse
+vim.opt.relativenumber = true
+vim.opt.wrap = true
+
+-- Run local rc files
+vim.opt.exrc = true
+vim.opt.secure = true
 
 -- Additional Plugins
 lvim.plugins = {
