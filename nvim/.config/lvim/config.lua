@@ -6,7 +6,6 @@ filled in as strings with either
 a global executable or a path to
 an executable
 ]]
--- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 
 -- general
 lvim.log.level = "warn"
@@ -168,6 +167,14 @@ lvim.plugins = {
         theme_style = "light"
       })
     end
+  },
+  {
+    "vimwiki/vimwiki",
+    config = function()
+      vim.cmd("let g:vimwiki_list = [{'path': '~/dev/garden/', 'syntax': 'markdown', 'ext': '.md'}]")
+      vim.cmd("let g:vimwiki_folding='expr'")
+    end,
+    branch = "dev"
   },
   {"christoomey/vim-tmux-navigator"},
   {"editorconfig/editorconfig-vim"},
