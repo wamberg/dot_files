@@ -81,6 +81,7 @@ linters.setup {
 -----------------
 -- Customization
 -----------------
+lvim.lsp.diagnostics.virtual_text = false
 vim.opt.clipboard = "" -- disable nvim + clipboard
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = "number"
