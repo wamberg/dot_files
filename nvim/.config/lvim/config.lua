@@ -143,3 +143,10 @@ vim.api.nvim_create_autocmd("FileType", {
     require("nvim-treesitter.highlight").attach(0, "bash")
   end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "vimwiki",
+  callback = function()
+    require('cmp').setup.buffer({completion = {autocomplete = false}})
+  end,
+})
