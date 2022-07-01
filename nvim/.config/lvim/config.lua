@@ -117,6 +117,7 @@ lvim.plugins = {
   },
   {"editorconfig/editorconfig-vim"},
   {"micarmst/vim-spellsync"},
+  {"waylonwalker/Telegraph.nvim"}
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
