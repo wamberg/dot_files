@@ -24,16 +24,6 @@ lvim.builtin.which_key.mappings["f"] = {
   n = { "<cmd>lua require('zettel').new_note()<cr>", "New note" },
   w = { "<cmd>Telescope grep_string<cr>", "Word under cursor" },
 }
-
-lvim.builtin.which_key.mappings["t"] = {
-  name = "+Trouble",
-  r = { "<cmd>Trouble lsp_references<cr>", "References" },
-  f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
-  d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
-  q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
-  l = { "<cmd>Trouble loclist<cr>", "LocationList" },
-  w = { "<cmd>Trouble workspace_diagnostics<cr>", "Wordspace Diagnostics" },
-}
 lvim.builtin.which_key.mappings["z"] = { "<cmd>ZenMode<CR>", "Zen Mode" }
 
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
@@ -127,12 +117,6 @@ lvim.plugins = {
   },
   {"editorconfig/editorconfig-vim"},
   {"micarmst/vim-spellsync"},
-  {
-    "folke/trouble.nvim",
-    config = function()
-    require("trouble").setup { }
-  end
-  },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
