@@ -12,6 +12,7 @@ lvim.keys.normal_mode = {
   ["<C-u>"] = "<C-y>", -- move viewport up
   ["<C-d>"] = "<C-e>", -- move viewport down
   ["<Space>f"] = false, -- Remove default Telescope git_files. Handle with which_key later.
+  ["<Space>w"] = false, -- Remove default save command
 }
 
 lvim.builtin.which_key.mappings["f"] = {
@@ -24,7 +25,12 @@ lvim.builtin.which_key.mappings["f"] = {
   n = { "<cmd>lua require('zettel').new_note()<cr>", "New note" },
   w = { "<cmd>Telescope grep_string<cr>", "Word under cursor" },
 }
-lvim.builtin.which_key.mappings["z"] = { "<cmd>ZenMode<CR>", "Zen Mode" }
+lvim.builtin.which_key.mappings["n"] = {
+  name = "+Notes",
+  g = { "<cmd>lua require'telegraph'.telegraph({cmd='glow --style light --pager {filepath}', how='tmux_popup'})<cr>", "Glow"},
+  r = { "<cmd>lua require'telegraph'.telegraph({cmd='bash -c \"ls *.md | shuf -n 1 | xargs glow --style light --pager\"', how='tmux_popup'})<cr>", "Review Random"},
+}
+lvim.builtin.which_key.mappings["z"] = { "<cmd>ZenMode<cr>", "Zen Mode" }
 
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = false
@@ -117,6 +123,7 @@ lvim.plugins = {
   },
   {"editorconfig/editorconfig-vim"},
   {"micarmst/vim-spellsync"},
+  {"waylonwalker/Telegraph.nvim"}
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
