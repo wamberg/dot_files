@@ -16,6 +16,7 @@
     btop
     delta
     docker-compose
+    fd
     ffmpeg
     firefox
     fzf
@@ -26,7 +27,6 @@
     gnupg
     go_1_17
     google-chrome
-    jo
     jq
     libreoffice
     mkcert

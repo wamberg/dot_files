@@ -75,6 +75,7 @@ alias xc="xclip -sel clip"
 # cd into a fuzzy (via fzf) directory
 c () {
   local dest="${1:-${HOME}/dev}"
+  local depth="${2:-20}"
   D="$(\
     rg \
       --hidden \
@@ -83,6 +84,7 @@ c () {
       --files \
       --ignore-file ~/.gitignore_global \
       --null \
+      --max-depth ${depth} \
       ${dest} \
       2> /dev/null \
     | xargs -0 dirname \
@@ -106,7 +108,7 @@ tns () {
 # Fuzzy change into a directory. Open a named tmux session there.
 ct () {
   local dest="${1:-${HOME}/dev}"
-  c "${dest}"
+  c "${dest}" 2
   [ $? -eq 0 ] || return 1
   tns
 }
