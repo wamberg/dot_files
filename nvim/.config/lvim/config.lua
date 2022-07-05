@@ -22,12 +22,12 @@ lvim.builtin.which_key.mappings["f"] = {
   g = { "<cmd>Telescope live_grep<cr>", "Grep" },
   h = { "<cmd>Telescope grep_string use_regex=true search=^#\\ <cr>", "Headers" },
   l = { "<cmd>lua require('zettel').link_post()<cr>", "Link" },
-  n = { "<cmd>lua require('zettel').new_note()<cr>", "New note" },
   w = { "<cmd>Telescope grep_string<cr>", "Word under cursor" },
 }
 lvim.builtin.which_key.mappings["n"] = {
   name = "+Notes",
-  g = { "<cmd>lua require'telegraph'.telegraph({cmd='glow --style light --pager {filepath}', how='tmux_popup'})<cr>", "Glow"},
+  g = { "<cmd>lua require'telegraph'.telegraph({cmd='glow --style light --pager {filepath}', how='tmux_popup'})<cr>", "Glow current"},
+  n = { "<cmd>lua require('zettel').new_note()<cr>", "New note" },
   r = { "<cmd>lua require'telegraph'.telegraph({cmd='bash -c \"ls *.md | shuf -n 1 | xargs glow --style light --pager\"', how='tmux_popup'})<cr>", "Review Random"},
 }
 lvim.builtin.which_key.mappings["z"] = { "<cmd>ZenMode<cr>", "Zen Mode" }
