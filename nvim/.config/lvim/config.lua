@@ -15,6 +15,50 @@ vim.opt.relativenumber = true
 vim.opt.scrolloff = 4
 vim.opt.wrap = true
 
+----------------------
+-- Additional Plugins
+----------------------
+lvim.plugins = {
+  {"christoomey/vim-tmux-navigator"},
+  {"editorconfig/editorconfig-vim"},
+  {
+    "folke/zen-mode.nvim",
+    config = function()
+    require("zen-mode").setup {
+      plugins = {
+        kitty = {
+          enabled = true,
+          font = "+4",
+        }
+      }
+    }
+  end
+
+  },
+  {"micarmst/vim-spellsync"},
+  {
+    "tpope/vim-surround",
+    keys = {"c", "d", "y"}
+  },
+  {
+    "projekt0n/github-nvim-theme",
+    config = function()
+      require("github-theme").setup({
+        theme_style = "light"
+      })
+    end
+  },
+  {
+    "vimwiki/vimwiki",
+    config = function()
+      vim.cmd("let g:vimwiki_list = [{'path': '~/dev/garden/', 'syntax': 'markdown', 'ext': '.md'}]")
+      vim.cmd("let g:vimwiki_folding='expr'")
+    end,
+    branch = "dev"
+  },
+  {"waylonwalker/Telegraph.nvim"},
+}
+
 ----------------
 -- Key Mappings
 ----------------
@@ -45,48 +89,6 @@ lvim.builtin.which_key.mappings["n"] = {
   r = { "<cmd>lua require'telegraph'.telegraph({cmd='bash -c \"ls *.md | shuf -n 1 | xargs glow --style light --pager\"', how='tmux_popup'})<cr>", "Review Random"},
 }
 lvim.builtin.which_key.mappings["z"] = { "<cmd>ZenMode<cr>", "Zen Mode" }
-
-
-----------------------
--- Additional Plugins
-----------------------
-lvim.plugins = {
-  {
-    "projekt0n/github-nvim-theme",
-    config = function()
-      require("github-theme").setup({
-        theme_style = "light"
-      })
-    end
-  },
-  {
-    "vimwiki/vimwiki",
-    config = function()
-      vim.cmd("let g:vimwiki_list = [{'path': '~/dev/garden/', 'syntax': 'markdown', 'ext': '.md'}]")
-      vim.cmd("let g:vimwiki_folding='expr'")
-    end,
-    branch = "dev"
-  },
-  {"christoomey/vim-tmux-navigator"},
-  {
-    "folke/zen-mode.nvim",
-    config = function()
-    require("zen-mode").setup {
-      plugins = {
-        kitty = {
-          enabled = true,
-          font = "+4",
-        }
-      }
-    }
-  end
-
-  },
-  {"editorconfig/editorconfig-vim"},
-  {"micarmst/vim-spellsync"},
-  {"waylonwalker/Telegraph.nvim"}
-}
-
 
 --------------------------------
 -- Builtin Plugin Configuration
