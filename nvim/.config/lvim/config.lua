@@ -84,6 +84,7 @@ vim.opt.cursorlineopt = "number"
 vim.opt.foldmethod = "expr"
 vim.opt.mouse = "" -- disable mouse
 vim.opt.relativenumber = true
+vim.opt.scrolloff = 4
 vim.opt.wrap = true
 
 ----------------------
