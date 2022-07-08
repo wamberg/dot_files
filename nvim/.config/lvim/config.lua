@@ -1,12 +1,26 @@
--- general
-lvim.log.level = "warn"
-lvim.format_on_save = true
+-----------------
+-- Customization
+-----------------
 lvim.colorscheme = "github_light"
+lvim.format_on_save = true
+lvim.log.level = "warn"
+lvim.lsp.diagnostics.virtual_text = false
+vim.opt.clipboard = "" -- disable nvim + clipboard
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = "number"
+vim.opt.foldlevel = 99
+vim.opt.foldmethod = "manual"
+vim.opt.mouse = "" -- disable mouse
+vim.opt.relativenumber = true
+vim.opt.scrolloff = 4
+vim.opt.wrap = true
 
--- keymappings [view all the defaults by pressing <leader>Lk]
+----------------
+-- Key Mappings
+----------------
+
+-- [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
-
--- my keymapping
 
 lvim.keys.normal_mode = {
   ["<C-u>"] = "<C-y>", -- move viewport up
@@ -32,60 +46,6 @@ lvim.builtin.which_key.mappings["n"] = {
 }
 lvim.builtin.which_key.mappings["z"] = { "<cmd>ZenMode<cr>", "Zen Mode" }
 
--- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
-lvim.builtin.alpha.active = false
-lvim.builtin.alpha.mode = "dashboard"
-lvim.builtin.notify.active = true
-lvim.builtin.terminal.active = true
-lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
-
-lvim.builtin.treesitter.ensure_installed = {
-  "bash",
-  "javascript",
-  "json",
-  "lua",
-  "python",
-  "typescript",
-  "tsx",
-  "css",
-  "yaml",
-}
-
-lvim.builtin.treesitter.ignore_install = { "haskell" }
-lvim.builtin.treesitter.highlight.enabled = true
-
--- set a formatter, this will override the language server formatting capabilities (if it exists)
-local formatters = require "lvim.lsp.null-ls.formatters"
-formatters.setup {
-  { command = "black", filetypes = { "python" } },
-  { command = "isort", filetypes = { "python" } },
-  {
-    command = "prettier",
-    extra_args = { "--prose-wrap", "always" },
-    filetypes = { "typescript", "typescriptreact", "vimwiki" },
-  },
-}
-
--- set additional linters
-local linters = require "lvim.lsp.null-ls.linters"
-linters.setup {
-  { command = "flake8", filetypes = { "python" } },
-}
-
-
------------------
--- Customization
------------------
-lvim.lsp.diagnostics.virtual_text = false
-vim.opt.clipboard = "" -- disable nvim + clipboard
-vim.opt.cursorline = true
-vim.opt.cursorlineopt = "number"
-vim.opt.foldmethod = "expr"
-vim.opt.mouse = "" -- disable mouse
-vim.opt.relativenumber = true
-vim.opt.scrolloff = 4
-vim.opt.wrap = true
 
 ----------------------
 -- Additional Plugins
@@ -125,6 +85,59 @@ lvim.plugins = {
   {"editorconfig/editorconfig-vim"},
   {"micarmst/vim-spellsync"},
   {"waylonwalker/Telegraph.nvim"}
+}
+
+
+--------------------------------
+-- Builtin Plugin Configuration
+--------------------------------
+-- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
+lvim.builtin.alpha.active = false
+lvim.builtin.alpha.mode = "dashboard"
+lvim.builtin.notify.active = true
+lvim.builtin.terminal.active = true
+lvim.builtin.nvimtree.setup.view.side = "left"
+lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
+
+--------------
+-- Treesitter
+--------------
+
+lvim.builtin.treesitter.ensure_installed = {
+  "bash",
+  "javascript",
+  "json",
+  "lua",
+  "python",
+  "typescript",
+  "tsx",
+  "css",
+  "yaml",
+}
+
+lvim.builtin.treesitter.ignore_install = { "haskell" }
+lvim.builtin.treesitter.highlight.enabled = true
+
+--------------
+-- Formatters
+--------------
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  { command = "black", filetypes = { "python" } },
+  { command = "isort", filetypes = { "python" } },
+  {
+    command = "prettier",
+    extra_args = { "--prose-wrap", "always" },
+    filetypes = { "typescript", "typescriptreact", "vimwiki" },
+  },
+}
+
+-----------
+-- Linters
+-----------
+local linters = require "lvim.lsp.null-ls.linters"
+linters.setup {
+  { command = "flake8", filetypes = { "python" } },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
