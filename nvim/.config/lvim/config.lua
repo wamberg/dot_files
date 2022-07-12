@@ -155,5 +155,10 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = "vimwiki",
   callback = function()
     require('cmp').setup.buffer({completion = {autocomplete = false}})
+    vim.cmd[[highlight VimwikiHeader1 guifg=blue gui=bold]]
+    vim.cmd[[highlight VimwikiHeader2 guifg=darkgreen gui=bold]]
+    vim.cmd[[highlight VimwikiHeader3 guifg=darkorange3 gui=bold]]
+    vim.cmd[[highlight VimwikiHeader4 guifg=magenta3 gui=bold]]
+    vim.cmd[[highlight VimwikiHeader5 guifg=magenta gui=bold]]
   end,
 })
