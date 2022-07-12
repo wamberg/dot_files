@@ -1,0 +1,4 @@
+#!env zsh
+# vim: set filetype=bash :
+
+git commit --verbose --message="$(date -Iseconds)"
