@@ -51,6 +51,7 @@
     unstable.obs-studio
     unzip
     vifm
+    wesnoth
     wget
     xclip
     yamllint
