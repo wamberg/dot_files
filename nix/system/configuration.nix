@@ -43,10 +43,11 @@
   networking.networkmanager.enable = true;
   networking.nameservers = [ "8.8.8.8" "8.8.4.4" ];
   networking.extraHosts = ''
-    0.0.0.0 reliability.publicpower.dev
-    0.0.0.0 reliability.api.publicpower.dev
-    0.0.0.0 safety.publicpower.dev
     0.0.0.0 account.publicpower.dev
+    0.0.0.0 gillie.localhost
+    0.0.0.0 reliability.api.publicpower.dev
+    0.0.0.0 reliability.publicpower.dev
+    0.0.0.0 safety.publicpower.dev
   '';
 
   # Enable the X11 windowing system.
