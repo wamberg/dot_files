@@ -5,7 +5,7 @@
     flameshot # Fancy screenshot tool
     gnome.gnome-tweaks
     gnomeExtensions.disable-workspace-switch-animation-for-gnome-40
-    gnomeExtensions.paperwm # The best tiling window manager
+    gnome42Extensions.paperwm # The best tiling window manager
     gnomeExtensions.run-or-raise
     wmctrl # Used to "focus or launch" apps
   ];
