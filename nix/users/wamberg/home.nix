@@ -49,6 +49,7 @@
     tree
     unstable.kitty
     unstable.obs-studio
+    unstable.openai-whisper
     unzip
     vifm
     wesnoth
