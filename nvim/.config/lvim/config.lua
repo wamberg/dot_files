@@ -2,7 +2,14 @@
 -- Customization
 -----------------
 lvim.colorscheme = "github_light"
-lvim.format_on_save = true
+lvim.format_on_save = {
+  ---@usage pattern string pattern used for the autocommand (Default: '*')
+  pattern = "*",
+  ---@usage timeout number timeout in ms for the format request (Default: 1000)
+  timeout = 2000,
+  ---@usage filter func to select client
+  filter = require("lvim.lsp.utils").format_filter,
+}
 lvim.log.level = "warn"
 lvim.lsp.diagnostics.virtual_text = false
 vim.opt.clipboard = "" -- disable nvim + clipboard
@@ -19,26 +26,26 @@ vim.opt.wrap = true
 -- Additional Plugins
 ----------------------
 lvim.plugins = {
-  {"christoomey/vim-tmux-navigator"},
-  {"editorconfig/editorconfig-vim"},
+  { "christoomey/vim-tmux-navigator" },
+  { "editorconfig/editorconfig-vim" },
   {
     "folke/zen-mode.nvim",
     config = function()
-    require("zen-mode").setup {
-      plugins = {
-        kitty = {
-          enabled = true,
-          font = "+4",
+      require("zen-mode").setup {
+        plugins = {
+          kitty = {
+            enabled = true,
+            font = "+4",
+          }
         }
       }
-    }
-  end
+    end
 
   },
-  {"micarmst/vim-spellsync"},
+  { "micarmst/vim-spellsync" },
   {
     "tpope/vim-surround",
-    keys = {"c", "d", "y"}
+    keys = { "c", "d", "y" }
   },
   {
     "projekt0n/github-nvim-theme",
@@ -56,7 +63,7 @@ lvim.plugins = {
     end,
     branch = "dev"
   },
-  {"waylonwalker/Telegraph.nvim"},
+  { "waylonwalker/Telegraph.nvim" },
 }
 
 ----------------
@@ -84,9 +91,9 @@ lvim.builtin.which_key.mappings["f"] = {
 }
 lvim.builtin.which_key.mappings["n"] = {
   name = "+Notes",
-  g = { "<cmd>lua require'telegraph'.telegraph({cmd='glow --style light --pager {filepath}', how='tmux_popup'})<cr>", "Glow current"},
+  g = { "<cmd>lua require'telegraph'.telegraph({cmd='glow --style light --pager {filepath}', how='tmux_popup'})<cr>", "Glow current" },
   n = { "<cmd>lua require('zettel').new_note()<cr>", "New note" },
-  r = { "<cmd>lua require'telegraph'.telegraph({cmd='bash -c \"ls *.md | shuf -n 1 | xargs glow --style light --pager\"', how='tmux_popup'})<cr>", "Review Random"},
+  r = { "<cmd>lua require'telegraph'.telegraph({cmd='bash -c \"ls *.md | shuf -n 1 | xargs glow --style light --pager\"', how='tmux_popup'})<cr>", "Review Random" },
 }
 lvim.builtin.which_key.mappings["z"] = { "<cmd>ZenMode<cr>", "Zen Mode" }
 
@@ -154,11 +161,11 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "vimwiki",
   callback = function()
-    require('cmp').setup.buffer({completion = {autocomplete = false}})
-    vim.cmd[[highlight VimwikiHeader1 guifg=blue gui=bold]]
-    vim.cmd[[highlight VimwikiHeader2 guifg=darkgreen gui=bold]]
-    vim.cmd[[highlight VimwikiHeader3 guifg=darkorange3 gui=bold]]
-    vim.cmd[[highlight VimwikiHeader4 guifg=magenta3 gui=bold]]
-    vim.cmd[[highlight VimwikiHeader5 guifg=magenta gui=bold]]
+    require('cmp').setup.buffer({ completion = { autocomplete = false } })
+    vim.cmd [[highlight VimwikiHeader1 guifg=blue gui=bold]]
+    vim.cmd [[highlight VimwikiHeader2 guifg=darkgreen gui=bold]]
+    vim.cmd [[highlight VimwikiHeader3 guifg=darkorange3 gui=bold]]
+    vim.cmd [[highlight VimwikiHeader4 guifg=magenta3 gui=bold]]
+    vim.cmd [[highlight VimwikiHeader5 guifg=magenta gui=bold]]
   end,
 })
