@@ -1,0 +1,5 @@
+---
+python_version: 3.10.8
+rust_version: 1.64.0
+nodejs_version: 18.11.0
+neovim_version: v0.8.0

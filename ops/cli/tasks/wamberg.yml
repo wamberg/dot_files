@@ -1,0 +1,50 @@
+---
+- name: Add "wamberg" user
+  ansible.builtin.user:
+    name: wamberg
+    shell: /bin/zsh
+    groups: sudo,docker
+    append: yes
+
+- name: Clone dot_files
+  become: true
+  become_user: wamberg
+  ansible.builtin.git:
+    repo: "https://github.com/wamberg/dot_files.git"
+    dest: /home/wamberg/dev/dot_files
+
+- name: Check for .zshrc
+  stat:
+    path: "/home/wamberg/.zshrc"
+  register: zshrc_stat
+
+- name: Install oh-my-zsh if needed
+  block:
+    - name: Install oh-my-zsh
+      ansible.builtin.include_role:
+        name: oh_my_zsh
+      vars:
+        users:
+          - username: wamberg
+            oh_my_zsh:
+              install: true
+              plugins:
+                - asdf
+
+    - name: Remove oh_my_zsh .zshrc
+      ansible.builtin.file:
+        path: /home/wamberg/.zshrc
+        state: absent
+  when: not zshrc_stat.stat.exists
+
+- name: Stow dot_files
+  become: true
+  become_user: wamberg
+  become_flags: "--login"
+  command: 'stow --dir="${HOME}/dev/dot_files" --target="${HOME}/" -RS {{ item }}'
+  loop:
+    - git
+    - nvim
+    - tmux
+    - vifm
+    - zsh

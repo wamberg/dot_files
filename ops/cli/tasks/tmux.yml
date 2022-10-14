@@ -1,0 +1,18 @@
+---
+- name: Clone tmux plugin manager (tpm)
+  become: true
+  become_user: wamberg
+  ansible.builtin.git:
+    repo: "https://github.com/tmux-plugins/tpm"
+    dest: "/home/wamberg/.config/tmux/plugins/tpm"
+    depth: 1
+
+- name: Install tpm plugins
+  become: true
+  become_user: wamberg
+  command: "zsh -ilc '/home/wamberg/.config/tmux/plugins/tpm/bin/install_plugins'"
+
+- name: Update tpm plugins
+  become: true
+  become_user: wamberg
+  command: "zsh -ilc '/home/wamberg/.config/tmux/plugins/tpm/bin/update_plugins all'"
