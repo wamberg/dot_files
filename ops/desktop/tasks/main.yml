@@ -1,2 +1,10 @@
 ---
+- name: Install basic packages from apt
+  ansible.builtin.apt:
+    state: latest
+    cache_valid_time: 86400 # 1 day
+    update_cache: yes
+    pkg:
+      - python3-psutil
+
 - include_tasks: kitty.yml
