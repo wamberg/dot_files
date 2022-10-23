@@ -10,7 +10,7 @@
   become: true
   become_user: wamberg
   ansible.builtin.git:
-    repo: "https://github.com/wamberg/dot_files.git"
+    repo: "git@github.com:wamberg/dot_files.git"
     dest: /home/wamberg/dev/dot_files
 
 - name: Check for .zshrc
