@@ -48,6 +48,3 @@
 - include_tasks: asdf.yml
 - include_tasks: cargo.yml
 - include_tasks: neovim.yml
-
-# TODO
-# 1. Install neovim+lunarvim

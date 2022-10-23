@@ -19,6 +19,7 @@
   register: zshrc_stat
 
 - name: Install oh-my-zsh if needed
+  when: not zshrc_stat.stat.exists
   block:
     - name: Install oh-my-zsh
       ansible.builtin.include_role:
@@ -35,7 +36,6 @@
       ansible.builtin.file:
         path: /home/wamberg/.zshrc
         state: absent
-  when: not zshrc_stat.stat.exists
 
 - name: Stow dot_files
   become: true
