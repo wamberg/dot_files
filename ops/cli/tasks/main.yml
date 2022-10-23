@@ -1,0 +1,53 @@
+---
+- name: Install basic packages from apt
+  ansible.builtin.apt:
+    state: latest
+    cache_valid_time: 86400 # 1 day
+    update_cache: yes
+    pkg:
+      - btop
+      - build-essential
+      - ca-certificates
+      - curl
+      - ffmpeg
+      - fzf
+      - git
+      - gnupg
+      - jq
+      - locales
+      - lsb-release
+      - make
+      - mkcert
+      - stow
+      - sudo
+      - tmux
+      - unzip
+      - vifm
+      - wget
+      - zsh
+
+- name: Upgrade all install packages
+  ansible.builtin.apt:
+    upgrade: full
+
+- name: Remove dependencies that are no longer required
+  ansible.builtin.apt:
+    autoremove: yes
+
+# Set locale
+- name: Ensure the locale exists
+  locale_gen:
+    name: en_US.UTF-8
+    state: present
+- name: set as default locale
+  command: update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
+
+- include_tasks: docker.yml
+- include_tasks: wamberg.yml
+- include_tasks: tmux.yml
+- include_tasks: asdf.yml
+- include_tasks: cargo.yml
+- include_tasks: neovim.yml
+
+# TODO
+# 1. Install neovim+lunarvim

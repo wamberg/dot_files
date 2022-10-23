@@ -1,0 +1,92 @@
+---
+- name: Install neovim pre-requisites
+  ansible.builtin.apt:
+    state: latest
+    cache_valid_time: 86400 # 1 day
+    update_cache: yes
+    pkg:
+      - ninja-build
+      - gettext
+      - libtool
+      - libtool-bin
+      - autoconf
+      - automake
+      - cmake
+      - g++
+      - pkg-config
+      - unzip
+      - curl
+      - doxygen
+
+- name: Check for nvim installation
+  stat:
+    path: "/home/wamberg/.local/bin/nvim"
+  register: nvim_stat
+
+- name: Install neovim if needed
+  when: not nvim_stat.stat.exists
+  block:
+    - name: Create neovim directory
+      file:
+        path: /opt/neovim
+        state: directory
+        owner: wamberg
+        group: wamberg
+        mode: 0775
+
+    - name: Clone neovim
+      become: true
+      become_user: wamberg
+      ansible.builtin.git:
+        repo: "https://github.com/neovim/neovim.git"
+        dest: "/opt/neovim"
+        version: "{{ neovim_version }}"
+        depth: 1
+
+    - name: Make neovim
+      become: true
+      become_user: wamberg
+      ansible.builtin.command: "zsh -ilc 'make CMAKE_BUILD_TYPE=Release'"
+      args:
+        chdir: "/opt/neovim"
+
+    - name: Install neovim
+      become: true
+      become_user: wamberg
+      ansible.builtin.command: "zsh -ilc 'make CMAKE_INSTALL_PREFIX=/home/wamberg/.local install'"
+      args:
+        chdir: "/opt/neovim"
+
+- name: Install neovim python dependency
+  become: true
+  become_user: wamberg
+  command: "zsh -ilc 'pip install --upgrade pynvim'"
+
+- name: Install neovim node dependency
+  become: true
+  become_user: wamberg
+  command: "zsh -ilc 'npm install --global --quiet --no-progress neovim tree-sitter-cli'"
+
+- name: Check for lvim installation
+  stat:
+    path: "/home/wamberg/.local/bin/lvim"
+  register: lvim_stat
+
+- name: Install LunarVim if needed
+  when: not lvim_stat.stat.exists
+  block:
+    - name: Create LunarVim directory
+      file:
+        path: /opt/lvim
+        state: directory
+        owner: wamberg
+        group: wamberg
+        mode: 0775
+
+    - name: Clone LunarVim
+      become: true
+      become_user: wamberg
+      ansible.builtin.git:
+        repo: "https://github.com/LunarVim/LunarVim.git"
+        dest: "/opt/lvim"
+        depth: 1
