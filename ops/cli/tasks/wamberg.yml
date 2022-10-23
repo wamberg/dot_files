@@ -10,7 +10,7 @@
   become: true
   become_user: wamberg
   ansible.builtin.git:
-    repo: "https://github.com/wamberg/dot_files.git"
+    repo: "git@github.com:wamberg/dot_files.git"
     dest: /home/wamberg/dev/dot_files
 
 - name: Check for .zshrc
@@ -19,6 +19,7 @@
   register: zshrc_stat
 
 - name: Install oh-my-zsh if needed
+  when: not zshrc_stat.stat.exists
   block:
     - name: Install oh-my-zsh
       ansible.builtin.include_role:
@@ -35,7 +36,6 @@
       ansible.builtin.file:
         path: /home/wamberg/.zshrc
         state: absent
-  when: not zshrc_stat.stat.exists
 
 - name: Stow dot_files
   become: true

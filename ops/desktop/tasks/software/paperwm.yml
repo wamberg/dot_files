@@ -1,0 +1,24 @@
+---
+- name: Software | PaperWM | Check for installation
+  stat:
+    path: "/opt/paperwm"
+  register: paperwm_stat
+
+- name: Software | PaperWM | Install if needed
+  when: not paperwm_stat.stat.exists
+  block:
+    - name: Software | PaperWM | Create direcotry
+      file:
+        path: /opt/paperwm
+        state: directory
+        owner: wamberg
+        group: wamberg
+        mode: 0775
+
+    - name: Software | PaperWM | Clone
+      become: true
+      become_user: wamberg
+      ansible.builtin.git:
+        repo: "https://github.com/paperwm/PaperWM.git"
+        dest: "/opt/paperwm"
+        version: "{{ paperwm_version }}"

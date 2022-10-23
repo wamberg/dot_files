@@ -1,0 +1,5 @@
+- name: Software | Communication | Install
+  community.general.snap:
+    name:
+      - telegram-desktop
+      - slack

@@ -1,0 +1,14 @@
+---
+- name: Software | OBS | Stow config
+  become: true
+  become_user: wamberg
+  become_flags: "--login"
+  command: 'stow --dir="${HOME}/dev/dot_files" --target="${HOME}/" -RS obs'
+
+- name: Software | OBS | Install
+  ansible.builtin.apt:
+    state: latest
+    cache_valid_time: 86400 # 1 day
+    update_cache: yes
+    pkg:
+      - obs-studio

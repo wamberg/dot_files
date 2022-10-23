@@ -1,0 +1,16 @@
+---
+- name: Install basic packages from apt
+  ansible.builtin.apt:
+    state: latest
+    cache_valid_time: 86400 # 1 day
+    update_cache: yes
+    pkg:
+      - dconf-editor
+      - gnome-shell-extension-prefs
+      - python3-psutil
+
+- include_tasks: software/comm.yml
+- include_tasks: software/google_chrome.yml
+- include_tasks: software/kitty.yml
+- include_tasks: software/obs.yml
+- include_tasks: software/paperwm.yml
