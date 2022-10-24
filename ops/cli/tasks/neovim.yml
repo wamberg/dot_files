@@ -46,7 +46,7 @@
     - name: Make neovim
       become: true
       become_user: wamberg
-      ansible.builtin.command: "zsh -ilc 'make CMAKE_BUILD_TYPE=Release'"
+      ansible.builtin.command: "zsh -ilc 'make CMAKE_BUILD_TYPE=RelWithDebInfo'"
       args:
         chdir: "/opt/neovim"
 
