@@ -38,3 +38,7 @@
       versions:
         - "{{ rust_version }}"
       global: "{{ rust_version }}"
+    - name: "awscli"
+      versions:
+        - "{{ awscli_version }}"
+      global: "{{ awscli_version }}"

@@ -43,9 +43,10 @@
 - name: set as default locale
   command: update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
-- include_tasks: docker.yml
+- include_tasks: software/docker.yml
 - include_tasks: wamberg.yml
-- include_tasks: tmux.yml
-- include_tasks: asdf.yml
-- include_tasks: cargo.yml
-- include_tasks: neovim.yml
+- include_tasks: software/asdf.yml
+- include_tasks: software/aws.yml
+- include_tasks: software/cargo.yml
+- include_tasks: software/neovim.yml
+- include_tasks: software/tmux.yml

@@ -1,0 +1,13 @@
+---
+- name: Software | AWS | Install session manager plugin
+  ansible.builtin.apt:
+    deb: "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb"
+
+- name: Software | AWS | Install aws-vault
+  become_user: wamberg
+  ansible.builtin.get_url:
+    url: "https://github.com/99designs/aws-vault/releases/download/{{ awsvault_version }}/aws-vault-linux-amd64"
+    dest: "/home/wamberg/.local/bin/aws-vault"
+    mode: '0750'
+
+
