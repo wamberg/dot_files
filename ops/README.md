@@ -20,7 +20,10 @@ Run the following commands in this order:
 3. As wamberg, in dev/ director `git clone git@github.com:wamberg/dot_files.git`
 4. In dot_files/ops, `sudo ansible-galaxy install -r requirements.yml `
 5. In dot_files/ops, `sudo ansible-playbook ./playbook.yml`
-6. After ansible runs, in /opt/lvim, `./utils/installer/install.sh`
-7. After ansible runs, in /opt/paperwm, ensure metadata.json's "shell-version" contains "43", then `./install.sh`
+6. After ansible runs, in /opt/lvim,
+   `./utils/installer/install-neovim-from-release; ./utils/installer/install.sh`
+7. After ansible runs, in /opt/paperwm, ensure metadata.json's "shell-version"
+   contains "43", then `./install.sh`
 8. Install Zoom https://zoom.us/download?os=linux
-9. Install Teams https://www.microsoft.com/en-us/microsoft-teams/download-app#desktopAppDownloadregion
+9. Install Teams
+   https://www.microsoft.com/en-us/microsoft-teams/download-app#desktopAppDownloadregion
