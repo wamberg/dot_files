@@ -109,12 +109,12 @@ ct () {
 
 # docker
 alias d="docker"
-alias dc="docker-compose"
-alias dcup="docker-compose up -d"
-alias dcd="docker-compose -f docs.yml"
-alias dcp="docker-compose -f docker-compose.yml -f docker-compose.production.yml"
-alias dcr="docker-compose run --rm"
-alias dcs="docker-compose -f docker-compose.yml -f docker-compose.staging.yml"
+alias dc="docker compose"
+alias dcup="docker compose up -d"
+alias dcd="docker compose -f docs.yml"
+alias dcp="docker compose -f docker-compose.yml -f docker-compose.production.yml"
+alias dcr="docker compose run --rm"
+alias dcs="docker compose -f docker-compose.yml -f docker-compose.staging.yml"
 # kubernetes
 alias k="kubectl"
 kn() {
