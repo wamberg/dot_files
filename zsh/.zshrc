@@ -4,7 +4,6 @@ export CASE_SENSITIVE="true"
 export DISABLE_AUTO_TITLE="true"
 plugins=(
   asdf
-  direnv
   docker
   git
 )
@@ -13,7 +12,7 @@ export plugins
 ### User configuration ###
 
 # common exports
-export EDITOR=$(which nvim)
+export EDITOR=$(which lvim)
 export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
 export SHELL=$(which zsh)
@@ -53,12 +52,8 @@ prompt pure
 KEYTIMEOUT=1
 
 # aliases
-alias ahm="~/dev/dot_files/nix/apply-users.sh"
-alias asys="~/dev/dot_files/nix/apply-system.sh"
 alias gmd="glow --width 180 --style light"
-alias ngc="~/dev/dot_files/nix/collect-garbage.sh"
 alias nvim="lvim"
-alias ns="nix search nixpkgs"
 alias o="./omks"
 alias ob="./omks build"
 alias or="./omks run"
@@ -69,7 +64,6 @@ alias pca="pre-commit run --all-files"
 alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
 alias rs="rsync -avP"
 alias ta="tmux attach"
-alias upd="~/dev/dot_files/nix/update.sh"
 alias xc="xclip -sel clip"
 
 # cd into a fuzzy (via fzf) directory
