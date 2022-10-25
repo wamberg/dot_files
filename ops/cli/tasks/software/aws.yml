@@ -3,6 +3,14 @@
   ansible.builtin.apt:
     deb: "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb"
 
+- name: Software | AWS | Ensure ~/.local/bin/
+  file:
+    path: /home/wamberg/.local/bin
+    state: directory
+    owner: wamberg
+    group: wamberg
+    mode: 0775
+
 - name: Software | AWS | Install aws-vault
   become_user: wamberg
   ansible.builtin.get_url:
