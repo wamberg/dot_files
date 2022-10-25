@@ -12,6 +12,7 @@
     mode: 0775
 
 - name: Software | AWS | Install aws-vault
+  become: true
   become_user: wamberg
   ansible.builtin.get_url:
     url: "https://github.com/99designs/aws-vault/releases/download/{{ awsvault_version }}/aws-vault-linux-amd64"

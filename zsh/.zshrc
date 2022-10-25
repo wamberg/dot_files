@@ -108,6 +108,8 @@ ct () {
 }
 
 # docker
+alias av="aws-vault"
+alias ave="aws-vault exec"
 alias d="docker"
 alias dc="docker compose"
 alias dcup="docker compose up -d"
