@@ -2,7 +2,7 @@
 - name: Install Python dependencies
   ansible.builtin.apt:
     state: latest
-    cache_valid_time: 86400 # 1day
+    cache_valid_time: 86400 # 1 day
     update_cache: yes
     pkg:
       - libbz2-dev

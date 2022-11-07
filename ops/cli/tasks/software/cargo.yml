@@ -8,8 +8,3 @@
     - fd-find
     - git-delta
     - ripgrep
-
-- name: Reshim asdf for cargo binaries
-  become: true
-  become_user: wamberg
-  command: "zsh -ilc 'asdf reshim'"
