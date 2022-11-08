@@ -25,20 +25,21 @@
   vars:
     asdf_user: wamberg
     asdf_group: wamberg
+    asdf_version: "{{ asdf_version }}"
     asdf_plugins:
-    - name: "python"
-      versions:
-        - "{{ python_version }}"
-      global: "{{ python_version }}"
-    - name: "nodejs"
-      versions:
-        - "{{ nodejs_version }}"
-      global: "{{ nodejs_version }}"
-    - name: "rust"
-      versions:
-        - "{{ rust_version }}"
-      global: "{{ rust_version }}"
-    - name: "awscli"
-      versions:
-        - "{{ awscli_version }}"
-      global: "{{ awscli_version }}"
+      - name: "python"
+        versions:
+          - "{{ python_version }}"
+        global: "{{ python_version }}"
+      - name: "nodejs"
+        versions:
+          - "{{ nodejs_version }}"
+        global: "{{ nodejs_version }}"
+      - name: "rust"
+        versions:
+          - "{{ rust_version }}"
+        global: "{{ rust_version }}"
+      - name: "awscli"
+        versions:
+          - "{{ awscli_version }}"
+        global: "{{ awscli_version }}"
