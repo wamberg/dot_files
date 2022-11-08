@@ -1,7 +1,7 @@
 -----------------
 -- Customization
 -----------------
-lvim.colorscheme = "github_light_default"
+lvim.colorscheme = "github_light"
 lvim.format_on_save = {
   ---@usage pattern string pattern used for the autocommand (Default: '*')
   pattern = "*",
@@ -51,7 +51,7 @@ lvim.plugins = {
     "projekt0n/github-nvim-theme",
     config = function()
       require("github-theme").setup({
-        theme_style = "light_default"
+        theme_style = "light"
       })
     end
   },
