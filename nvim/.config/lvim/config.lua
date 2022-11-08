@@ -2,6 +2,7 @@
 -- Customization
 -----------------
 lvim.colorscheme = "github_light"
+lvim.builtin.lualine.options.theme = "github_light"
 lvim.format_on_save = {
   ---@usage pattern string pattern used for the autocommand (Default: '*')
   pattern = "*",
@@ -102,7 +103,7 @@ lvim.builtin.which_key.mappings["z"] = { "<cmd>ZenMode<cr>", "Zen Mode" }
 --------------------------------
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = false
-lvim.builtin.terminal.active = true
+lvim.builtin.terminal.active = false
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 
