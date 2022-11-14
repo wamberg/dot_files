@@ -69,7 +69,6 @@ lvim.plugins = {
     end,
     branch = "dev"
   },
-  { "waylonwalker/Telegraph.nvim" },
 }
 
 ----------------
@@ -97,11 +96,7 @@ lvim.builtin.which_key.mappings["f"] = {
 }
 lvim.builtin.which_key.mappings["n"] = {
   name = "+Notes",
-  g = { "<cmd>lua require'telegraph'.telegraph({cmd='glow --style light --pager {filepath}', how='tmux_popup'})<cr>",
-    "Glow current" },
   n = { "<cmd>lua require('zettel').new_note()<cr>", "New note" },
-  r = { "<cmd>lua require'telegraph'.telegraph({cmd='bash -c \"ls *.md | shuf -n 1 | xargs glow --style light --pager\"', how='tmux_popup'})<cr>",
-    "Review Random" },
 }
 lvim.builtin.which_key.mappings["z"] = { "<cmd>ZenMode<cr>", "Zen Mode" }
 

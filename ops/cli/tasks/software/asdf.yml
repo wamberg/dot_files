@@ -25,7 +25,7 @@
   vars:
     asdf_user: wamberg
     asdf_group: wamberg
-    asdf_version: "{{ asdf_version }}"
+    asdf_version: "{{ custom_asdf_version }}"
     asdf_plugins:
       - name: "python"
         versions:
@@ -43,3 +43,7 @@
         versions:
           - "{{ awscli_version }}"
         global: "{{ awscli_version }}"
+      - name: "golang"
+        versions:
+          - "{{ golang_version }}"
+        global: "{{ golang_version }}"

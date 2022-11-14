@@ -64,6 +64,7 @@ alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
 alias rs="rsync -avP"
 alias ta="tmux attach"
 alias xc="xclip -sel clip"
+alias zr=",zr.sh"
 
 # cd into a fuzzy (via fzf) directory
 c () {
