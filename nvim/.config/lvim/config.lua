@@ -3,7 +3,11 @@
 -----------------
 lvim.colorscheme = "github_light"
 lvim.builtin.lualine.options.theme = "github_light"
+lvim.builtin.theme.name = "github_light" -- workaround: https://github.com/LunarVim/LunarVim/issues/3441#issuecomment-1307086382
+lvim.transparent_window = true
 lvim.format_on_save = {
+  ---@usage boolean: format on save (Default: false)
+  enabled = true,
   ---@usage pattern string pattern used for the autocommand (Default: '*')
   pattern = "*",
   ---@usage timeout number timeout in ms for the format request (Default: 1000)
@@ -13,6 +17,7 @@ lvim.format_on_save = {
 }
 lvim.log.level = "warn"
 lvim.lsp.diagnostics.virtual_text = false
+lvim.builtin.telescope.defaults.path_display = { "absolute" }
 vim.opt.clipboard = "" -- disable nvim + clipboard
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = "number"
@@ -84,7 +89,7 @@ lvim.keys.normal_mode = {
 lvim.builtin.which_key.mappings["f"] = {
   name = "+Files",
   b = { "<cmd>Telescope buffers<cr>", "Buffers" },
-  f = { "<cmd>Telescope git_files<cr>", "Files" },
+  f = { "<cmd>Telescope find_files hidden=true<cr>", "Files" },
   g = { "<cmd>Telescope live_grep<cr>", "Grep" },
   h = { "<cmd>Telescope grep_string use_regex=true search=^#\\ <cr>", "Headers" },
   l = { "<cmd>lua require('zettel').link_post()<cr>", "Link" },
@@ -92,9 +97,11 @@ lvim.builtin.which_key.mappings["f"] = {
 }
 lvim.builtin.which_key.mappings["n"] = {
   name = "+Notes",
-  g = { "<cmd>lua require'telegraph'.telegraph({cmd='glow --style light --pager {filepath}', how='tmux_popup'})<cr>", "Glow current" },
+  g = { "<cmd>lua require'telegraph'.telegraph({cmd='glow --style light --pager {filepath}', how='tmux_popup'})<cr>",
+    "Glow current" },
   n = { "<cmd>lua require('zettel').new_note()<cr>", "New note" },
-  r = { "<cmd>lua require'telegraph'.telegraph({cmd='bash -c \"ls *.md | shuf -n 1 | xargs glow --style light --pager\"', how='tmux_popup'})<cr>", "Review Random" },
+  r = { "<cmd>lua require'telegraph'.telegraph({cmd='bash -c \"ls *.md | shuf -n 1 | xargs glow --style light --pager\"', how='tmux_popup'})<cr>",
+    "Review Random" },
 }
 lvim.builtin.which_key.mappings["z"] = { "<cmd>ZenMode<cr>", "Zen Mode" }
 

@@ -16,7 +16,6 @@ export EDITOR=$(which lvim)
 export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
 export SHELL=$(which zsh)
-export TERM=tmux-256color
 export PATH="${PATH}:$HOME/.bin:$HOME/.local/bin"
 
 
