@@ -105,9 +105,10 @@ lvim.builtin.which_key.mappings["z"] = { "<cmd>ZenMode<cr>", "Zen Mode" }
 --------------------------------
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = false
-lvim.builtin.terminal.active = false
-lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
+lvim.builtin.nvimtree.setup.view.side = "left"
+lvim.builtin.project.active = false
+lvim.builtin.terminal.active = false
 
 --------------
 -- Treesitter
