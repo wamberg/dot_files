@@ -13,4 +13,3 @@
 - include_tasks: software/google_chrome.yml
 - include_tasks: software/kitty.yml
 - include_tasks: software/obs.yml
-- include_tasks: software/paperwm.yml

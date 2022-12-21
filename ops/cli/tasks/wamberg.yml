@@ -6,13 +6,6 @@
     groups: sudo,docker
     append: yes
 
-- name: Clone dot_files
-  become: true
-  become_user: wamberg
-  ansible.builtin.git:
-    repo: "git@github.com:wamberg/dot_files.git"
-    dest: /home/wamberg/dev/dot_files
-
 - name: Check for .zshrc
   stat:
     path: "/home/wamberg/.zshrc"
