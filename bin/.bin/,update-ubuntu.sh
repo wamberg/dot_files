@@ -22,7 +22,7 @@ main() {
   sudo apt upgrade
 
   # Update snap packages
-  killall snap-store # Avoid "close the app to avoid disruption"
+  # killall snap-store # Avoid "close the app to avoid disruption"
   sudo snap refresh
 }
 
