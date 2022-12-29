@@ -15,6 +15,13 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.wrap = true
 
+-- window keymaps
+vim.keymap.set('n', '<leader>c', ":bprevious<bar>bdelete #<CR>", { desc = '[C]lear Buffer' })
+
+-- zettel keymaps
+vim.keymap.set('i', '<C-;>', require('zettel').link_post, { desc = '[C]reate Link' })   -- TODO: Here not working
+vim.keymap.set('n', '<leader>nn', require('zettel').new_note, { desc = '[N]ew [N]ote' })
+
 -- Toggle Zen mode
 vim.keymap.set('n', '<leader>z', require('zen-mode').toggle, { desc = '[Z]en Mode' })
 
