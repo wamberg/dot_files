@@ -59,5 +59,19 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
     vim.fn.jobstart(command, { on_exit = reload })
   end,
-  group = vim.api.nvim_create_augroup("vimwiki_autoformat", { clear = true }),
+  group = vim.api.nvim_create_augroup("markdown_autoformat", { clear = true }),
+})
+
+-- golang
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.go",
+  callback = function()
+    local command = "go fmt " .. vim.fn.expand("%")
+    local function reload()
+      vim.cmd('edit')
+    end
+
+    vim.fn.jobstart(command, { on_exit = reload })
+  end,
+  group = vim.api.nvim_create_augroup("golang_autoformat", { clear = true }),
 })
