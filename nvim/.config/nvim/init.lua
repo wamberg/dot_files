@@ -17,15 +17,21 @@ vim.opt.wrap = true
 
 -- window keymaps
 vim.keymap.set('n', '<leader>c', ":bprevious<bar>bdelete #<CR>", { desc = '[C]lear Buffer' })
+vim.keymap.set('n', '<leader>h', ":nohlsearch<CR>", { desc = 'Clear [H]ighlight' })
+
+-- code keymaps
+vim.keymap.set('n', '<leader>F', ":Format<CR>", { desc = '[F]ormat' })
 
 -- zettel keymaps
-vim.keymap.set('i', '<C-;>', require('zettel').link_post, { desc = '[C]reate Link' })   -- TODO: Here not working
+vim.keymap.set('i', '<C-l>', require('zettel').link_post, { desc = '[C]reate Link' })
+vim.keymap.set('n', '<leader>fh', '<cmd>Telescope grep_string use_regex=true search=^#\\ <cr>',
+  { desc = '[F]ind [H]eader' })
 vim.keymap.set('n', '<leader>nn', require('zettel').new_note, { desc = '[N]ew [N]ote' })
 
 -- Toggle Zen mode
 vim.keymap.set('n', '<leader>z', require('zen-mode').toggle, { desc = '[Z]en Mode' })
 
--- vimwiki specific highlighting
+-- vimwiki custom highlighting
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "vimwiki",
   callback = function()
@@ -35,4 +41,23 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.cmd [[highlight VimwikiHeader4 guifg=magenta3 gui=bold]]
     vim.cmd [[highlight VimwikiHeader5 guifg=magenta gui=bold]]
   end,
+  group = vim.api.nvim_create_augroup("vimwiki_highlight", { clear = true }),
+})
+
+-------------
+-- Formatters
+-------------
+
+-- markdown
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.md",
+  callback = function()
+    local command = "npm run format-file " .. vim.fn.expand("%")
+    local function reload()
+      vim.cmd('edit')
+    end
+
+    vim.fn.jobstart(command, { on_exit = reload })
+  end,
+  group = vim.api.nvim_create_augroup("vimwiki_autoformat", { clear = true }),
 })
