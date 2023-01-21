@@ -1,9 +1,8 @@
 require("kickstart.init")
 
--- line numbers
-vim.opt.cursorline = true
-vim.opt.cursorlineopt = "number"
-vim.opt.relativenumber = true
+-- no line numbers
+vim.opt.number = false
+require('leap').add_default_mappings()
 
 -- folds
 vim.opt.foldlevel = 99

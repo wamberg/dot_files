@@ -15,6 +15,7 @@ return function(use)
     end
 
   })
+  use({ "ggandor/leap.nvim" })
   use({ "micarmst/vim-spellsync" })
   use({
     "tpope/vim-surround",
