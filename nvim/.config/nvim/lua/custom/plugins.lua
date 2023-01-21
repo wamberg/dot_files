@@ -16,12 +16,4 @@ return function(use)
       })
     end
   })
-  use({
-    "vimwiki/vimwiki",
-    config = function()
-      vim.cmd("let g:vimwiki_list = [{'path': '~/dev/garden/', 'syntax': 'markdown', 'ext': '.md'}]")
-      vim.cmd("let g:vimwiki_folding='expr'")
-    end,
-    branch = "dev"
-  })
 end
