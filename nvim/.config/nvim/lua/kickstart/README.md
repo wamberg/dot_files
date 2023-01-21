@@ -2,7 +2,7 @@
 
 A starting point for Neovim that is:
 
-* Small (~370 lines)
+* Small (<500 lines)
 * Single-file
 * Documented
 * Modular
@@ -14,12 +14,26 @@ This repo is meant to be used as a starting point for a user's own configuration
 ### Installation
 
 * Backup your previous configuration
-* Copy and paste the kickstart.nvim `init.lua` into `$HOME/.config/nvim/init.lua`
+* Copy and paste the kickstart.nvim `init.lua` into `$HOME/.config/nvim/init.lua` (Linux) or `~/AppData/Local/nvim/init.lua` (Windows)
 * Start Neovim (`nvim`) and run `:PackerInstall` - ignore any error message about missing plugins, `:PackerInstall` will fix that shortly
 * Restart Neovim
 
 
 If there are languages that you don't want to use, remove their configuration and notes from your `init.lua` after copy and pasting (for example, in the mason configuration).
+
+### Windows Installation
+
+Installation may require installing build tools, and updating the run command for `telescope-fzf-native`
+
+See `telescope-fzf-native` documention for [more details](https://github.com/nvim-telescope/telescope-fzf-native.nvim#installation)
+
+This requires:
+
+- Install CMake, and the Microsoft C++ Build Tools on Windows
+
+```lua
+use {'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+```
 
 ### Configuration
 
