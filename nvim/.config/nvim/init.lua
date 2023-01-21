@@ -2,6 +2,7 @@ require("kickstart.init")
 
 -- no line numbers
 vim.opt.number = false
+require('leap').opts.safe_labels = {}
 require('leap').add_default_mappings()
 
 -- folds
@@ -28,7 +29,26 @@ vim.keymap.set('n', '<leader>fh', '<cmd>Telescope grep_string use_regex=true sea
 vim.keymap.set('n', '<leader>nn', require('zettel').new_note, { desc = '[N]ew [N]ote' })
 
 -- Toggle Zen mode
-vim.keymap.set('n', '<leader>z', require('zen-mode').toggle, { desc = '[Z]en Mode' })
+local zentoggle = function()
+  require('zen-mode').toggle({
+    window = {
+      width = 86
+    },
+    plugins = {
+      gitsigns = {
+        enabled = true
+      },
+      tmux = {
+        enabled = true
+      },
+      kitty = {
+        enabled = true,
+        font = "+4",
+      }
+    }
+  })
+end
+vim.keymap.set('n', '<leader>z', zentoggle, { desc = '[Z]en Mode' })
 
 -- vimwiki custom highlighting
 vim.api.nvim_create_autocmd("FileType", {
