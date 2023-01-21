@@ -45,6 +45,12 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -------------
+-- Snippets
+-------------
+require("luasnip.loaders.from_snipmate").lazy_load({paths = './snippets'})
+vim.keymap.set('n', '<leader>es', require("luasnip.loaders").edit_snippet_files, { desc = '[E]dit [S]nippets' })
+
+-------------
 -- Formatters
 -------------
 
