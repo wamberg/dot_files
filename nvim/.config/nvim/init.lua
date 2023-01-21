@@ -49,11 +49,11 @@ vim.api.nvim_create_autocmd("FileType", {
 require("luasnip.loaders.from_snipmate").lazy_load({paths = './snippets'})
 vim.keymap.set('n', '<leader>es', require("luasnip.loaders").edit_snippet_files, { desc = '[E]dit [S]nippets' })
 
--------------
--- Formatters
--------------
+----------------
+-- Autocommands
+----------------
 
--- markdown
+-- Format Markdown
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*.md",
   callback = function()
@@ -67,7 +67,17 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = vim.api.nvim_create_augroup("markdown_autoformat", { clear = true }),
 })
 
--- golang
+-- Display Markdown
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "*.md",
+  callback = function()
+    vim.api.nvim_win_set_option(0, "spell", true)
+    vim.opt.linebreak = true
+  end,
+  group = vim.api.nvim_create_augroup("markdown_display", { clear = true }),
+})
+
+-- Format Golang
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*.go",
   callback = function()
