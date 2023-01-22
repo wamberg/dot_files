@@ -1,28 +1,28 @@
 require("kickstart.init")
 
--- no line numbers
+-- Line numbers
 vim.opt.number = false
 require('leap').opts.safe_labels = {}
 require('leap').add_default_mappings()
 
--- folds
+-- Folds
 vim.opt.foldlevel = 99
 vim.opt.foldmethod = "manual"
 
--- display
+-- Display
 vim.opt.scrolloff = 2
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.wrap = true
 
--- window keymaps
+-- Window keymaps
 vim.keymap.set('n', '<leader>c', ":bprevious<bar>bdelete #<CR>", { desc = '[C]lear Buffer' })
 vim.keymap.set('n', '<leader>h', ":nohlsearch<CR>", { desc = 'Clear [H]ighlight' })
 
 -- code keymaps
 vim.keymap.set('n', '<leader>F', ":Format<CR>", { desc = '[F]ormat' })
 
--- zettel keymaps
+-- Zettel keymaps
 vim.keymap.set('i', '<C-l>', require('zettel').link_post, { desc = '[C]reate Link' })
 vim.keymap.set('n', '<leader>fh', '<cmd>Telescope grep_string use_regex=true search=^#\\ <cr>',
   { desc = '[F]ind [H]eader' })
@@ -49,23 +49,7 @@ local zentoggle = function()
   })
 end
 vim.keymap.set('n', '<leader>z', zentoggle, { desc = '[Z]en Mode' })
-
--- vimwiki custom highlighting
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "vimwiki",
-  callback = function()
-    vim.cmd [[highlight VimwikiHeader1 guifg=blue gui=bold]]
-    vim.cmd [[highlight VimwikiHeader2 guifg=darkgreen gui=bold]]
-    vim.cmd [[highlight VimwikiHeader3 guifg=darkorange3 gui=bold]]
-    vim.cmd [[highlight VimwikiHeader4 guifg=magenta3 gui=bold]]
-    vim.cmd [[highlight VimwikiHeader5 guifg=magenta gui=bold]]
-  end,
-  group = vim.api.nvim_create_augroup("vimwiki_highlight", { clear = true }),
-})
-
--------------
 -- Snippets
--------------
 require("luasnip.loaders.from_snipmate").lazy_load({paths = './snippets'})
 vim.keymap.set('n', '<leader>es', require("luasnip.loaders").edit_snippet_files, { desc = '[E]dit [S]nippets' })
 
@@ -88,9 +72,14 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 -- Display Markdown
-vim.api.nvim_create_autocmd("BufEnter", {
-  pattern = "*.md",
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "vimwiki,markdown",
   callback = function()
+    vim.cmd [[highlight VimwikiHeader1 guifg=blue gui=bold]]
+    vim.cmd [[highlight VimwikiHeader2 guifg=darkgreen gui=bold]]
+    vim.cmd [[highlight VimwikiHeader3 guifg=darkorange3 gui=bold]]
+    vim.cmd [[highlight VimwikiHeader4 guifg=magenta3 gui=bold]]
+    vim.cmd [[highlight VimwikiHeader5 guifg=magenta gui=bold]]
     vim.api.nvim_win_set_option(0, "spell", true)
     vim.opt.linebreak = true
   end,
