@@ -38,9 +38,6 @@ local zentoggle = function()
       gitsigns = {
         enabled = true
       },
-      tmux = {
-        enabled = true
-      },
       kitty = {
         enabled = true,
         font = "+4",
