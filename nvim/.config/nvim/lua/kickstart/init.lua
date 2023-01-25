@@ -158,6 +158,22 @@ require('lualine').setup {
     component_separators = '|',
     section_separators = '',
   },
+  sections = {
+    lualine_c = {
+      {
+        'filename',
+        path = 3,
+      },
+    },
+  },
+  inactive_sections = {
+    lualine_c = {
+      {
+        'filename',
+        path = 3,
+      },
+    },
+  },
 }
 
 -- Enable Comment.nvim
