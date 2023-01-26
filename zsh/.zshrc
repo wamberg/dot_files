@@ -52,7 +52,6 @@ KEYTIMEOUT=1
 
 # aliases
 alias gmd="glow --width 180 --style light"
-alias nvim="lvim"
 alias o="./omks"
 alias ob="./omks build"
 alias or="./omks run"
