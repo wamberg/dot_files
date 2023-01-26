@@ -1,3 +1,4 @@
+GARDEN=vim.fn.expandcmd('~/dev/garden')
 require("kickstart.init")
 
 -- Line numbers
