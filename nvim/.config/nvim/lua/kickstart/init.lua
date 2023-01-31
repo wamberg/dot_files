@@ -196,6 +196,44 @@ require('gitsigns').setup {
     topdelete = { text = '‾' },
     changedelete = { text = '~' },
   },
+  on_attach = function(bufnr)
+    local gs = package.loaded.gitsigns
+
+    local function map(mode, l, r, opts)
+      opts = opts or {}
+      opts.buffer = bufnr
+      vim.keymap.set(mode, l, r, opts)
+    end
+
+    -- Navigation
+    map('n', ']c', function()
+      if vim.wo.diff then return ']c' end
+      vim.schedule(function() gs.next_hunk() end)
+      return '<Ignore>'
+    end, { expr = true, desc = 'Next C[h]unk' })
+
+    map('n', '[c', function()
+      if vim.wo.diff then return '[c' end
+      vim.schedule(function() gs.prev_hunk() end)
+      return '<Ignore>'
+    end, { expr = true, desc = 'Prev C[h]unk' })
+
+    -- Actions
+    map({ 'n', 'v' }, '<leader>hs', ':Gitsigns stage_hunk<CR>', { desc = '[H]unk [S]tage' })
+    map({ 'n', 'v' }, '<leader>hr', ':Gitsigns reset_hunk<CR>', { desc = '[H]unk [R]eset' })
+    map('n', '<leader>hS', gs.stage_buffer, { desc = '[H]unk [S]tage All' })
+    map('n', '<leader>hu', gs.undo_stage_hunk, { desc = '[H]unk [U]ndo Stage' })
+    map('n', '<leader>hR', gs.reset_buffer, { desc = '[H]unk [R]eset All' })
+    map('n', '<leader>hp', gs.preview_hunk, { desc = '[H]unk [P]review' })
+    map('n', '<leader>hb', function() gs.blame_line { full = true } end, { desc = '[H]unk [B]lame' })
+    map('n', '<leader>tb', gs.toggle_current_line_blame, { desc = '[T]oggle [B]lame' })
+    map('n', '<leader>hd', gs.diffthis, { desc = '[H]unk [D]iff' })
+    map('n', '<leader>hD', function() gs.diffthis('~') end, { desc = '[H]unk [D]iff All' })
+    map('n', '<leader>td', gs.toggle_deleted, { desc = 'Toggle [H]unk [D]eleted' })
+
+    -- Text object
+    map({ 'o', 'x' }, 'sh', ':<C-U>Gitsigns select_hunk<CR>', { desc = '[S]elect [H]unk' })
+  end
 }
 
 -- [[ Configure Telescope ]]
@@ -230,10 +268,10 @@ vim.keymap.set('n', '<leader>ff', function()
 end, { desc = '[F]ind [F]iles' })
 vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = '[F]ind [H]elp' })
 vim.keymap.set('n', '<leader>fw', function()
-  require('telescope.builtin').grep_string({ additional_args = {'--hidden'} })
-end,{ desc = '[F]ind current [W]ord' })
+  require('telescope.builtin').grep_string({ additional_args = { '--hidden' } })
+end, { desc = '[F]ind current [W]ord' })
 vim.keymap.set('n', '<leader>fg', function()
-  require('telescope.builtin').live_grep({ additional_args = {'--hidden'} })
+  require('telescope.builtin').live_grep({ additional_args = { '--hidden' } })
 end, { desc = '[F]ind by [G]rep' })
 vim.keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = '[F]ind [D]iagnostics' })
 
@@ -319,7 +357,7 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
 -- LSP settings.
-vim.diagnostic.config({virtual_text = false})  -- Turn off inline virtual diagnostic messages
+vim.diagnostic.config({ virtual_text = false }) -- Turn off inline virtual diagnostic messages
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible

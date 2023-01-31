@@ -20,8 +20,9 @@ vim.opt.wrap = true
 vim.keymap.set('n', '<leader>c', ":bprevious<bar>bdelete #<CR>", { desc = '[C]lear Buffer' })
 vim.keymap.set('n', '<leader>h', ":nohlsearch<CR>", { desc = 'Clear [H]ighlight' })
 
--- code keymaps
+-- Code Keymaps
 vim.keymap.set('n', '<leader>F', ":Format<CR>", { desc = '[F]ormat' })
+vim.keymap.set('n', '<leader>fk', require('telescope.builtin').keymaps, { desc = '[F]ind [K]eymaps' })
 
 -- Zettel keymaps
 vim.keymap.set('i', '<C-l>', require('zettel').link_post, { desc = '[C]reate Link' })
