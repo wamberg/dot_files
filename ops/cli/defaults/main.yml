@@ -2,8 +2,8 @@
 awscli_version: 2.9.20
 awsvault_version: v6.6.0
 custom_asdf_version: v0.10.2
-golang_version: 1.19.3
+golang_version: 1.19.5
 neovim_version: v0.8.0
-nodejs_version: 18.11.0
+nodejs_version: 18.13.0
 python_version: 3.10.8
 rust_version: 1.64.0
