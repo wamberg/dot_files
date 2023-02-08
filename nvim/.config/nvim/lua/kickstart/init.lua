@@ -377,18 +377,18 @@ local on_attach = function(_, bufnr)
   nmap('<leader>lr', vim.lsp.buf.rename, '[L]SP [R]ename')
   nmap('<leader>lc', vim.lsp.buf.code_action, '[L]SP [C]ode Action')
 
-  nmap('gd', vim.lsp.buf.definition, 'LSP [G]oto [D]efinition')
-  nmap('gr', require('telescope.builtin').lsp_references, 'LSP [G]oto [R]eferences')
-  nmap('gI', vim.lsp.buf.implementation, 'LSP [G]oto [I]mplementation')
-  nmap('<leader>D', vim.lsp.buf.type_definition, 'LSP Type [D]efinition')
-  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, 'LSP [D]ocument [S]ymbols')
-  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'LSP [W]orkspace [S]ymbols')
+  nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+  nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+  nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
+  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
 
   -- Lesser used LSP functionality
-  nmap('gD', vim.lsp.buf.declaration, 'LSP [G]oto [D]eclaration')
+  nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
