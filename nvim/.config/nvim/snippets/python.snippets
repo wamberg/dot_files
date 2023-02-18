@@ -1,3 +1,6 @@
+snippet fimp from import
+  from $1 import $2
+
 snippet imp import
   import $1
 
@@ -7,3 +10,30 @@ snippet test_ test
       $3
       # act
       # assert
+
+snippet ld log info
+  LOGGER.debug(f"$1")
+
+snippet li log info
+  LOGGER.info(f"$1")
+
+snippet lw log info
+  LOGGER.warning(f"$1")
+
+snippet le log info
+  LOGGER.error(f"$1")
+
+snippet lld labelled log info
+  LOGGER.debug(f"$1: {$1}")
+
+snippet lli labelled log info
+  LOGGER.info(f"$1: {$1}")
+
+snippet llw labelled log info
+  LOGGER.warning(f"$1: {$1}")
+
+snippet lle labelled log info
+  LOGGER.error(f"$1: {$1}")
+
+snippet st set_trace
+  import pdb; pdb.set_trace()
