@@ -22,8 +22,6 @@ Run the following commands in this order:
 5. In dot_files/ops, `sudo ansible-playbook ./playbook.yml`
 6. After ansible runs, in /opt/lvim,
    `./utils/installer/install-neovim-from-release; ./utils/installer/install.sh`
-7. After ansible runs, in /opt/paperwm, ensure metadata.json's "shell-version"
-   contains "43", then `./install.sh`
-8. Install Zoom https://zoom.us/download?os=linux
-9. Install Teams
+7. Install Zoom https://zoom.us/download?os=linux
+8. Install Teams
    https://www.microsoft.com/en-us/microsoft-teams/download-app#desktopAppDownloadregion
