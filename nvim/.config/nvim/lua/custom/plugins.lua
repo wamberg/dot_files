@@ -23,6 +23,7 @@ return {
     config = function()
       vim.cmd("let g:vimwiki_list = [{'path': '~/dev/garden/', 'syntax': 'markdown', 'ext': '.md'}]")
       vim.cmd("let g:vimwiki_folding='expr'")
+      vim.cmd("let g:vimwiki_global_ext = 0")
     end,
     branch = "dev"
   },
