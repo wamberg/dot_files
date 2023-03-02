@@ -21,6 +21,7 @@
       - mkcert
       - stow
       - sudo
+      - sqlite3
       - tmux
       - unzip
       - vifm
