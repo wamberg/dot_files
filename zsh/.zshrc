@@ -12,7 +12,7 @@ export plugins
 ### User configuration ###
 
 # common exports
-export EDITOR=$(which nvim)
+export EDITOR=$(which lvim)
 export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
 export SHELL=$(which zsh)
@@ -52,6 +52,8 @@ KEYTIMEOUT=1
 
 # aliases
 alias gmd="glow --width 180 --style light"
+alias n="lvim"
+alias nvim="lvim"
 alias o="./omks"
 alias ob="./omks build"
 alias or="./omks run"
@@ -91,7 +93,10 @@ c () {
 # session name.
 tns () {
   local name="${1:-${PWD##*/}}"
-  tmux new-session -ds "${name}"
+  tmux new-session -ds "${name}" -x "$(tput cols)" -y "$(tput lines)"
+  tmux rename-window -t "${name}":0 "code"
+  tmux split-window -p 70
+  tmux send-keys -t "${name}":0 lvim C-m
   tmux attach-session -t "${name}"
 }
 
