@@ -23,6 +23,13 @@ lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 
+local search_mappings = lvim.builtin.which_key.mappings["s"]
+search_mappings["b"] = { "<cmd>Telescope buffers<cr>", "Buffers" }
+search_mappings["w"] = { "<cmd>Telescope grep_string<cr>", "Word under cursor" }
+lvim.builtin.which_key.mappings["s"] = search_mappings
+
+lvim.builtin.which_key.mappings["z"] = { "<cmd>ZenMode<cr>", "Zen Mode" }
+
 -- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 -- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 
@@ -131,16 +138,6 @@ lvim.plugins = {
     end
   },
 }
-
--- Key Mappings
-lvim.builtin.which_key.mappings["s"] = {
-  name = "+Search",
-  b = { "<cmd>Telescope buffers<cr>", "Buffers" },
-  g = { "<cmd>Telescope live_grep<cr>", "Grep" },
-  w = { "<cmd>Telescope grep_string<cr>", "Word under cursor" },
-}
-
-lvim.builtin.which_key.mappings["z"] = { "<cmd>ZenMode<cr>", "Zen Mode" }
 
 -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
 vim.api.nvim_create_autocmd("FileType", {
