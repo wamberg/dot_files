@@ -1,11 +1,9 @@
---[[
- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
- `lvim` is the global options object
-]]
 -- vim options
+vim.opt.clipboard = ""
+vim.opt.mouse = ""
+vim.opt.relativenumber = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
-vim.opt.relativenumber = true
 
 -- general
 lvim.log.level = "info"
