@@ -122,6 +122,7 @@ lvim.plugins = {
       }
     end
   },
+  { "HiPhish/jinja.vim" },
   { "micarmst/vim-spellsync" },
   {
     "tpope/vim-surround",
