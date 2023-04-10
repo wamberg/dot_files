@@ -50,6 +50,7 @@ prompt pure
 
 # Eliminate vi-mode normal mode delay
 KEYTIMEOUT=1
+bindkey -M vicmd 'V' edit-command-line # this remaps `vv` to `V` (but overrides `visual-mode`)
 
 # aliases
 alias gmd="glow --width 180 --style light"
