@@ -1,6 +1,6 @@
 ---
 
-- name: Create nerd-fonts directory
+- name: Desktop | Software | Nerd Fonts | Create Directory
   file:
     path: /opt/nerd-fonts
     state: directory
@@ -8,7 +8,7 @@
     group: wamberg
     mode: 0775
 
-- name: Download FiraCode
+- name: Desktop | Software | Nerd Fonts | Download FiraCode
   become: true
   become_user: wamberg
   ansible.builtin.get_url:
@@ -16,7 +16,7 @@
     dest: /opt/nerd-fonts/FiraCode.zip
     mode: '0440'
 
-- name: Extract FiraCode
+- name: Desktop | Software | Nerd Fonts | Extract FiraCode
   become: true
   become_user: wamberg
   ansible.builtin.unarchive:
@@ -24,7 +24,7 @@
     dest: /opt/nerd-fonts
     remote_src: yes
 
-- name: Select fonts to install
+- name: Desktop | Software | Nerd Fonts | Select ttf files
   ansible.builtin.find:
     recurse: yes
     use_regex: yes
@@ -33,7 +33,7 @@
       - '^.*?((?!Windows).)*?\.ttf$'
   register: fonts_to_install
 
-- name: Create local font store
+- name: Desktop | Software | Nerd Fonts | Create Local Font Store
   file:
     path: /home/wamberg/.local/share/fonts
     state: directory
@@ -41,7 +41,7 @@
     group: wamberg
     mode: 0775
 
-- name: Copy fonts to local store
+- name: Desktop | Software | Nerd Fonts | Copy Fonts to Local Font Store
   become: true
   become_user: wamberg
   ansible.builtin.copy:
@@ -50,12 +50,12 @@
     remote_src: yes
   loop: "{{ fonts_to_install.files }}"
 
-- name: Update font cache
+- name: Desktop | Software | Nerd Fonts | Update Font Cache
   become: true
   become_user: wamberg
   command: "zsh -ilc 'fc-cache -fv'"
 
-- name: Install kitty
+- name: Desktop | Software | Kitty | Install
   ansible.builtin.apt:
     state: latest
     cache_valid_time: 86400 # 1 day
@@ -63,7 +63,7 @@
     pkg:
       - kitty
 
-- name: Stow kitty conf
+- name: Desktop | Software | Kitty | Stow Config
   become: true
   become_user: wamberg
   become_flags: "--login"
