@@ -1,9 +1,9 @@
 ---
-- name: Software | AWS | Install session manager plugin
+- name: CLI | Software | AWS | Install session manager plugin
   ansible.builtin.apt:
     deb: "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb"
 
-- name: Software | AWS | Ensure ~/.local/bin/
+- name: CLI | Software | AWS | Ensure ~/.local/bin/
   file:
     path: /home/wamberg/.local/bin
     state: directory
@@ -11,7 +11,7 @@
     group: wamberg
     mode: 0775
 
-- name: Software | AWS | Install aws-vault
+- name: CLI | Software | AWS | Install aws-vault
   become: true
   become_user: wamberg
   ansible.builtin.get_url:

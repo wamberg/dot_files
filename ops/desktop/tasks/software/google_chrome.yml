@@ -1,20 +1,20 @@
 ---
-- name: software | google-chrome | add repository key
+- name: Desktop | Software | Google Chrome | Add Repository Key
   apt_key:
     url: https://dl-ssl.google.com/linux/linux_signing_key.pub
 
-- name: software | google-chrome | add repository
+- name: Desktop | Software | Google Chrome | Add Repository
   apt_repository:
     repo: "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
     filename: google-chrome
   register: chrome_repo
 
-- name: software | google-chrome | update sources (repo added or changed)
+- name: Desktop | Software | Google Chrome | Update Sources
   apt:
     update_cache: yes
   changed_when: False
   when: chrome_repo.changed
 
-- name: software | google-chrome | install package
+- name: Desktop | Software | Google Chrome | Install
   apt:
     name: google-chrome-stable

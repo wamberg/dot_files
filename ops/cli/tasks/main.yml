@@ -1,5 +1,5 @@
 ---
-- name: Install basic packages from apt
+- name: CLI | Software | Basic | Install
   ansible.builtin.apt:
     state: latest
     cache_valid_time: 86400 # 1 day
@@ -28,25 +28,26 @@
       - wget
       - zsh
 
-- name: Upgrade all install packages
+- name: CLI | Software | Basic | Upgrade
   ansible.builtin.apt:
     upgrade: full
 
-- name: Remove dependencies that are no longer required
+- name: CLI | Software | Basic | Remove Unused
   ansible.builtin.apt:
     autoremove: yes
 
 # Set locale
-- name: Ensure the locale exists
+- name: CLI | Locale | Ensure en_US-UTF-8
   locale_gen:
     name: en_US.UTF-8
     state: present
-- name: set as default locale
+
+- name: CLI | Locale | Set en_US-UTF-8 as default
   command: update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
 - include_tasks: software/docker.yml
 - include_tasks: wamberg.yml
-- include_tasks: software/asdf.yml
+- include_tasks: software/rtx.yml
 - include_tasks: software/aws.yml
 - include_tasks: software/cargo.yml
 - include_tasks: software/neovim.yml

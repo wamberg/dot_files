@@ -1,16 +1,16 @@
 ---
 
-- name: Add Docker GPG apt Key
+- name: CLI | Software | Docker | Add GPG Key
   ansible.builtin.apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
 
-- name: Add Docker Repository
+- name: CLI | Software | Docker | Add Docker Repo
   ansible.builtin.apt_repository:
-    repo: deb https://download.docker.com/linux/ubuntu jammy stable
+    repo: deb https://download.docker.com/linux/ubuntu lunar stable
     state: present
 
-- name: Install docker packages from apt
+- name: CLI | Software | Docker | Install
   ansible.builtin.apt:
     state: latest
     update_cache: yes
@@ -18,4 +18,5 @@
       - docker-ce
       - docker-ce-cli
       - containerd.io
+      - docker-buildx-plugin
       - docker-compose-plugin

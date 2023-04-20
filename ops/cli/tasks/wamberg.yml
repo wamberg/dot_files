@@ -1,17 +1,17 @@
 ---
-- name: Add "wamberg" user
+- name: CLI | Users | wamberg | Add
   ansible.builtin.user:
     name: wamberg
     shell: /bin/zsh
     groups: sudo,docker
     append: yes
 
-- name: Check for .zshrc
+- name: CLI | Users | wamberg | Check for .zshrc
   stat:
     path: "/home/wamberg/.zshrc"
   register: zshrc_stat
 
-- name: Install oh-my-zsh if needed
+- name: CLI | Users | wamberg | Install oh-my-zsh if needed
   when: not zshrc_stat.stat.exists
   block:
     - name: Install oh-my-zsh
@@ -30,7 +30,7 @@
         path: /home/wamberg/.zshrc
         state: absent
 
-- name: Stow dot_files
+- name: CLI | Users | wamberg | Stow dot_files
   become: true
   become_user: wamberg
   become_flags: "--login"
@@ -40,6 +40,7 @@
     - git
     - npm
     - nvim
+    - rtx
     - tmux
     - vifm
     - zsh
