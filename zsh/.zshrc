@@ -3,7 +3,6 @@ export ZSH_THEME=""
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_TITLE="true"
 plugins=(
-  asdf
   docker
   fzf
   git
@@ -40,6 +39,7 @@ setopt histignorespace
 
 ### Plugin configuration ###
 source $ZSH/oh-my-zsh.sh
+eval "$(/usr/bin/rtx activate zsh)"
 
 # Pure prompt configuration
 bindkey -v  # Set Vi mode
