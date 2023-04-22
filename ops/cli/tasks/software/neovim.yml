@@ -1,13 +1,13 @@
 ---
-- name: Software | LunarVim | Check
+- name: CLI | Software | LunarVim | Check
   stat:
     path: "/home/wamberg/.local/bin/lvim"
   register: lvim_stat
 
-- name: Software | LunarVim | Clone if needed
+- name: CLI | Software | LunarVim | Clone if needed
   when: not lvim_stat.stat.exists
   block:
-    - name: Software | LunarVim | Create LunarVim directory
+    - name: CLI | Software | LunarVim | Create LunarVim directory
       file:
         path: /opt/lvim
         state: directory
@@ -15,7 +15,7 @@
         group: wamberg
         mode: 0775
 
-    - name: Software | LunarVim | Clone
+    - name: CLI | Software | LunarVim | Clone
       become: true
       become_user: wamberg
       ansible.builtin.git:

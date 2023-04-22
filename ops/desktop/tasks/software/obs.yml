@@ -1,16 +1,16 @@
 ---
-- name: Software | OBS | Stow config
+- name: Desktop | Software | OBS | Stow config
   become: true
   become_user: wamberg
   become_flags: "--login"
   command: 'stow --dir="${HOME}/dev/dot_files" --target="${HOME}/" -RS obs'
 
-- name: Software | OBS | Add PPA repo
+- name: Desktop | Software | OBS | Add PPA repo
   ansible.builtin.apt_repository:
     repo: "ppa:obsproject/obs-studio"
     codename: kinetic
 
-- name: Software | OBS | Install
+- name: Desktop | Software | OBS | Install
   ansible.builtin.apt:
     state: latest
     cache_valid_time: 86400 # 1 day
