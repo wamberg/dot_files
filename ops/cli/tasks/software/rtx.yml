@@ -19,19 +19,28 @@
       - xz-utils
       - zlib1g-dev
 
-- name: CLI | Software | rtx | Add GPG Key
-  ansible.builtin.apt_key:
-    url: https://rtx.pub/gpg-key.pub
-    state: present
+- name: CLI | Software | rtx | Install rtx
+  ansible.builtin.get_url:
+    url: "https://github.com/jdxcode/rtx/releases/download/{{ rtx_version }}/rtx-{{ rtx_version }}-linux-x64"
+    dest: "/usr/bin/rtx"
+    mode: "0755"
 
-- name: CLI | Software | rtx | Add Docker Repo
-  ansible.builtin.apt_repository:
-    repo: deb https://rtx.pub/deb stable main
-    state: present
+- name: CLI | Software | rtx | wamberg owns rtx
+  file:
+    path: "/usr/bin/rtx"
+    state: file
+    owner: wamberg
+    group: wamberg
+    mode: 0755
 
-- name: CLI | Software | rtx | Install
+- name: CLI | Software | rtx | Install rtx
   ansible.builtin.apt:
     state: latest
     update_cache: yes
     pkg:
       - rtx
+
+- name: CLI | Software | rtx | rtx install
+  become: true
+  become_user: wamberg
+  command: "zsh -ilc 'rtx install'"
