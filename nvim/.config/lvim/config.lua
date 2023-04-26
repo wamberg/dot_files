@@ -13,13 +13,13 @@ lvim.format_on_save = {
   timeout = 2000,
   filter = require("lvim.lsp.utils").format_filter,
 }
--- to disable icons and use a minimalist setup, uncomment the following
--- lvim.use_icons = false
+
+-- telescope config
+lvim.builtin.telescope.defaults.path_display = { "truncate" }
+-- lvim.builtin.telescope.theme = "dropdown"
 
 -- keymappings <https://www.lunarvim.org/docs/configuration/keybindings>
 lvim.leader = "space"
--- add your own keymapping
-lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 
 local search_mappings = lvim.builtin.which_key.mappings["s"]
 search_mappings["b"] = { "<cmd>Telescope buffers<cr>", "Buffers" }
@@ -101,9 +101,6 @@ linters.setup {
 
 -- Customization
 lvim.colorscheme = "github_light"
-lvim.builtin.lualine.options.theme = "github_light"
--- workaround: https://github.com/LunarVim/LunarVim/issues/3441#issuecomment-1307086382
-lvim.builtin.theme.name = "github_light"
 lvim.transparent_window = true
 
 -- -- Additional Plugins <https://www.lunarvim.org/docs/plugins#user-plugins>
@@ -129,14 +126,7 @@ lvim.plugins = {
     "tpope/vim-surround",
     keys = { "c", "d", "y" }
   },
-  {
-    "projekt0n/github-nvim-theme",
-    config = function()
-      require("github-theme").setup({
-        theme_style = "light"
-      })
-    end
-  },
+  { "projekt0n/github-nvim-theme" },
 }
 
 -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
