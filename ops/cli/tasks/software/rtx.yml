@@ -33,13 +33,6 @@
     group: wamberg
     mode: 0755
 
-- name: CLI | Software | rtx | Install rtx
-  ansible.builtin.apt:
-    state: latest
-    update_cache: yes
-    pkg:
-      - rtx
-
 - name: CLI | Software | rtx | rtx install
   become: true
   become_user: wamberg

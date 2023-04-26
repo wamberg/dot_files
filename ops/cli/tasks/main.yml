@@ -26,6 +26,7 @@
       - unzip
       - vifm
       - wget
+      - xclip
       - zsh
 
 - name: CLI | Software | Basic | Upgrade
@@ -49,6 +50,6 @@
 - include_tasks: wamberg.yml
 - include_tasks: software/rtx.yml
 - include_tasks: software/aws.yml
-- include_tasks: software/cargo.yml
+  #- include_tasks: software/cargo.yml
 - include_tasks: software/neovim.yml
 - include_tasks: software/tmux.yml
