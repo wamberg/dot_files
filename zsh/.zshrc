@@ -39,7 +39,8 @@ setopt histignorespace
 
 ### Plugin configuration ###
 source $ZSH/oh-my-zsh.sh
-eval "$(/usr/bin/rtx activate zsh)"
+eval "$(/usr/bin/rtx activate zsh)"  # Activate rtx
+source /home/wamberg/.config/broot/launcher/bash/br  # Allow broot to cd
 
 # Pure prompt configuration
 bindkey -v  # Set Vi mode
@@ -129,3 +130,4 @@ kn() {
 alias tf="terraform"
 alias tfp="terraform plan"
 alias tfa="terraform apply"
+
