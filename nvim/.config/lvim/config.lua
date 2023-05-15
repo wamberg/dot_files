@@ -23,6 +23,7 @@ lvim.leader = "space"
 
 local search_mappings = lvim.builtin.which_key.mappings["s"]
 search_mappings["b"] = { "<cmd>Telescope buffers<cr>", "Buffers" }
+search_mappings["s"] = { '<cmd>lua require("luasnip.loaders").edit_snippet_files()<cr>', "Snippets" }
 search_mappings["w"] = { "<cmd>Telescope grep_string<cr>", "Word under cursor" }
 lvim.builtin.which_key.mappings["s"] = search_mappings
 
@@ -102,6 +103,7 @@ linters.setup {
 -- Customization
 lvim.colorscheme = "github_light"
 lvim.transparent_window = true
+require('luasnip').filetype_extend("svelte", { "javascript" })
 
 -- -- Additional Plugins <https://www.lunarvim.org/docs/plugins#user-plugins>
 lvim.plugins = {
