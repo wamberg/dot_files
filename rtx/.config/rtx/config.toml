@@ -1,5 +1,6 @@
 [tools]
-awscli = '2.11'
+awscli = 'latest'
+aws-copilot = 'latest'
 golang = '1.20'
 gorson = '13'
 nodejs = '18'
@@ -10,6 +11,7 @@ rust = '1.68'
 [plugins]
 # specify a custom repo url
 # note this will only be used if the plugin does not already exist
+aws-copilot = 'https://github.com/NeoHsu/asdf-copilot'
 gorson = 'https://github.com/pbs/asdf-pbs.git'
 redyl = 'https://github.com/pbs/asdf-pbs.git'
 
