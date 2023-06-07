@@ -63,6 +63,19 @@ lvim.builtin.treesitter.auto_install = true
 -- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
 -- local opts = {} -- check the lspconfig documentation for a list of all possible options
 -- require("lvim.lsp.manager").setup("pyright", opts)
+local emmet_options = {
+  filetypes = {
+    "html",
+    "javascript",
+    "javascriptreact",
+    "jinja",
+    "typescript",
+  },
+  root_dir = function()
+    return vim.loop.cwd()
+  end
+}
+require("lvim.lsp.manager").setup("emmet_ls", emmet_options)
 
 -- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. IMPORTANT: Requires `:LvimCacheReset` to take effect
 -- ---`:LvimInfo` lists which server(s) are skipped for the current filetype
