@@ -30,6 +30,7 @@ export PATH="${PATH}:$HOME/.npm-packages/bin"
 
 # fzf
 export FZF_DEFAULT_COMMAND='rg --hidden --no-ignore --follow --files --ignore-file ~/.gitignore_global'
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#0e1116,bg:#ffffff,hl:#ffffff --color=fg+:#010409,bg+:#dbe8fb,hl+:#702c00 --color=info:#744500,prompt:#0349b4,pointer:#622cbc --color=marker:#055d20,spinner:#0e1116,header:#eef0f2'
 
 # nvim zen-mode
 export KITTY_LISTEN_ON="unix:/tmp/kitty-$(pidof kitty)"

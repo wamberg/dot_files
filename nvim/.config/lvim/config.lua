@@ -36,9 +36,6 @@ lvim.builtin.which_key.mappings["z"] = { "<cmd>ZenMode<cr>", "Zen Mode" }
 -- lvim.builtin.which_key.mappings["W"] = { "<cmd>noautocmd w<cr>", "Save without formatting" }
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 
--- -- Change theme settings
--- lvim.colorscheme = "lunar"
-
 lvim.builtin.alpha.active = false
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 lvim.builtin.nvimtree.setup.view.side = "right"
@@ -114,7 +111,7 @@ linters.setup {
 }
 
 -- Customization
-lvim.colorscheme = "github_light"
+lvim.colorscheme = "github_light_high_contrast"
 lvim.transparent_window = true
 require('luasnip').filetype_extend("svelte", { "javascript" })
 
