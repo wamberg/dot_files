@@ -174,9 +174,9 @@ imports: [
     # This skin is imported when your terminal is light
     {
         luma: [
-            light
+            dark
             unknown
         ]
-        file: white-skin.hjson
+        file: dark-blue-skin.hjson
     }
 ]

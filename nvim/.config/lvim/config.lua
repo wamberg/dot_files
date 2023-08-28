@@ -70,7 +70,7 @@ local emmet_options = {
   },
   root_dir = function()
     return vim.loop.cwd()
-  end
+  end,
 }
 require("lvim.lsp.manager").setup("emmet_ls", emmet_options)
 
@@ -92,28 +92,28 @@ vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pylyzer" })
 -- end
 
 -- linters and formatters <https://www.lunarvim.org/docs/languages#lintingformatting>
-local formatters = require "lvim.lsp.null-ls.formatters"
-formatters.setup {
+local formatters = require("lvim.lsp.null-ls.formatters")
+formatters.setup({
   { command = "stylua" },
   {
     command = "prettier",
     extra_args = { "--print-width", "100" },
     filetypes = { "typescript", "typescriptreact" },
   },
-}
-local linters = require "lvim.lsp.null-ls.linters"
-linters.setup {
+})
+local linters = require("lvim.lsp.null-ls.linters")
+linters.setup({
   { command = "ruff", filetypes = { "python" } },
   {
     command = "shellcheck",
     args = { "--severity", "warning" },
   },
-}
+})
 
 -- Customization
-lvim.colorscheme = "github_light_high_contrast"
+lvim.colorscheme = "github_dark_high_contrast"
 lvim.transparent_window = true
-require('luasnip').filetype_extend("svelte", { "javascript" })
+require("luasnip").filetype_extend("svelte", { "javascript" })
 
 -- -- Additional Plugins <https://www.lunarvim.org/docs/plugins#user-plugins>
 lvim.plugins = {
@@ -122,21 +122,21 @@ lvim.plugins = {
   {
     "folke/zen-mode.nvim",
     config = function()
-      require("zen-mode").setup {
+      require("zen-mode").setup({
         plugins = {
           kitty = {
             enabled = true,
             font = "+4",
-          }
-        }
-      }
-    end
+          },
+        },
+      })
+    end,
   },
   { "Glench/Vim-Jinja2-Syntax" },
   { "micarmst/vim-spellsync" },
   {
     "tpope/vim-surround",
-    keys = { "c", "d", "y" }
+    keys = { "c", "d", "y" },
   },
   { "projekt0n/github-nvim-theme" },
 }
