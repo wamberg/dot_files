@@ -1,0 +1,7 @@
+[tools]
+stylua = 'latest'
+
+[plugins]
+# specify a custom repo url
+# note this will only be used if the plugin does not already exist
+python = 'https://github.com/jc00ke/asdf-stylua'

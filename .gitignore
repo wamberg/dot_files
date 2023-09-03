@@ -1,9 +1,8 @@
 *.bak
 *.swp
-nix/result
 node_modules/
 nvim/.config/nvim/.netrwhist
-nvim/.config/nvim/plugin/packer_compiled.lua
+out/
 tmux/.config/tmux/plugins
 vifm/.config/vifm/vifm-help.txt
 vifm/.config/vifm/vifminfo*

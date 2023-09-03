@@ -1,10 +1,92 @@
-GARDEN=vim.fn.expandcmd('~/dev/garden')
-require("kickstart.init")
+vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
+
+-- Bootstrap Lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- Setup Lazy plugins
+require("lazy").setup({
+  "christoomey/vim-tmux-navigator",
+  "editorconfig/editorconfig-vim",
+  "folke/zen-mode.nvim",
+  "ggandor/leap.nvim",
+  {
+    "L3MON4D3/LuaSnip",
+    version = "2.*",
+  },
+  "lewis6991/gitsigns.nvim",
+  "micarmst/vim-spellsync",
+  {
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.2",
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function()
+      local configs = require("nvim-treesitter.configs")
+      configs.setup({
+        ensure_installed = {
+          "bash",
+          "css",
+          "dockerfile",
+          "git_config",
+          "git_rebase",
+          "gitcommit",
+          "go",
+          "html",
+          "htmldjango",
+          "json",
+          "lua",
+          "make",
+          "markdown",
+          "python",
+          "sql",
+          "toml",
+          "typescript",
+        },
+        highlight = {
+          enable = true,
+        },
+      })
+    end,
+  },
+  {
+    "projekt0n/github-nvim-theme",
+    priority = 1000,
+    config = function()
+      require("github-theme").setup({})
+      vim.cmd.colorscheme("github_dark_high_contrast")
+    end,
+  },
+  "RRethy/vim-illuminate",
+  {
+    "tpope/vim-surround",
+    keys = { "c", "d", "y" },
+  },
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {},
+  },
+})
 
 -- Line numbers
-vim.opt.number = false
-require('leap').opts.safe_labels = {}
-require('leap').add_default_mappings()
+vim.opt.number = true
+vim.wo.relativenumber = true
+vim.wo.cursorline = true
+vim.wo.cursorlineopt = "number"
 
 -- Folds
 vim.opt.foldlevel = 99
@@ -17,113 +99,140 @@ vim.opt.splitright = true
 vim.opt.wrap = true
 
 -- Window keymaps
-vim.keymap.set('n', '<leader>c', ":bprevious<bar>bdelete #<CR>", { desc = '[C]lear Buffer' })
-vim.keymap.set('n', '<leader>h', ":nohlsearch<CR>", { desc = 'Clear [H]ighlight' })
+vim.keymap.set("n", "<leader>c", ":bprevious<bar>bdelete #<CR>", { desc = "[C]lear Buffer" })
+vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { desc = "Clear [H]ighlight" })
 
 -- Code Keymaps
-vim.keymap.set('n', '<leader>F', ":Format<CR>", { desc = '[F]ormat' })
-vim.keymap.set('n', '<leader>fk', require('telescope.builtin').keymaps, { desc = '[F]ind [K]eymaps' })
+vim.keymap.set("n", "<leader>F", ":Format<CR>", { desc = "[F]ormat" })
+vim.keymap.set("n", "<leader>fk", require("telescope.builtin").keymaps, { desc = "[F]ind [K]eymaps" })
 
--- Zettel keymaps
-vim.keymap.set('i', '<C-l>', require('zettel').link_post, { desc = '[C]reate Link' })
-vim.keymap.set('n', '<leader>fh', '<cmd>Telescope grep_string use_regex=true search=^#\\ <cr>',
-  { desc = '[F]ind [H]eader' })
-vim.keymap.set('n', '<leader>nn', require('zettel').new_note, { desc = '[N]ew [N]ote' })
+-- Telescope Keymaps
+local builtin = require("telescope.builtin")
+vim.keymap.set("n", "<leader>fb", builtin.buffers, {}, default_opts)
+vim.keymap.set("n", "<leader>fc", builtin.grep_string, default_opts)
+vim.keymap.set("n", "<leader>ff", builtin.find_files, default_opts)
+vim.keymap.set("n", "<leader>fg", builtin.live_grep, default_opts)
 
 -- Toggle Zen mode
 local zentoggle = function()
-  require('zen-mode').toggle({
+  require("zen-mode").toggle({
     window = {
-      width = 86
+      width = 86,
     },
     plugins = {
       gitsigns = {
-        enabled = true
+        enabled = true,
       },
       kitty = {
         enabled = true,
         font = "+4",
-      }
-    }
+      },
+    },
   })
 end
-vim.keymap.set('n', '<leader>z', zentoggle, { desc = '[Z]en Mode' })
+vim.keymap.set("n", "<leader>z", zentoggle, { desc = "[Z]en Mode" })
 -- Snippets
-require("luasnip.loaders.from_snipmate").lazy_load({paths = './snippets'})
-vim.keymap.set('n', '<leader>es', require("luasnip.loaders").edit_snippet_files, { desc = '[E]dit [S]nippets' })
+require("luasnip.loaders.from_snipmate").lazy_load({ paths = "./snippets" })
+vim.keymap.set("n", "<leader>es", require("luasnip.loaders").edit_snippet_files, { desc = "[E]dit [S]nippets" })
 
-----------------
--- Autocommands
-----------------
+-- gitsigns setup
+require("gitsigns").setup({
+  on_attach = function(bufnr)
+    local gs = package.loaded.gitsigns
 
--- Format Markdown
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.md",
-  callback = function()
-    local command = "npm run format-file " .. vim.fn.expand("%")
-    local function reload()
-      vim.cmd('edit')
+    local function map(mode, l, r, opts)
+      opts = opts or {}
+      opts.buffer = bufnr
+      vim.keymap.set(mode, l, r, opts)
     end
 
-    vim.fn.jobstart(command, { on_exit = reload })
+    -- Navigation
+    map("n", "]c", function()
+      if vim.wo.diff then
+        return "]c"
+      end
+      vim.schedule(function()
+        gs.next_hunk()
+      end)
+      return "<Ignore>"
+    end, { expr = true })
+
+    map("n", "[c", function()
+      if vim.wo.diff then
+        return "[c"
+      end
+      vim.schedule(function()
+        gs.prev_hunk()
+      end)
+      return "<Ignore>"
+    end, { expr = true })
+
+    -- Actions
+    map("n", "<leader>hs", gs.stage_hunk)
+    map("n", "<leader>hr", gs.reset_hunk)
+    map("v", "<leader>hs", function()
+      gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+    end)
+    map("v", "<leader>hr", function()
+      gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+    end)
+    map("n", "<leader>hS", gs.stage_buffer)
+    map("n", "<leader>hu", gs.undo_stage_hunk)
+    map("n", "<leader>hR", gs.reset_buffer)
+    map("n", "<leader>hp", gs.preview_hunk)
+    map("n", "<leader>hb", function()
+      gs.blame_line({ full = true })
+    end)
+    map("n", "<leader>tb", gs.toggle_current_line_blame)
+    map("n", "<leader>hd", gs.diffthis)
+    map("n", "<leader>hD", function()
+      gs.diffthis("~")
+    end)
+    map("n", "<leader>td", gs.toggle_deleted)
+
+    -- Text object
+    map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
   end,
-  group = vim.api.nvim_create_augroup("markdown_autoformat", { clear = true }),
 })
 
--- Display Markdown
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "vimwiki,markdown",
-  callback = function()
-    vim.cmd [[highlight VimwikiHeader1 guifg=blue gui=bold]]
-    vim.cmd [[highlight VimwikiHeader2 guifg=darkgreen gui=bold]]
-    vim.cmd [[highlight VimwikiHeader3 guifg=darkorange3 gui=bold]]
-    vim.cmd [[highlight VimwikiHeader4 guifg=magenta3 gui=bold]]
-    vim.cmd [[highlight VimwikiHeader5 guifg=magenta gui=bold]]
-    vim.api.nvim_win_set_option(0, "spell", true)
-    vim.opt.linebreak = true
-  end,
-  group = vim.api.nvim_create_augroup("markdown_display", { clear = true }),
+-- Telescope setup
+require("telescope").setup({
+  pickers = {
+    find_files = {
+      hidden = true,
+    },
+    grep_string = {
+      additional_args = function(opts)
+        return { "--hidden" }
+      end,
+    },
+    live_grep = {
+      additional_args = function(opts)
+        return { "--hidden" }
+      end,
+    },
+  },
 })
 
--- Format Golang
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.go",
-  callback = function()
-    local command = "go fmt " .. vim.fn.expand("%")
-    local function reload()
-      vim.cmd('edit')
-    end
+-- Leap setup
+local leap = require("leap")
+leap.opts.safe_labels = {}
+leap.add_default_mappings()
 
-    vim.fn.jobstart(command, { on_exit = reload })
-  end,
-  group = vim.api.nvim_create_augroup("golang_autoformat", { clear = true }),
-})
+-- luasnip setup
+local ls = require("luasnip")
+vim.keymap.set({ "i" }, "<C-K>", function()
+  ls.expand()
+end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-L>", function()
+  ls.jump(1)
+end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-H>", function()
+  ls.jump(-1)
+end, { silent = true })
 
-----------------
--- LSP Config
-----------------
--- local util = require('lspconfig/util')
---
--- local path = util.path
---
--- local function get_python_path(workspace)
---   -- Use activated virtualenv.
---   if vim.env.VIRTUAL_ENV then
---     return path.join(vim.env.VIRTUAL_ENV, 'bin', 'python')
---   end
---
---   -- Find and use virtualenv via poetry in workspace directory.
---   local match = vim.fn.glob(path.join(workspace, '.venv'))
---   if match ~= '' then
---     return path.join('.venv', 'bin', 'python')
---   end
---
---   -- Fallback to system Python.
---   return vim.fn.exepath('python3') or vim.fn.exepath('python') or 'python'
--- end
---
--- require'lspconfig'.pyright.setup {
---     on_init = function(client)
---         client.config.settings.python.pythonPath = get_python_path(client.config.root_dir)
---     end
--- }
+vim.keymap.set({ "i", "s" }, "<C-E>", function()
+  if ls.choice_active() then
+    ls.change_choice(1)
+  end
+end, { silent = true })

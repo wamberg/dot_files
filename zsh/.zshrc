@@ -12,7 +12,7 @@ export plugins
 ### User configuration ###
 
 # common exports
-export EDITOR=$(which lvim)
+export EDITOR=$(which nvim)
 export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
 export SHELL=$(which zsh)
@@ -56,8 +56,6 @@ bindkey -M vicmd 'V' edit-command-line # this remaps `vv` to `V` (but overrides 
 
 # aliases
 alias gmd="glow --width 180 --style light"
-alias n="lvim"
-alias nvim="lvim"
 alias o="./omks"
 alias ob="./omks build"
 alias or="./omks run"
@@ -100,7 +98,7 @@ tns () {
   tmux new-session -ds "${name}" -x "$(tput cols)" -y "$(tput lines)"
   tmux rename-window -t "${name}":0 "code"
   tmux split-window -p 70
-  tmux send-keys -t "${name}":0 lvim C-m
+  tmux send-keys -t "${name}":0 nvim C-m
   tmux attach-session -t "${name}"
 }
 
