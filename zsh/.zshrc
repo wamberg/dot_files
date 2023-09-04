@@ -76,18 +76,15 @@ c () {
   local dest="${1:-${HOME}/dev}"
   local depth="${2:-20}"
   D="$(\
-    rg \
-      --hidden \
-      --no-ignore \
-      --follow \
-      --files \
-      --ignore-file ~/.gitignore_global \
-      --null \
-      --max-depth ${depth} \
-      ${dest} \
+      fd \
+        --type d \
+        --hidden \
+        --follow \
+        --ignore-file ~/.gitignore_global \
+        --max-depth ${depth} \
+        --full-path \
+        --search-path ${dest} \
       2> /dev/null \
-    | xargs -0 dirname \
-    | sort -u \
     | fzf)"
   [ $? -eq 0 ] || return 1
   cd "${D}"
@@ -107,7 +104,7 @@ tns () {
 # Fuzzy change into a directory. Open a named tmux session there.
 ct () {
   local dest="${1:-${HOME}/dev}"
-  c "${dest}" 2
+  c "${dest}" 1
   [ $? -eq 0 ] || return 1
   tns
 }
