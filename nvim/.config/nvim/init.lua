@@ -25,6 +25,7 @@ require("lazy").setup({
   },
   "lewis6991/gitsigns.nvim",
   "micarmst/vim-spellsync",
+  "Mofiqul/dracula.nvim",
   {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.2",
@@ -59,14 +60,6 @@ require("lazy").setup({
           enable = true,
         },
       })
-    end,
-  },
-  {
-    "projekt0n/github-nvim-theme",
-    priority = 1000,
-    config = function()
-      require("github-theme").setup({})
-      vim.cmd.colorscheme("github_dark_high_contrast")
     end,
   },
   "RRethy/vim-illuminate",

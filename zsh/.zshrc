@@ -32,7 +32,7 @@ export PATH="${PATH}:$HOME/.npm-packages/bin"
 export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix --hidden --follow --ignore-file ~/.gitignore_global"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type d --strip-cwd-prefix --hidden --follow --ignore-file ~/.gitignore_global"
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#7d8590,bg:#30363d,hl:#ffffff --color=fg+:#e6edf3,bg+:#313f50,hl+:#ffa657 --color=info:#d29922,prompt:#2f81f7,pointer:#a371f7 --color=marker:#3fb950,spinner:#6e7681,header:#495058'
+export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'
 
 # nvim zen-mode
 export KITTY_LISTEN_ON="unix:/tmp/kitty-$(pidof kitty)"
