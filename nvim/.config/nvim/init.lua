@@ -90,6 +90,10 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.wrap = true
 
+-- Search
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
 -- Window keymaps
 vim.keymap.set("n", "<leader>c", ":bprevious<bar>bdelete #<CR>", { desc = "[C]lear Buffer" })
 vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { desc = "Clear [H]ighlight" })
