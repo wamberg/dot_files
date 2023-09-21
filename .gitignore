@@ -3,6 +3,7 @@
 node_modules/
 nvim/.config/nvim/.netrwhist
 out/
+rtx/.config/rtx/trusted-configs/
 tmux/.config/tmux/plugins
 vifm/.config/vifm/vifm-help.txt
 vifm/.config/vifm/vifminfo*
