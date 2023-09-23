@@ -95,6 +95,8 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Window keymaps
+vim.keymap.set("n", "<leader>bb", ":bp<CR>", { desc = "[B]uffer [B]ack" })
+vim.keymap.set("n", "<leader>bn", ":bn<CR>", { desc = "[B]uffer [N]ext" })
 vim.keymap.set("n", "<leader>c", ":bprevious<bar>bdelete #<CR>", { desc = "[C]lear Buffer" })
 vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { desc = "Clear [H]ighlight" })
 
