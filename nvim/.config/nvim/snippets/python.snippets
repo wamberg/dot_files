@@ -11,6 +11,11 @@ snippet test_ test
       # act
       # assert
 
+snippet glog get logger
+  import logging
+
+  LOGGER = logging.getLogger(__name__)
+
 snippet ld log info
   LOGGER.debug(f"$1")
 

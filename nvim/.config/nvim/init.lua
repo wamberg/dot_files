@@ -132,6 +132,8 @@ vim.keymap.set("n", "<leader>z", zentoggle, { desc = "[Z]en Mode" })
 -- Snippets
 require("luasnip.loaders.from_snipmate").lazy_load({ paths = "./snippets" })
 vim.keymap.set("n", "<leader>es", require("luasnip.loaders").edit_snippet_files, { desc = "[E]dit [S]nippets" })
+local snipsetuppath = vim.fn.stdpath("config") .. "/luasnip.vim"
+vim.cmd("source " .. snipsetuppath)
 
 -- gitsigns setup
 require("gitsigns").setup({
@@ -211,3 +213,7 @@ require("telescope").setup({
     },
   },
 })
+
+-- Remember current position
+local scrollpath = vim.fn.stdpath("config") .. "/scroll.vim"
+vim.cmd("source " .. scrollpath)
