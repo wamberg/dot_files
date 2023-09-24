@@ -16,6 +16,11 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Setup Lazy plugins
 require("lazy").setup({
+  {
+    "akinsho/bufferline.nvim",
+    version = "*",
+    dependencies = "nvim-tree/nvim-web-devicons",
+  },
   "christoomey/vim-tmux-navigator",
   "editorconfig/editorconfig-vim",
   "folke/zen-mode.nvim",
@@ -85,6 +90,7 @@ vim.opt.foldlevel = 99
 vim.opt.foldmethod = "manual"
 
 -- Display
+vim.cmd([[colorscheme dracula]])
 vim.opt.scrolloff = 2
 vim.opt.splitbelow = true
 vim.opt.splitright = true
@@ -95,8 +101,6 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Window keymaps
-vim.keymap.set("n", "<leader>bb", ":bp<CR>", { desc = "[B]uffer [B]ack" })
-vim.keymap.set("n", "<leader>bn", ":bn<CR>", { desc = "[B]uffer [N]ext" })
 vim.keymap.set("n", "<leader>c", ":bprevious<bar>bdelete #<CR>", { desc = "[C]lear Buffer" })
 vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { desc = "Clear [H]ighlight" })
 
@@ -213,6 +217,26 @@ require("telescope").setup({
     },
   },
 })
+
+---- Buffers
+--Bufferline setup
+vim.opt.termguicolors = true
+require("bufferline").setup({})
+-- buffer commands
+vim.keymap.set("n", "<leader>$", ":BufferLineGoToBuffer -1<CR>", { desc = "Go To Last Buffer" })
+vim.keymap.set("n", "<leader>1", ":BufferLineGoToBuffer 1<CR>", { desc = "Go To Buffer 1" })
+vim.keymap.set("n", "<leader>2", ":BufferLineGoToBuffer 2<CR>", { desc = "Go To Buffer 2" })
+vim.keymap.set("n", "<leader>3", ":BufferLineGoToBuffer 3<CR>", { desc = "Go To Buffer 3" })
+vim.keymap.set("n", "<leader>4", ":BufferLineGoToBuffer 4<CR>", { desc = "Go To Buffer 4" })
+vim.keymap.set("n", "<leader>5", ":BufferLineGoToBuffer 5<CR>", { desc = "Go To Buffer 5" })
+vim.keymap.set("n", "<leader>6", ":BufferLineGoToBuffer 6<CR>", { desc = "Go To Buffer 6" })
+vim.keymap.set("n", "<leader>7", ":BufferLineGoToBuffer 7<CR>", { desc = "Go To Buffer 7" })
+vim.keymap.set("n", "<leader>8", ":BufferLineGoToBuffer 8<CR>", { desc = "Go To Buffer 8" })
+vim.keymap.set("n", "<leader>9", ":BufferLineGoToBuffer 9<CR>", { desc = "Go To Buffer 9" })
+vim.keymap.set("n", "<leader>bP", ":BufferLineTogglePin<CR>", { desc = "[B]uffer [P]in" })
+vim.keymap.set("n", "<leader>bb", ":BufferLineCyclePrev<CR>", { desc = "[B]uffer [B]ack" })
+vim.keymap.set("n", "<leader>bn", ":BufferLineCycleNext<CR>", { desc = "[B]uffer [N]ext" })
+vim.keymap.set("n", "<leader>bp", ":BufferLinePick<CR>", { desc = "[B]uffer [P]ick" })
 
 -- Remember current position
 local scrollpath = vim.fn.stdpath("config") .. "/scroll.vim"
