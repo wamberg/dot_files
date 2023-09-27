@@ -241,9 +241,9 @@ vim.keymap.set("n", "<leader>9", ":BufferLineGoToBuffer 9<CR>", { silent = true,
 vim.keymap.set("n", "<leader>bP", ":BufferLineTogglePin<CR>", { silent = true, desc = "[B]uffer [P]in" })
 vim.keymap.set("n", "<leader>bb", ":BufferLineCyclePrev<CR>", { silent = true, desc = "[B]uffer [B]ack" })
 vim.keymap.set("n", "<leader>bh", ":BufferLineCloseLeft<CR>", { silent = true, desc = "[B]uffer Close Left" })
-vim.keymap.set("n", "<leader>bh", ":BufferLineCloseOthers<CR>", { silent = true, desc = "[B]uffer Close [O]thers" })
 vim.keymap.set("n", "<leader>bl", ":BufferLineCloseRight<CR>", { silent = true, desc = "[B]uffer Close Right" })
 vim.keymap.set("n", "<leader>bn", ":BufferLineCycleNext<CR>", { silent = true, desc = "[B]uffer [N]ext" })
+vim.keymap.set("n", "<leader>bo", ":BufferLineCloseOthers<CR>", { silent = true, desc = "[B]uffer Close [O]thers" })
 vim.keymap.set("n", "<leader>bp", ":BufferLinePick<CR>", { silent = true, desc = "[B]uffer [P]ick" })
 vim.keymap.set("n", "<leader>c", ":BufDel<CR>", { silent = true, desc = "[C]lear Buffer" })
 
