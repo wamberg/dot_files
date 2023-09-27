@@ -67,6 +67,7 @@ require("lazy").setup({
       })
     end,
   },
+  "ojroques/nvim-bufdel",
   "RRethy/vim-illuminate",
   {
     "tpope/vim-surround",
@@ -221,6 +222,11 @@ require("telescope").setup({
 --Bufferline setup
 vim.opt.termguicolors = true
 require("bufferline").setup({})
+-- bufdel setup
+require('bufdel').setup {
+  next = 'cycle',
+  quit = false,
+}
 -- buffer commands
 vim.keymap.set("n", "<leader>$", ":BufferLineGoToBuffer -1<CR>", { silent = true, desc = "Go To Last Buffer" })
 vim.keymap.set("n", "<leader>1", ":BufferLineGoToBuffer 1<CR>", { silent = true, desc = "Go To Buffer 1" })
@@ -239,7 +245,7 @@ vim.keymap.set("n", "<leader>bh", ":BufferLineCloseOthers<CR>", { silent = true,
 vim.keymap.set("n", "<leader>bl", ":BufferLineCloseRight<CR>", { silent = true, desc = "[B]uffer Close Right" })
 vim.keymap.set("n", "<leader>bn", ":BufferLineCycleNext<CR>", { silent = true, desc = "[B]uffer [N]ext" })
 vim.keymap.set("n", "<leader>bp", ":BufferLinePick<CR>", { silent = true, desc = "[B]uffer [P]ick" })
-vim.keymap.set("n", "<leader>c", ":bprevious<bar>bdelete #<CR>", { silent = true, desc = "[C]lear Buffer" })
+vim.keymap.set("n", "<leader>c", ":BufDel<CR>", { silent = true, desc = "[C]lear Buffer" })
 
 -- Remember current position
 local scrollpath = vim.fn.stdpath("config") .. "/scroll.vim"
