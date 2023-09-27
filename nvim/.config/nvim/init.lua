@@ -110,7 +110,7 @@ vim.keymap.set("n", "<leader>fk", require("telescope.builtin").keymaps, { desc =
 -- Telescope Keymaps
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>fb", builtin.buffers, {}, default_opts)
-vim.keymap.set("n", "<leader>fc", builtin.grep_string, default_opts)
+vim.keymap.set("n", "<leader>fw", builtin.grep_string, default_opts)
 vim.keymap.set("n", "<leader>ff", builtin.find_files, default_opts)
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, default_opts)
 
