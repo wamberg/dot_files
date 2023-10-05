@@ -3,7 +3,7 @@ awscli = 'latest'
 golang = '1.20'
 gorson = '13'
 nodejs = '18'
-python = '3.11'
+python = '3.12'
 redyl = 'v1.0.0'
 rust = '1.68'
 
