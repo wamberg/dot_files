@@ -99,6 +99,7 @@ vim.opt.wrap = true
 
 -- Search
 vim.opt.ignorecase = true
+vim.opt.mouse = ""
 vim.opt.smartcase = true
 
 -- Window keymaps
