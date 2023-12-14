@@ -15,4 +15,3 @@ redyl = 'https://github.com/pbs/asdf-pbs.git'
 
 [settings] # project-local settings
 verbose = true
-missing_runtime_behavior = 'warn'
