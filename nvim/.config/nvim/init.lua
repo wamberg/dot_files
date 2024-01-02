@@ -84,7 +84,7 @@ require("lazy").setup({
 vim.opt.number = true
 vim.wo.relativenumber = true
 vim.wo.cursorline = true
-vim.wo.cursorlineopt = "number"
+vim.wo.cursorlineopt = "line,number"
 
 -- Folds
 vim.opt.foldlevel = 99
