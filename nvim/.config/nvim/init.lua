@@ -224,10 +224,10 @@ require("telescope").setup({
 vim.opt.termguicolors = true
 require("bufferline").setup({})
 -- bufdel setup
-require('bufdel').setup {
-  next = 'cycle',
+require("bufdel").setup({
+  next = "cycle",
   quit = false,
-}
+})
 -- buffer commands
 vim.keymap.set("n", "<leader>$", ":BufferLineGoToBuffer -1<CR>", { silent = true, desc = "Go To Last Buffer" })
 vim.keymap.set("n", "<leader>1", ":BufferLineGoToBuffer 1<CR>", { silent = true, desc = "Go To Buffer 1" })
