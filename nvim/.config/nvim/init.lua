@@ -26,7 +26,7 @@ require("lazy").setup({
   "folke/zen-mode.nvim",
   {
     "L3MON4D3/LuaSnip",
-    version = "2.*",
+    version = "v2.*",
   },
   "lewis6991/gitsigns.nvim",
   "micarmst/vim-spellsync",
@@ -134,8 +134,10 @@ local zentoggle = function()
   })
 end
 vim.keymap.set("n", "<leader>z", zentoggle, { desc = "[Z]en Mode" })
+
 -- Snippets
 require("luasnip.loaders.from_snipmate").lazy_load({ paths = "./snippets" })
+require("luasnip").filetype_extend("typescript", {"javascript"})
 vim.keymap.set("n", "<leader>es", require("luasnip.loaders").edit_snippet_files, { desc = "[E]dit [S]nippets" })
 local snipsetuppath = vim.fn.stdpath("config") .. "/luasnip.vim"
 vim.cmd("source " .. snipsetuppath)
