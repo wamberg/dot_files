@@ -12,6 +12,3 @@ rust = '1.68'
 # note this will only be used if the plugin does not already exist
 gorson = 'https://github.com/pbs/asdf-pbs.git'
 redyl = 'https://github.com/pbs/asdf-pbs.git'
-
-[settings] # project-local settings
-verbose = true

@@ -42,7 +42,7 @@ setopt histignorespace
 
 ### Plugin configuration ###
 source $ZSH/oh-my-zsh.sh
-eval "$(/usr/bin/rtx activate zsh)"  # Activate rtx
+eval "$(/home/wamberg/.local/bin/mise activate zsh)"  # Activate rtx
 source /home/wamberg/.config/broot/launcher/bash/br  # Allow broot to cd
 
 # Pure prompt configuration
