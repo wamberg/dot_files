@@ -138,6 +138,7 @@ vim.keymap.set("n", "<leader>z", zentoggle, { desc = "[Z]en Mode" })
 -- Snippets
 require("luasnip.loaders.from_snipmate").lazy_load({ paths = "./snippets" })
 require("luasnip").filetype_extend("typescript", { "javascript" })
+require("luasnip").filetype_extend("typescriptreact", { "javascript" })
 vim.keymap.set("n", "<leader>es", require("luasnip.loaders").edit_snippet_files, { desc = "[E]dit [S]nippets" })
 local snipsetuppath = vim.fn.stdpath("config") .. "/luasnip.vim"
 vim.cmd("source " .. snipsetuppath)
