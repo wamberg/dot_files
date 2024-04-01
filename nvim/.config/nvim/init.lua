@@ -217,7 +217,7 @@ require("lazy").setup({
       local servers = {
         -- clangd = {},
         -- gopls = {},
-        -- pyright = {},
+        pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -225,7 +225,7 @@ require("lazy").setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        -- tsserver = {},
+        tsserver = {},
         --
 
         lua_ls = {
@@ -438,10 +438,10 @@ vim.keymap.set("n", "<leader>fk", require("telescope.builtin").keymaps, { desc =
 
 -- Telescope Keymaps
 local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<leader>fb", builtin.buffers, {}, default_opts)
-vim.keymap.set("n", "<leader>fw", builtin.grep_string, default_opts)
-vim.keymap.set("n", "<leader>ff", builtin.find_files, default_opts)
-vim.keymap.set("n", "<leader>fg", builtin.live_grep, default_opts)
+vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
+vim.keymap.set("n", "<leader>fw", builtin.grep_string)
+vim.keymap.set("n", "<leader>ff", builtin.find_files)
+vim.keymap.set("n", "<leader>fg", builtin.live_grep)
 
 -- Toggle Zen mode
 local zentoggle = function()
@@ -570,10 +570,10 @@ vim.keymap.set("n", "<leader>7", ":BufferLineGoToBuffer 7<CR>", { silent = true,
 vim.keymap.set("n", "<leader>8", ":BufferLineGoToBuffer 8<CR>", { silent = true, desc = "Go To Buffer 8" })
 vim.keymap.set("n", "<leader>9", ":BufferLineGoToBuffer 9<CR>", { silent = true, desc = "Go To Buffer 9" })
 vim.keymap.set("n", "<leader>bP", ":BufferLineTogglePin<CR>", { silent = true, desc = "[B]uffer [P]in" })
-vim.keymap.set("n", "<leader>bb", ":BufferLineCyclePrev<CR>", { silent = true, desc = "[B]uffer [B]ack" })
+vim.keymap.set("n", "[b", ":BufferLineCyclePrev<CR>", { silent = true, desc = "[B]uffer [B]ack" })
 vim.keymap.set("n", "<leader>bh", ":BufferLineCloseLeft<CR>", { silent = true, desc = "[B]uffer Close Left" })
 vim.keymap.set("n", "<leader>bl", ":BufferLineCloseRight<CR>", { silent = true, desc = "[B]uffer Close Right" })
-vim.keymap.set("n", "<leader>bn", ":BufferLineCycleNext<CR>", { silent = true, desc = "[B]uffer [N]ext" })
+vim.keymap.set("n", "]b", ":BufferLineCycleNext<CR>", { silent = true, desc = "[B]uffer [N]ext" })
 vim.keymap.set("n", "<leader>bo", ":BufferLineCloseOthers<CR>", { silent = true, desc = "[B]uffer Close [O]thers" })
 vim.keymap.set("n", "<leader>bp", ":BufferLinePick<CR>", { silent = true, desc = "[B]uffer [P]ick" })
 vim.keymap.set("n", "<leader>c", ":BufDel<CR>", { silent = true, desc = "[C]lear Buffer" })
