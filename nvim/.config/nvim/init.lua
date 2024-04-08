@@ -24,6 +24,7 @@ require("lazy").setup({
   "christoomey/vim-tmux-navigator",
   "editorconfig/editorconfig-vim",
   "folke/zen-mode.nvim",
+  "github/copilot.vim",
   {
     "L3MON4D3/LuaSnip",
     version = "v2.*",
@@ -60,6 +61,7 @@ require("lazy").setup({
           "sql",
           "toml",
           "typescript",
+          "vimdoc",
         },
         highlight = {
           enable = true,
