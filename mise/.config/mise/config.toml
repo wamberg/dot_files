@@ -1,17 +1,6 @@
 [tools]
 awscli = 'latest'
 golang = '1.20'
-gorson = '13'
 nodejs = '20'
 python = '3.12'
-redyl = 'v1.0.0'
 rust = '1.68'
-
-[plugins]
-# specify a custom repo url
-# note this will only be used if the plugin does not already exist
-gorson = 'https://github.com/pbs/asdf-pbs.git'
-redyl = 'https://github.com/pbs/asdf-pbs.git'
-
-[settings]
-experimental = true
