@@ -4,3 +4,6 @@ golang = '1.20'
 nodejs = '20'
 python = '3.12'
 rust = '1.68'
+
+[settings]
+experimental = true
