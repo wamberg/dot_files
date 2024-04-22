@@ -17,6 +17,16 @@ export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
 export SHELL=$(which zsh)
 export PATH="${PATH}:$HOME/.bin:$HOME/.local/bin"
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+  export PATH="/opt/homebrew/bin:${PATH}"
+  # Android
+  export ANDROID_HOME=$HOME/Library/Android/sdk
+  export PATH=$PATH:$ANDROID_HOME/emulator
+  export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+  # kntools
+  source $HOME/.kepler/kntools/environment-setup-sdk.sh
+fi
 
 # Golang
 export GOPATH=~/dev/go
@@ -36,8 +46,8 @@ export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f
 setopt histignorespace
 
 ### Plugin configuration ###
-source $ZSH/oh-my-zsh.sh
-eval "$(/home/wamberg/.local/bin/mise activate zsh)"  # Activate mise
+source $ZSH/oh-my-zsh.sh  # Activate oh-my-zsh
+eval "$(mise activate zsh)"  # Activate mise
 
 # Pure prompt configuration
 bindkey -v  # Set Vi mode
@@ -115,4 +125,3 @@ alias dcs="docker compose -f docker-compose.yml -f docker-compose.staging.yml"
 alias tf="terraform"
 alias tfp="terraform plan"
 alias tfa="terraform apply"
-
