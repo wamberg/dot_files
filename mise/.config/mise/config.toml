@@ -1,9 +1,10 @@
 [tools]
 awscli = 'latest'
-golang = '1.20'
-nodejs = '20'
-python = '3.12'
-rust = '1.68'
+aws-vault = '7.2.0'
+golang = '1.22.0'
+nodejs = '22.0.0'
+python = '3.12.3'
+rust = '1.77.2'
 
 [settings]
 experimental = true
