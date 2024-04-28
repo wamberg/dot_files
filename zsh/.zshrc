@@ -18,7 +18,6 @@ export LC_ALL='en_US.UTF-8'
 export SHELL=$(which zsh)
 export PATH="${PATH}:$HOME/.bin:$HOME/.local/bin"
 
-
 # Golang
 export GOPATH=~/dev/go
 export PATH="${PATH}:${GOPATH}/bin"
@@ -27,23 +26,18 @@ export PATH="${PATH}:${GOPATH}/bin"
 export NODE_PATH=~/.npm-packages/lib/node_modules
 export PATH="${PATH}:$HOME/.npm-packages/bin"
 
-
 # fzf
 export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix --hidden --follow --no-ignore-vcs --ignore-file ~/.gitignore_global"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type d --strip-cwd-prefix --hidden --follow --no-ignore-vcs --ignore-file ~/.gitignore_global"
 export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'
 
-# nvim zen-mode
-export KITTY_LISTEN_ON="unix:/tmp/kitty-$(pidof kitty)"
-
 # no history for commands that begin with space
 setopt histignorespace
 
 ### Plugin configuration ###
 source $ZSH/oh-my-zsh.sh
-eval "$(/home/wamberg/.local/bin/mise activate zsh)"  # Activate rtx
-source /home/wamberg/.config/broot/launcher/bash/br  # Allow broot to cd
+eval "$(/home/wamberg/.local/bin/mise activate zsh)"  # Activate mise
 
 # Pure prompt configuration
 bindkey -v  # Set Vi mode
@@ -56,14 +50,11 @@ prompt pure
 KEYTIMEOUT=1
 bindkey -M vicmd 'V' edit-command-line # this remaps `vv` to `V` (but overrides `visual-mode`)
 
-# aliases
+### Aliases ###
+alias acs='apt-cache search'
+alias aupd='sudo apt update'
+alias aupg='sudo apt upgrade'
 alias gmd="glow --width 180 --style light"
-alias o="./omks"
-alias ob="./omks build"
-alias or="./omks run"
-alias os="./omks stop"
-alias osh="./omks shell"
-alias ov="./omks vars"
 alias pca="pre-commit run --all-files"
 alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
 alias rs="rsync -avP"
@@ -96,7 +87,7 @@ tns () {
   local name="${1:-${PWD##*/}}"
   tmux new-session -ds "${name}" -x "$(tput cols)" -y "$(tput lines)"
   tmux rename-window -t "${name}":0 "code"
-  tmux split-window -p 70
+  tmux split-window -t "${name}":0 -l 70
   tmux send-keys -t "${name}":0 nvim C-m
   tmux attach-session -t "${name}"
 }
@@ -119,11 +110,7 @@ alias dcd="docker compose down"
 alias dcp="docker compose -f docker-compose.yml -f docker-compose.production.yml"
 alias dcr="docker compose run --rm"
 alias dcs="docker compose -f docker-compose.yml -f docker-compose.staging.yml"
-# kubernetes
-alias k="kubectl"
-kn() {
-  kubectl --namespace=$K8S_NAMESPACE $@
-}
+
 # terraform
 alias tf="terraform"
 alias tfp="terraform plan"
