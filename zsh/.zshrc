@@ -46,13 +46,14 @@ export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f
 setopt histignorespace
 
 ### Plugin configuration ###
-source $ZSH/oh-my-zsh.sh  # Activate oh-my-zsh
-eval "$(mise activate zsh)"  # Activate mise
+source $ZSH/oh-my-zsh.sh    # Activate oh-my-zsh
+eval "$(mise activate zsh)" # Activate mise
 
 # Pure prompt configuration
-bindkey -v  # Set Vi mode
+bindkey -v # Set Vi mode
 fpath=("$HOME/dev/dot_files/zsh/pure" $fpath)
-autoload -U promptinit; promptinit
+autoload -U promptinit
+promptinit
 PURE_GIT_UNTRACKED_DIRTY=0
 prompt pure
 
@@ -73,37 +74,36 @@ alias xc="xclip -sel clip"
 alias zr=",zr.sh"
 
 # cd into a fuzzy (via fzf) directory
-c () {
+c() {
   local dest="${1:-${HOME}/dev}"
   local depth="${2:-20}"
-  D="$(\
-      fd \
-        --type d \
-        --hidden \
-        --follow \
-        --ignore-file ~/.gitignore_global \
-        --max-depth ${depth} \
-        --full-path \
-        --search-path ${dest} \
-      2> /dev/null \
-    | fzf)"
+  D="$(
+    fd \
+      --type d \
+      --hidden \
+      --follow \
+      --ignore-file ~/.gitignore_global \
+      --max-depth ${depth} \
+      --full-path \
+      --search-path ${dest} \
+      2>/dev/null |
+      fzf
+  )"
   [ $? -eq 0 ] || return 1
   cd "${D}"
 }
 
 # Open a named tmux session. Use the last directory in current path as the
 # session name.
-tns () {
+tns() {
   local name="${1:-${PWD##*/}}"
   tmux new-session -ds "${name}" -x "$(tput cols)" -y "$(tput lines)"
-  tmux rename-window -t "${name}":0 "code"
-  tmux split-window -t "${name}":0 -l 70
-  tmux send-keys -t "${name}":0 nvim C-m
+  tmux rename-window -t "${name}":0 "manage"
   tmux attach-session -t "${name}"
 }
 
 # Fuzzy change into a directory. Open a named tmux session there.
-ct () {
+ct() {
   local dest="${1:-${HOME}/dev}"
   c "${dest}" 1
   [ $? -eq 0 ] || return 1
