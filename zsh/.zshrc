@@ -18,12 +18,12 @@ export LC_ALL='en_US.UTF-8'
 export SHELL=$(which zsh)
 export PATH="${PATH}:$HOME/.bin:$HOME/.local/bin"
 if [[ "$OSTYPE" =~ ^darwin ]]; then
+  # Homebrew
   export PATH="/opt/homebrew/bin:${PATH}"
   # Android
   export ANDROID_HOME=$HOME/Library/Android/sdk
   export PATH=$PATH:$ANDROID_HOME/emulator
   export PATH=$PATH:$ANDROID_HOME/platform-tools
-
   # kntools
   source $HOME/.kepler/kntools/environment-setup-sdk.sh
 fi
@@ -46,11 +46,11 @@ export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f
 setopt histignorespace
 
 ### Plugin configuration ###
-source $ZSH/oh-my-zsh.sh  # Activate oh-my-zsh
-eval "$(mise activate zsh)"  # Activate mise
+source $ZSH/oh-my-zsh.sh    # Activate oh-my-zsh
+eval "$(mise activate zsh)" # Activate mise
 
 # Pure prompt configuration
-bindkey -v  # Set Vi mode
+bindkey -v # Set Vi mode
 fpath=("$HOME/dev/dot_files/zsh/pure" $fpath)
 autoload -U promptinit; promptinit
 PURE_GIT_UNTRACKED_DIRTY=0
@@ -64,6 +64,8 @@ bindkey -M vicmd 'V' edit-command-line # this remaps `vv` to `V` (but overrides 
 alias acs='apt-cache search'
 alias aupd='sudo apt update'
 alias aupg='sudo apt upgrade'
+alias av="aws-vault"
+alias ave="aws-vault exec"
 alias gmd="glow --width 180 --style light"
 alias pca="pre-commit run --all-files"
 alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
@@ -73,37 +75,38 @@ alias xc="xclip -sel clip"
 alias zr=",zr.sh"
 
 # cd into a fuzzy (via fzf) directory
-c () {
+c() {
   local dest="${1:-${HOME}/dev}"
   local depth="${2:-20}"
-  D="$(\
-      fd \
-        --type d \
-        --hidden \
-        --follow \
-        --ignore-file ~/.gitignore_global \
-        --max-depth ${depth} \
-        --full-path \
-        --search-path ${dest} \
-      2> /dev/null \
-    | fzf)"
+  D="$(
+    fd \
+      --type d \
+      --hidden \
+      --follow \
+      --ignore-file ~/.gitignore_global \
+      --max-depth ${depth} \
+      --full-path \
+      --search-path ${dest} \
+      2>/dev/null |
+      fzf
+  )"
   [ $? -eq 0 ] || return 1
   cd "${D}"
 }
 
 # Open a named tmux session. Use the last directory in current path as the
 # session name.
-tns () {
+tns() {
   local name="${1:-${PWD##*/}}"
   tmux new-session -ds "${name}" -x "$(tput cols)" -y "$(tput lines)"
   tmux rename-window -t "${name}":0 "code"
-  tmux split-window -t "${name}":0 -l 70
-  tmux send-keys -t "${name}":0 nvim C-m
+  tmux split-window -bt "${name}":0 -l "25%"
+  tmux select-pane -lt 1
   tmux attach-session -t "${name}"
 }
 
 # Fuzzy change into a directory. Open a named tmux session there.
-ct () {
+ct() {
   local dest="${1:-${HOME}/dev}"
   c "${dest}" 1
   [ $? -eq 0 ] || return 1
@@ -111,8 +114,6 @@ ct () {
 }
 
 # docker
-alias av="aws-vault"
-alias ave="aws-vault exec"
 alias d="docker"
 alias dc="docker compose"
 alias dcup="docker compose up -d"
