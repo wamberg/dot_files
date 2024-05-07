@@ -8,18 +8,18 @@ if [[ "${TRACE-0}" == "1" ]]; then
 fi
 
 if [[ "${1-}" =~ ^-*h(elp)?$ ]]; then
-    echo 'Usage: ./,zr.sh
+    echo "Usage: ./,zr.sh
 
-"Zettelkasten Random"
+\"Zettelkasten Random\"
 
-Render a random note with `glow`.
+Render a random note with \`glow\`.
 
-'
+"
     exit
 fi
 
 main() {
-  ls ~/dev/garden/*.md \
+  find ~/dev/garden/ -name "*.md" \
     | shuf -n 1 \
     | xargs glow --style light
 }
