@@ -399,9 +399,9 @@ require("lazy").setup({
           --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
         }),
         sources = {
-          { name = "nvim_lsp" },
-          { name = "luasnip" },
-          { name = "path" },
+          { name = "nvim_lsp", group_index = 2 },
+          { name = "luasnip", group_index = 2 },
+          { name = "path", group_index = 2 },
         },
       })
     end,
