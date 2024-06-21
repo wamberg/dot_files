@@ -18,14 +18,8 @@ export LC_ALL='en_US.UTF-8'
 export SHELL=$(which zsh)
 export PATH="${PATH}:$HOME/.bin:$HOME/.local/bin"
 if [[ "$OSTYPE" =~ ^darwin ]]; then
-  # Homebrew
-  export PATH="/opt/homebrew/bin:${PATH}"
-  # Android
-  export ANDROID_HOME=$HOME/Library/Android/sdk
-  export PATH=$PATH:$ANDROID_HOME/emulator
-  export PATH=$PATH:$ANDROID_HOME/platform-tools
-  # kntools
-  source $HOME/.kepler/kntools/environment-setup-sdk.sh
+  # Homebrew bin found with `echo "$(brew --prefix)/bin"`
+  export PATH="/usr/local/bin:${PATH}"
 fi
 
 # Golang
