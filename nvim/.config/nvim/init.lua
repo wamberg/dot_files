@@ -438,10 +438,28 @@ vim.keymap.set("n", "<leader>fk", require("telescope.builtin").keymaps, { desc =
 
 -- Telescope Keymaps
 local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
-vim.keymap.set("n", "<leader>fw", builtin.grep_string)
-vim.keymap.set("n", "<leader>ff", builtin.find_files)
-vim.keymap.set("n", "<leader>fg", builtin.live_grep)
+vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "[F]ind [B]uffer" })
+vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "[F]ind [W]ord" })
+vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[F]ind [F]ile" })
+vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "[F]ind [G]rep" })
+vim.keymap.set(
+  "n",
+  "<leader>pf",
+  ":Telescope find_files cwd=./.venv/lib/*/site-packages<CR>",
+  { desc = "[P]ython [F]ind" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>pg",
+  ":Telescope live_grep cwd=./.venv/lib/*/site-packages<CR>",
+  { desc = "[P]ython [G]rep" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>pw",
+  ":Telescope grep_string cwd=./.venv/lib/*/site-packages<CR>",
+  { desc = "[P]ython [W]ord" }
+)
 
 -- Snippets
 require("luasnip.loaders.from_snipmate").lazy_load({ paths = "./snippets" })
