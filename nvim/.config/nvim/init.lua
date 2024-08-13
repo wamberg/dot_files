@@ -23,6 +23,7 @@ require("lazy").setup({
   },
   "christoomey/vim-tmux-navigator",
   "editorconfig/editorconfig-vim",
+  "folke/zen-mode.nvim",
   {
     "L3MON4D3/LuaSnip",
     version = "v2.*",
@@ -450,6 +451,21 @@ vim.keymap.set(
   ":Telescope grep_string cwd=./.venv/lib/*/site-packages<CR>",
   { desc = "[P]ython [W]ord" }
 )
+
+-- Toggle Zen mode
+local zentoggle = function()
+  require("zen-mode").toggle({
+    window = {
+      width = 86,
+    },
+    plugins = {
+      gitsigns = {
+        enabled = true,
+      },
+    },
+  })
+end
+vim.keymap.set("n", "<leader>z", zentoggle, { desc = "[Z]en Mode" })
 
 -- Snippets
 require("luasnip.loaders.from_snipmate").lazy_load({ paths = "./snippets" })
