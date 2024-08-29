@@ -1,0 +1,5 @@
+snippet tg
+  if (!($1 instanceof $2))
+    throw new Error(
+      \`Expected $1 to be an $2, was ${$1?.constructor?.name || $1}\`,
+    );
