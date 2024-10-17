@@ -460,7 +460,7 @@ vim.keymap.set(
 local zentoggle = function()
   require("zen-mode").toggle({
     window = {
-      width = 86,
+      width = 106,
     },
     plugins = {
       gitsigns = {
