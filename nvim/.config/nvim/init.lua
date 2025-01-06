@@ -14,6 +14,15 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- helper function for copilot-cmp
+local deprioritize_copilot = function(entry1, entry2)
+  if entry1.source.name == "copilot" and entry2.source.name ~= "copilot" then
+    return false
+  elseif entry2.copilot == "copilot" and entry1.source.name ~= "copilot" then
+    return true
+  end
+end
+
 -- Setup Lazy plugins
 require("lazy").setup({
   {
@@ -331,6 +340,23 @@ require("lazy").setup({
       --  into multiple repos for maintenance purposes.
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
+      {
+        "zbirenbaum/copilot-cmp",
+        dependencies = {
+          {
+            "zbirenbaum/copilot.lua",
+            config = function()
+              require("copilot").setup({
+                suggestion = { enabled = false },
+                panel = { enabled = false },
+              })
+            end,
+          },
+        },
+        config = function()
+          require("copilot_cmp").setup()
+        end,
+      },
     },
     config = function()
       -- See `:help cmp`
@@ -345,6 +371,23 @@ require("lazy").setup({
           end,
         },
         completion = { completeopt = "menu,menuone,noinsert" },
+        sorting = {
+          priority_weight = 2,
+          comparators = {
+            deprioritize_copilot,
+            -- Below is the default comparitor list and order for nvim-cmp
+            cmp.config.compare.offset,
+            -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+            cmp.config.compare.exact,
+            cmp.config.compare.score,
+            cmp.config.compare.recently_used,
+            cmp.config.compare.locality,
+            cmp.config.compare.kind,
+            cmp.config.compare.sort_text,
+            cmp.config.compare.length,
+            cmp.config.compare.order,
+          },
+        },
 
         -- For an understanding of why these mappings were
         -- chosen, you will need to read `:help ins-completion`
@@ -396,6 +439,7 @@ require("lazy").setup({
           { name = "nvim_lsp", group_index = 2 },
           { name = "luasnip", group_index = 2 },
           { name = "path", group_index = 2 },
+          { name = "copilot", group_index = 2 },
         },
       })
     end,
