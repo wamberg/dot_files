@@ -68,6 +68,11 @@ alias ta="tmux attach"
 alias xc="xclip -sel clip"
 alias zr=",zr.sh"
 
+# Echo and copy to clipboard
+ec() {
+  printf '%s' "$1" | xclip -sel clip
+}
+
 # cd into a fuzzy (via fzf) directory
 c() {
   local dest="${1:-${HOME}/dev}"
