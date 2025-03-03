@@ -37,6 +37,7 @@ require("lazy").setup({
     "L3MON4D3/LuaSnip",
     version = "v2.*",
   },
+  "ggandor/leap.nvim",
   "lewis6991/gitsigns.nvim",
   "micarmst/vim-spellsync",
   "Mofiqul/dracula.nvim",
@@ -448,7 +449,6 @@ require("lazy").setup({
 
 -- Line numbers
 vim.opt.number = true
-vim.wo.relativenumber = true
 vim.wo.cursorline = true
 vim.wo.cursorlineopt = "line,number"
 
@@ -470,6 +470,8 @@ vim.opt.smartcase = true
 
 -- Window keymaps
 vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { desc = "Clear [H]ighlight" })
+vim.keymap.set("n", "j", "gj", { noremap = true }) -- navigate long lines as multiple lines
+vim.keymap.set("n", "k", "gk", { noremap = true }) -- navigate long lines as multiple lines
 
 -- Code Keymaps
 vim.keymap.set("n", "<leader>F", ":Format<CR>", { desc = "[F]ormat" })
@@ -601,6 +603,9 @@ require("telescope").setup({
     },
   },
 })
+
+-- leap.nvim setup
+vim.keymap.set({ "n", "x", "o" }, "<leader>s", "<Plug>(leap)")
 
 ---- Buffers
 --Bufferline setup
