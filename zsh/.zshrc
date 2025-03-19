@@ -98,9 +98,10 @@ c() {
 tns() {
   local name="${1:-${PWD##*/}}"
   tmux new-session -ds "${name}" -x "$(tput cols)" -y "$(tput lines)"
-  tmux rename-window -t "${name}":0 "code"
-  tmux split-window -bt "${name}":0 -l "25%"
-  tmux select-pane -lt 1
+  tmux rename-window -t "${name}":0 "manage"
+  tmux new-window -t "${name}" -n "code"
+  tmux new-window -t "${name}" -n "ai"
+  tmux select-window -t "${name}":1
   tmux attach-session -t "${name}"
 }
 
