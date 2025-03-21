@@ -605,7 +605,15 @@ require("telescope").setup({
 })
 
 -- leap.nvim setup
-vim.keymap.set({ "n", "x", "o" }, "<leader>s", "<Plug>(leap)")
+vim.keymap.set({ "n", "x", "o" }, "<leader>s", "<Plug>(leap)", { silent = true, desc = "Leap [S]earch" })
+
+-- Copilot setup
+vim.keymap.set(
+  { "n", "x", "o" },
+  "<leader>gt",
+  ":Copilot toggle<CR>",
+  { silent = true, desc = "[G]ithub Copilot [T]oggle" }
+)
 
 ---- Buffers
 --Bufferline setup
