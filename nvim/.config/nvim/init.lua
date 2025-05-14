@@ -461,6 +461,31 @@ vim.opt.ignorecase = true
 vim.opt.mouse = ""
 vim.opt.smartcase = true
 
+-- Navigation Keymaps
+-- Initialize globals for storing tab indices
+vim.g.last_tab = 1
+vim.g.current_tab = 1
+
+-- Function to switch to the last active tab
+local function toggle_tab()
+  local last_tab = vim.g.last_tab or vim.fn.tabpagenr()
+  -- Switch to the last tab if it's different from the current
+  if last_tab ~= vim.fn.tabpagenr() then
+    vim.cmd("tabn " .. last_tab)
+  end
+end
+
+-- Set keymap for toggling to the last active tab
+vim.keymap.set("n", "<Leader>pt", toggle_tab, { noremap = true, silent = true, desc = "[P]revious [T]ab" })
+
+-- Autocommand to track tab changes
+vim.cmd([[
+  augroup TrackTabSwitch
+    autocmd!
+    autocmd TabLeave * let g:last_tab = tabpagenr()
+  augroup END
+]])
+
 -- Window keymaps
 vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { desc = "Clear [H]ighlight" })
 vim.keymap.set("n", "j", "gj", { noremap = true }) -- navigate long lines as multiple lines
