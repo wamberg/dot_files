@@ -471,8 +471,45 @@ vim.keymap.set("n", "<leader>F", ":Format<CR>", { desc = "[F]ormat" })
 vim.keymap.set("n", "<leader>fk", require("telescope.builtin").keymaps, { desc = "[F]ind [K]eymaps" })
 
 -- Telescope Keymaps
+local function switch_to_buffer(bufnr)
+  -- Iterate over all tabs
+  for tabnr = 1, vim.fn.tabpagenr("$") do
+    -- Get all windows in the current tab
+    local wins = vim.api.nvim_tabpage_list_wins(tabnr)
+    -- In each tab, iterate over all windows
+    for _, winid in ipairs(wins) do
+      -- Get the buffer number for each window
+      local winbufnr = vim.api.nvim_win_get_buf(winid)
+      if winbufnr == bufnr then
+        -- If the buffer number matches, switch to the tab and window
+        vim.cmd("tabn " .. tabnr)
+        vim.api.nvim_set_current_win(winid)
+        return
+      end
+    end
+  end
+  -- If not found, open the buffer in the current window
+  vim.api.nvim_set_current_buf(bufnr)
+end
+
 local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "[F]ind [B]uffer" })
+local actions = require("telescope.actions")
+local action_state = require("telescope.actions.state")
+
+vim.keymap.set("n", "<leader>fb", function()
+  builtin.buffers({
+    attach_mappings = function(prompt_bufnr, map)
+      -- Redefine the selection behavior
+      actions.select_default:replace(function()
+        actions.close(prompt_bufnr)
+        local selected_bufnr = action_state.get_selected_entry().bufnr
+        switch_to_buffer(selected_bufnr)
+      end)
+      return true
+    end,
+    desc = "[F]ind [B]uffer",
+  })
+end)
 vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "[F]ind [W]ord" })
 vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[F]ind [F]ile" })
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "[F]ind [G]rep" })
