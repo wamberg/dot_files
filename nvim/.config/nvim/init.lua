@@ -611,7 +611,9 @@ vim.keymap.set(
 ---- Buffers
 --Bufferline setup
 vim.opt.termguicolors = true
-require("bufferline").setup({})
+require("bufferline").setup({
+  options = { mode = "tabs" },
+})
 -- bufdel setup
 require("bufdel").setup({
   next = "cycle",
