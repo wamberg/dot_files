@@ -347,6 +347,7 @@ require("lazy").setup({
                   ["*"] = true,
                   gitcommit = false,
                   markdown = false,
+                  zsh = false,
                 },
               })
             end,
