@@ -19,9 +19,9 @@ Render a random note with \`glow\`.
 fi
 
 main() {
-  find ~/dev/garden/ -name "*.md" \
+  find ~/dev/garden/ -maxdepth 1 -name "*.md" \
     | shuf -n 1 \
-    | xargs glow --style light
+    | xargs glow
 }
 
 main "$@"
