@@ -16,11 +16,13 @@ function act() {
     --verbose \
     --human-readable \
     --rsh=ssh \
-    --exclude .asdf \
     --exclude .cache \
+    --exclude .venv \
     --exclude Downloads \
+    --exclude mise \
     --exclude node_modules \
     --exclude snap \
+    --exclude Videos \
     ~/ \
     "$SSH_USERNAME@$SSH_HOST:~/backups/freya/$TIMESTAMP/" \
     | tee "/tmp/log-$TIMESTAMP.txt"
