@@ -3,7 +3,6 @@ export ZSH_THEME=""
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_TITLE="true"
 plugins=(
-  brew
   docker
   fzf
   git
@@ -18,10 +17,22 @@ export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
 export SHELL=$(which zsh)
 export PATH="${PATH}:$HOME/.bin:$HOME/.local/bin"
-if [[ "$OSTYPE" =~ ^darwin ]]; then
-  # Homebrew bin found with `echo "$(brew --prefix)/bin"`
-  export PATH="/usr/local/bin:${PATH}"
-fi
+
+# mac exports
+case "$OSTYPE" in
+  darwin*)
+  brew_prefix="/opt/homebrew"
+  # Homebrew bin on PATH
+  export PATH="${brew_prefix}/bin:${PATH}"
+
+  # Java and Android
+  export PATH="${brew_prefix}/opt/openjdk@17/bin:${PATH}"
+  export CPPFLAGS="-I${brew_prefix}/opt/openjdk@17/include"
+  export JAVA_HOME="${brew_prefix}/opt/openjdk@17"
+  export ANDROID_HOME=$HOME/Library/Android/sdk
+  export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:${PATH}
+  ;;
+esac
 
 # Golang
 export GOPATH=~/dev/go
@@ -29,7 +40,7 @@ export PATH="${PATH}:${GOPATH}/bin"
 
 # Node
 export NODE_PATH=~/.npm-packages/lib/node_modules
-export PATH="${PATH}:$HOME/.npm-packages/bin"
+export PATH="${PATH}:${HOME}/.npm-packages/bin"
 
 # fzf
 export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix --hidden --follow --no-ignore-vcs --ignore-file ~/.gitignore_global"
