@@ -14,15 +14,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- helper function for copilot-cmp
-local deprioritize_copilot = function(entry1, entry2)
-  if entry1.source.name == "copilot" and entry2.source.name ~= "copilot" then
-    return false
-  elseif entry2.copilot == "copilot" and entry1.source.name ~= "copilot" then
-    return true
-  end
-end
-
 -- Setup Lazy plugins
 require("lazy").setup({
   {
@@ -334,29 +325,6 @@ require("lazy").setup({
       --  into multiple repos for maintenance purposes.
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
-      {
-        "zbirenbaum/copilot-cmp",
-        dependencies = {
-          {
-            "zbirenbaum/copilot.lua",
-            config = function()
-              require("copilot").setup({
-                suggestion = { enabled = false },
-                panel = { enabled = false },
-                filetypes = {
-                  ["*"] = true,
-                  gitcommit = false,
-                  markdown = false,
-                  zsh = false,
-                },
-              })
-            end,
-          },
-        },
-        config = function()
-          require("copilot_cmp").setup()
-        end,
-      },
     },
     config = function()
       -- See `:help cmp`
@@ -374,7 +342,6 @@ require("lazy").setup({
         sorting = {
           priority_weight = 2,
           comparators = {
-            deprioritize_copilot,
             -- Below is the default comparitor list and order for nvim-cmp
             cmp.config.compare.offset,
             -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
@@ -439,7 +406,6 @@ require("lazy").setup({
           { name = "nvim_lsp", group_index = 2 },
           { name = "luasnip", group_index = 2 },
           { name = "path", group_index = 2 },
-          { name = "copilot", group_index = 2 },
         },
       })
     end,
@@ -667,14 +633,6 @@ require("telescope").setup({
 
 -- leap.nvim setup
 vim.keymap.set({ "n", "x", "o" }, "<leader>s", "<Plug>(leap)", { silent = true, desc = "Leap [S]earch" })
-
--- Copilot setup
-vim.keymap.set(
-  { "n", "x", "o" },
-  "<leader>gt",
-  ":Copilot toggle<CR>",
-  { silent = true, desc = "[G]ithub Copilot [T]oggle" }
-)
 
 ---- Buffers
 --Bufferline setup
