@@ -677,10 +677,24 @@ local scrollpath = vim.fn.stdpath("config") .. "/scroll.vim"
 vim.cmd("source " .. scrollpath)
 
 -- Enable spellcheck for text and markdown files
-vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
-  pattern = {"*.txt", "*.md", "*.markdown"},
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "*.txt", "*.md", "*.markdown" },
   callback = function()
     vim.opt_local.spell = true
     vim.opt_local.spelllang = "en_us"
   end,
 })
+
+-- Load whisper module for voice-to-text
+local whisper = require("whisper")
+
+-- Keybindings for whisper voice-to-text
+vim.keymap.set("i", "<C-s>", function()
+  whisper.insert_transcription()
+end, { desc = "[S]peech to text (insert mode)" })
+vim.keymap.set("n", "<C-s>", function()
+  whisper.normal_transcription()
+end, { desc = "[S]peech to text (normal mode)" })
+vim.keymap.set("v", "<C-s>", function()
+  whisper.replace_selection()
+end, { desc = "[S]peech to text (visual mode)" })
