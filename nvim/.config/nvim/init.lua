@@ -685,10 +685,8 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   end,
 })
 
--- Load whisper module for voice-to-text
-local whisper = require("whisper")
-
 -- Keybindings for whisper voice-to-text
+local whisper = require("whisper")
 vim.keymap.set("i", "<C-s>", function()
   whisper.insert_transcription()
 end, { desc = "[S]peech to text (insert mode)" })
@@ -698,3 +696,11 @@ end, { desc = "[S]peech to text (normal mode)" })
 vim.keymap.set("v", "<C-s>", function()
   whisper.replace_selection()
 end, { desc = "[S]peech to text (visual mode)" })
+
+-- Keybindings for note-taking functions
+local garden = require("garden")
+vim.keymap.set("n", "<leader>gn", garden.new_note, { desc = "[G]arden [N]ew" })
+vim.keymap.set("n", "<leader>gg", garden.go_today, { desc = "[G]arden [G]o: Today" })
+vim.keymap.set("n", "[g", garden.go_previous_diary, { desc = "Previous [G]arden Diary" })
+vim.keymap.set("n", "]g", garden.go_next_diary, { desc = "Next [G]arden Diary" })
+vim.keymap.set("n", "<leader>fl", garden.find_link, { desc = "[F]ind [L]ink" })
