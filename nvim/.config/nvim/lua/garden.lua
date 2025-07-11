@@ -107,47 +107,61 @@ function M.go_next_diary()
   end
 end
 
--- Search notes and create markdown link
-function M.find_link()
+-- Helper function to create telescope markdown header search
+local function create_header_telescope(on_select)
   local telescope = require("telescope.builtin")
   local actions = require("telescope.actions")
   local action_state = require("telescope.actions.state")
-  local garden_dir = vim.fn.expand(GARDEN_DIR)
 
   telescope.live_grep({
-    cwd = garden_dir,
     default_text = "# ",
+    glob_pattern = "*.md",
     attach_mappings = function(prompt_bufnr, map)
       actions.select_default:replace(function()
         local selection = action_state.get_selected_entry()
         actions.close(prompt_bufnr)
-
-        -- Get the file path relative to garden directory
-        local full_path = selection.filename
-        local relative_path = string.gsub(full_path, "^" .. vim.pesc(garden_dir .. "/"), "")
-
-        -- Extract the h1 header from the selected line
-        local line_content = selection.text or ""
-        local header = string.match(line_content, "^#%s+(.+)")
-
-        if header then
-          -- Create markdown link
-          local markdown_link = "[" .. header .. "](" .. relative_path .. ")"
-
-          -- Insert at cursor position
-          local cursor = vim.api.nvim_win_get_cursor(0)
-          local row, col = cursor[1], cursor[2]
-          vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { markdown_link })
-
-          -- Move cursor to end of inserted text
-          vim.api.nvim_win_set_cursor(0, { row, col + #markdown_link })
-        else
-          vim.notify("No valid header found in selected line", vim.log.levels.WARN)
-        end
+        on_select(selection)
       end)
       return true
     end,
   })
+end
+
+-- Search for markdown headers
+function M.find_header()
+  create_header_telescope(function(selection)
+    -- Open the file and jump to the line
+    vim.cmd("edit " .. selection.filename)
+    vim.api.nvim_win_set_cursor(0, { selection.lnum, 0 })
+  end)
+end
+
+-- Search notes and create markdown link
+function M.find_link()
+  create_header_telescope(function(selection)
+    -- Get the file path relative to current working directory
+    local cwd = vim.fn.getcwd()
+    local relative_path = vim.fn.fnamemodify(selection.filename, ":.")
+
+    -- Extract the header from the selected line (any level)
+    local line_content = selection.text or ""
+    local header = string.match(line_content, "^#+%s+(.+)")
+
+    if header then
+      -- Create markdown link
+      local markdown_link = "[" .. header .. "](" .. relative_path .. ")"
+
+      -- Insert at cursor position
+      local cursor = vim.api.nvim_win_get_cursor(0)
+      local row, col = cursor[1], cursor[2]
+      vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { markdown_link })
+
+      -- Move cursor to end of inserted text
+      vim.api.nvim_win_set_cursor(0, { row, col + #markdown_link })
+    else
+      vim.notify("No valid header found in selected line", vim.log.levels.WARN)
+    end
+  end)
 end
 
 return M
