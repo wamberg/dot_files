@@ -164,4 +164,30 @@ function M.find_link()
   end)
 end
 
+-- Toggle markdown todo completion status
+function M.toggle_todo()
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  local row = cursor[1]
+  local line = vim.api.nvim_buf_get_lines(0, row - 1, row, false)[1]
+
+  if not line then
+    return
+  end
+
+  local new_line
+  -- Check if it's an incomplete todo: - [ ]
+  if string.match(line, "^%s*%- %[ %]") then
+    new_line = string.gsub(line, "^(%s*%- )%[ %]", "%1[x]")
+  -- Check if it's a complete todo: - [x]
+  elseif string.match(line, "^%s*%- %[x%]") then
+    new_line = string.gsub(line, "^(%s*%- )%[x%]", "%1[ ]")
+  else
+    -- Not a todo item, do nothing
+    return
+  end
+
+  -- Replace the line
+  vim.api.nvim_buf_set_lines(0, row - 1, row, false, { new_line })
+end
+
 return M
