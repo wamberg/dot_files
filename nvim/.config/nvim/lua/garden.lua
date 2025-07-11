@@ -114,8 +114,11 @@ local function create_header_telescope(on_select)
   local action_state = require("telescope.actions.state")
 
   telescope.live_grep({
-    default_text = "# ",
+    default_text = "#.*",
     glob_pattern = "*.md",
+    additional_args = function(opts)
+      return { "--smart-case" }
+    end,
     attach_mappings = function(prompt_bufnr, map)
       actions.select_default:replace(function()
         local selection = action_state.get_selected_entry()
