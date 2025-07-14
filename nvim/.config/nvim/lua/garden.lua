@@ -193,4 +193,11 @@ function M.toggle_todo()
   vim.api.nvim_buf_set_lines(0, row - 1, row, false, { new_line })
 end
 
+-- Setup markdown-specific vim-surround mappings
+function M.setup_markdown_surround()
+  -- Custom vim-surround mapping for markdown bold (**)
+  -- 98 is ASCII code for 'b' - use Sb to surround with **text**
+  vim.b.surround_98 = "**\r**"
+end
+
 return M

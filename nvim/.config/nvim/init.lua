@@ -74,10 +74,7 @@ require("lazy").setup({
   },
   "ojroques/nvim-bufdel",
   "RRethy/vim-illuminate",
-  {
-    "tpope/vim-surround",
-    keys = { "c", "d", "y" },
-  },
+  { "tpope/vim-surround" },
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
@@ -679,15 +676,6 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 local scrollpath = vim.fn.stdpath("config") .. "/scroll.vim"
 vim.cmd("source " .. scrollpath)
 
--- Enable spellcheck for text and markdown files
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = { "*.txt", "*.md", "*.markdown" },
-  callback = function()
-    vim.opt_local.spell = true
-    vim.opt_local.spelllang = "en_us"
-  end,
-})
-
 -- Keybindings for whisper voice-to-text
 local whisper = require("whisper")
 vim.keymap.set("i", "<C-s>", function()
@@ -709,3 +697,14 @@ vim.keymap.set("n", "]g", garden.go_next_diary, { desc = "Next [G]arden Diary" }
 vim.keymap.set("n", "<leader>fh", garden.find_header, { desc = "[F]ind [H]eader" })
 vim.keymap.set("n", "<leader>fl", garden.find_link, { desc = "[F]ind [L]ink" })
 vim.keymap.set("n", "<C-t>", garden.toggle_todo, { desc = "Complete [T]ask" })
+
+-- Markdown specific changes
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "*.txt", "*.md", "*.markdown" },
+  callback = function()
+    vim.opt_local.spell = true
+    vim.opt_local.spelllang = "en_us"
+    -- Setup markdown-specific vim-surround mappings
+    require("garden").setup_markdown_surround()
+  end,
+})
