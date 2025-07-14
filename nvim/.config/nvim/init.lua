@@ -509,6 +509,13 @@ vim.keymap.set("n", "<leader>fb", function()
 end)
 vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "[F]ind [W]ord" })
 vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[F]ind [F]ile" })
+vim.keymap.set("n", "<leader>fF", function()
+  builtin.find_files({
+    hidden = true,
+    no_ignore = true,
+    no_ignore_parent = true,
+  })
+end, { desc = "[F]ind All [F]iles" })
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "[F]ind [G]rep" })
 vim.keymap.set(
   "n",
