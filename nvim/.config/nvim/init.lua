@@ -644,9 +644,7 @@ vim.keymap.set({ "n", "x", "o" }, "<leader>s", "<Plug>(leap)", { silent = true, 
 ---- Buffers
 --Bufferline setup
 vim.opt.termguicolors = true
-require("bufferline").setup({
-  options = { mode = "tabs" },
-})
+require("bufferline").setup({})
 -- bufdel setup
 require("bufdel").setup({
   next = "cycle",
