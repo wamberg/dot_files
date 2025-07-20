@@ -74,36 +74,49 @@ session_next() {
 }
 
 session_finder() {
-	fzf_out=$($tmux ls -F '#{?session_attached,0,1} #{?session_last_attached,,0}#{session_last_attached} #{?session_attached,*, } #{session_name}' \
-    | sort -r \
-    | perl -pe 's/^[01] [0-9]+ //' \
-    | fzf --print-query --prompt="$prompt" \
-    || true)
-	line_count=$(echo "$fzf_out" | wc -l)
-	session_name="$(echo "$fzf_out" | tail -n1 | perl -pe 's/^[\* ] //')"
-	command=$(echo "$session_name" | awk '{ print $1 }')
-
-	if [ $line_count -eq 1 ]; then
-		unset TMUX
-		word_count=$(echo "$fzf_out" | wc -w)
-		if [ $word_count -eq 1 ]; then
-			$tmux new-session -d -s "$session_name"
-			$tmux switch-client -t "$session_name"
-		else
-			session_name="$(echo "$fzf_out" | tail -n1 | awk '{ print $2 }')"
-			case "$command" in
-				":new")
-					$tmux new-session -d -s "$session_name"
-					$tmux switch-client -t "$session_name"
-					;;
-				":rename")
-					$tmux rename-session "$session_name"
-					;;
-			esac
-		fi
-	else
-		$tmux switch-client -t "$session_name"
+	# Get sessions sorted by last attached time, with current session first
+	sessions=$($tmux ls -F '#{?session_attached,*,} #{session_name}' | sort -k2)
+	
+	# Use fzf to select or create a session
+	selection=$(echo "$sessions" | fzf --print-query --prompt="$prompt" || true)
+	
+	# Handle the selection
+	if [ -z "$selection" ]; then
+		return  # User cancelled
 	fi
+	
+	# Count lines in selection - if 2 lines, user selected existing session
+	# If 1 line, user typed something and pressed enter without selecting
+	line_count=$(echo "$selection" | wc -l)
+	
+	if [ "$line_count" -eq 2 ]; then
+		# User selected an existing session (second line is the selection)
+		selected=$(echo "$selection" | tail -n1)
+		# Remove the * prefix if present and any leading/trailing whitespace
+		session_name=$(echo "$selected" | sed 's/^\* *//' | sed 's/^ *//' | sed 's/ *$//')
+		$tmux switch-client -t "$session_name"
+	else
+		# User typed a new session name (only query line exists)
+		query=$(echo "$selection" | head -n1)
+		# Handle special commands
+		case "$query" in
+			:new\ *)
+				session_name=$(echo "$query" | cut -d' ' -f2-)
+				$tmux new-session -d -s "$session_name"
+				$tmux switch-client -t "$session_name"
+				;;
+			:rename\ *)
+				session_name=$(echo "$query" | cut -d' ' -f2-)
+				$tmux rename-session "$session_name"
+				;;
+			*)
+				# Create new session with the query as name
+				$tmux new-session -d -s "$query"
+				$tmux switch-client -t "$query"
+				;;
+		esac
+	fi
+	
 	sleep 0.1
 	$tmux refresh-client -S
 }
