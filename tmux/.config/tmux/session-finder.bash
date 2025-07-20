@@ -35,6 +35,30 @@ session_last() {
 	} || true
 }
 
+session_most_recent() {
+	# Get the most recently used session (excluding current session)
+	current_session=$($tmux display-message -p '#S')
+	most_recent_session=$($tmux ls -F '#{session_last_attached} #{session_name}' \
+		| grep -v " $current_session$" \
+		| sort -nr \
+		| head -n1 \
+		| cut -d' ' -f2)
+	
+	if [ -n "$most_recent_session" ]; then
+		$tmux switch-client -t "$most_recent_session"
+		sleep 0.1
+		$tmux refresh-client -S
+	else
+		# Fallback to first session alphabetically if no other sessions
+		first_session=$($tmux ls -F '#{session_name}' | grep -v "^$current_session$" | sort | head -n1)
+		if [ -n "$first_session" ]; then
+			$tmux switch-client -t "$first_session"
+			sleep 0.1
+			$tmux refresh-client -S
+		fi
+	fi
+}
+
 session_prev() {
 	$tmux switch-client -p && {
 		sleep 0.1
@@ -99,6 +123,9 @@ case "$cmd" in
 		;;
 	last)
 		session_last
+		;;
+	most-recent)
+		session_most_recent
 		;;
 	*)
 		exit 1
