@@ -1,5 +1,6 @@
 model:           bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0
 weak-model:      bedrock/us.anthropic.claude-3-7-sonnet-20250219-v1:0
-show-model-warnings: false
-dark-mode: true
+add-gitignore-files: true
 auto-commits: false
+dark-mode: true
+show-model-warnings: false
