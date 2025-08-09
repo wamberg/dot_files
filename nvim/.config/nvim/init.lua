@@ -517,24 +517,49 @@ vim.keymap.set("n", "<leader>fF", function()
   })
 end, { desc = "[F]ind All [F]iles" })
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "[F]ind [G]rep" })
-vim.keymap.set(
-  "n",
-  "<leader>pf",
-  ":Telescope find_files cwd=./.venv/lib/*/site-packages<CR>",
-  { desc = "[P]ython [F]ind" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>pg",
-  ":Telescope live_grep cwd=./.venv/lib/*/site-packages<CR>",
-  { desc = "[P]ython [G]rep" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>pw",
-  ":Telescope grep_string cwd=./.venv/lib/*/site-packages<CR>",
-  { desc = "[P]ython [W]ord" }
-)
+vim.keymap.set("n", "<leader>pf", function()
+  local site_packages = vim.fn.glob("./.venv/lib/*/site-packages")
+  if site_packages ~= "" then
+    local first_path = vim.split(site_packages, "\n")[1]
+    builtin.find_files({
+      cwd = first_path,
+      hidden = true,
+      no_ignore = true,
+    })
+  else
+    print("No site-packages directory found in .venv")
+  end
+end, { desc = "[P]ython [F]ind" })
+
+vim.keymap.set("n", "<leader>pg", function()
+  local site_packages = vim.fn.glob("./.venv/lib/*/site-packages")
+  if site_packages ~= "" then
+    local first_path = vim.split(site_packages, "\n")[1]
+    builtin.live_grep({
+      cwd = first_path,
+      additional_args = function(opts)
+        return { "--hidden", "--no-ignore" }
+      end,
+    })
+  else
+    print("No site-packages directory found in .venv")
+  end
+end, { desc = "[P]ython [G]rep" })
+
+vim.keymap.set("n", "<leader>pw", function()
+  local site_packages = vim.fn.glob("./.venv/lib/*/site-packages")
+  if site_packages ~= "" then
+    local first_path = vim.split(site_packages, "\n")[1]
+    builtin.grep_string({
+      cwd = first_path,
+      additional_args = function(opts)
+        return { "--hidden", "--no-ignore" }
+      end,
+    })
+  else
+    print("No site-packages directory found in .venv")
+  end
+end, { desc = "[P]ython [W]ord" })
 
 -- Toggle Zen mode
 local zentoggle = function()
