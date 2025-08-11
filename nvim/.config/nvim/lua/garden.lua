@@ -200,4 +200,70 @@ function M.setup_markdown_surround()
   vim.b.surround_98 = "**\r**"
 end
 
+-- Find project from topics file and insert formatted template
+function M.find_project()
+  local project_file = vim.fn.expand("~/dev/garden/topics/202508111053.md")
+  
+  -- Check if file exists
+  if vim.fn.filereadable(project_file) == 0 then
+    vim.notify("Project file not found: " .. project_file, vim.log.levels.ERROR)
+    return
+  end
+  
+  -- Read and parse the file
+  local lines = vim.fn.readfile(project_file)
+  local projects = {}
+  
+  for _, line in ipairs(lines) do
+    -- Match bullet points: - Project Name, * Project Name, + Project Name
+    local project = string.match(line, "^%s*[%-%*%+]%s+(.+)")
+    if project then
+      -- Trim whitespace
+      project = string.gsub(project, "^%s*(.-)%s*$", "%1")
+      if project ~= "" then
+        table.insert(projects, project)
+      end
+    end
+  end
+  
+  if #projects == 0 then
+    vim.notify("No projects found in file", vim.log.levels.WARN)
+    return
+  end
+  
+  -- Create Telescope picker
+  local pickers = require("telescope.pickers")
+  local finders = require("telescope.finders")
+  local conf = require("telescope.config").values
+  local actions = require("telescope.actions")
+  local action_state = require("telescope.actions.state")
+  
+  pickers.new({}, {
+    prompt_title = "Find Project",
+    finder = finders.new_table({
+      results = projects
+    }),
+    sorter = conf.generic_sorter({}),
+    attach_mappings = function(prompt_bufnr, map)
+      actions.select_default:replace(function()
+        actions.close(prompt_bufnr)
+        local selection = action_state.get_selected_entry()
+        if selection then
+          -- Format and insert the project name
+          local formatted_text = "**" .. selection[1] .. "**:"
+          
+          -- Insert at cursor position
+          local cursor = vim.api.nvim_win_get_cursor(0)
+          local row, col = cursor[1], cursor[2]
+          vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { formatted_text })
+          
+          -- Move cursor to end of inserted text
+          vim.api.nvim_win_set_cursor(0, { row, col + #formatted_text })
+        end
+      end)
+      return true
+    end,
+  }):find()
+end
+
 return M

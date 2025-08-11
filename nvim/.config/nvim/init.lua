@@ -726,6 +726,7 @@ vim.keymap.set("n", "[g", garden.go_previous_diary, { desc = "Previous [G]arden 
 vim.keymap.set("n", "]g", garden.go_next_diary, { desc = "Next [G]arden Diary" })
 vim.keymap.set("n", "<leader>fh", garden.find_header, { desc = "[F]ind [H]eader" })
 vim.keymap.set("n", "<leader>fl", garden.find_link, { desc = "[F]ind [L]ink" })
+vim.keymap.set("n", "<leader>fp", garden.find_project, { desc = "[F]ind [P]roject" })
 vim.keymap.set("n", "<C-t>", garden.toggle_todo, { desc = "Complete [T]ask" })
 
 -- Markdown specific changes
