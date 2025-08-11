@@ -11,11 +11,11 @@ function arrange() {
 }
 
 function act() {
-  rsync \
-    --archive \
+  tar \
+    --create \
+    --use-compress-program="pigz -9" \
     --verbose \
-    --human-readable \
-    --rsh=ssh \
+    --exclude-caches-all \
     --exclude .cache \
     --exclude .venv \
     --exclude Downloads \
@@ -23,9 +23,11 @@ function act() {
     --exclude node_modules \
     --exclude snap \
     --exclude Videos \
-    ~/ \
-    "$SSH_USERNAME@$SSH_HOST:~/backups/freya/$TIMESTAMP/" \
-    | tee "/tmp/log-$TIMESTAMP.txt"
+    --directory="$HOME" \
+    . \
+    | ssh "$SSH_USERNAME@$SSH_HOST" \
+      "cat > ~/backups/freya/freya-backup-$TIMESTAMP.tar.gz" \
+    2>&1 | tee "/tmp/freya-backup-log-$TIMESTAMP.txt"
 }
 
 arrange "$1" "$2"
