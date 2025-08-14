@@ -27,10 +27,6 @@ require("lazy").setup({
   "christoomey/vim-tmux-navigator",
   "editorconfig/editorconfig-vim",
   "folke/zen-mode.nvim",
-  {
-    "L3MON4D3/LuaSnip",
-    version = "v2.*",
-  },
   "ggandor/leap.nvim",
   "lewis6991/gitsigns.nvim",
   "micarmst/vim-spellsync",
@@ -436,7 +432,6 @@ vim.opt.smartcase = true
 -- Navigation Keymaps
 -- Initialize globals for storing tab indices
 vim.g.last_tab = 1
-vim.g.current_tab = 1
 
 -- Function to switch to the last active tab
 local function toggle_tab()
@@ -577,7 +572,7 @@ end
 vim.keymap.set("n", "<leader>z", zentoggle, { desc = "[Z]en Mode" })
 
 -- Snippets
-require("luasnip.loaders.from_snipmate").lazy_load({ paths = "./snippets" })
+require("luasnip.loaders.from_snipmate").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
 require("luasnip").filetype_extend("typescript", { "javascript" })
 require("luasnip").filetype_extend("typescriptreact", { "javascript" })
 vim.keymap.set("n", "<leader>es", require("luasnip.loaders").edit_snippet_files, { desc = "[E]dit [S]nippets" })
