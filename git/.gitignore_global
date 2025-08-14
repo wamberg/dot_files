@@ -3,6 +3,7 @@
 *.swp
 .DS_Store
 .aider*
+!.aider.conf.yml
 .git
 .mypy_cache/
 .venv
