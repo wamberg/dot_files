@@ -1,6 +1,6 @@
 model:           gemini/gemini-2.5-pro-preview-06-05
 weak-model:      gemini/gemini-2.5-flash-preview-05-20
+thinking-tokens: 32k
 add-gitignore-files: true
 auto-commits: false
 dark-mode: true
-show-model-warnings: false
