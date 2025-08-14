@@ -1,5 +1,6 @@
 *.bak
 *.swp
+.env
 node_modules/
 nvim/.config/nvim/.netrwhist
 out/
