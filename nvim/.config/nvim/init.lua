@@ -56,6 +56,7 @@ require("lazy").setup({
           "lua",
           "make",
           "markdown",
+          "markdown_inline",
           "python",
           "sql",
           "toml",
