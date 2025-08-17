@@ -193,6 +193,48 @@ function M.toggle_todo()
   vim.api.nvim_buf_set_lines(0, row - 1, row, false, { new_line })
 end
 
+-- Preview note with glow
+function M.preview_note()
+  if vim.fn.executable("glow") == 0 then
+    vim.notify("glow is not executable", vim.log.levels.ERROR)
+    return
+  end
+
+  local file_path = vim.fn.expand("%:p")
+  if not file_path or file_path == "" then
+    vim.notify("Not a file to preview", vim.log.levels.WARN)
+    return
+  end
+
+  local escaped_path = vim.fn.shellescape(file_path)
+  local buf = vim.api.nvim_create_buf(false, true)
+  vim.api.nvim_buf_set_option(buf, "bufhidden", "wipe")
+
+  local width = math.floor(vim.o.columns * 0.8)
+  local height = math.floor(vim.o.lines * 0.8)
+  local col = math.floor((vim.o.columns - width) / 2)
+  local row = math.floor((vim.o.lines - height) / 2)
+
+  local win_opts = {
+    relative = "editor",
+    width = width,
+    height = height,
+    col = col,
+    row = row,
+    border = "rounded",
+    style = "minimal",
+  }
+
+  vim.api.nvim_open_win(buf, true, win_opts)
+
+  vim.cmd("term glow " .. escaped_path)
+  vim.cmd("startinsert")
+
+  -- Close with Esc in terminal mode, or q in normal mode
+  vim.api.nvim_buf_set_keymap(buf, "t", "<Esc>", "<C-\\><C-n><cmd>close!<CR>", { silent = true })
+  vim.api.nvim_buf_set_keymap(buf, "n", "q", "<cmd>close!<CR>", { silent = true })
+end
+
 -- Setup markdown-specific vim-surround mappings
 function M.setup_markdown_surround()
   -- Custom vim-surround mapping for markdown bold (**)
@@ -203,17 +245,17 @@ end
 -- Find project from topics file and insert formatted template
 function M.find_project()
   local project_file = vim.fn.expand("~/dev/garden/topics/202508111053.md")
-  
+
   -- Check if file exists
   if vim.fn.filereadable(project_file) == 0 then
     vim.notify("Project file not found: " .. project_file, vim.log.levels.ERROR)
     return
   end
-  
+
   -- Read and parse the file
   local lines = vim.fn.readfile(project_file)
   local projects = {}
-  
+
   for _, line in ipairs(lines) do
     -- Match bullet points: - Project Name, * Project Name, + Project Name
     local project = string.match(line, "^%s*[%-%*%+]%s+(.+)")
@@ -225,45 +267,47 @@ function M.find_project()
       end
     end
   end
-  
+
   if #projects == 0 then
     vim.notify("No projects found in file", vim.log.levels.WARN)
     return
   end
-  
+
   -- Create Telescope picker
   local pickers = require("telescope.pickers")
   local finders = require("telescope.finders")
   local conf = require("telescope.config").values
   local actions = require("telescope.actions")
   local action_state = require("telescope.actions.state")
-  
-  pickers.new({}, {
-    prompt_title = "Find Project",
-    finder = finders.new_table({
-      results = projects
-    }),
-    sorter = conf.generic_sorter({}),
-    attach_mappings = function(prompt_bufnr, map)
-      actions.select_default:replace(function()
-        actions.close(prompt_bufnr)
-        local selection = action_state.get_selected_entry()
-        if selection then
-          -- Format and insert the project name
-          local formatted_text = "**" .. selection[1] .. "**:"
-          
-          -- Insert at cursor position
-          local cursor = vim.api.nvim_win_get_cursor(0)
-          local row, col = cursor[1], cursor[2]
-          vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { formatted_text })
-          
-          -- Move cursor to end of inserted text
-          vim.api.nvim_win_set_cursor(0, { row, col + #formatted_text })
-        end
-      end)
-      return true
-    end,
-  }):find()
+
+  pickers
+    .new({}, {
+      prompt_title = "Find Project",
+      finder = finders.new_table({
+        results = projects,
+      }),
+      sorter = conf.generic_sorter({}),
+      attach_mappings = function(prompt_bufnr, map)
+        actions.select_default:replace(function()
+          actions.close(prompt_bufnr)
+          local selection = action_state.get_selected_entry()
+          if selection then
+            -- Format and insert the project name
+            local formatted_text = "**" .. selection[1] .. "**:"
+
+            -- Insert at cursor position
+            local cursor = vim.api.nvim_win_get_cursor(0)
+            local row, col = cursor[1], cursor[2]
+            vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { formatted_text })
+
+            -- Move cursor to end of inserted text
+            vim.api.nvim_win_set_cursor(0, { row, col + #formatted_text })
+          end
+        end)
+        return true
+      end,
+    })
+    :find()
 end
 
 return M
