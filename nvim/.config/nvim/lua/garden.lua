@@ -293,7 +293,7 @@ function M.find_project()
           local selection = action_state.get_selected_entry()
           if selection then
             -- Format and insert the project name
-            local formatted_text = "**" .. selection[1] .. "**:"
+            local formatted_text = "_" .. selection[1] .. "_: "
 
             -- Insert at cursor position
             local cursor = vim.api.nvim_win_get_cursor(0)
