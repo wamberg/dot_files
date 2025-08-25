@@ -80,6 +80,22 @@ alias ta="tmux attach"
 alias xc="xclip -sel clip"
 alias zr=",zr.sh"
 
+# docker
+alias d="docker"
+alias dc="docker compose"
+alias dcup="docker compose up -d"
+alias dcd="docker compose down"
+alias dcp="docker compose -f docker-compose.yml -f docker-compose.production.yml"
+alias dcr="docker compose run --rm"
+alias dcs="docker compose -f docker-compose.yml -f docker-compose.staging.yml"
+
+# terraform
+alias tf="terraform"
+alias tfp="terraform plan"
+alias tfa="terraform apply"
+
+### Functions ###
+
 # Echo and copy to clipboard
 ec() {
   printf '%s' "$1" | xclip -sel clip
@@ -126,16 +142,26 @@ ct() {
   tns
 }
 
-# docker
-alias d="docker"
-alias dc="docker compose"
-alias dcup="docker compose up -d"
-alias dcd="docker compose down"
-alias dcp="docker compose -f docker-compose.yml -f docker-compose.production.yml"
-alias dcr="docker compose run --rm"
-alias dcs="docker compose -f docker-compose.yml -f docker-compose.staging.yml"
+# A Zsh-specific function to confirm running a command.
+# Usage: ask [command]
+# Example: ask rm -rf /some/directory
+ask() {
+  # Print the command in yellow for visibility
+  echo -e "\e[33mAbout to run: $@\e[0m"
 
-# terraform
-alias tf="terraform"
-alias tfp="terraform plan"
-alias tfa="terraform apply"
+  # Use Zsh's built-in prompt syntax for read
+  # -k 1 reads a single character
+  # -r prevents backslash interpretation
+  read -k 1 -r 'REPLY?Are you sure? [y/N] '
+  echo # Move to a new line
+
+  # Check the reply
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    # If yes, execute the command
+    eval "$@"
+  else
+    # If no, print an abort message
+    echo "Aborted."
+    return 1
+  fi
+}
