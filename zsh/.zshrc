@@ -165,3 +165,8 @@ ask() {
     return 1
   fi
 }
+
+# Pretty-print json
+pj() {
+  jq '.' "$@"
+}
