@@ -170,3 +170,10 @@ ask() {
 pj() {
   jq '.' "$@"
 }
+
+# cd fzf find
+cdf() {
+  local dir
+  dir=$(find . -type d -not -path '*/.*' | fzf --exact)
+  [[ -n "$dir" ]] && cd -- "$dir"
+}
