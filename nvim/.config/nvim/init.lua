@@ -560,7 +560,12 @@ end, { desc = "[P]ython [W]ord" })
 vim.keymap.set("n", "<leader>gd", function()
   vim.cmd("vsplit")
   vim.lsp.buf.definition()
-end, { desc = "[G]o to [D]efinition in vertical split" })
+
+  -- Wait a bit longer
+  vim.defer_fn(function()
+    vim.cmd("normal! zt")
+  end, 200) -- 200ms delay
+end, { desc = "[G]o to [D]efinition in vertical split at top" })
 
 -- Toggle Zen mode
 local zentoggle = function()
