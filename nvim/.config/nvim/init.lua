@@ -557,6 +557,11 @@ vim.keymap.set("n", "<leader>pw", function()
   end
 end, { desc = "[P]ython [W]ord" })
 
+vim.keymap.set("n", "<leader>gd", function()
+  vim.cmd("vsplit")
+  vim.lsp.buf.definition()
+end, { desc = "[G]o to [D]efinition in vertical split" })
+
 -- Toggle Zen mode
 local zentoggle = function()
   require("zen-mode").toggle({
