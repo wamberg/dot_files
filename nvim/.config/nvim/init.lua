@@ -700,13 +700,21 @@ vim.keymap.set("n", "]b", ":BufferLineCycleNext<CR>", { silent = true, desc = "[
 vim.keymap.set("n", "<leader>bo", ":BufferLineCloseOthers<CR>", { silent = true, desc = "[B]uffer Close [O]thers" })
 vim.keymap.set("n", "<leader>bp", ":BufferLinePick<CR>", { silent = true, desc = "[B]uffer [P]ick" })
 vim.keymap.set("n", "<leader>c", ":BufDel<CR>", { silent = true, desc = "[C]lear Buffer" })
+vim.keymap.set("n", "<leader>q", function()
+  local success = pcall(vim.cmd, "BufDel")
+  if success then
+    vim.cmd("q")
+  else
+    vim.notify("Failed to delete buffer", vim.log.levels.ERROR)
+  end
+end, { desc = "[Q]uit Buffer" })
 
 ---- LSP Config
 --Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+vim.keymap.set("n", "<leader>gq", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 -- Remember current position
 local scrollpath = vim.fn.stdpath("config") .. "/scroll.vim"
