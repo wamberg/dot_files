@@ -701,13 +701,8 @@ vim.keymap.set("n", "<leader>bo", ":BufferLineCloseOthers<CR>", { silent = true,
 vim.keymap.set("n", "<leader>bp", ":BufferLinePick<CR>", { silent = true, desc = "[B]uffer [P]ick" })
 vim.keymap.set("n", "<leader>c", ":BufDel<CR>", { silent = true, desc = "[C]lear Buffer" })
 vim.keymap.set("n", "<leader>q", function()
-  local success = pcall(vim.cmd, "BufDel")
-  if success then
-    vim.cmd("q")
-  else
-    vim.notify("Failed to delete buffer", vim.log.levels.ERROR)
-  end
-end, { desc = "[Q]uit Buffer" })
+  vim.cmd("q")
+end, { desc = "[Q]uit" })
 
 ---- LSP Config
 --Diagnostic keymaps
