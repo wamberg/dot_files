@@ -7,3 +7,38 @@
           - base-devel
           - git
         state: present
+      tags:
+        - packages
+
+    - name: Create aur_builder user
+      ansible.builtin.user:
+        name: aur_builder
+        state: present
+        create_home: yes
+        system: yes
+      tags:
+        - aur_setup
+        - aur
+
+    - name: Grant aur_builder passwordless sudo for pacman
+      ansible.builtin.lineinfile:
+        path: /etc/sudoers.d/11-aur_builder
+        state: present
+        line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
+        create: yes
+        owner: root
+        group: root
+        mode: '0440'
+        validate: 'visudo -cf %s'
+      tags:
+        - aur_setup
+        - aur
+
+    - name: Ensure yay is installed
+      kewlfft.aur.aur:
+        name: yay
+        use: paru # can also be yay
+      become: yes
+      become_user: aur_builder # NOTE: This user must be pre-configured with passwordless sudo
+      tags:
+        - aur
