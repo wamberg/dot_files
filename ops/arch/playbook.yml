@@ -4,6 +4,7 @@
     - name: System | Packages | Ensure CLI tools are installed
       community.general.pacman:
         name:
+          - aws-cli
           - base-devel
           - bat
           - btop
@@ -49,7 +50,7 @@
         groups: docker,wheel
         append: yes
       tags:
-        - wamberg
+        - dev
     - name: User | wamberg | Check for .zshrc
       ansible.builtin.stat:
         path: "/home/wamberg/.zshrc"
@@ -57,13 +58,13 @@
       become: yes
       become_user: wamberg
       tags:
-        - wamberg
+        - dev
     - name: User | wamberg | Install oh-my-zsh if needed
       when: not zshrc_stat.stat.exists
       become: yes
       become_user: wamberg
       tags:
-        - wamberg
+        - dev
       block:
         - name: User | wamberg | Install oh-my-zsh
           ansible.builtin.shell:
@@ -96,7 +97,7 @@
       register: stow_result
       changed_when: stow_result.stdout != ""
       tags:
-        - wamberg
+        - dev
     - name: System | Upgrade all packages
       community.general.pacman:
         update_cache: yes
@@ -157,3 +158,12 @@
       become_user: aur_builder # NOTE: This user must be pre-configured with passwordless sudo
       tags:
         - aur
+    - name: AUR | Packages | Ensure AWS tools are installed
+      kewlfft.aur.aur:
+        name:
+          - aws-vault
+          - session-manager-plugin-bin
+      become: yes
+      become_user: aur_builder
+      tags:
+        - dev
