@@ -34,10 +34,20 @@
         - aur_setup
         - aur
 
+    - name: Create Ansible temporary directory for aur_builder
+      ansible.builtin.file:
+        path: /home/aur_builder/.ansible/tmp
+        state: directory
+        owner: aur_builder
+        group: aur_builder
+        mode: '0700'
+      tags:
+        - aur_setup
+        - aur
+
     - name: Ensure yay is installed
       kewlfft.aur.aur:
         name: yay
-        use: paru # can also be yay
       become: yes
       become_user: aur_builder # NOTE: This user must be pre-configured with passwordless sudo
       tags:
