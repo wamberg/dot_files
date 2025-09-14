@@ -24,6 +24,22 @@
         state: present
       tags:
         - cli
+    - name: Ensure docker packages are installed
+      community.general.pacman:
+        update_cache: yes
+        name:
+          - docker
+          - docker-compose
+        state: present
+      tags:
+        - dev
+    - name: Ensure docker service is enabled and running
+      ansible.builtin.systemd:
+        name: docker
+        state: started
+        enabled: yes
+      tags:
+        - dev
     - name: System | Upgrade all packages
       community.general.pacman:
         update_cache: yes
