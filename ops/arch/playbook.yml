@@ -5,6 +5,7 @@
       community.general.pacman:
         name:
           - base-devel
+          - bat
           - btop
           - ca-certificates
           - curl
@@ -12,6 +13,7 @@
           - fzf
           - git
           - jq
+          - mise
           - sqlite
           - stow
           - sudo
@@ -40,6 +42,59 @@
         enabled: yes
       tags:
         - dev
+    - name: User | wamberg | Set shell to zsh and add to docker, wheel groups
+      ansible.builtin.user:
+        name: wamberg
+        shell: /bin/zsh
+        groups: docker,wheel
+        append: yes
+      tags:
+        - wamberg
+    - name: User | wamberg | Check for .zshrc
+      ansible.builtin.stat:
+        path: "/home/wamberg/.zshrc"
+      register: zshrc_stat
+      become: yes
+      become_user: wamberg
+      tags:
+        - wamberg
+    - name: User | wamberg | Install oh-my-zsh if needed
+      when: not zshrc_stat.stat.exists
+      become: yes
+      become_user: wamberg
+      tags:
+        - wamberg
+      block:
+        - name: Install oh-my-zsh
+          ansible.builtin.shell:
+            cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+            creates: /home/wamberg/.oh-my-zsh
+        - name: Remove oh_my_zsh .zshrc
+          ansible.builtin.file:
+            path: /home/wamberg/.zshrc
+            state: absent
+    - name: User | wamberg | Stow dot_files
+      become: yes
+      become_user: wamberg
+      become_flags: "--login"
+      ansible.builtin.shell: 'stow --dir="${HOME}/dev/dot_files" --target="${HOME}/" -RS {{ item }}'
+      loop:
+        - aider
+        - bat
+        - bin
+        - claude
+        - git
+        - glow
+        - kitty
+        - mise
+        - npm
+        - nvim
+        - sql
+        - tmux
+        - vifm
+        - zsh
+      tags:
+        - wamberg
     - name: System | Upgrade all packages
       community.general.pacman:
         update_cache: yes
