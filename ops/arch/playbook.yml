@@ -3,6 +3,7 @@
   tasks:
     - name: System | Packages | Ensure CLI tools are installed
       community.general.pacman:
+        update_cache: yes
         name:
           - base-devel
           - bat
@@ -114,6 +115,34 @@
       when: mise_missing.stdout != ""
       tags:
         - dev
+    - name: User | tmux | Ensure plugins directory exists
+      become: yes
+      become_user: wamberg
+      ansible.builtin.file:
+        path: /home/wamberg/.tmux/plugins
+        state: directory
+        mode: '0755'
+        force: yes
+      tags:
+        - dev
+    - name: User | tmux | Check if tpm is already installed
+      become: yes
+      become_user: wamberg
+      ansible.builtin.stat:
+        path: /home/wamberg/.tmux/plugins/tpm/.git
+      register: tpm_git_stat
+      tags:
+        - dev
+    - name: User | tmux | Clone plugin manager (tpm)
+      become: yes
+      become_user: wamberg
+      ansible.builtin.git:
+        repo: "https://github.com/tmux-plugins/tpm"
+        dest: "/home/wamberg/.tmux/plugins/tpm"
+        depth: 1
+      when: not tpm_git_stat.stat.exists
+      tags:
+        - dev
     - name: System | Upgrade all packages
       community.general.pacman:
         update_cache: yes
@@ -170,6 +199,7 @@
     - name: System | Packages | Ensure yay is installed
       kewlfft.aur.aur:
         name: yay
+        update_cache: yes
       become: yes
       become_user: aur_builder # NOTE: This user must be pre-configured with passwordless sudo
       tags:
