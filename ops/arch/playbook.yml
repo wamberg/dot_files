@@ -1,14 +1,29 @@
 - hosts: localhost
   become: yes
   tasks:
-    - name: Ensure core packages are installed
+    - name: Ensure cli packages are installed
       community.general.pacman:
         name:
           - base-devel
+          - btop
+          - ca-certificates
+          - curl
+          - ffmpeg
+          - fzf
           - git
+          - jq
+          - sqlite
+          - stow
+          - sudo
+          - tmux
+          - unzip
+          - vifm
+          - wget
+          - xclip
+          - zsh
         state: present
       tags:
-        - packages
+        - cli
     - name: Create aur_builder user
       ansible.builtin.user:
         name: aur_builder

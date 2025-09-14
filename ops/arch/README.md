@@ -5,7 +5,7 @@ This setup uses Ansible to manage an Arch Linux machine locally.
 ## File Structure
 
 - `inventory`: Configures Ansible to run on the local machine.
-- `playbook`: Defines the tasks to be performed.
+- `playbook.yml`: Defines the tasks to be performed.
 - `requirements.yml`: Lists necessary Ansible collections, such as `community.general` for the `pacman` module and `kewlfft.aur` for AUR support.
 
 ## Bootstrap
@@ -19,13 +19,13 @@ This setup uses Ansible to manage an Arch Linux machine locally.
 
 Run the playbook to apply the configuration:
 
-`sudo ansible-playbook -i ops/arch/inventory ops/arch/playbook`
+`sudo ansible-playbook -i ops/arch/inventory ops/arch/playbook.yml`
 
 ### Dry Runs
 
 To see what changes would be made without actually executing them, use the `--check` flag:
 
-`sudo ansible-playbook -i ops/arch/inventory ops/arch/playbook --check`
+`sudo ansible-playbook -i ops/arch/inventory ops/arch/playbook.yml --check`
 
 ### Using Tags
 
@@ -33,7 +33,7 @@ The playbook uses tags to allow running specific parts of the configuration.
 
 For example, to only run tasks tagged with `packages`:
 
-`sudo ansible-playbook -i ops/arch/inventory ops/arch/playbook --tags packages`
+`sudo ansible-playbook -i ops/arch/inventory ops/arch/playbook.yml --tags packages`
 
 ## Managing AUR Packages
 
@@ -43,7 +43,7 @@ This setup uses the `kewlfft.aur` collection to manage packages from the Arch Us
 
 To run only the AUR-related tasks:
 
-`sudo ansible-playbook -i ops/arch/inventory ops/arch/playbook --tags aur`
+`sudo ansible-playbook -i ops/arch/inventory ops/arch/playbook.yml --tags aur`
 
 ## Testing
 
