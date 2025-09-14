@@ -24,6 +24,27 @@
         state: present
       tags:
         - cli
+    - name: System | Upgrade all packages
+      community.general.pacman:
+        update_cache: yes
+        upgrade: yes
+      tags:
+        - upgrade
+    - name: System | Check for orphaned packages
+      ansible.builtin.command:
+        cmd: pacman -Qtdq
+      register: orphans
+      changed_when: false
+      failed_when: false
+      tags:
+        - upgrade
+    - name: System | Remove orphaned packages
+      community.general.pacman:
+        name: "{{ orphans.stdout_lines }}"
+        state: absent
+      when: orphans.stdout != ""
+      tags:
+        - upgrade
     - name: Create aur_builder user
       ansible.builtin.user:
         name: aur_builder
