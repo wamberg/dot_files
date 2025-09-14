@@ -1,0 +1,9 @@
+- hosts: localhost
+  become: yes
+  tasks:
+    - name: Ensure core packages are installed
+      community.general.pacman:
+        name:
+          - base-devel
+          - git
+        state: present
