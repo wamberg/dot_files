@@ -9,7 +9,6 @@
         state: present
       tags:
         - packages
-
     - name: Create aur_builder user
       ansible.builtin.user:
         name: aur_builder
@@ -19,7 +18,6 @@
       tags:
         - aur_setup
         - aur
-
     - name: Grant aur_builder passwordless sudo for pacman
       ansible.builtin.lineinfile:
         path: /etc/sudoers.d/11-aur_builder
@@ -33,7 +31,6 @@
       tags:
         - aur_setup
         - aur
-
     - name: Create Ansible temporary directory for aur_builder
       ansible.builtin.file:
         path: /home/aur_builder/.ansible/tmp
@@ -44,7 +41,6 @@
       tags:
         - aur_setup
         - aur
-
     - name: Ensure yay is installed
       kewlfft.aur.aur:
         name: yay
