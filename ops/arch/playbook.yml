@@ -4,7 +4,6 @@
     - name: System | Packages | Ensure CLI tools are installed
       community.general.pacman:
         name:
-          - aws-cli
           - base-devel
           - bat
           - btop
@@ -98,6 +97,23 @@
       changed_when: stow_result.stdout != ""
       tags:
         - dev
+    - name: User | wamberg | Check for missing mise tools
+      become: yes
+      become_user: wamberg
+      become_flags: "--login"
+      ansible.builtin.shell: 'mise ls --missing'
+      register: mise_missing
+      changed_when: false
+      tags:
+        - dev
+    - name: User | wamberg | Install mise tools
+      become: yes
+      become_user: wamberg
+      become_flags: "--login"
+      ansible.builtin.shell: 'mise install'
+      when: mise_missing.stdout != ""
+      tags:
+        - dev
     - name: System | Upgrade all packages
       community.general.pacman:
         update_cache: yes
@@ -158,12 +174,3 @@
       become_user: aur_builder # NOTE: This user must be pre-configured with passwordless sudo
       tags:
         - aur
-    - name: AUR | Packages | Ensure AWS tools are installed
-      kewlfft.aur.aur:
-        name:
-          - aws-vault
-          - session-manager-plugin-bin
-      become: yes
-      become_user: aur_builder
-      tags:
-        - dev
