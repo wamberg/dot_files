@@ -420,6 +420,28 @@ vim.opt.foldmethod = "manual"
 
 -- Display
 vim.cmd([[colorscheme dracula]])
+local colors = require("dracula").colors()
+vim.api.nvim_set_hl(0, "@markup.heading.1.markdown", { fg = colors.orange, bold = true })
+vim.api.nvim_set_hl(0, "@markup.heading.2.markdown", { fg = colors.cyan, bold = true })
+vim.api.nvim_set_hl(0, "@markup.heading.3.markdown", { fg = colors.green, bold = true })
+vim.api.nvim_set_hl(0, "@markup.heading.4.markdown", { fg = colors.pink, bold = true })
+vim.api.nvim_set_hl(0, "@markup.raw.markdown_inline", { fg = colors.yellow, bold = false })
+vim.api.nvim_set_hl(0, "@markup.strong.markdown_inline", { fg = colors.bright_magenta, bold = true })
+vim.api.nvim_set_hl(0, "@markup.list", { fg = colors.purple })
+
+-- Inherit from @markup.italic but add underline
+local italic_highlight = vim.api.nvim_get_hl(0, { name = "@markup.italic" })
+vim.api.nvim_set_hl(0, "@markup.quote.markdown", italic_highlight)
+italic_highlight.underline = true
+vim.api.nvim_set_hl(0, "@markup.italic.markdown_inline", italic_highlight)
+local special_highlight = vim.api.nvim_get_hl(0, { name = "Special" })
+special_highlight.fg = colors.bright_blue
+vim.api.nvim_set_hl(0, "Special", special_highlight)
+
+vim.api.nvim_set_hl(0, "SpellRare", { link = "SpellBad" })
+vim.api.nvim_set_hl(0, "SpellCap", { link = "SpellBad" })
+vim.api.nvim_set_hl(0, "SpellLocal", { link = "SpellBad" })
+
 vim.opt.scrolloff = 2
 vim.opt.splitbelow = true
 vim.opt.splitright = true
@@ -727,6 +749,18 @@ vim.keymap.set("v", "<C-s>", function()
   whisper.replace_selection()
 end, { desc = "[S]peech to text (visual mode)" })
 
+-- Custom command for quick insertion of "prompt" template for kitty shortcut
+vim.api.nvim_create_user_command("InsertPrompt", function()
+  -- Enter insert mode and type the text to trigger snippet
+  vim.cmd("startinsert")
+  vim.api.nvim_feedkeys("prompt", "n", false)
+  -- Use a small delay to ensure the text is inserted before expanding
+  vim.defer_fn(function()
+    local luasnip = require("luasnip")
+    luasnip.expand()
+  end, 10)
+end, {})
+
 -- Keybindings for note-taking functions
 local garden = require("garden")
 vim.keymap.set("n", "<leader>gn", garden.new_note, { desc = "[G]arden [N]ew" })
@@ -743,7 +777,7 @@ vim.keymap.set("n", "<C-t>", garden.toggle_todo, { desc = "Complete [T]ask" })
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = { "*.txt", "*.md", "*.markdown" },
   callback = function()
-    vim.opt_local.spell = true
+    vim.opt_local.spell = false
     vim.opt_local.spelllang = "en_us"
     -- Setup markdown-specific vim-surround mappings
     require("garden").setup_markdown_surround()

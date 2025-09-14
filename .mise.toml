@@ -1,4 +1,5 @@
 [tools]
+yamlfmt = "latest"
 shellcheck = "latest"
 stylua = 'latest'
 

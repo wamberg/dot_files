@@ -1,0 +1,409 @@
+- hosts: localhost
+  become: yes
+  tasks:
+    - name: System | Packages | Ensure CLI tools are installed
+      community.general.pacman:
+        update_cache: yes
+        name:
+          - base-devel
+          - bat
+          - btop
+          - ca-certificates
+          - curl
+          - fd
+          - ffmpeg
+          - fzf
+          - git
+          - gnupg
+          - jq
+          - less
+          - mise
+          - openssh
+          - pass
+          - rsync
+          - sqlite
+          - stow
+          - sudo
+          - tmux
+          - unzip
+          - vifm
+          - wget
+          - xclip
+          - zsh
+        state: present
+      tags:
+        - cli
+    - name: System | Packages | Ensure Docker is installed
+      community.general.pacman:
+        update_cache: yes
+        name:
+          - docker
+          - docker-compose
+        state: present
+      tags:
+        - dev
+    - name: Service | Docker | Enable and start service
+      ansible.builtin.systemd:
+        name: docker
+        state: started
+        enabled: yes
+      tags:
+        - dev
+    - name: User | wamberg | Set shell to zsh and add to docker, wheel groups
+      ansible.builtin.user:
+        name: wamberg
+        shell: /bin/zsh
+        groups: docker,wheel
+        append: yes
+      tags:
+        - dev
+    - name: User | wamberg | Check for .zshrc
+      ansible.builtin.stat:
+        path: "/home/wamberg/.zshrc"
+      register: zshrc_stat
+      become: yes
+      become_user: wamberg
+      tags:
+        - dev
+    - name: User | wamberg | Install oh-my-zsh if needed
+      when: not zshrc_stat.stat.exists
+      become: yes
+      become_user: wamberg
+      tags:
+        - dev
+      block:
+        - name: User | wamberg | Install oh-my-zsh
+          ansible.builtin.shell:
+            cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+            creates: /home/wamberg/.oh-my-zsh
+        - name: User | wamberg | Remove oh-my-zsh .zshrc
+          ansible.builtin.file:
+            path: /home/wamberg/.zshrc
+            state: absent
+    - name: User | wamberg | Stow dot_files
+      become: yes
+      become_user: wamberg
+      become_flags: "--login"
+      ansible.builtin.shell: 'stow --dir="${HOME}/dev/dot_files" --target="${HOME}/" -vS {{ item }}'
+      loop:
+        - aider
+        - bat
+        - bin
+        - claude
+        - fuzzel
+        - git
+        - glow
+        - kitty
+        - mise
+        - niri
+        - npm
+        - nvim
+        - sql
+        - tmux
+        - vifm
+        - waybar
+        - zsh
+      register: stow_result
+      changed_when: stow_result.stdout != ""
+      tags:
+        - dev
+    - name: User | wamberg | Check for missing mise tools
+      become: yes
+      become_user: wamberg
+      become_flags: "--login"
+      ansible.builtin.shell: 'mise ls --missing'
+      register: mise_missing
+      changed_when: false
+      tags:
+        - dev
+    - name: User | wamberg | Install mise tools
+      become: yes
+      become_user: wamberg
+      become_flags: "--login"
+      ansible.builtin.shell: 'mise install'
+      when: mise_missing.stdout != ""
+      tags:
+        - dev
+    - name: User | tmux | Ensure plugins directory exists
+      become: yes
+      become_user: wamberg
+      ansible.builtin.file:
+        path: /home/wamberg/.tmux/plugins
+        state: directory
+        mode: '0755'
+        force: yes
+      tags:
+        - dev
+    - name: User | tmux | Check if tpm is already installed
+      become: yes
+      become_user: wamberg
+      ansible.builtin.stat:
+        path: /home/wamberg/.tmux/plugins/tpm/.git
+      register: tpm_git_stat
+      tags:
+        - dev
+    - name: User | tmux | Clone plugin manager (tpm)
+      become: yes
+      become_user: wamberg
+      ansible.builtin.git:
+        repo: "https://github.com/tmux-plugins/tpm"
+        dest: "/home/wamberg/.tmux/plugins/tpm"
+        depth: 1
+      when: not tpm_git_stat.stat.exists
+      tags:
+        - dev
+    - name: User | wamberg | Ensure .ssh directory exists
+      become: yes
+      become_user: wamberg
+      ansible.builtin.file:
+        path: /home/wamberg/.ssh
+        state: directory
+        mode: '0700'
+      tags:
+        - dev
+    - name: User | wamberg | Configure 1Password SSH agent
+      become: yes
+      become_user: wamberg
+      ansible.builtin.blockinfile:
+        path: /home/wamberg/.ssh/config
+        create: yes
+        owner: wamberg
+        group: wamberg
+        mode: '0600'
+        block: |
+          Host *
+              IdentityAgent ~/.1password/agent.sock
+      tags:
+        - dev
+    - name: User | wamberg | Check if GPG key exists
+      become: yes
+      become_user: wamberg
+      ansible.builtin.shell: gpg --list-secret-keys --keyid-format=long
+      register: gpg_keys
+      changed_when: false
+      failed_when: false
+      tags:
+        - dev
+    - name: User | wamberg | Create GPG batch file for key generation
+      become: yes
+      become_user: wamberg
+      ansible.builtin.copy:
+        content: |
+          Key-Type: RSA
+          Key-Length: 4096
+          Subkey-Type: RSA
+          Subkey-Length: 4096
+          Name-Real: wamberg
+          Name-Email: wamberg@{{ ansible_hostname }}
+          Expire-Date: 0
+          %no-protection
+          %commit
+        dest: /tmp/gpg_batch_file
+        mode: '0600'
+      when: gpg_keys.stdout == ""
+      tags:
+        - dev
+    - name: User | wamberg | Generate GPG key
+      become: yes
+      become_user: wamberg
+      ansible.builtin.shell: gpg --batch --generate-key /tmp/gpg_batch_file
+      when: gpg_keys.stdout == ""
+      tags:
+        - dev
+    - name: User | wamberg | Clean up GPG batch file
+      ansible.builtin.file:
+        path: /tmp/gpg_batch_file
+        state: absent
+      when: gpg_keys.stdout == ""
+      tags:
+        - dev
+    - name: User | wamberg | Get GPG key ID
+      become: yes
+      become_user: wamberg
+      ansible.builtin.shell: gpg --list-secret-keys --keyid-format=long | grep sec | head -1 | sed 's/.*\/\([A-F0-9]\{16\}\).*/\1/'
+      register: gpg_key_id
+      changed_when: false
+      tags:
+        - dev
+    - name: User | wamberg | Check if pass is initialized
+      become: yes
+      become_user: wamberg
+      ansible.builtin.stat:
+        path: /home/wamberg/.password-store/.gpg-id
+      register: pass_initialized
+      tags:
+        - dev
+    - name: User | wamberg | Initialize pass with GPG key
+      become: yes
+      become_user: wamberg
+      ansible.builtin.shell: pass init {{ gpg_key_id.stdout }}
+      when: not pass_initialized.stat.exists
+      tags:
+        - dev
+    - name: System | Upgrade all packages
+      community.general.pacman:
+        update_cache: yes
+        upgrade: yes
+      tags:
+        - upgrade
+    - name: System | Check for orphaned packages
+      ansible.builtin.command:
+        cmd: pacman -Qtdq
+      register: orphans
+      changed_when: false
+      failed_when: false
+      tags:
+        - upgrade
+    - name: System | Remove orphaned packages
+      community.general.pacman:
+        name: "{{ orphans.stdout_lines }}"
+        state: absent
+      when: orphans.stdout != ""
+      tags:
+        - upgrade
+    - name: User | aur_builder | Create user
+      ansible.builtin.user:
+        name: aur_builder
+        state: present
+        create_home: yes
+        system: yes
+      tags:
+        - aur_setup
+        - aur
+    - name: User | aur_builder | Grant passwordless sudo for pacman
+      ansible.builtin.lineinfile:
+        path: /etc/sudoers.d/11-aur_builder
+        state: present
+        line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
+        create: yes
+        owner: root
+        group: root
+        mode: '0440'
+        validate: 'visudo -cf %s'
+      tags:
+        - aur_setup
+        - aur
+    - name: User | aur_builder | Create Ansible temporary directory
+      ansible.builtin.file:
+        path: /home/aur_builder/.ansible/tmp
+        state: directory
+        owner: aur_builder
+        group: aur_builder
+        mode: '0700'
+      tags:
+        - aur_setup
+        - aur
+    - name: System | Packages | Ensure yay is installed
+      kewlfft.aur.aur:
+        name: yay
+        update_cache: yes
+      become: yes
+      become_user: aur_builder # NOTE: This user must be pre-configured with passwordless sudo
+      tags:
+        - aur
+    - name: User | aur_builder | Check for 1Password GPG key
+      ansible.builtin.command:
+        cmd: gpg --list-keys 3FEF9748469ADBE15DA7CA80AC2D62742012EA22
+      register: onepassword_gpg_key
+      changed_when: false
+      failed_when: false
+      become: yes
+      become_user: aur_builder
+      tags:
+        - desktop
+    - name: User | aur_builder | Import 1Password GPG key
+      ansible.builtin.shell:
+        cmd: "curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import"
+      when: onepassword_gpg_key.rc != 0
+      become: yes
+      become_user: aur_builder
+      tags:
+        - desktop
+    - name: System | Packages | Install essential AUR desktop packages
+      kewlfft.aur.aur:
+        name:
+          - 1password
+          - google-chrome
+          - niri
+          - slack-desktop
+          - zoom
+      become: yes
+      become_user: aur_builder
+      tags:
+        - desktop
+    - name: System | Packages | Install essential desktop packages
+      community.general.pacman:
+        name:
+          # Applications
+          - discord
+          - firefox-developer-edition
+          - kitty
+          - libreoffice-fresh
+          - obs-studio
+          - obsidian
+          - telegram-desktop
+          # Desktop Environment
+          - fuzzel
+          - sddm
+          - swaybg
+          - swaylock
+          - waybar
+          - wlsunset
+          - xwayland-satellite
+          # System Utilities
+          - amd-ucode
+          - gvfs
+          - libva-mesa-driver # Hardware video acceleration for AMD
+          - linux-firmware # Firmware for hardware
+          - mako
+          - playerctl
+          - polkit-gnome
+          - v4l-utils
+          - v4l2loopback-dkms
+          # Screenshots and clipboard
+          - grim
+          - slurp
+          - wl-clipboard
+          # Audio system
+          - pavucontrol
+          - pipewire
+          - pipewire-alsa
+          - pipewire-pulse
+          - wireplumber
+          # Fonts
+          - adwaita-icon-theme
+          - noto-fonts-emoji
+          - ttf-jetbrains-mono
+        state: present
+      tags:
+        - desktop
+    - name: System | Kernel | Ensure v4l2loopback is loaded on boot
+      ansible.builtin.lineinfile:
+        path: /etc/modules-load.d/v4l2loopback.conf
+        line: v4l2loopback
+        create: yes
+        owner: root
+        group: root
+        mode: '0644'
+      tags:
+        - desktop
+    - name: Service | SDDM | Enable display manager
+      ansible.builtin.systemd:
+        name: sddm
+        enabled: yes
+      tags:
+        - desktop
+    - name: Service | PipeWire | Enable user services
+      become: yes
+      become_user: wamberg
+      ansible.builtin.systemd:
+        name: "{{ item }}"
+        state: started
+        enabled: yes
+        scope: user
+      loop:
+        - pipewire.service
+        - pipewire-pulse.service
+        - wireplumber.service
+      tags:
+        - desktop

@@ -1,0 +1,139 @@
+input {
+  keyboard {
+    xkb {
+      layout "us"
+    }
+  }
+}
+
+layout {
+  gaps 4
+  center-focused-column "never"
+
+  preset-column-widths {
+      // Proportion sets the width as a fraction of the output width, taking gaps into account.
+      // For example, you can perfectly fit four windows sized "proportion 0.25" on an output.
+      // The default preset widths are 1/3, 1/2 and 2/3 of the output.
+      proportion 0.33333
+      proportion 0.5
+      proportion 0.66667
+  }
+  focus-ring {
+      width 2
+      active-color "#7fc8ff"
+      inactive-color "#505050"
+  }
+}
+
+spawn-at-startup "mako"
+spawn-at-startup "wlsunset" "-l" "30" "-L" "-100"
+spawn-at-startup "xwayland-satellite"
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+spawn-at-startup "sh" "-c" "swaybg -i \"$(find /home/wamberg/pics/wallpaper/ -type f | shuf -n 1)\""
+spawn-at-startup "v4l2-ctl" "--set-ctrl=zoom_absolute=160"
+
+prefer-no-csd
+window-rule {
+  geometry-corner-radius 8
+  clip-to-geometry true
+}
+
+hotkey-overlay {
+  skip-at-startup
+}
+
+binds {
+  ////
+  // applications
+  Super+Space hotkey-overlay-title="fuzzel" { spawn "fuzzel"; }
+  Alt+B hotkey-overlay-title="OBS" {
+    spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "com.obsproject.Studio" "obs";
+  }
+  Alt+C hotkey-overlay-title="chrome" {
+    spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "google-chrome" "google-chrome-stable";
+  }
+  Alt+D hotkey-overlay-title="discord" {
+    spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "discord";
+  }
+  Alt+F hotkey-overlay-title="firefox" {
+    spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "firefox-developer-edition";
+  }
+  Alt+K hotkey-overlay-title="kitty" {
+    spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "kitty";
+  }
+  Alt+Shift+K hotkey-overlay-title="New kitty" { spawn "kitty"; }
+  Alt+N hotkey-overlay-title="obsidian" {
+    spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "obsidian";
+  }
+  Alt+P hotkey-overlay-title="1password" {
+    spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "1Password" "env" "DISPLAY=:1" "1password";
+  }
+  Alt+S hotkey-overlay-title="slack" {
+    spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "Slack" "slack";
+  }
+  Alt+T hotkey-overlay-title="telegram" {
+    spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "org.telegram.desktop" "Telegram";
+  }
+
+  Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+  Alt+W hotkey-overlay-title="Toggle Waybar" {
+    spawn "sh" "-c" "pkill waybar || waybar &";
+  }
+
+  ////
+  // column actions
+  Mod+O repeat=false { toggle-overview; }
+  Mod+C { center-column; }
+  Mod+R { switch-preset-column-width; }
+  Mod+F { maximize-column; }
+  Mod+Shift+F { fullscreen-window; }
+  Mod+Ctrl+F { expand-column-to-available-width; }
+  Mod+Minus { set-column-width "-10%"; }
+  Mod+Equal { set-column-width "+10%"; }
+
+  Mod+H     { focus-column-left; }
+  Mod+J     { focus-window-or-workspace-down; }
+  Mod+K     { focus-window-or-workspace-up; }
+  Mod+L     { focus-column-right; }
+  Mod+Shift+H     { move-column-left; }
+  Mod+Shift+J     { move-window-down-or-to-workspace-down; }
+  Mod+Shift+K     { move-window-up-or-to-workspace-up; }
+  Mod+Shift+L     { move-column-right; }
+  Mod+WheelScrollDown      { focus-column-right; }
+  Mod+WheelScrollUp       { focus-column-left; }
+  Mod+Shift+WheelScrollDown { move-column-right; }
+  Mod+Shift+WheelScrollUp  { move-column-left; }
+
+  Mod+Comma  { consume-or-expel-window-left; }
+  Mod+Period { consume-or-expel-window-right; }
+  Mod+V       { toggle-window-floating; }
+  Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+
+  ////
+  // screenshot actions
+  Print hotkey-overlay-title="Full Screen Screenshot to File" { spawn "sh" "-c" "grim /tmp/screenshot-$(date +%Y%m%d-%H%M%S).png"; }
+  Shift+Print hotkey-overlay-title="Select Area Screenshot to File" { spawn "sh" "-c" "grim -g \"$(slurp)\" /tmp/screenshot-$(date +%Y%m%d-%H%M%S).png"; }
+  Ctrl+Print hotkey-overlay-title="Full Screen Screenshot to Clipboard" { spawn "sh" "-c" "grim - | wl-copy"; }
+  Ctrl+Shift+Print hotkey-overlay-title="Select Area Screenshot to Clipboard" { spawn "sh" "-c" "grim -g \"$(slurp)\" - | wl-copy"; }
+
+  ////
+  // media keys
+  XF86AudioMute        hotkey-overlay-title="Toggle Mute"    { spawn "pactl" "set-sink-mute" "@DEFAULT_SINK@" "toggle"; }
+  XF86AudioRaiseVolume hotkey-overlay-title="Volume Up"      { spawn "pactl" "set-sink-volume" "@DEFAULT_SINK@" "+5%"; }
+  XF86AudioLowerVolume hotkey-overlay-title="Volume Down"    { spawn "pactl" "set-sink-volume" "@DEFAULT_SINK@" "-5%"; }
+  XF86AudioPlay        hotkey-overlay-title="Play/Pause"     { spawn "playerctl" "play-pause"; }
+  XF86AudioNext        hotkey-overlay-title="Next Track"     { spawn "playerctl" "next"; }
+  XF86AudioPrev        hotkey-overlay-title="Previous Track" { spawn "playerctl" "previous"; }
+
+  ////
+  // workspace actions
+  Mod+1 { focus-workspace 1; }
+  Mod+2 { focus-workspace 2; }
+  Mod+Shift+1 { move-column-to-workspace 1; }
+  Mod+Shift+2 { move-column-to-workspace 2; }
+  Mod+W       {
+    spawn "sh" "-c" "swaybg -i \"$(find /home/wamberg/Pictures/wallpaper/ -type f | shuf -n 1)\"";
+  }
+
+  Mod+Shift+Slash { show-hotkey-overlay; }
+}

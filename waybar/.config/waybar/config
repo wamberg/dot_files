@@ -1,0 +1,33 @@
+{
+  "layer": "top",
+  "position": "top",
+  "spacing": 8,
+  "modules-left": ["niri/workspaces"],
+  "modules-center": ["clock"],
+  "modules-right": ["pulseaudio", "custom/power"],
+  "niri/workspaces": {
+    "format": "{icon}"
+  },
+  "clock": {
+    "timezone": "US/Eastern",
+    "tooltip": false,
+    "format": "{:%b %d %H:%M}"
+  },
+  "pulseaudio": {
+    "format": "{icon}{volume}%",
+    "format-icons": {
+      "default": [" ", " ", " "]
+    },
+    "format-muted": "Muted",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "pavucontrol",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
+    "scroll-step": 5
+  },
+  "custom/power": {
+    "format": "",
+    "on-click": "sh -c 'systemctl $(printf \"poweroff\\nreboot\\nsuspend\" | fuzzel --dmenu)'",
+    "tooltip": false
+  }
+}

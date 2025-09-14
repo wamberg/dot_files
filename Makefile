@@ -8,7 +8,7 @@ MAKEFLAGS += --no-builtin-rules
 ###############
 # Entry points
 ###############
-format: out/.format.lua.sentinel
+format: out/.format.lua.sentinel out/.format.yaml.sentinel
 .PHONY: format
 
 lint: out/.lint.shell.sentinel
@@ -20,6 +20,11 @@ lint: out/.lint.shell.sentinel
 
 out/.format.lua.sentinel: $(shell find ./ -name "*.lua")
 	find ./ -name "*.lua" | xargs stylua
+	mkdir -p $(@D)
+	touch $@
+
+out/.format.yaml.sentinel: $(shell find ops/arch -name "*.yml")
+	find ops/arch -name "*.yml" | xargs yamlfmt
 	mkdir -p $(@D)
 	touch $@
 

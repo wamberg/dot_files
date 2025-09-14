@@ -22,6 +22,7 @@ function act() {
     --exclude mise \
     --exclude node_modules \
     --exclude snap \
+    --exclude "VirtualBox VMs" \
     --exclude Videos \
     --directory="$HOME" \
     . \
