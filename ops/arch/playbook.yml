@@ -88,6 +88,7 @@
         - glow
         - kitty
         - mise
+        - niri
         - npm
         - nvim
         - sql
@@ -204,3 +205,76 @@
       become_user: aur_builder # NOTE: This user must be pre-configured with passwordless sudo
       tags:
         - aur
+    - name: System | Packages | Install niri compositor
+      kewlfft.aur.aur:
+        name: niri
+        update_cache: yes
+      become: yes
+      become_user: aur_builder
+      tags:
+        - desktop
+    - name: System | Packages | Install essential desktop packages
+      community.general.pacman:
+        name:
+          # Terminal emulator
+          - kitty
+
+          # Status bar and launcher
+          - waybar
+          - fuzzel
+
+          # Notifications and system utilities
+          - mako
+          - playerctl
+
+          # Screenshots and clipboard
+          - grim
+          - slurp
+          - wl-clipboard
+
+          # Screen locking
+          - swaylock
+
+          # Optional: Virtual filesystem support
+          - gvfs
+
+          # Audio system
+          - pipewire
+          - pipewire-alsa
+          - pipewire-pulse
+          - wireplumber
+          - pavucontrol
+
+          # Fonts
+          - ttf-firacode-nerd
+          - noto-fonts-emoji
+
+          # Optional: Basic icon theme
+          - adwaita-icon-theme
+
+          # Display manager
+          - sddm
+
+        state: present
+      tags:
+        - desktop
+    - name: Service | SDDM | Enable display manager
+      ansible.builtin.systemd:
+        name: sddm
+        enabled: no
+      tags:
+        - desktop
+    - name: Service | PipeWire | Enable user services
+      become: yes
+      become_user: wamberg
+      ansible.builtin.systemd:
+        name: "{{ item }}"
+        state: started
+        enabled: yes
+        scope: user
+      loop:
+        - pipewire.service
+        - pipewire-pulse.service
+        - wireplumber.service
+      tags:
+        - desktop

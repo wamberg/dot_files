@@ -50,9 +50,10 @@ To run only the AUR-related tasks:
 In a virtualbox guest machine:
 
 1. Perform a minimal installation with the `archinstall` script
-2. Guest OS: `sudo pacman -S virtualbox-guest-utils linux-headers`
-3. Guest OS: `sudo systemctl enable vboxservice.service`
-4. Guest OS: `sudo usermod -aG vboxsf $USER`
-5. Guest OS: `sudo reboot`
+2. Enable directory sharing, on the guest OS run:
+  1. `sudo pacman -S virtualbox-guest-utils linux-headers`
+  2. `sudo systemctl enable vboxservice.service`
+  3. `sudo usermod -aG vboxsf $USER`
+  4. `sudo reboot`
 
 Then I can run the "## Bootstrap" or "## Management with Ansible" commands as needed.

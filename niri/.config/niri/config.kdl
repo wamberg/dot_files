@@ -1,0 +1,22 @@
+input {
+    keyboard {
+        xkb {
+            layout "us"
+        }
+    }
+}
+
+layout {
+    gaps 16
+    center-focused-column "never"
+}
+
+spawn-at-startup "waybar"
+spawn-at-startup "mako"
+
+binds {
+    "Mod+Return" { spawn "kitty"; }
+    "Mod+D" { spawn "fuzzel"; }
+    "Mod+Q" { close-window; }
+}
+
