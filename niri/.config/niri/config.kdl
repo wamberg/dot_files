@@ -7,14 +7,75 @@ input {
 }
 
 layout {
-  gaps 4
+  gaps 8
+  center-focused-column "never"
+
+  preset-column-widths {
+      // Proportion sets the width as a fraction of the output width, taking gaps into account.
+      // For example, you can perfectly fit four windows sized "proportion 0.25" on an output.
+      // The default preset widths are 1/3, 1/2 and 2/3 of the output.
+      proportion 0.33333
+      proportion 0.5
+      proportion 0.66667
+  }
+  focus-ring {
+      width 2
+      active-color "#7fc8ff"
+      inactive-color "#505050"
+  }
 }
 
 spawn-at-startup "waybar"
 spawn-at-startup "mako"
 
 binds {
-  Mod+Return { spawn "kitty"; }
-  Mod+D { spawn "fuzzel"; }
+  Mod+Shift+Slash { show-hotkey-overlay; }
+
+  // applications
+  Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
+  Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+  Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
   Mod+Q { close-window; }
+
+  // navigation
+  Mod+O repeat=false { toggle-overview; }
+  Mod+H     { focus-column-left; }
+  Mod+J     { focus-window-down; }
+  Mod+K     { focus-window-up; }
+  Mod+L     { focus-column-right; }
+  Mod+U     { focus-workspace-down; }
+  Mod+I     { focus-workspace-up; }
+  Mod+1 { focus-workspace 1; }
+  Mod+2 { focus-workspace 2; }
+  Mod+3 { focus-workspace 3; }
+  Mod+WheelScrollDown      { focus-column-right; }
+  Mod+WheelScrollUp       { focus-column-left; }
+
+
+  // pane management
+  Mod+C { center-column; }
+  Mod+R { switch-preset-column-width; }
+  Mod+Shift+H     { move-column-left; }
+  Mod+Shift+J     { move-window-down; }
+  Mod+Shift+K     { move-window-up; }
+  Mod+Shift+L     { move-column-right; }
+  Mod+Shift+1 { move-column-to-workspace 1; }
+  Mod+Shift+2 { move-column-to-workspace 2; }
+  Mod+Shift+3 { move-column-to-workspace 3; }
+  Mod+Shift+WheelScrollDown { move-column-right; }
+  Mod+Shift+WheelScrollUp  { move-column-left; }
+  // Consume one window from the right to the bottom of the focused column.
+  Mod+Comma  { consume-window-into-column; }
+  // Expel the bottom window from the focused column to the right.
+  Mod+Period { expel-window-from-column; }
+  Mod+F { maximize-column; }
+  Mod+Shift+F { fullscreen-window; }
+  // Expand the focused column to space not taken up by other fully visible columns.
+  // Makes the column "fill the rest of the space".
+  Mod+Ctrl+E { expand-column-to-available-width; }
+  Mod+Minus { set-column-width "-10%"; }
+  Mod+Equal { set-column-width "+10%"; }
+  // Move the focused window between the floating and the tiling layout.
+  Mod+V       { toggle-window-floating; }
+  Mod+Shift+V { switch-focus-between-floating-and-tiling; }
 }
