@@ -261,7 +261,7 @@
     - name: Service | SDDM | Enable display manager
       ansible.builtin.systemd:
         name: sddm
-        enabled: no
+        enabled: yes
       tags:
         - desktop
     - name: Service | PipeWire | Enable user services
