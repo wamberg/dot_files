@@ -66,6 +66,13 @@ binds {
   Mod+Shift+V { switch-focus-between-floating-and-tiling; }
 
   ////
+  // screenshot actions
+  Print hotkey-overlay-title="Full Screen Screenshot to File" { spawn "sh" "-c" "grim /tmp/screenshot-$(date +%Y%m%d-%H%M%S).png"; }
+  Shift+Print hotkey-overlay-title="Select Area Screenshot to File" { spawn "sh" "-c" "grim -g \"$(slurp)\" /tmp/screenshot-$(date +%Y%m%d-%H%M%S).png"; }
+  Ctrl+Print hotkey-overlay-title="Full Screen Screenshot to Clipboard" { spawn "sh" "-c" "grim - | wl-copy"; }
+  Ctrl+Shift+Print hotkey-overlay-title="Select Area Screenshot to Clipboard" { spawn "sh" "-c" "grim -g \"$(slurp)\" - | wl-copy"; }
+
+  ////
   // workspace actions
   Mod+1 { focus-workspace 1; }
   Mod+2 { focus-workspace 2; }
