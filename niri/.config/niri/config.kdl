@@ -35,9 +35,10 @@ binds {
 
   // applications
   Super+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-  Alt+C hotkey-overlay-title="Open Chrome" { spawn "google-chrome-stable"; }
-  Alt+F hotkey-overlay-title="Open Firefox" { spawn "firefox-developer-edition"; }
-  Alt+K hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
+  Alt+C hotkey-overlay-title="chrome" { spawn "google-chrome-stable"; }
+  Alt+F hotkey-overlay-title="firefox" { spawn "firefox-developer-edition"; }
+  Alt+K hotkey-overlay-title="kitty" { spawn "kitty"; }
+  Alt+P hotkey-overlay-title="1password" { spawn "1password"; }
   Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
   ////

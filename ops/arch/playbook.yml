@@ -206,9 +206,28 @@
       become_user: aur_builder # NOTE: This user must be pre-configured with passwordless sudo
       tags:
         - aur
+    - name: User | aur_builder | Check for 1Password GPG key
+      ansible.builtin.command:
+        cmd: gpg --list-keys 3FEF9748469ADBE15DA7CA80AC2D62742012EA22
+      register: onepassword_gpg_key
+      changed_when: false
+      failed_when: false
+      become: yes
+      become_user: aur_builder
+      tags:
+        - desktop
+    - name: User | aur_builder | Import 1Password GPG key
+      ansible.builtin.shell:
+        cmd: "curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import"
+      when: onepassword_gpg_key.rc != 0
+      become: yes
+      become_user: aur_builder
+      tags:
+        - desktop
     - name: System | Packages | Install essential AUR desktop packages
       kewlfft.aur.aur:
         name:
+          - 1password
           - google-chrome
           - niri
       become: yes
@@ -221,7 +240,6 @@
           # Applications
           - firefox-developer-edition
           - kitty
-
           # Desktop Environment
           - fuzzel
           - sddm
@@ -230,24 +248,20 @@
           - waybar
           - wlsunset
           - xwayland-satellite
-
           # System Utilities
           - gvfs
           - mako
           - playerctl
-
           # Screenshots and clipboard
           - grim
           - slurp
           - wl-clipboard
-
           # Audio system
           - pavucontrol
           - pipewire
           - pipewire-alsa
           - pipewire-pulse
           - wireplumber
-
           # Fonts
           - adwaita-icon-theme
           - noto-fonts-emoji
