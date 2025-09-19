@@ -216,27 +216,24 @@
     - name: System | Packages | Install essential desktop packages
       community.general.pacman:
         name:
-          # Terminal emulator
+          # Applications
           - kitty
 
-          # Status bar and launcher
+          # Desktop Environment
           - waybar
           - fuzzel
+          - sddm
+          - swaylock
 
-          # Notifications and system utilities
+          # System Utilities
           - mako
           - playerctl
+          - gvfs
 
           # Screenshots and clipboard
           - grim
           - slurp
           - wl-clipboard
-
-          # Screen locking
-          - swaylock
-
-          # Optional: Virtual filesystem support
-          - gvfs
 
           # Audio system
           - pipewire
@@ -248,13 +245,7 @@
           # Fonts
           - ttf-firacode-nerd
           - noto-fonts-emoji
-
-          # Optional: Basic icon theme
           - adwaita-icon-theme
-
-          # Display manager
-          - sddm
-
         state: present
       tags:
         - desktop
