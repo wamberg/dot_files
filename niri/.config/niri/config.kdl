@@ -30,6 +30,12 @@ spawn-at-startup "waybar"
 spawn-at-startup "wlsunset" "-l" "30" "-L" "-100"
 spawn-at-startup "xwayland-satellite"
 
+prefer-no-csd
+window-rule {
+  geometry-corner-radius 8
+  clip-to-geometry true
+}
+
 binds {
   Mod+Shift+Slash { show-hotkey-overlay; }
 
