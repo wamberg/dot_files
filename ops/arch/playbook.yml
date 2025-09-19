@@ -10,6 +10,7 @@
           - btop
           - ca-certificates
           - curl
+          - fd
           - ffmpeg
           - fzf
           - git
@@ -205,10 +206,11 @@
       become_user: aur_builder # NOTE: This user must be pre-configured with passwordless sudo
       tags:
         - aur
-    - name: System | Packages | Install niri compositor
+    - name: System | Packages | Install essential AUR desktop packages
       kewlfft.aur.aur:
-        name: niri
-        update_cache: yes
+        name:
+          - google-chrome
+          - niri
       become: yes
       become_user: aur_builder
       tags:
@@ -217,18 +219,22 @@
       community.general.pacman:
         name:
           # Applications
+          - firefox-developer-edition
           - kitty
 
           # Desktop Environment
-          - waybar
           - fuzzel
           - sddm
+          - swaybg
           - swaylock
+          - waybar
+          - wlsunset
+          - xwayland-satellite
 
           # System Utilities
+          - gvfs
           - mako
           - playerctl
-          - gvfs
 
           # Screenshots and clipboard
           - grim
@@ -236,16 +242,16 @@
           - wl-clipboard
 
           # Audio system
+          - pavucontrol
           - pipewire
           - pipewire-alsa
           - pipewire-pulse
           - wireplumber
-          - pavucontrol
 
           # Fonts
-          - ttf-firacode-nerd
-          - noto-fonts-emoji
           - adwaita-icon-theme
+          - noto-fonts-emoji
+          - ttf-firacode-nerd
         state: present
       tags:
         - desktop
