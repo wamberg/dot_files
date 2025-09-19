@@ -49,7 +49,12 @@ To run only the AUR-related tasks:
 
 In a virtualbox guest machine:
 
-1. Perform a minimal installation with the `archinstall` script
+1. Start a new machine with the arch linux iso mounted
+2. Perform a minimal installation, on the guest OS run:
+  1. `pacman -Sy`
+  2. `pacman -S archlinux-keyring`
+  3. `pacman -S archinstall`
+  3. `archinstall`, make sure to create the user, "wamberg"
 2. Enable directory sharing, on the guest OS run:
   1. `sudo pacman -S virtualbox-guest-utils linux-headers`
   2. `sudo systemctl enable vboxservice.service`
