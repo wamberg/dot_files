@@ -1,0 +1,11 @@
+{
+  "layer": "top",
+  "position": "top",
+  "modules-center": ["clock"],
+    "clock": {
+        "timezone": "US/Eastern",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "{:%b %d %H:%M}"
+    },
+ }
+}
