@@ -38,7 +38,7 @@ binds {
   Alt+C hotkey-overlay-title="chrome" { spawn "google-chrome-stable"; }
   Alt+F hotkey-overlay-title="firefox" { spawn "firefox-developer-edition"; }
   Alt+K hotkey-overlay-title="kitty" { spawn "kitty"; }
-  Alt+P hotkey-overlay-title="1password" { spawn "1password"; }
+  Alt+P hotkey-overlay-title="1password" { spawn "env" "DISPLAY=:1" "1password"; }
   Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
   ////

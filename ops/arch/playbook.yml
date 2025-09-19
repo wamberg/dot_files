@@ -16,6 +16,7 @@
           - git
           - jq
           - mise
+          - openssh
           - sqlite
           - stow
           - sudo
@@ -143,6 +144,29 @@
         dest: "/home/wamberg/.tmux/plugins/tpm"
         depth: 1
       when: not tpm_git_stat.stat.exists
+      tags:
+        - dev
+    - name: User | wamberg | Ensure .ssh directory exists
+      become: yes
+      become_user: wamberg
+      ansible.builtin.file:
+        path: /home/wamberg/.ssh
+        state: directory
+        mode: '0700'
+      tags:
+        - dev
+    - name: User | wamberg | Configure 1Password SSH agent
+      become: yes
+      become_user: wamberg
+      ansible.builtin.blockinfile:
+        path: /home/wamberg/.ssh/config
+        create: yes
+        owner: wamberg
+        group: wamberg
+        mode: '0600'
+        block: |
+          Host *
+              IdentityAgent ~/.1password/agent.sock
       tags:
         - dev
     - name: System | Upgrade all packages
