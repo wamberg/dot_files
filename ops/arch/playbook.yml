@@ -17,6 +17,7 @@
           - jq
           - mise
           - openssh
+          - rsync
           - sqlite
           - stow
           - sudo

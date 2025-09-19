@@ -34,11 +34,20 @@ binds {
   Mod+Shift+Slash { show-hotkey-overlay; }
 
   // applications
-  Super+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-  Alt+C hotkey-overlay-title="chrome" { spawn "google-chrome-stable"; }
-  Alt+F hotkey-overlay-title="firefox" { spawn "firefox-developer-edition"; }
-  Alt+K hotkey-overlay-title="kitty" { spawn "kitty"; }
-  Alt+P hotkey-overlay-title="1password" { spawn "env" "DISPLAY=:1" "1password"; }
+  Super+Space hotkey-overlay-title="fuzzel" { spawn "fuzzel"; }
+  Alt+C hotkey-overlay-title="chrome" {
+    spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "google-chrome" "google-chrome-stable";
+  }
+  Alt+F hotkey-overlay-title="firefox" {
+    spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "firefox-developer-edition";
+  }
+  Alt+K hotkey-overlay-title="kitty" {
+    spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "kitty";
+  }
+  Alt+Shift+K hotkey-overlay-title="New kitty" { spawn "kitty"; }
+  Alt+P hotkey-overlay-title="1password" {
+    spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "1Password" "env" "DISPLAY=:1" "1password";
+  }
   Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
   ////
