@@ -30,6 +30,7 @@ spawn-at-startup "waybar"
 spawn-at-startup "wlsunset" "-l" "30" "-L" "-100"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+spawn-at-startup "sh" "-c" "swaybg -i \"$(find /home/wamberg/Pictures/wallpaper/ -type f | shuf -n 1)\""
 
 prefer-no-csd
 window-rule {
@@ -123,4 +124,8 @@ binds {
   Mod+2 { focus-workspace 2; }
   Mod+Shift+1 { move-column-to-workspace 1; }
   Mod+Shift+2 { move-column-to-workspace 2; }
+  Mod+W       {
+    spawn "sh" "-c" "swaybg -i \"$(find /home/wamberg/Pictures/wallpaper/ -type f | shuf -n 1)\"";
+  }
+
 }
