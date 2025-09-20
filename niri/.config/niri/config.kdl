@@ -47,6 +47,9 @@ binds {
 
   // applications
   Super+Space hotkey-overlay-title="fuzzel" { spawn "fuzzel"; }
+  Alt+B hotkey-overlay-title="OBS" {
+    spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "com.obsproject.Studio" "obs";
+  }
   Alt+C hotkey-overlay-title="chrome" {
     spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "google-chrome" "google-chrome-stable";
   }

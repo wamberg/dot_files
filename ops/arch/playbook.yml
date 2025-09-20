@@ -269,6 +269,8 @@
           - discord
           - firefox-developer-edition
           - kitty
+          - libreoffice-fresh
+          - obs-studio
           - telegram-desktop
           # Desktop Environment
           - fuzzel
@@ -279,10 +281,14 @@
           - wlsunset
           - xwayland-satellite
           # System Utilities
+          - amd-ucode
           - gvfs
+          - libva-mesa-driver # Hardware video acceleration for AMD
+          - linux-firmware # Firmware for hardware
           - mako
           - playerctl
           - polkit-gnome
+          - v4l2loopback-dkms
           # Screenshots and clipboard
           - grim
           - slurp
@@ -298,6 +304,16 @@
           - noto-fonts-emoji
           - ttf-firacode-nerd
         state: present
+      tags:
+        - desktop
+    - name: System | Kernel | Ensure v4l2loopback is loaded on boot
+      ansible.builtin.lineinfile:
+        path: /etc/modules-load.d/v4l2loopback.conf
+        line: v4l2loopback
+        create: yes
+        owner: root
+        group: root
+        mode: '0644'
       tags:
         - desktop
     - name: Service | SDDM | Enable display manager
