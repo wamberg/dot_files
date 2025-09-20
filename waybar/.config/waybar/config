@@ -1,19 +1,24 @@
 {
   "layer": "top",
   "position": "top",
+  "spacing": 8,
+  "modules-left": ["niri/workspaces"],
   "modules-center": ["clock"],
   "modules-right": ["pulseaudio", "custom/power"],
+  "niri/workspaces": {
+    "format": "{icon}"
+  },
   "clock": {
     "timezone": "US/Eastern",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     "format": "{:%b %d %H:%M}"
   },
   "pulseaudio": {
-    "format": "{volume}% {icon}",
+    "format": "{icon}{volume}%",
     "format-icons": {
       "default": ["", "", ""]
     },
-    "format-muted": " Muted",
+    "format-muted": "Muted",
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "on-click-right": "pavucontrol",
     "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",

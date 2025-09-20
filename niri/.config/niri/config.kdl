@@ -36,6 +36,10 @@ window-rule {
   clip-to-geometry true
 }
 
+hotkey-overlay {
+  skip-at-startup
+}
+
 binds {
   Mod+Shift+Slash { show-hotkey-overlay; }
 
@@ -55,6 +59,7 @@ binds {
     spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "1Password" "env" "DISPLAY=:1" "1password";
   }
   Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+  Alt+W hotkey-overlay-title="Toggle Waybar" { spawn "killall" "-SIGUSR1" "waybar"; }
 
   ////
   // column actions
@@ -72,16 +77,16 @@ binds {
   Mod+K     { focus-window-or-workspace-up; }
   Mod+L     { focus-column-right; }
   Mod+Shift+H     { move-column-left; }
-  Mod+Shift+J     { move-window-down; }
-  Mod+Shift+K     { move-window-up; }
+  Mod+Shift+J     { move-window-down-or-to-workspace-down; }
+  Mod+Shift+K     { move-window-up-or-to-workspace-up; }
   Mod+Shift+L     { move-column-right; }
   Mod+WheelScrollDown      { focus-column-right; }
   Mod+WheelScrollUp       { focus-column-left; }
   Mod+Shift+WheelScrollDown { move-column-right; }
   Mod+Shift+WheelScrollUp  { move-column-left; }
 
-  Mod+Comma  { consume-window-into-column; }
-  Mod+Period { expel-window-from-column; }
+  Mod+Comma  { consume-or-expel-window-left; }
+  Mod+Period { consume-or-expel-window-right; }
   Mod+V       { toggle-window-floating; }
   Mod+Shift+V { switch-focus-between-floating-and-tiling; }
 
@@ -96,8 +101,6 @@ binds {
   // workspace actions
   Mod+1 { focus-workspace 1; }
   Mod+2 { focus-workspace 2; }
-  Mod+3 { focus-workspace 3; }
   Mod+Shift+1 { move-column-to-workspace 1; }
   Mod+Shift+2 { move-column-to-workspace 2; }
-  Mod+Shift+3 { move-column-to-workspace 3; }
 }
