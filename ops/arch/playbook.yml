@@ -257,6 +257,7 @@
           - google-chrome
           - niri
           - slack-desktop
+          - zoom
       become: yes
       become_user: aur_builder
       tags:
