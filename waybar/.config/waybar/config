@@ -2,7 +2,7 @@
   "layer": "top",
   "position": "top",
   "modules-center": ["clock"],
-  "modules-right": ["pulseaudio"],
+  "modules-right": ["pulseaudio", "custom/power"],
   "clock": {
     "timezone": "US/Eastern",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
@@ -19,5 +19,10 @@
     "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
     "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
     "scroll-step": 5
+  },
+  "custom/power": {
+    "format": "",
+    "on-click": "sh -c 'systemctl $(printf \"poweroff\\nreboot\\nsuspend\" | fuzzel --dmenu)'",
+    "tooltip": false
   }
 }
