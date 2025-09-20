@@ -267,6 +267,7 @@
           # Applications
           - firefox-developer-edition
           - kitty
+          - telegram-desktop
           # Desktop Environment
           - fuzzel
           - sddm

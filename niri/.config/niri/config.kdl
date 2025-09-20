@@ -62,6 +62,9 @@ binds {
   Alt+S hotkey-overlay-title="slack" {
     spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "Slack" "slack";
   }
+  Alt+T hotkey-overlay-title="telegram" {
+    spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "org.telegram.desktop" "Telegram";
+  }
 
   Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
   Alt+W hotkey-overlay-title="Toggle Waybar" { spawn "killall" "-SIGUSR1" "waybar"; }
