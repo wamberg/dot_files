@@ -87,6 +87,7 @@
         - bat
         - bin
         - claude
+        - fuzzel
         - git
         - glow
         - kitty
