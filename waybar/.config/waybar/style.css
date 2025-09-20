@@ -2,8 +2,8 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: Iosevka;
-    font-size: 11pt;
+    font-family: FiraCode Nerd Font Mono;
+    font-size: 8pt;
     min-height: 0;
 }
 window#waybar {
@@ -34,5 +34,5 @@ window#waybar {
 }
 #clock {
     padding: 0 4px;
-    background: @background;
+    background: @background-darker;
 }

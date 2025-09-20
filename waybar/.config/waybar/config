@@ -2,10 +2,22 @@
   "layer": "top",
   "position": "top",
   "modules-center": ["clock"],
-    "clock": {
-        "timezone": "US/Eastern",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format": "{:%b %d %H:%M}"
+  "modules-right": ["pulseaudio"],
+  "clock": {
+    "timezone": "US/Eastern",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format": "{:%b %d %H:%M}"
+  },
+  "pulseaudio": {
+    "format": "{volume}% {icon}",
+    "format-icons": {
+      "default": ["", "", ""]
     },
- }
+    "format-muted": " Muted",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "pavucontrol",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
+    "scroll-step": 5
+  }
 }
