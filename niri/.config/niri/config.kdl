@@ -49,6 +49,9 @@ binds {
   Alt+C hotkey-overlay-title="chrome" {
     spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "google-chrome" "google-chrome-stable";
   }
+  Alt+D hotkey-overlay-title="discord" {
+    spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "discord";
+  }
   Alt+F hotkey-overlay-title="firefox" {
     spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "firefox-developer-edition";
   }

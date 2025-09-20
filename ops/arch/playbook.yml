@@ -265,6 +265,7 @@
       community.general.pacman:
         name:
           # Applications
+          - discord
           - firefox-developer-edition
           - kitty
           - telegram-desktop
