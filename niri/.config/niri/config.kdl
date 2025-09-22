@@ -31,6 +31,7 @@ spawn-at-startup "wlsunset" "-l" "30" "-L" "-100"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-at-startup "sh" "-c" "swaybg -i \"$(find /home/wamberg/Pictures/wallpaper/ -type f | shuf -n 1)\""
+spawn-at-startup "v4l2-ctl" "--set-ctrl=zoom_absolute=160"
 
 prefer-no-csd
 window-rule {
