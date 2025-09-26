@@ -44,8 +44,6 @@ hotkey-overlay {
 }
 
 binds {
-  Mod+Shift+Slash { show-hotkey-overlay; }
-
   // applications
   Super+Space hotkey-overlay-title="fuzzel" { spawn "fuzzel"; }
   Alt+B hotkey-overlay-title="OBS" {
@@ -64,6 +62,9 @@ binds {
     spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "kitty";
   }
   Alt+Shift+K hotkey-overlay-title="New kitty" { spawn "kitty"; }
+  Alt+N hotkey-overlay-title="obsidian" {
+    spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "obsidian";
+  }
   Alt+P hotkey-overlay-title="1password" {
     spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "1Password" "env" "DISPLAY=:1" "1password";
   }
@@ -132,4 +133,5 @@ binds {
     spawn "sh" "-c" "swaybg -i \"$(find /home/wamberg/Pictures/wallpaper/ -type f | shuf -n 1)\"";
   }
 
+  Mod+Shift+Slash { show-hotkey-overlay; }
 }
