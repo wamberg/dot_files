@@ -48,6 +48,9 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type d --strip-cwd-prefix --hidden --follow --no-ignore-vcs --ignore-file ~/.gitignore_global"
 export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'
 
+# aws-vault
+export AWS_VAULT_BACKEND=pass
+
 # no history for commands that begin with space
 setopt histignorespace
 

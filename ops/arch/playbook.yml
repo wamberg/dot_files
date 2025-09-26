@@ -14,10 +14,12 @@
           - ffmpeg
           - fzf
           - git
+          - gnupg
           - jq
           - less
           - mise
           - openssh
+          - pass
           - rsync
           - sqlite
           - stow
@@ -173,6 +175,71 @@
               IdentityAgent ~/.1password/agent.sock
       tags:
         - dev
+    - name: User | wamberg | Check if GPG key exists
+      become: yes
+      become_user: wamberg
+      ansible.builtin.shell: gpg --list-secret-keys --keyid-format=long
+      register: gpg_keys
+      changed_when: false
+      failed_when: false
+      tags:
+        - dev
+    - name: User | wamberg | Create GPG batch file for key generation
+      become: yes
+      become_user: wamberg
+      ansible.builtin.copy:
+        content: |
+          Key-Type: RSA
+          Key-Length: 4096
+          Subkey-Type: RSA
+          Subkey-Length: 4096
+          Name-Real: wamberg
+          Name-Email: wamberg@{{ ansible_hostname }}
+          Expire-Date: 0
+          %no-protection
+          %commit
+        dest: /tmp/gpg_batch_file
+        mode: '0600'
+      when: gpg_keys.stdout == ""
+      tags:
+        - dev
+    - name: User | wamberg | Generate GPG key
+      become: yes
+      become_user: wamberg
+      ansible.builtin.shell: gpg --batch --generate-key /tmp/gpg_batch_file
+      when: gpg_keys.stdout == ""
+      tags:
+        - dev
+    - name: User | wamberg | Clean up GPG batch file
+      ansible.builtin.file:
+        path: /tmp/gpg_batch_file
+        state: absent
+      when: gpg_keys.stdout == ""
+      tags:
+        - dev
+    - name: User | wamberg | Get GPG key ID
+      become: yes
+      become_user: wamberg
+      ansible.builtin.shell: gpg --list-secret-keys --keyid-format=long | grep sec | head -1 | sed 's/.*\/\([A-F0-9]\{16\}\).*/\1/'
+      register: gpg_key_id
+      changed_when: false
+      tags:
+        - dev
+    - name: User | wamberg | Check if pass is initialized
+      become: yes
+      become_user: wamberg
+      ansible.builtin.stat:
+        path: /home/wamberg/.password-store/.gpg-id
+      register: pass_initialized
+      tags:
+        - dev
+    - name: User | wamberg | Initialize pass with GPG key
+      become: yes
+      become_user: wamberg
+      ansible.builtin.shell: pass init {{ gpg_key_id.stdout }}
+      when: not pass_initialized.stat.exists
+      tags:
+        - dev
     - name: System | Upgrade all packages
       community.general.pacman:
         update_cache: yes
@@ -305,7 +372,7 @@
           # Fonts
           - adwaita-icon-theme
           - noto-fonts-emoji
-          - ttf-firacode-nerd
+          - ttf-jetbrains-mono
         state: present
       tags:
         - desktop
