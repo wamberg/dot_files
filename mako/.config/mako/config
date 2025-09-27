@@ -1,0 +1,24 @@
+# Timeout in milliseconds (5000 = 5 seconds)
+default-timeout=5000
+
+# Position on screen
+anchor=top-center
+margin=10
+
+# Dracula color scheme
+background-color=#282a36
+text-color=#f8f8f2
+border-color=#bd93f9
+border-size=2
+border-radius=5
+
+# Dismiss notifications
+# - on-button-left: dismiss on left click
+# - on-button-right: dismiss on right click
+# - on-touch: dismiss on touch (for touchscreens)
+on-button-left=dismiss
+on-button-right=dismiss
+
+# Grouping (stack similar notifications)
+group-by=app-name
+max-history=10
