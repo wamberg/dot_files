@@ -101,6 +101,7 @@
         - glow
         - kitty
         - mise
+        - mpv
         - niri
         - npm
         - nvim
@@ -363,6 +364,7 @@
           - linux-firmware # Firmware for hardware
           - linux-headers
           - mako
+          - mpv
           - playerctl
           - polkit-gnome
           - v4l-utils
