@@ -25,6 +25,35 @@ layout {
   }
 }
 
+workspace "1"
+workspace "2"
+
+// Default rule for all applications until overridden
+window-rule {
+  default-column-width { proportion 0.38; }
+}
+
+window-rule {
+  match app-id="kitty"
+  default-column-width { proportion 0.62; }
+}
+
+window-rule {
+  match app-id="Slack"
+  open-on-workspace "2"
+}
+
+window-rule {
+  match app-id="discord"
+  open-on-workspace "2"
+}
+
+window-rule {
+  match app-id="org.telegram.desktop"
+  open-on-workspace "2"
+  default-column-width { proportion 0.2; }
+}
+
 spawn-at-startup "mako"
 spawn-at-startup "wlsunset" "-l" "30" "-L" "-100"
 spawn-at-startup "xwayland-satellite"
