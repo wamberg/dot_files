@@ -18,8 +18,11 @@
           - gnupg
           - jq
           - less
+          - libvorbis
+          - libvpx
           - mise
           - openssh
+          - opus
           - pass
           - rsync
           - sqlite
@@ -29,6 +32,8 @@
           - unzip
           - vifm
           - wget
+          - x264
+          - x265
           - xclip
           - zsh
         state: present
@@ -356,6 +361,7 @@
           - gvfs
           - libva-mesa-driver # Hardware video acceleration for AMD
           - linux-firmware # Firmware for hardware
+          - linux-headers
           - mako
           - playerctl
           - polkit-gnome

@@ -30,7 +30,7 @@ spawn-at-startup "wlsunset" "-l" "30" "-L" "-100"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-at-startup "sh" "-c" "swaybg -i \"$(find /home/wamberg/pics/wallpaper/ -type f | shuf -n 1)\""
-spawn-at-startup "v4l2-ctl" "--set-ctrl=zoom_absolute=160"
+spawn-at-startup "v4l2-ctl" "-d" "/dev/video1" "--set-ctrl=zoom_absolute=160"
 
 prefer-no-csd
 window-rule {
@@ -76,9 +76,7 @@ binds {
   }
 
   Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
-  Alt+W hotkey-overlay-title="Toggle Waybar" {
-    spawn "sh" "-c" "pkill waybar || waybar &";
-  }
+  Alt+W hotkey-overlay-title="Toggle Waybar" { spawn "sh" "-c" "pkill waybar || waybar &"; }
 
   ////
   // column actions
