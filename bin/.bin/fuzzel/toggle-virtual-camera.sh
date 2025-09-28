@@ -1,7 +1,22 @@
 #!/bin/bash
 
 # Check if virtual camera ffmpeg is running
-if pgrep -f "ffmpeg.*mjpeg.*video_size 1280x720.*video1.*video0" > /dev/null; then
+is_running() {
+    pgrep -f "ffmpeg.*mjpeg.*video_size 1280x720.*video1.*video0" > /dev/null
+}
+
+if [[ "$1" == "--status" ]]; then
+    # Return JSON status for waybar
+    if is_running; then
+        echo '{"text": "📹", "tooltip": "Virtual Camera Active", "class": "recording"}'
+    else
+        echo '{"text": "", "tooltip": "", "class": "inactive"}'
+    fi
+    exit 0
+fi
+
+# Original toggle functionality
+if is_running; then
     # Kill the virtual camera
     pkill -f "ffmpeg.*mjpeg.*video_size 1280x720.*video1.*video0"
     notify-send "Virtual Camera" "Stopped" -t 2000

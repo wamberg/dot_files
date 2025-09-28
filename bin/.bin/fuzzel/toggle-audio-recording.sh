@@ -1,7 +1,22 @@
 #!/bin/bash
 
 # Check if audio recording ffmpeg is running
-if pgrep -f "ffmpeg.*pulse.*@DEFAULT_SINK@.*@DEFAULT_SOURCE@.*amix" > /dev/null; then
+is_running() {
+    pgrep -f "ffmpeg.*pulse.*@DEFAULT_SINK@.*@DEFAULT_SOURCE@.*amix" > /dev/null
+}
+
+if [[ "$1" == "--status" ]]; then
+    # Return JSON status for waybar
+    if is_running; then
+        echo '{"text": "🎤", "tooltip": "Audio Recording Active", "class": "recording"}'
+    else
+        echo '{"text": "", "tooltip": "", "class": "inactive"}'
+    fi
+    exit 0
+fi
+
+# Original toggle functionality
+if is_running; then
     # Stop audio recording
     pkill -f "ffmpeg.*pulse.*@DEFAULT_SINK@.*@DEFAULT_SOURCE@.*amix"
     notify-send "Recording" "Audio recording stopped" -t 2000
