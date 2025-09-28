@@ -59,6 +59,14 @@ To run only the AUR-related tasks:
 
 Place wallpaper images in ~/pics/wallpaper
 
+### whisper.cpp
+
+It's installed through the AUR, but I still need to pull models. Right now I:
+- `gcl https://github.com/ggml-org/whisper.cpp.git /opt/`
+- `cd /opt/whisper.cpp/`
+- `sh ./models/download-ggml-model.sh base.en`
+I could (should?) sort this out through Ansible
+
 ## Testing
 
 In a virtualbox guest machine:
