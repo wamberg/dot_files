@@ -14,11 +14,11 @@
     "format": "{:%b %d %H:%M}"
   },
   "pulseaudio": {
-    "format": "{icon}{volume}%",
+    "format": "{icon} {volume}%",
     "format-icons": {
-      "default": [" ", " ", " "]
+      "default": ["🔈", "🔉", "🔊"]
     },
-    "format-muted": "Muted",
+    "format-muted": "🔇 Muted",
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "on-click-right": "pavucontrol",
     "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
@@ -26,7 +26,7 @@
     "scroll-step": 5
   },
   "custom/power": {
-    "format": "",
+    "format": "⏻",
     "on-click": "sh -c 'systemctl $(printf \"poweroff\\nreboot\\nsuspend\" | fuzzel --dmenu)'",
     "tooltip": false
   }
