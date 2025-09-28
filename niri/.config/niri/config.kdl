@@ -114,6 +114,12 @@ binds {
   Alt+W hotkey-overlay-title="Toggle Waybar" { spawn "sh" "-c" "pkill waybar || waybar &"; }
 
   ////
+  // menus
+  Alt+R hotkey-overlay-title="recording menu" {
+    spawn "/home/wamberg/.bin/fuzzel/recording-menu.sh";
+  }
+
+  ////
   // column actions
   Alt+Tab repeat=false { focus-window-previous; }
   Mod+Tab repeat=false { toggle-overview; }
