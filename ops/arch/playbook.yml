@@ -343,6 +343,7 @@
           - google-chrome
           - niri
           - slack-desktop
+          - whisper.cpp
           - zoom
       become: yes
       become_user: aur_builder

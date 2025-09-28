@@ -3,7 +3,7 @@ local M = {}
 -- Configuration
 M.model = "base.en"
 M.whisper_home = "/opt/whisper.cpp"
-M.whisper_path = "/opt/whisper.cpp/build/bin/whisper-cli"
+M.whisper_path = "/usr/bin/whisper-cli"
 
 -- Generate unique temp file base name
 M.tmp_file = vim.fn.tempname() .. "_whisper"
@@ -32,9 +32,12 @@ end
 function M.record_audio()
   local audio_file = M.tmp_file .. ".wav"
 
-  if vim.fn.executable("rec") == 1 then
-    -- Start recording in background
-    local record_cmd = string.format("rec -q -t wav %s rate 16k channels 1 2>/dev/null", audio_file)
+  if vim.fn.executable("ffmpeg") == 1 then
+    -- Start recording in background - simplified for microphone-only transcription
+    local record_cmd = string.format(
+      "ffmpeg -f pulse -i @DEFAULT_SOURCE@ -ar 16000 -ac 1 -c:a pcm_s16le %s -y 2>/dev/null",
+      audio_file
+    )
 
     vim.notify("Recording... Press ENTER to stop", vim.log.levels.INFO)
 
@@ -52,7 +55,7 @@ function M.record_audio()
 
     return true
   else
-    vim.notify("SoX 'rec' command not found. Install SoX package.", vim.log.levels.ERROR)
+    vim.notify("ffmpeg command not found. Install ffmpeg package.", vim.log.levels.ERROR)
     return false
   end
 end
