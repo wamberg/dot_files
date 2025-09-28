@@ -40,6 +40,26 @@ window#waybar {
     padding-right: 30px;
 }
 
+#custom-virtual-camera,
+#custom-desktop-recording,
+#custom-audio-recording {
+    margin-right: 8px;
+}
+
+#custom-virtual-camera.inactive,
+#custom-desktop-recording.inactive,
+#custom-audio-recording.inactive {
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+}
+
+#custom-virtual-camera.recording,
+#custom-desktop-recording.recording,
+#custom-audio-recording.recording {
+    color: @red;
+}
+
 #pulseaudio {
     margin-right: 15px;
 }

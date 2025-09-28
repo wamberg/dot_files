@@ -4,7 +4,7 @@
   "spacing": 8,
   "modules-left": ["niri/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["pulseaudio", "custom/power"],
+  "modules-right": ["custom/virtual-camera", "custom/desktop-recording", "custom/audio-recording", "pulseaudio", "custom/power"],
   "niri/workspaces": {
     "format": "{icon}"
   },
@@ -24,6 +24,24 @@
     "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
     "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
     "scroll-step": 5
+  },
+  "custom/virtual-camera": {
+    "exec": "~/dev/dot_files/bin/.bin/fuzzel/toggle-virtual-camera.sh --status",
+    "return-type": "json",
+    "interval": 2,
+    "on-click": "~/dev/dot_files/bin/.bin/fuzzel/toggle-virtual-camera.sh"
+  },
+  "custom/desktop-recording": {
+    "exec": "~/dev/dot_files/bin/.bin/fuzzel/toggle-desktop-recording.sh --status",
+    "return-type": "json",
+    "interval": 2,
+    "on-click": "~/dev/dot_files/bin/.bin/fuzzel/toggle-desktop-recording.sh"
+  },
+  "custom/audio-recording": {
+    "exec": "~/dev/dot_files/bin/.bin/fuzzel/toggle-audio-recording.sh --status",
+    "return-type": "json",
+    "interval": 2,
+    "on-click": "~/dev/dot_files/bin/.bin/fuzzel/toggle-audio-recording.sh"
   },
   "custom/power": {
     "format": "⏻",
