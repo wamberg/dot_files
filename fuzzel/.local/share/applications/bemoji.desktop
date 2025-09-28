@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Bemoji
+Comment=Emoji picker with fuzzel/bemenu/wofi/rofi support
+Exec=/usr/bin/bemoji
+Icon=face-smile
+Terminal=false
+Type=Application
+Categories=Utility;Accessibility;
+Keywords=emoji;picker;emoticon;unicode;
+StartupNotify=false
