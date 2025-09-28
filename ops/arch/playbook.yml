@@ -55,11 +55,11 @@
         enabled: yes
       tags:
         - dev
-    - name: User | wamberg | Set shell to zsh and add to docker, wheel groups
+    - name: User | wamberg | Set shell to zsh and add to docker, wheel, video groups
       ansible.builtin.user:
         name: wamberg
         shell: /bin/zsh
-        groups: docker,wheel
+        groups: docker,wheel,video
         append: yes
       tags:
         - dev
