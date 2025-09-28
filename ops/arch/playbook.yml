@@ -347,6 +347,7 @@
           - firefox-developer-edition
           - kitty
           - libreoffice-fresh
+          - mpv
           - obs-studio
           - obsidian
           - telegram-desktop
@@ -365,15 +366,15 @@
           - linux-firmware # Firmware for hardware
           - linux-headers
           - mako
-          - mpv
           - playerctl
           - polkit-gnome
-          - v4l-utils
-          - v4l2loopback-dkms
-          # Screenshots and clipboard
+          - wl-clipboard
+          # Audio/Video
           - grim
           - slurp
-          - wl-clipboard
+          - v4l-utils
+          - v4l2loopback-dkms
+          - wf-recorder
           # Audio system
           - pavucontrol
           - pipewire

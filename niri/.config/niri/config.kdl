@@ -31,7 +31,6 @@ workspace "2"
 // Default rule for all applications until overridden
 window-rule {
   default-column-width { proportion 0.38; }
-  open-on-workspace "2"
 }
 
 window-rule {
@@ -46,13 +45,19 @@ window-rule {
 }
 
 window-rule {
-  match app-id="1Password"
-  open-on-workspace "1"
+  match app-id="Slack"
+  open-on-workspace "2"
+}
+
+window-rule {
+  match app-id="discord"
+  open-on-workspace "2"
 }
 
 window-rule {
   match app-id="org.telegram.desktop"
   default-column-width { proportion 0.2; }
+  open-on-workspace "2"
 }
 
 spawn-at-startup "mako"
