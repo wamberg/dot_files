@@ -36,3 +36,14 @@ window#waybar {
     padding: 0 4px;
     background: @background-darker;
 }
+.modules-right {
+    padding-right: 30px;
+}
+
+#pulseaudio {
+    margin-right: 15px;
+}
+
+#custom-power {
+    margin-left: 15px;
+}
