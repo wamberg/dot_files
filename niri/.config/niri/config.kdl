@@ -31,26 +31,22 @@ workspace "2"
 // Default rule for all applications until overridden
 window-rule {
   default-column-width { proportion 0.38; }
+  open-on-workspace "2"
 }
 
 window-rule {
   match app-id="kitty"
   default-column-width { proportion 0.62; }
+  open-on-workspace "1"
 }
 
 window-rule {
-  match app-id="Slack"
-  open-on-workspace "2"
-}
-
-window-rule {
-  match app-id="discord"
-  open-on-workspace "2"
+  match app-id="firefox-developer-edition"
+  open-on-workspace "1"
 }
 
 window-rule {
   match app-id="org.telegram.desktop"
-  open-on-workspace "2"
   default-column-width { proportion 0.2; }
 }
 
