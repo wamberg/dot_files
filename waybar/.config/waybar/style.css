@@ -54,7 +54,10 @@ window#waybar {
     padding: 0;
 }
 
-#custom-virtual-camera.recording,
+#custom-virtual-camera.recording {
+    color: @green;
+}
+
 #custom-desktop-recording.recording,
 #custom-audio-recording.recording {
     color: @red;

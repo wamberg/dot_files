@@ -14,7 +14,7 @@
     "format": "{:%b %d %H:%M}"
   },
   "pulseaudio": {
-    "format": "{icon} {volume}%",
+    "format": "{icon}{volume}%",
     "format-icons": {
       "default": ["🔈", "🔉", "🔊"]
     },

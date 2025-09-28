@@ -8,7 +8,7 @@ is_running() {
 if [[ "$1" == "--status" ]]; then
     # Return JSON status for waybar
     if is_running; then
-        echo '{"text": "🎥", "tooltip": "Desktop Recording Active", "class": "recording"}'
+        echo '{"text": "● D-REC", "tooltip": "Desktop Recording Active", "class": "recording"}'
     else
         echo '{"text": "", "tooltip": "", "class": "inactive"}'
     fi

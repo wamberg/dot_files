@@ -8,14 +8,14 @@ is_running() {
 if [[ "$1" == "--status" ]]; then
     # Return JSON status for waybar
     if is_running; then
-        echo '{"text": "📹", "tooltip": "Virtual Camera Active", "class": "recording"}'
+        echo '{"text": "● CAM", "tooltip": "Virtual Camera Active", "class": "recording"}'
     else
         echo '{"text": "", "tooltip": "", "class": "inactive"}'
     fi
     exit 0
 fi
 
-# Original toggle functionality
+# Toggle functionality
 if is_running; then
     # Kill the virtual camera
     pkill -f "ffmpeg.*mjpeg.*video_size 1280x720.*video1.*video0"
