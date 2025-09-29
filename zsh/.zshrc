@@ -80,7 +80,7 @@ alias pca="pre-commit run --all-files"
 alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
 alias rs="rsync -avP"
 alias ta="tmux attach"
-alias xc="xclip -sel clip"
+alias xc="wl-copy"
 alias zr=",zr.sh"
 
 # docker
@@ -101,7 +101,7 @@ alias tfa="terraform apply"
 
 # Echo and copy to clipboard
 ec() {
-  printf '%s' "$1" | xclip -sel clip
+  printf '%s' "$1" | wl-copy
 }
 
 # cd into a fuzzy (via fzf) directory
