@@ -115,7 +115,7 @@ binds {
 
   ////
   // menus
-  Alt+R hotkey-overlay-title="recording menu" {
+  Super+7 hotkey-overlay-title="recording menu" {
     spawn "/home/wamberg/.bin/fuzzel/recording-menu.sh";
   }
 

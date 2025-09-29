@@ -1,5 +1,5 @@
 set dotfiles
-set grepprg='ag --line-numbers %i %a %s'
+set grepprg='rg --line-number --hidden %i %a %s'
 set ignorecase
 set incsearch
 set nofollowlinks
@@ -19,5 +19,12 @@ only
 
 mark h ~/
 
-colorscheme dracula
+" fzf file finder
+command! FZFfind :execute 'goto' fnameescape(term('fd --type f --hidden --follow | fzf 2>/dev/tty'))
+nnoremap <c-p> :FZFfind<cr>
 
+" fzf directory finder
+command! FZFcd :execute 'cd' fnameescape(term('fd --type d --hidden --follow | fzf 2>/dev/tty'))
+nnoremap <c-o> :FZFcd<cr>
+
+colorscheme dracula

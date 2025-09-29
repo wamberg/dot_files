@@ -9,6 +9,7 @@
           - bat
           - btop
           - ca-certificates
+          - cryptsetup
           - curl
           - fd
           - ffmpeg
@@ -24,11 +25,13 @@
           - openssh
           - opus
           - pass
+          - ripgrep
           - rsync
           - sqlite
           - stow
           - sudo
           - tmux
+          - udisks2
           - unzip
           - vifm
           - wget
