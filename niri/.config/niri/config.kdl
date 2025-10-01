@@ -65,7 +65,7 @@ spawn-at-startup "wlsunset" "-l" "30" "-L" "-100"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-at-startup "sh" "-c" "swaybg -i \"$(find /home/wamberg/pics/wallpaper/ -type f | shuf -n 1)\""
-spawn-at-startup "v4l2-ctl" "-d" "/dev/video1" "--set-ctrl=zoom_absolute=160"
+spawn-at-startup "v4l2-ctl" "-d" "/dev/video1" "--set-ctrl=zoom_absolute=180"
 
 prefer-no-csd
 window-rule {
@@ -109,9 +109,11 @@ binds {
   Alt+T hotkey-overlay-title="telegram" {
     spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "org.telegram.desktop" "Telegram";
   }
-
-  Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+  Mod+Ctrl+Shift+L hotkey-overlay-title="Lock Display" {
+    spawn "sh" "-c" "swaylock &";
+  }
   Alt+W hotkey-overlay-title="Toggle Waybar" { spawn "sh" "-c" "pkill waybar || waybar &"; }
+
 
   ////
   // menus
