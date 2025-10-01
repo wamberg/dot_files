@@ -115,8 +115,8 @@ binds {
 
   ////
   // menus
-  Super+7 hotkey-overlay-title="recording menu" {
-    spawn "/home/wamberg/.bin/fuzzel/recording-menu.sh";
+  Mod+7 hotkey-overlay-title="A/V menu" {
+    spawn "/home/wamberg/.bin/fuzzel/audio-video-menu.sh";
   }
 
   ////

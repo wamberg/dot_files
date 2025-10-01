@@ -14,11 +14,16 @@
     "format": "{:%b %d %H:%M}"
   },
   "pulseaudio": {
-    "format": "{icon}{volume}%",
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "{icon} {volume}%",
+    "format-muted": "🔇 Muted",
     "format-icons": {
+      "alsa_output.usb-Focusrite_Scarlett_2i2_USB_Y8CZJFM0AA378C-00.HiFi__Line1__sink": "🎧",
+      "alsa_output.usb-Focusrite_Scarlett_2i2_USB_Y8CZJFM0AA378C-00.HiFi__Line1__sink-muted": "🎧",
+      "alsa_output.pci-0000_09_00.1.hdmi-stereo-extra4": "🔊",
+      "alsa_output.pci-0000_09_00.1.hdmi-stereo-extra4-muted": "🔊",
       "default": ["🔈", "🔉", "🔊"]
     },
-    "format-muted": "🔇 Muted",
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "on-click-right": "pavucontrol",
     "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
