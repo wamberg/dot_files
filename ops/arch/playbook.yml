@@ -346,6 +346,7 @@
           - google-chrome
           - niri
           - slack-desktop
+          - ttf-ms-fonts
           - whisper.cpp
           - zoom
       become: yes
@@ -359,6 +360,7 @@
           - calibre
           - discord
           - firefox-developer-edition
+          - foliate
           - kitty
           - libreoffice-fresh
           - mpv
@@ -366,6 +368,7 @@
           - obsidian
           - telegram-desktop
           # Desktop Environment
+          - adwaita-icon-theme
           - fuzzel
           - sddm
           - swaybg
@@ -396,7 +399,6 @@
           - pipewire-pulse
           - wireplumber
           # Fonts
-          - adwaita-icon-theme
           - noto-fonts-emoji
           - ttf-jetbrains-mono
         state: present
