@@ -1,7 +1,7 @@
 [tools]
 yamlfmt = "latest"
 shellcheck = "latest"
-stylua = 'latest'
+stylua = "2.3.0"
 
 [alias]
 # specify a custom repo url
