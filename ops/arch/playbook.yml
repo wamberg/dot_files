@@ -356,6 +356,7 @@
       community.general.pacman:
         name:
           # Applications
+          - calibre
           - discord
           - firefox-developer-edition
           - kitty
