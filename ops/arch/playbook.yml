@@ -401,6 +401,17 @@
         state: present
       tags:
         - desktop
+    - name: System | Kernel | Configure v4l2loopback module parameters
+      ansible.builtin.copy:
+        content: |
+          # v4l2loopback with exclusive_caps for app compatibility
+          options v4l2loopback devices=1 video_nr=0 card_label="Virtual Camera" exclusive_caps=1
+        dest: /etc/modprobe.d/v4l2loopback.conf
+        owner: root
+        group: root
+        mode: '0644'
+      tags:
+        - desktop
     - name: System | Kernel | Ensure v4l2loopback is loaded on boot
       ansible.builtin.lineinfile:
         path: /etc/modules-load.d/v4l2loopback.conf
