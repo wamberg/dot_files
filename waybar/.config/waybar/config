@@ -20,8 +20,10 @@
     "format-icons": {
       "alsa_output.usb-Focusrite_Scarlett_2i2_USB_Y8CZJFM0AA378C-00.HiFi__Line1__sink": "🎧",
       "alsa_output.usb-Focusrite_Scarlett_2i2_USB_Y8CZJFM0AA378C-00.HiFi__Line1__sink-muted": "🎧",
-      "alsa_output.pci-0000_09_00.1.hdmi-stereo-extra4": "🔊",
-      "alsa_output.pci-0000_09_00.1.hdmi-stereo-extra4-muted": "🔊",
+      "alsa_output.pci-0000_09_00.1.hdmi-stereo-extra4": "🖥️",
+      "alsa_output.pci-0000_09_00.1.hdmi-stereo-extra4-muted": "🖥️",
+      "bluez_output.94_4F_4C_03_D5_4C.1": "📢",
+      "bluez_output.94_4F_4C_03_D5_4C.1-muted": "📢",
       "default": ["🔈", "🔉", "🔊"]
     },
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
