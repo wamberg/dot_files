@@ -104,6 +104,11 @@ ec() {
   printf '%s' "$1" | wl-copy
 }
 
+# Copy file to clipboard
+cf() {
+  cat "$1" | wl-copy
+}
+
 # cd into a fuzzy (via fzf) directory
 c() {
   local dest="${1:-${HOME}/dev}"
