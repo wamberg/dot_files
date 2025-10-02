@@ -378,6 +378,9 @@
           - xwayland-satellite
           # System Utilities
           - amd-ucode
+          - blueman
+          - bluez
+          - bluez-utils
           - gvfs
           - libva-mesa-driver # Hardware video acceleration for AMD
           - linux-firmware # Firmware for hardware
@@ -443,5 +446,12 @@
         - pipewire.service
         - pipewire-pulse.service
         - wireplumber.service
+      tags:
+        - desktop
+    - name: Service | Bluetooth | Enable and start service
+      ansible.builtin.systemd:
+        name: bluetooth
+        state: started
+        enabled: yes
       tags:
         - desktop
