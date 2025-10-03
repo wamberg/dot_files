@@ -71,6 +71,7 @@ require("lazy").setup({
   },
   "ojroques/nvim-bufdel",
   "RRethy/vim-illuminate",
+  "swaits/universal-clipboard.nvim",
   { "tpope/vim-surround" },
   {
     "windwp/nvim-autopairs",
