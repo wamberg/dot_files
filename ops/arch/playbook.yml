@@ -181,6 +181,24 @@
         mode: '0755'
       tags:
         - dev
+    - name: User | wamberg | Ensure wallpaper directory exists
+      become: yes
+      become_user: wamberg
+      ansible.builtin.file:
+        path: /home/wamberg/pics/wallpaper
+        state: directory
+        mode: '0755'
+      tags:
+        - dev
+    - name: User | wamberg | Ensure calibre directory exists
+      become: yes
+      become_user: wamberg
+      ansible.builtin.file:
+        path: /home/wamberg/docs/calibre
+        state: directory
+        mode: '0755'
+      tags:
+        - dev
     - name: User | wamberg | Configure 1Password SSH agent
       become: yes
       become_user: wamberg
