@@ -174,7 +174,7 @@ binds {
   Mod+Shift+1 { move-column-to-workspace 1; }
   Mod+Shift+2 { move-column-to-workspace 2; }
   Mod+W       {
-    spawn "sh" "-c" "swaybg -i \"$(find /home/wamberg/Pictures/wallpaper/ -type f | shuf -n 1)\"";
+    spawn "sh" "-c" "swaybg -i \"$(find /home/wamberg/pics/wallpaper/ -type f | shuf -n 1)\"";
   }
 
   Mod+Shift+Slash { show-hotkey-overlay; }
