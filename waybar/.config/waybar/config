@@ -52,7 +52,7 @@
   },
   "custom/power": {
     "format": "⏻",
-    "on-click": "sh -c 'systemctl $(printf \"poweroff\\nreboot\\nsuspend\" | fuzzel --dmenu)'",
+    "on-click": "sh -c 'systemctl $(printf \"poweroff\\nreboot\\nhibernate\" | fuzzel --dmenu)'",
     "tooltip": false
   }
 }

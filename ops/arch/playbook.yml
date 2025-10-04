@@ -199,6 +199,78 @@
         mode: '0755'
       tags:
         - dev
+    - name: System | Power | Create swapfile for hibernation
+      ansible.builtin.command:
+        cmd: dd if=/dev/zero of=/swapfile bs=1M count=16384
+        creates: /swapfile
+      tags:
+        - hibernation
+    - name: System | Power | Set swapfile permissions
+      ansible.builtin.file:
+        path: /swapfile
+        mode: '0600'
+        owner: root
+        group: root
+      tags:
+        - hibernation
+    - name: System | Power | Format swapfile
+      ansible.builtin.command:
+        cmd: mkswap /swapfile
+      when: ansible_check_mode == false
+      tags:
+        - hibernation
+    - name: System | Power | Add swapfile to fstab
+      ansible.builtin.lineinfile:
+        path: /etc/fstab
+        line: "/swapfile none swap defaults 0 0"
+        state: present
+      tags:
+        - hibernation
+    - name: System | Power | Enable swapfile
+      ansible.builtin.command:
+        cmd: swapon /swapfile
+      register: swapon_result
+      changed_when: swapon_result.rc == 0
+      failed_when: false
+      tags:
+        - hibernation
+    - name: System | Power | Get swapfile offset
+      ansible.builtin.shell: filefrag -v /swapfile | awk '$1=="0:" {print substr($4, 1, length($4)-2)}'
+      register: swapfile_offset
+      changed_when: false
+      tags:
+        - hibernation
+    - name: System | Power | Get root partition UUID
+      ansible.builtin.shell: blkid -s UUID -o value $(findmnt -n -o SOURCE /)
+      register: root_uuid
+      changed_when: false
+      tags:
+        - hibernation
+    - name: System | Power | Configure GRUB for hibernation
+      ansible.builtin.lineinfile:
+        path: /etc/default/grub
+        regexp: '^GRUB_CMDLINE_LINUX_DEFAULT='
+        line: 'GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet resume=UUID={{ root_uuid.stdout }} resume_offset={{ swapfile_offset.stdout }}"'
+        backup: yes
+      notify: update grub config
+      tags:
+        - hibernation
+    - name: System | Power | Add resume hook to mkinitcpio
+      ansible.builtin.lineinfile:
+        path: /etc/mkinitcpio.conf
+        regexp: '^HOOKS='
+        line: 'HOOKS=(base udev autodetect keyboard keymap consolefont modconf block filesystems fsck resume)'
+        backup: yes
+      notify: regenerate initramfs
+      tags:
+        - hibernation
+    - name: System | Power | Test hibernate capability
+      ansible.builtin.command: systemctl hibernate --dry-run
+      register: hibernate_test
+      failed_when: hibernate_test.rc != 0
+      changed_when: false
+      tags:
+        - hibernation
     - name: User | wamberg | Configure 1Password SSH agent
       become: yes
       become_user: wamberg
@@ -299,6 +371,11 @@
       when: orphans.stdout != ""
       tags:
         - upgrade
+  handlers:
+    - name: update grub config
+      ansible.builtin.command: grub-mkconfig -o /boot/grub/grub.cfg
+    - name: regenerate initramfs
+      ansible.builtin.command: mkinitcpio -P
     - name: User | aur_builder | Create user
       ansible.builtin.user:
         name: aur_builder
