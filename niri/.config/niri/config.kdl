@@ -66,6 +66,7 @@ spawn-at-startup "xwayland-satellite"
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-at-startup "sh" "-c" "swaybg -i \"$(find /home/wamberg/pics/wallpaper/ -type f | shuf -n 1)\""
 spawn-at-startup "v4l2-ctl" "-d" "/dev/video1" "--set-ctrl=zoom_absolute=180"
+spawn-at-startup "/home/wamberg/.bin/chat-notification-daemon.sh"
 
 prefer-no-csd
 window-rule {

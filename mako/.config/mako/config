@@ -22,3 +22,10 @@ on-button-right=dismiss
 # Grouping (stack similar notifications)
 group-by=app-name
 max-history=10
+
+# Block chat app notifications - these will be handled by waybar
+[app-name="Slack"]
+invisible=true
+
+[app-name="Telegram Desktop"]
+invisible=true

@@ -4,7 +4,15 @@
   "spacing": 8,
   "modules-left": ["niri/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["custom/virtual-camera", "custom/desktop-recording", "custom/audio-recording", "pulseaudio", "custom/power"],
+  "modules-right": [
+    "custom/slack-notifications",
+    "custom/telegram-notifications",
+    "custom/virtual-camera",
+    "custom/desktop-recording",
+    "custom/audio-recording",
+    "pulseaudio",
+    "custom/power"
+  ],
   "niri/workspaces": {
     "format": "{icon}"
   },
@@ -49,6 +57,22 @@
     "return-type": "json",
     "interval": 2,
     "on-click": "~/dev/dot_files/bin/.bin/fuzzel/toggle-audio-recording.sh"
+  },
+  "custom/slack-notifications": {
+    "exec": "~/dev/dot_files/bin/.bin/chat-notification-status.sh slack",
+    "return-type": "json",
+    "interval": 2,
+    "format": "{}",
+    "on-click": "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh Slack slack",
+    "tooltip": false
+  },
+  "custom/telegram-notifications": {
+    "exec": "~/dev/dot_files/bin/.bin/chat-notification-status.sh telegram",
+    "return-type": "json",
+    "interval": 2,
+    "format": "{}",
+    "on-click": "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh org.telegram.desktop Telegram",
+    "tooltip": false
   },
   "custom/power": {
     "format": "⏻",
