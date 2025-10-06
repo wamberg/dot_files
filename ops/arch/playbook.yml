@@ -199,6 +199,16 @@
         mode: '0755'
       tags:
         - dev
+    - name: System | Packages | Ensure whisper.cpp build dependencies
+      community.general.pacman:
+        name:
+          - cmake
+          - vulkan-headers
+          - vulkan-icd-loader
+          - openblas
+        state: present
+      tags:
+        - dev
     - name: System | Power | Create swapfile for hibernation
       ansible.builtin.command:
         cmd: dd if=/dev/zero of=/swapfile bs=1M count=16384
@@ -442,7 +452,6 @@
           - niri
           - slack-desktop
           - ttf-ms-fonts
-          - whisper.cpp
           - zoom
       become: yes
       become_user: aur_builder
