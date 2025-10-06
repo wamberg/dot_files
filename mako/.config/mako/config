@@ -2,7 +2,7 @@
 default-timeout=5000
 
 # Position on screen
-anchor=top-right
+anchor=top-center
 margin=10
 
 # Dracula color scheme
