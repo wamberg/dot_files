@@ -382,11 +382,6 @@
       when: orphans.stdout != ""
       tags:
         - upgrade
-  handlers:
-    - name: update grub config
-      ansible.builtin.command: grub-mkconfig -o /boot/grub/grub.cfg
-    - name: regenerate initramfs
-      ansible.builtin.command: mkinitcpio -P
     - name: User | aur_builder | Create user
       ansible.builtin.user:
         name: aur_builder
@@ -395,7 +390,7 @@
         system: yes
       tags:
         - aur_setup
-        - aur
+        - desktop
     - name: User | aur_builder | Grant passwordless sudo for pacman
       ansible.builtin.lineinfile:
         path: /etc/sudoers.d/11-aur_builder
@@ -408,7 +403,7 @@
         validate: 'visudo -cf %s'
       tags:
         - aur_setup
-        - aur
+        - desktop
     - name: User | aur_builder | Create Ansible temporary directory
       ansible.builtin.file:
         path: /home/aur_builder/.ansible/tmp
@@ -418,7 +413,7 @@
         mode: '0700'
       tags:
         - aur_setup
-        - aur
+        - desktop
     - name: System | Packages | Ensure yay is installed
       kewlfft.aur.aur:
         name: yay
@@ -426,7 +421,7 @@
       become: yes
       become_user: aur_builder # NOTE: This user must be pre-configured with passwordless sudo
       tags:
-        - aur
+        - desktop
     - name: User | aur_builder | Check for 1Password GPG key
       ansible.builtin.command:
         cmd: gpg --list-keys 3FEF9748469ADBE15DA7CA80AC2D62742012EA22
@@ -449,6 +444,7 @@
       kewlfft.aur.aur:
         name:
           - 1password
+          - claude-code
           - google-chrome
           - niri
           - slack-desktop
@@ -560,3 +556,8 @@
         enabled: yes
       tags:
         - desktop
+  handlers:
+    - name: update grub config
+      ansible.builtin.command: grub-mkconfig -o /boot/grub/grub.cfg
+    - name: regenerate initramfs
+      ansible.builtin.command: mkinitcpio -P
