@@ -213,6 +213,7 @@
       ansible.builtin.command:
         cmd: dd if=/dev/zero of=/swapfile bs=1M count=16384
         creates: /swapfile
+      register: swapfile_created
       tags:
         - hibernation
     - name: System | Power | Set swapfile permissions
@@ -226,7 +227,7 @@
     - name: System | Power | Format swapfile
       ansible.builtin.command:
         cmd: mkswap /swapfile
-      when: ansible_check_mode == false
+      when: swapfile_created.changed
       tags:
         - hibernation
     - name: System | Power | Add swapfile to fstab
