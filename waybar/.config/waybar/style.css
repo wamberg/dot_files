@@ -65,18 +65,18 @@ window#waybar {
 
 #custom-slack-notifications {
     background-image: url("/usr/share/pixmaps/slack.png");
-    background-repeat: no-repeat;
-    background-size: 22px 22px;
-    background-position: center;
-    padding: 0 20px;
 }
 
 #custom-telegram-notifications {
     background-image: url("/usr/share/icons/hicolor/32x32/apps/org.telegram.desktop.png");
+}
+
+#custom-slack-notifications,
+#custom-telegram-notifications {
     background-repeat: no-repeat;
     background-size: 22px 22px;
     background-position: center;
-    padding: 0 20px;
+    padding: 0 8px;
 }
 
 #custom-slack-notifications.hidden,

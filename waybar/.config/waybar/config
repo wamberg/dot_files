@@ -2,11 +2,13 @@
   "layer": "top",
   "position": "top",
   "spacing": 8,
-  "modules-left": ["niri/workspaces"],
-  "modules-center": ["clock"],
-  "modules-right": [
+  "modules-left": [
+    "niri/workspaces",
     "custom/slack-notifications",
     "custom/telegram-notifications",
+  ],
+  "modules-center": ["clock"],
+  "modules-right": [
     "custom/virtual-camera",
     "custom/desktop-recording",
     "custom/audio-recording",
