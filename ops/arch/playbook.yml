@@ -25,6 +25,7 @@
           - openssh
           - opus
           - pass
+          - pngquant
           - ripgrep
           - rsync
           - sqlite
@@ -110,6 +111,7 @@
         - npm
         - nvim
         - sql
+        - swappy
         - tmux
         - vifm
         - waybar
@@ -472,6 +474,7 @@
           - adwaita-icon-theme
           - fuzzel
           - sddm
+          - swappy
           - swaybg
           - swaylock
           - waybar
@@ -504,6 +507,7 @@
           - wireplumber
           # Fonts
           - noto-fonts-emoji
+          - otf-font-awesome
           - ttf-jetbrains-mono
         state: present
       tags:
