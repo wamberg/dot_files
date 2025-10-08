@@ -211,6 +211,58 @@
         state: present
       tags:
         - dev
+    - name: System | Packages | Ensure playwright system dependencies
+      community.general.pacman:
+        name:
+          - chromium
+          - nss
+          - atk
+          - at-spi2-atk
+          - gtk3
+          - gdk-pixbuf2
+          - xorg-server-xvfb
+        state: present
+      tags:
+        - dev
+    - name: User | wamberg | Check if aider is installed
+      become: yes
+      become_user: wamberg
+      ansible.builtin.stat:
+        path: /home/wamberg/.local/share/uv/tools/aider-chat/bin/aider
+      register: aider_installed
+      tags:
+        - dev
+    - name: User | wamberg | Install aider-install
+      become: yes
+      become_user: wamberg
+      ansible.builtin.pip:
+        name: aider-install
+        extra_args: --user
+      when: not aider_installed.stat.exists
+      tags:
+        - dev
+    - name: User | wamberg | Install aider using aider-install
+      become: yes
+      become_user: wamberg
+      ansible.builtin.shell: ~/.local/bin/aider-install
+      when: not aider_installed.stat.exists
+      tags:
+        - dev
+    - name: User | wamberg | Check if playwright chromium is installed
+      become: yes
+      become_user: wamberg
+      ansible.builtin.stat:
+        path: /home/wamberg/.cache/ms-playwright/chromium-*/chrome-linux/chrome
+      register: playwright_chromium
+      tags:
+        - dev
+    - name: User | wamberg | Install playwright chromium browser
+      become: yes
+      become_user: wamberg
+      ansible.builtin.shell: ~/.local/share/uv/tools/aider-chat/bin/python -m playwright install chromium
+      when: not playwright_chromium.stat.exists
+      tags:
+        - dev
     - name: System | Power | Create swapfile for hibernation
       ansible.builtin.command:
         cmd: dd if=/dev/zero of=/swapfile bs=1M count=16384
