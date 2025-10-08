@@ -50,8 +50,10 @@ if [[ -n "$subtitle_path" ]]; then
   cmd+=" -c:s mov_text -metadata:s:s:0 language=eng" # Specify subtitle codec and metadata
 fi
 
-cmd+=" -c:v libx265 -preset fast -crf 23 -profile:v main10 -level 5.1 -pix_fmt yuv420p10le"
-cmd+=" -c:a eac3 -b:a 640k"
+cmd+=" -c:v libx265 -preset medium -crf 25 -profile:v main10 -level 5.1 -pix_fmt yuv420p10le"
+cmd+=" -x265-params 'aq-mode=3:psy-rd=1.0:rc-lookahead=32'"
+cmd+=" -c:a eac3 -b:a 448k"
+cmd+=" -movflags +faststart -map_metadata -1"
 cmd+=" -f mp4 \"${output_path}\"" # Force the output container to MP4 and set the output path
 
 # Running the command
