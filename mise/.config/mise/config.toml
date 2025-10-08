@@ -1,11 +1,11 @@
 [tools]
-awscli = "2.31.5"
+awscli = "2.31.10"
 aws-vault = "7.2.0"
 chamber = "3.1.3"
-golang = "1.25.1"
+golang = "1.25.2"
 neovim = "0.11.4"
 nodejs = "24.9.0"
-python = "3.13.7"
+python = "3.14.0"
 rust = "1.90.0"
 
 [settings]
