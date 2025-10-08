@@ -4,6 +4,7 @@
 .DS_Store
 .aider*
 !.aider.conf.yml
+.claude/settings.local.json
 .git
 .mypy_cache/
 .venv

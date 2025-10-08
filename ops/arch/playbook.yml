@@ -25,6 +25,7 @@
           - openssh
           - opus
           - pass
+          - pigz
           - pngquant
           - ripgrep
           - rsync
