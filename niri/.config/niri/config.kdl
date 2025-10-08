@@ -25,6 +25,12 @@ layout {
   }
 }
 
+gestures {
+  hot-corners {
+    off
+  }
+}
+
 workspace "1"
 workspace "2"
 
