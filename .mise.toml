@@ -7,3 +7,26 @@ stylua = "2.3.0"
 # specify a custom repo url
 # note this will only be used if the plugin does not already exist
 stylua = 'https://github.com/jc00ke/asdf-stylua'
+
+[tasks.format-lua]
+description = "Format Lua files with stylua"
+sources = ["**/*.lua"]
+run = "find ./ -name '*.lua' | xargs stylua"
+
+[tasks.format-yaml]
+description = "Format YAML files with yamlfmt"
+sources = ["ops/arch/**/*.yml"]
+run = "find ops/arch -name '*.yml' | xargs yamlfmt"
+
+[tasks.format]
+description = "Format all files"
+depends = ["format-lua", "format-yaml"]
+
+[tasks.lint-shell]
+description = "Lint shell scripts with shellcheck"
+sources = ["**/*.sh"]
+run = "find ./ -name 'tmux' -prune -o -name '*.sh' -print | xargs shellcheck"
+
+[tasks.lint]
+description = "Lint all files"
+depends = ["lint-shell"]
