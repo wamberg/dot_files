@@ -34,10 +34,8 @@ function M.record_audio()
 
   if vim.fn.executable("ffmpeg") == 1 then
     -- Start recording in background - simplified for microphone-only transcription
-    local record_cmd = string.format(
-      "ffmpeg -f pulse -i @DEFAULT_SOURCE@ -ar 16000 -ac 1 -c:a pcm_s16le %s -y 2>/dev/null",
-      audio_file
-    )
+    local record_cmd =
+      string.format("ffmpeg -f pulse -i @DEFAULT_SOURCE@ -ar 16000 -ac 1 -c:a pcm_s16le %s -y 2>/dev/null", audio_file)
 
     vim.notify("Recording... Press ENTER to stop", vim.log.levels.INFO)
 
@@ -49,8 +47,14 @@ function M.record_audio()
     -- Wait for user input
     vim.fn.getchar()
 
-    -- Stop the recording job
+    -- Send SIGINT (like Ctrl+C) which ffmpeg handles better
     vim.fn.jobstop(job_id)
+
+    -- Wait for the job to actually finish before continuing
+    while vim.fn.jobwait({ job_id }, 0)[1] == -1 do
+      vim.wait(100) -- Wait 100ms and check again
+    end
+
     vim.notify("Recording stopped", vim.log.levels.INFO)
 
     return true
@@ -76,9 +80,21 @@ function M.transcribe()
 
   vim.notify("Transcribing...", vim.log.levels.INFO)
 
+  -- Check if audio file exists and has content
+  if vim.fn.filereadable(audio_file) == 0 then
+    vim.notify("Audio file not found: " .. audio_file, vim.log.levels.ERROR)
+    return nil
+  end
+
+  local audio_size = vim.fn.getfsize(audio_file)
+  if audio_size <= 0 then
+    vim.notify("Audio file is empty: " .. audio_file, vim.log.levels.ERROR)
+    return nil
+  end
+
   -- Transcribe with main whisper binary for clean output
   local cmd = string.format(
-    "cd %s && %s -m models/ggml-%s.bin -f %s -otxt -of %s --no-timestamps 2> /dev/null",
+    "cd %s && %s -m models/ggml-%s.bin -f %s -otxt -of %s --no-timestamps",
     M.whisper_home,
     M.whisper_path,
     M.model,
@@ -86,8 +102,22 @@ function M.transcribe()
     M.tmp_file
   )
 
-  -- Run the command
-  vim.fn.system(cmd)
+  -- Run the command and capture return code
+  local result = vim.fn.system(cmd)
+  local return_code = vim.v.shell_error
+
+  if return_code ~= 0 then
+    vim.notify("Whisper command failed with code " .. return_code .. ": " .. result, vim.log.levels.ERROR)
+    return nil
+  end
+
+  -- Wait for output file with timeout
+  local max_wait = 30 -- 30 seconds max wait
+  local wait_count = 0
+  while vim.fn.filereadable(output_file) == 0 and wait_count < max_wait do
+    vim.wait(1000) -- Wait 1 second
+    wait_count = wait_count + 1
+  end
 
   -- Read the clean text output
   if vim.fn.filereadable(output_file) == 1 then
@@ -95,7 +125,7 @@ function M.transcribe()
     vim.notify("Transcription complete", vim.log.levels.INFO)
     return table.concat(text, " "):gsub("^%s*(.-)%s*$", "%1") -- trim whitespace
   else
-    vim.notify("Transcription output file not found", vim.log.levels.ERROR)
+    vim.notify("Transcription output file not found after " .. wait_count .. " seconds", vim.log.levels.ERROR)
     return nil
   end
 end

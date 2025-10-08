@@ -1,8 +1,10 @@
 #!/bin/bash
 
+PID_FILE="/tmp/audio_recording.pid"
+
 # Check if audio recording ffmpeg is running
 is_running() {
-    pgrep -f "ffmpeg.*pulse.*@DEFAULT_SINK@.*@DEFAULT_SOURCE@.*amix" > /dev/null
+    [[ -f "$PID_FILE" ]] && kill -0 "$(cat "$PID_FILE")" 2>/dev/null
 }
 
 if [[ "$1" == "--status" ]]; then
@@ -17,8 +19,12 @@ fi
 
 # Original toggle functionality
 if is_running; then
-    # Stop audio recording
-    pkill -f "ffmpeg.*pulse.*@DEFAULT_SINK@.*@DEFAULT_SOURCE@.*amix"
+    # Stop audio recording gracefully
+    if [[ -f "$PID_FILE" ]]; then
+        kill -TERM "$(cat "$PID_FILE")"
+        sleep 2  # Allow time to flush buffers
+        rm -f "$PID_FILE"
+    fi
     notify-send "Recording" "Audio recording stopped" -t 2000
 else
     # Start audio recording
@@ -29,5 +35,8 @@ else
       -map "[aout]" \
       -c:a aac -b:a 128k \
       /home/wamberg/videos/$(date +%Y%m%d_%H%M%S).m4a &
+    
+    # Store the PID for proper cleanup
+    echo $! > "$PID_FILE"
     notify-send "Recording" "Audio recording started" -t 2000
 fi
