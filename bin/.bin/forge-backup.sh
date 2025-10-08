@@ -36,6 +36,9 @@ function act() {
     --exclude-caches-all \
     \
     `# one-off, special excludes` \
+    --exclude .config/Slack \
+    --exclude .config/discord \
+    --exclude .config/google-chrome* \
     --exclude .oh-my-zsh \
     --exclude Downloads \
     --exclude videos \
