@@ -144,6 +144,7 @@ binds {
   Mod+Ctrl+F { expand-column-to-available-width; }
   Mod+Minus { set-column-width "-10%"; }
   Mod+Equal { set-column-width "+10%"; }
+  Mod+Q { close-window; }
 
   Mod+H     { focus-column-left; }
   Mod+J     { focus-window-or-workspace-down; }
