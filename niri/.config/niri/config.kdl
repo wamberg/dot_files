@@ -34,6 +34,7 @@ gestures {
 
 workspace "1"
 workspace "2"
+workspace "3"
 
 // Default rule for all applications until overridden
 window-rule {
@@ -190,8 +191,10 @@ binds {
   // workspace actions
   Mod+1 { focus-workspace 1; }
   Mod+2 { focus-workspace 2; }
+  Mod+3 { focus-workspace 3; }
   Mod+Shift+1 { move-column-to-workspace 1; }
   Mod+Shift+2 { move-column-to-workspace 2; }
+  Mod+Shift+3 { move-column-to-workspace 3; }
   Mod+W       {
     spawn "sh" "-c" "swaybg -i \"$(find /home/wamberg/pics/wallpaper/ -type f | shuf -n 1)\"";
   }
