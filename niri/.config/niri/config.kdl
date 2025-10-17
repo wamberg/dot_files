@@ -68,6 +68,14 @@ window-rule {
   open-on-workspace "2"
 }
 
+window-rule {
+    match app-id="feh"
+    default-column-width { proportion 0.64; }
+    default-window-height { proportion 0.36; }
+    open-floating true
+}
+
+
 spawn-at-startup "mako"
 spawn-at-startup "wlsunset" "-l" "30" "-L" "-100"
 spawn-at-startup "xwayland-satellite"
