@@ -112,6 +112,7 @@
         - niri
         - npm
         - nvim
+        - opencode
         - sql
         - swappy
         - tmux
@@ -496,11 +497,19 @@
       become_user: aur_builder
       tags:
         - desktop
+    - name: System | Packages | Install essential AUR cli packages
+      kewlfft.aur.aur:
+        name:
+          - claude-code
+          - opencode-bin
+      become: yes
+      become_user: aur_builder
+      tags:
+        - cli
     - name: System | Packages | Install essential AUR desktop packages
       kewlfft.aur.aur:
         name:
           - 1password
-          - claude-code
           - google-chrome
           - niri
           - slack-desktop
