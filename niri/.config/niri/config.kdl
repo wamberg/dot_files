@@ -75,6 +75,12 @@ window-rule {
     open-floating true
 }
 
+window-rule {
+    match app-id="mpv"
+    default-column-width { proportion 0.38; }
+    default-window-height { proportion 0.21376; }
+    open-floating true
+}
 
 spawn-at-startup "mako"
 spawn-at-startup "wlsunset" "-l" "30" "-L" "-100"
