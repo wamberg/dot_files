@@ -18,6 +18,9 @@ export LC_ALL='en_US.UTF-8'
 export SHELL=$(which zsh)
 export PATH="${PATH}:$HOME/.bin:$HOME/.local/bin"
 
+# aws-vault
+export AWS_VAULT_BACKEND=pass
+
 # mac exports
 case "$OSTYPE" in
   darwin*)
@@ -31,6 +34,9 @@ case "$OSTYPE" in
   export JAVA_HOME="${brew_prefix}/opt/openjdk@17"
   export ANDROID_HOME=$HOME/Library/Android/sdk
   export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:${PATH}
+
+  # aws-vault override
+  export AWS_VAULT_BACKEND=keychain
   ;;
 esac
 
@@ -47,9 +53,6 @@ export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix --hidden --follow --n
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type d --strip-cwd-prefix --hidden --follow --no-ignore-vcs --ignore-file ~/.gitignore_global"
 export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'
-
-# aws-vault
-export AWS_VAULT_BACKEND=pass
 
 # no history for commands that begin with space
 setopt histignorespace
