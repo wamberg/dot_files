@@ -2,4 +2,4 @@ snippet prompt llm cli
   read -d '' -r llmprompt <<'EOF'
   $0
   EOF
-  ave pbs-digi-innovation-sandbox -- llm --model bc-v4 "\$llmprompt" | sd
+  llm --model sonnet-4 "\$llmprompt" | sd
