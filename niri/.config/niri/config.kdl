@@ -124,7 +124,7 @@ binds {
     spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "obsidian";
   }
   Alt+P hotkey-overlay-title="1password" {
-    spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "1Password" "env" "DISPLAY=:1" "1password";
+    spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "1password" "env" "DISPLAY=:1" "1password";
   }
   Alt+S hotkey-overlay-title="slack" {
     spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "Slack" "slack";
