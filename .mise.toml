@@ -8,6 +8,9 @@ stylua = "2.3.0"
 # note this will only be used if the plugin does not already exist
 stylua = 'https://github.com/jc00ke/asdf-stylua'
 
+[env]
+_.file = '.env'
+
 [tasks.format-lua]
 description = "Format Lua files with stylua"
 sources = ["**/*.lua"]

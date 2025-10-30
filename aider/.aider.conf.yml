@@ -1,6 +1,8 @@
-model:           bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0
-weak-model:      bedrock/us.anthropic.claude-3-5-haiku-20241022-v1:0
+model:           litellm_proxy/claude-haiku-4-5
+weak-model:      litellm_proxy/claude-haiku-3.5
 thinking-tokens: 32k
 add-gitignore-files: true
 auto-commits: false
 dark-mode: true
+check-model-accepts-settings: false
+show-model-warnings: false

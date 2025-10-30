@@ -1,3 +1,5 @@
+.env
+
 claude/.claude/*
 !claude/.claude/settings.json
 
