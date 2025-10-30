@@ -750,11 +750,21 @@ vim.keymap.set("v", "<C-s>", function()
   whisper.replace_selection()
 end, { desc = "[S]peech to text (visual mode)" })
 
--- Custom command for quick insertion of "prompt" template for kitty shortcut
+-- Custom command for quick insertion of "prompt" templates for kitty shortcut
 vim.api.nvim_create_user_command("InsertPrompt", function()
   -- Enter insert mode and type the text to trigger snippet
   vim.cmd("startinsert")
   vim.api.nvim_feedkeys("prompt", "n", false)
+  -- Use a small delay to ensure the text is inserted before expanding
+  vim.defer_fn(function()
+    local luasnip = require("luasnip")
+    luasnip.expand()
+  end, 10)
+end, {})
+vim.api.nvim_create_user_command("ContinuePrompt", function()
+  -- Enter insert mode and type the text to trigger snippet
+  vim.cmd("startinsert")
+  vim.api.nvim_feedkeys("cprompt", "n", false)
   -- Use a small delay to ensure the text is inserted before expanding
   vim.defer_fn(function()
     local luasnip = require("luasnip")
