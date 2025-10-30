@@ -139,14 +139,8 @@ binds {
   Mod+Ctrl+Shift+L hotkey-overlay-title="Lock Display" {
     spawn "sh" "-c" "swaylock &";
   }
-  Mod+Ctrl+Shift+H hotkey-overlay-title="Hibernate" {
-    spawn "systemctl" "hibernate";
-  }
-  Mod+Ctrl+Shift+R hotkey-overlay-title="Reboot" {
-    spawn "systemctl" "reboot";
-  }
-  Mod+Ctrl+Shift+P hotkey-overlay-title="Power Off" {
-    spawn "systemctl" "poweroff";
+  Mod+Ctrl+Shift+P hotkey-overlay-title="Power Menu" {
+    spawn "sh" "-c" "systemctl $(printf \"poweroff\\nreboot\\nhibernate\" | fuzzel --dmenu)";
   }
 
   ////
