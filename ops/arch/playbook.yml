@@ -471,12 +471,34 @@
       tags:
         - aur_setup
         - desktop
+    - name: System | Repository | Enable multilib
+      ansible.builtin.lineinfile:
+        path: /etc/pacman.conf
+        regexp: '^#?\[multilib\]'
+        line: '[multilib]'
+        state: present
+      tags:
+        - desktop
+    - name: System | Repository | Enable multilib Include line
+      ansible.builtin.lineinfile:
+        path: /etc/pacman.conf
+        insertafter: '^\[multilib\]'
+        regexp: '^#?Include = /etc/pacman.d/mirrorlist'
+        line: 'Include = /etc/pacman.d/mirrorlist'
+        state: present
+      tags:
+        - desktop
+    - name: System | Repository | Update package cache after multilib
+      community.general.pacman:
+        update_cache: yes
+      tags:
+        - desktop
     - name: System | Packages | Ensure yay is installed
       kewlfft.aur.aur:
         name: yay
         update_cache: yes
       become: yes
-      become_user: aur_builder # NOTE: This user must be pre-configured with passwordless sudo
+      become_user: aur_builder
       tags:
         - desktop
     - name: User | aur_builder | Check for 1Password GPG key
@@ -532,6 +554,7 @@
           - mpv
           - obs-studio
           - obsidian
+          - steam
           - telegram-desktop
           # Desktop Environment
           - adwaita-icon-theme
@@ -549,8 +572,8 @@
           - bluez
           - bluez-utils
           - gvfs
-          - libva-mesa-driver # Hardware video acceleration for AMD
-          - linux-firmware # Firmware for hardware
+          - libva-mesa-driver
+          - linux-firmware
           - linux-headers
           - mako
           - playerctl
@@ -572,7 +595,27 @@
           - noto-fonts-emoji
           - otf-font-awesome
           - ttf-jetbrains-mono
+          - ttf-liberation
         state: present
+      tags:
+        - desktop
+    - name: System | Packages | Install 32-bit libraries for Steam and gaming
+      community.general.pacman:
+        name:
+          - lib32-mesa
+          - lib32-vulkan-radeon
+          - lib32-libva-mesa-driver
+          - lib32-systemd
+          - lib32-pipewire
+        state: present
+      tags:
+        - desktop
+    - name: System | Kernel | Set vm.max_map_count for gaming
+      ansible.posix.sysctl:
+        name: vm.max_map_count
+        value: '2147483642'
+        state: present
+        sysctl_file: /etc/sysctl.d/80-gamecompatibility.conf
       tags:
         - desktop
     - name: System | Kernel | Configure v4l2loopback module parameters
