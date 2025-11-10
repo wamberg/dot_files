@@ -28,6 +28,15 @@ require("lazy").setup({
   "editorconfig/editorconfig-vim",
   "folke/zen-mode.nvim",
   "ggandor/leap.nvim",
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = "cd app && npx --yes npm install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+  },
   "lewis6991/gitsigns.nvim",
   "micarmst/vim-spellsync",
   "Mofiqul/dracula.nvim",
