@@ -420,9 +420,9 @@ require("lazy").setup({
 })
 
 -- Line numbers
-vim.opt.number = true
+vim.opt.number = false
 vim.wo.cursorline = true
-vim.wo.cursorlineopt = "line,number"
+vim.wo.cursorlineopt = "line"
 
 -- Folds
 vim.opt.foldlevel = 99
