@@ -532,6 +532,7 @@
       kewlfft.aur.aur:
         name:
           - 1password
+          - 1password-cli
           - google-chrome
           - niri
           - slack-desktop
