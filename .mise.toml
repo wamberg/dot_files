@@ -33,3 +33,7 @@ run = "find ./ -name 'tmux' -prune -o -name '*.sh' -print | xargs shellcheck"
 [tasks.lint]
 description = "Lint all files"
 depends = ["lint-shell"]
+
+[tasks.genenv]
+description = "Generate .env file from secret store"
+run = "op inject -i .env.tpl -o .env"
