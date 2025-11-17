@@ -9,3 +9,8 @@ snippet cprompt llm continue
   $0
   EOF
   llm -c "\$llmprompt" | sd
+
+snippet block block code
+  \`\`\`$1
+  $2
+  \`\`\`
