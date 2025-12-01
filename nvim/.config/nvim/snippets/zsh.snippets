@@ -2,7 +2,7 @@ snippet prompt llm cli
   read -d '' -r llmprompt <<'EOF'
   $0
   EOF
-  llm --model haiku-4.5 "\$llmprompt" | sd
+  llm --model sonnet-4.5 "\$llmprompt" | sd
 
 snippet cprompt llm continue
   read -d '' -r llmprompt <<'EOF'
