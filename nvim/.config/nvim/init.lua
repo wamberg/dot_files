@@ -33,7 +33,7 @@ require("lazy").setup({
   "Mofiqul/dracula.nvim",
   {
     "nvim-telescope/telescope.nvim",
-    tag = "0.1.8",
+    tag = "v0.2.0",
     dependencies = { "nvim-lua/plenary.nvim" },
   },
   {
