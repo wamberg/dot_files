@@ -112,7 +112,6 @@
         - niri
         - npm
         - nvim
-        - opencode
         - sql
         - swappy
         - tmux
@@ -523,7 +522,6 @@
       kewlfft.aur.aur:
         name:
           - claude-code
-          - opencode-bin
       become: yes
       become_user: aur_builder
       tags:
