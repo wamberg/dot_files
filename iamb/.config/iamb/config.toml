@@ -1,0 +1,39 @@
+default_profile = "default"
+
+[profiles.default]
+user_id = "@wamberg5:matrix.org"
+url = "https://matrix.org"
+
+[settings]
+external_edit_file_suffix = ".md"
+log_level = "info"
+message_shortcode_display = false
+reaction_display = true
+reaction_shortcode_display = false
+read_receipt_display = true
+read_receipt_send = true
+request_timeout = 120
+typing_notice_display = true
+typing_notice_send = true
+user_gutter_width = 30
+username_display = "displayname"
+
+[settings.image_preview]
+protocol.type = "kitty"
+size = { "width" = 66, "height" = 10 }
+
+[settings.sort]
+rooms = ["favorite", "lowpriority", "unread", "name"]
+members = ["power", "id"]
+
+[settings.users]
+"@user:matrix.org" = { "name" = "John Doe", "color" = "magenta" }
+
+[layout]
+style = "restore"
+
+[macros.insert]
+"jj" = "<Esc>"
+
+[macros."normal|visual"]
+"V" = "<C-W>m"
