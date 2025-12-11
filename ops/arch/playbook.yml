@@ -23,11 +23,13 @@
           - libvorbis
           - libvpx
           - mise
+          - ncdu
           - openssh
           - opus
           - pass
           - pigz
           - pngquant
+          - reflector
           - ripgrep
           - rsync
           - sqlite
