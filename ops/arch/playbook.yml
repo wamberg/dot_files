@@ -610,6 +610,28 @@
         state: present
       tags:
         - desktop
+    - name: System | Packages | Install virtualization packages
+      community.general.pacman:
+        name:
+          - qemu-full
+          - virt-manager
+          - libvirt
+          - ebtables
+          - dnsmasq
+          - bridge-utils
+        state: present
+        extra_args: --ask=4
+      tags:
+        - desktop
+        - virtualization
+    - name: User | wamberg | Add to libvirt group
+      ansible.builtin.user:
+        name: wamberg
+        groups: libvirt
+        append: yes
+      tags:
+        - desktop
+        - virtualization
     - name: System | Kernel | Set vm.max_map_count for gaming
       ansible.posix.sysctl:
         name: vm.max_map_count
@@ -666,6 +688,14 @@
         enabled: yes
       tags:
         - desktop
+    - name: Service | libvirtd | Enable and start service
+      ansible.builtin.systemd:
+        name: libvirtd
+        state: started
+        enabled: yes
+      tags:
+        - desktop
+        - virtualization
   handlers:
     - name: update grub config
       ansible.builtin.command: grub-mkconfig -o /boot/grub/grub.cfg
