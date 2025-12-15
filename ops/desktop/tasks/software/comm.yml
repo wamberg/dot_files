@@ -1,6 +1,0 @@
-- name: Desktop | Software | Communication | Install
-  community.general.snap:
-    name:
-      - discord
-      - telegram-desktop
-      - slack
