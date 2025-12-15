@@ -34,19 +34,21 @@ To see what changes would be made without actually executing them, use the `--ch
 
 The playbook uses tags to allow running specific parts of the configuration.
 
-For example, to only run tasks tagged with `packages`:
+For example, to only run tasks tagged with `cli`:
 
-`sudo ansible-playbook -i ops/arch/inventory ops/arch/playbook.yml --tags packages`
+`sudo ansible-playbook -i ops/arch/inventory ops/arch/playbook.yml --tags cli`
+
+Or to run desktop environment setup:
+
+`sudo ansible-playbook -i ops/arch/inventory ops/arch/playbook.yml --tags desktop`
 
 ## Managing AUR Packages
 
 This setup uses the `kewlfft.aur` collection to manage packages from the Arch User Repository (AUR).
 
-**NOTE**: This requires a non-root user (e.g., `aur_builder`) that can build AUR packages. This user must be configured with passwordless `sudo` privileges.
-
 To run only the AUR-related tasks:
 
-`sudo ansible-playbook -i ops/arch/inventory ops/arch/playbook.yml --tags aur`
+`sudo ansible-playbook -i ops/arch/inventory ops/arch/playbook.yml --tags aur_setup`
 
 ## Post-Playbook Steps
 
@@ -61,11 +63,10 @@ Place wallpaper images in ~/pics/wallpaper
 
 ### whisper.cpp
 
-It's installed through the AUR, but I still need to pull models. Right now I:
+This is manually installed, not automated through the playbook. To set it up:
 - `gcl https://github.com/ggml-org/whisper.cpp.git /opt/`
 - `cd /opt/whisper.cpp/`
 - `sh ./models/download-ggml-model.sh base.en`
-I could (should?) sort this out through Ansible
 
 ## Testing
 
@@ -84,3 +85,13 @@ In a virtualbox guest machine:
   4. `sudo reboot`
 
 Then I can run commands in the the **Bootstrap** or **Management with Ansible** commands as needed.
+
+## Using the Arch Installation
+
+### Installing Additional AUR Packages
+
+The playbook creates an `aur_builder` user specifically for building and installing AUR packages. To manually install additional AUR packages:
+
+```
+sudo -u aur-builder yay -S <package>
+```
