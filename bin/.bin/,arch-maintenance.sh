@@ -32,6 +32,10 @@ print_step "Updating system packages and AUR packages..."
 sudo -u aur_builder yay -Syu
 
 echo ""
+print_step "Cleaning temporary download files..."
+sudo rm -rf /var/cache/pacman/pkg/download-*
+
+echo ""
 print_step "Cleaning AUR build cache..."
 yay -Sc --noconfirm
 
@@ -91,8 +95,7 @@ if [[ -n "$pacnew_files" ]]; then
     print_warning "Found .pacnew files:"
     echo "$pacnew_files"
     echo ""
-    echo "Review and merge these files manually with:"
-    echo "  sudo DIFFPROG=\"$(nvim) -d\" pacdiff"
+    echo "Review and merge these files manually with 'delta'"
 else
     echo "No .pacnew files found."
 fi
