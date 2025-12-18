@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   # Universal CLI tools for all hosts
@@ -15,6 +15,10 @@
     mise       # Version manager (node, python, etc.)
     neovim     # Text editor
     tmux       # Terminal multiplexer
+
+    # AWS tools
+    awscli2    # AWS CLI v2
+    aws-vault  # AWS credential manager
 
     # File management
     ncdu       # Disk usage analyzer
@@ -100,6 +104,16 @@
       };
     };
   };
+
+  # Tmux Plugin Manager (tpm) setup
+  # Clone tpm if not already present, allowing tmux plugins to work
+  home.activation.cloneTpm = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    TPM_DIR="$HOME/.tmux/plugins/tpm"
+    if [ ! -d "$TPM_DIR" ]; then
+      $DRY_RUN_CMD mkdir -p "$HOME/.tmux/plugins"
+      $DRY_RUN_CMD ${pkgs.git}/bin/git clone --depth 1 https://github.com/tmux-plugins/tpm "$TPM_DIR"
+    fi
+  '';
 
   # Let home-manager manage itself
   programs.home-manager.enable = true;

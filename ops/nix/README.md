@@ -81,6 +81,58 @@ Example:
 - Add overlay structure when first custom package is needed
 - Consider Cachix when rebuild times become painful
 
+### Development Environments
+**Decision**: **PENDING** - Need to choose between Docker and Nix-native approaches.
+
+**Context**: Arch setup uses Docker + docker-compose for development dependencies (databases, services, etc.). Need to decide on NixOS approach.
+
+**Options:**
+
+1. **devenv.sh** - Docker Compose replacement for Nix
+   - Declarative service configuration (postgres, redis, etc.)
+   - Purpose-built for development environments
+   - Closest to Docker Compose workflow
+   - Example: `services.postgres.enable = true;`
+
+2. **Flake devShells** - Lightweight development shells
+   - Define per-project `devShells` in flake.nix
+   - Use `shellHook` to start services
+   - More manual but flexible
+   - Integrates well with direnv
+
+3. **Keep Docker** - Continue using Docker + docker-compose
+   - Familiar workflow
+   - Production parity if deploying containers
+   - More resource overhead on NixOS
+
+**Trade-offs:**
+- **Nix-native** (devenv.sh or devShells): Faster, better integration, less resource usage, but learning curve
+- **Docker**: Familiar, good isolation, but resource overhead and less Nix integration
+
+**Next steps**: Try Nix-native approach on first real project need. Can always fall back to Docker if needed.
+
+### Hibernation / Swap
+**Decision**: Use a **dedicated swap partition** on physical hardware.
+
+- Create a swap partition during NixOS installation (16GB recommended)
+- NixOS will automatically configure it in hardware-configuration.nix
+- Hibernation will work out of the box without manual offset tracking
+
+**Steps for physical hardware install:**
+1. During disk partitioning, create a 16GB swap partition
+2. Run `nixos-generate-config` - it will detect and configure swap automatically
+3. Verify hibernation works: `systemctl hibernate --dry-run`
+
+**Alternative** (if swap partition not possible):
+- Use swapfile approach with manual offset configuration
+- Add to configuration.nix after first boot:
+  ```nix
+  swapDevices = [{ device = "/swapfile"; size = 16 * 1024; }];
+  boot.resumeDevice = "/dev/disk/by-uuid/ROOT-UUID";
+  boot.kernelParams = [ "resume_offset=OFFSET" ];
+  ```
+- Get offset with: `filefrag -v /swapfile | awk '$1=="0:" {print substr($4, 1, length($4)-2)}'`
+
 ## Directory Structure
 
 ```

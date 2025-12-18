@@ -1,22 +1,99 @@
 { config, pkgs, ... }:
 
 let
-  # Path to dotfiles repository (host-specific)
-  dotfilesPath = "/mnt/shared";
+  # Path to dotfiles repository
+  dotfilesPath = "/home/wamberg/dev/dot_files";
 in
 {
   imports = [
     ../../common/home.nix
   ];
 
+  # Allow unfree packages in home-manager
+  nixpkgs.config.allowUnfree = true;
+
   # Host-specific packages for forge
   home.packages = with pkgs; [
-    # Add forge-specific tools here as needed
+    # Media tools
+    ffmpeg-full    # Video/audio converter with all codecs
+    pngquant       # PNG image optimization
+    wl-clipboard   # Wayland clipboard (wl-copy/wl-paste)
+
+    # Desktop Environment Tools
+    waybar         # Status bar
+    mako           # Notification daemon
+    fuzzel         # Application launcher
+    swappy         # Screenshot editor
+    swaybg         # Wallpaper setter
+    swaylock       # Screen locker
+    wlsunset       # Color temperature adjuster
+    xwayland-satellite  # Xwayland integration
+    grim           # Screenshot tool
+    slurp          # Screen area selector
+    wf-recorder    # Screen recorder
+
+    # Terminal
+    kitty          # GPU-accelerated terminal
+
+    # Audio
+    pavucontrol    # PulseAudio/PipeWire volume control
+
+    # System Utilities
+    blueman        # Bluetooth manager GUI
+
+    # Cursor theme
+    adwaita-icon-theme  # Includes default cursor theme
+
+    # Development Tools
+    claude-code    # Claude AI coding assistant CLI
+    aider-chat     # AI pair programming tool
+
+    # Core Applications
+    _1password-gui # 1Password desktop app
+    _1password-cli # 1Password CLI (op)
+    firefox-devedition  # Firefox Developer Edition
+    google-chrome  # Chrome browser
+    mpv            # Video player
+    obsidian       # Note-taking app
+
+    # Communication
+    discord        # Discord client
+    slack          # Slack client
+    telegram-desktop  # Telegram client
+
+    # Productivity
+    calibre        # E-book manager
+    libreoffice-fresh  # Office suite
+
+    # Gaming
+    steam          # Steam client
+
+    # Other
+    zoom-us        # Video conferencing
   ];
 
   # Username and home directory
   home.username = "wamberg";
   home.homeDirectory = "/home/wamberg";
+
+  # Configure SSH to use 1Password agent
+  programs.ssh = {
+    enable = true;
+    enableDefaultConfig = false;  # Disable default values (future-proofing)
+    matchBlocks = {
+      "*" = {
+        identityAgent = "~/.1password/agent.sock";
+      };
+    };
+  };
+
+  # Cursor theme
+  home.pointerCursor = {
+    name = "Adwaita";
+    package = pkgs.adwaita-icon-theme;
+    size = 24;
+    gtk.enable = true;
+  };
 
   # Install oh-my-zsh (framework only, .zshrc managed by stow)
   home.activation.installOhMyZsh = config.lib.dag.entryAfter ["writeBoundary"] ''
@@ -61,6 +138,7 @@ in
             --dir=${dotfilesPath} \
             --target=$HOME \
             --restow \
+            --no-folding \
             --verbose=1 \
             $package || true
         fi
