@@ -33,6 +33,7 @@
           - ripgrep
           - rsync
           - sqlite
+          - starship
           - stow
           - sudo
           - tmux
@@ -115,6 +116,7 @@
         - npm
         - nvim
         - sql
+        - starship
         - swappy
         - tmux
         - vifm

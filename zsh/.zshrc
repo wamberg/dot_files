@@ -61,12 +61,9 @@ setopt histignorespace
 source $ZSH/oh-my-zsh.sh    # Activate oh-my-zsh
 eval "$(mise activate zsh)" # Activate mise
 
-# Pure prompt configuration
+# Starship.rs prompt configuration
 bindkey -v # Set Vi mode
-fpath=("$HOME/dev/dot_files/zsh/pure" $fpath)
-autoload -U promptinit; promptinit
-PURE_GIT_UNTRACKED_DIRTY=0
-prompt pure
+eval "$(starship init zsh)"
 
 # Eliminate vi-mode normal mode delay
 KEYTIMEOUT=1

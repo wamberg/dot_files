@@ -3,6 +3,8 @@
 claude/.claude/*
 !claude/.claude/settings.json
 
+fuzzel/.local/share/mise/.fake-asdf
+
 tmux/.config/tmux/plugins
 
 vifm/.config/vifm/vifm-help.txt
