@@ -121,7 +121,7 @@ binds {
     spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "discord";
   }
   Alt+F hotkey-overlay-title="firefox" {
-    spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "firefox-developer-edition";
+    spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "firefox-devedition";
   }
   Alt+K hotkey-overlay-title="kitty" {
     spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "kitty";
