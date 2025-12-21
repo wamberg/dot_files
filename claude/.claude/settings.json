@@ -1,9 +1,10 @@
 {
   "env": {
-    "ANTHROPIC_SMALL_FAST_MODEL": "claude-haiku-4-5",
-    "CLAUDE_CODE_SKIP_BEDROCK_AUTH": "1",
-    "CLAUDE_CODE_USE_BEDROCK": "1"
+    "ANTHROPIC_SMALL_FAST_MODEL": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+    "CLAUDE_CODE_USE_BEDROCK": "1",
+    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "4096",
+    "MAX_THINKING_TOKENS": "1024"
   },
-  "model": "claude-sonnet-4-5",
+  "model": "global.anthropic.claude-sonnet-4-5-20250929-v1:0",
   "alwaysThinkingEnabled": true
 }
