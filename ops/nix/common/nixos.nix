@@ -20,6 +20,8 @@
 
   # Core system packages every host needs
   environment.systemPackages = with pkgs; [
+    # Shell
+    bash
     # Version control and editing
     git
     vim
