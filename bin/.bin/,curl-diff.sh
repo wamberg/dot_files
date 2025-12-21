@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Check if at least one argument (the endpoint URL) was provided
 if [ -z "$1" ]; then

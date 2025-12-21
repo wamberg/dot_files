@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Check notification status for chat applications
 # Usage: chat-notification-status.sh [app_name]
@@ -31,10 +31,10 @@ case "$APP" in
     "all")
         slack_icon=""
         telegram_icon=""
-        
+
         [ -f "$STATUS_DIR/slack" ] && slack_icon=" "
         [ -f "$STATUS_DIR/telegram" ] && telegram_icon=" "
-        
+
         echo "slack:$slack_icon telegram:$telegram_icon"
         ;;
     *)

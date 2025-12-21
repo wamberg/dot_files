@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Chat notification daemon - intercepts D-Bus notifications for chat apps
 # and manages notification state for waybar
@@ -41,10 +41,10 @@ monitor_focus() {
         if echo "$event" | jq -e '.WindowFocusChanged' >/dev/null 2>&1; then
             # Extract window ID from the event
             window_id=$(echo "$event" | jq -r '.WindowFocusChanged.id')
-            
+
             # Get all windows and find the one with matching ID
             app_id=$(niri msg --json windows | jq -r --arg id "$window_id" '.[] | select(.id == ($id | tonumber)) | .app_id // empty')
-            
+
             if [ -n "$app_id" ]; then
                 clear_notification "$app_id"
             fi
@@ -62,12 +62,12 @@ monitor_notifications() {
             expecting_app_name=true
             continue
         fi
-        
+
         # If we're expecting the app name and this is a string line, extract it
         if [[ "$expecting_app_name" == true && "$line" == *"string"* ]]; then
             app_name=$(echo "$line" | sed -n 's/.*string "\([^"]*\)".*/\1/p')
             expecting_app_name=false
-            
+
             for app_mapping in "${APPS[@]}"; do
                 dbus_name="${app_mapping%:*}"
                 if [[ "$app_name" == "$dbus_name" ]]; then

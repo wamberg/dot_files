@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 choice=$(echo -e "Virtual Camera Toggle\nDesktop Recording Toggle\nAudio Recording Toggle\nSwitch Audio Output" | fuzzel --dmenu --prompt="A/V Menu: ")
 
@@ -17,13 +17,13 @@ case "$choice" in
         HEADPHONES_SINK="alsa_output.usb-Focusrite_Scarlett_2i2_USB_Y8CZJFM0AA378C-00.HiFi__Line1__sink"
         SPEAKERS_SINK="alsa_output.pci-0000_09_00.1.hdmi-stereo-extra4"
         SOUNDBAR_SINK="bluez_output.94_4F_4C_03_D5_4C.1"
-        
+
         # Get current default sink
         CURRENT_SINK=$(pactl get-default-sink)
-        
+
         # Check if soundbar is available
         soundbar_available=$(pactl list short sinks | grep -q "$SOUNDBAR_SINK" && echo "yes" || echo "no")
-        
+
         # Toggle logic with soundbar preference
         if [ "$CURRENT_SINK" = "$HEADPHONES_SINK" ]; then
             # From headphones: prefer soundbar, fall back to speakers

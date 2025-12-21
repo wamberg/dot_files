@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # weekly-maintenance.sh - Arch Linux weekly maintenance script
 
 set -e  # Exit on error

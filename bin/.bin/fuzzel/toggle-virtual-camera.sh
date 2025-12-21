@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Check if virtual camera ffmpeg is running
 is_running() {

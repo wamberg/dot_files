@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 PID_FILE="/tmp/audio_recording.pid"
 
@@ -35,7 +35,7 @@ else
       -map "[aout]" \
       -c:a aac -b:a 128k \
       /home/wamberg/videos/$(date +%Y%m%d_%H%M%S).m4a &
-    
+
     # Store the PID for proper cleanup
     echo $! > "$PID_FILE"
     notify-send "Recording" "Audio recording started" -t 2000
