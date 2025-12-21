@@ -15,6 +15,7 @@
     useOSProber = true;  # Detect Windows and other OSes
   };
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot";  # Not /boot/efi
 
   # Hostname
   networking.hostName = "forge";
