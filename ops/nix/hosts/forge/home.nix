@@ -17,6 +17,7 @@ in
     # Media tools
     ffmpeg-full    # Video/audio converter with all codecs
     pngquant       # PNG image optimization
+    v4l-utils      # Video4Linux utilities (v4l2-ctl)
     wl-clipboard   # Wayland clipboard (wl-copy/wl-paste)
 
     # Desktop Environment Tools
@@ -50,8 +51,6 @@ in
     aider-chat     # AI pair programming tool
 
     # Core Applications
-    _1password-gui # 1Password desktop app
-    _1password-cli # 1Password CLI (op)
     firefox-devedition  # Firefox Developer Edition
     google-chrome  # Chrome browser
     mpv            # Video player
@@ -77,7 +76,7 @@ in
   home.username = "wamberg";
   home.homeDirectory = "/home/wamberg";
 
-  # Configure SSH to use 1Password agent
+  # 1Password SSH agent integration (system-level GUI/CLI config in configuration.nix)
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;  # Disable default values (future-proofing)

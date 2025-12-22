@@ -130,6 +130,13 @@
     };
   };
 
+  # 1Password - System-level config for polkit integration
+  programs._1password.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = [ "wamberg" ];
+  };
+
   # Services
   services.openssh = {
     enable = true;
