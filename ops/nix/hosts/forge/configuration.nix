@@ -90,6 +90,9 @@
   # Boot - AMD microcode
   hardware.cpu.amd.updateMicrocode = true;
 
+  # Hibernation - resume from swap partition (dynamically pulled from hardware-configuration.nix)
+  boot.resumeDevice = (builtins.head config.swapDevices).device;
+
   # System services
   services.blueman.enable = true;  # Bluetooth manager
   services.udisks2.enable = true;  # Disk management
