@@ -1,19 +1,17 @@
 #!/usr/bin/env bash
-# Backup script for Arch Linux machine managed by Ansible
+# Backup script for NixOS machine (forge)
 #
-# Backs up important user data while excluding:
-# - System caches and rebuilable content
-# - Development tool caches (managed by mise/package managers)
-# - Browser temporary data (configs preserved in dotfiles)
-# - Virtualization data and container volumes
-# - Editor temporary files
-#
-# Critical data backed up includes:
-# - All development projects (dev/)
+# Explicitly backs up only essential user data:
+# - AWS credentials (.aws/)
+# - Development projects (dev/) - keeps .git, excludes build artifacts
 # - Documents and calibre library (docs/)
 # - Pictures and wallpapers (pics/)
-# - SSH keys, GPG keys, password store
-# - Stowed dotfiles configuration
+# - Videos (videos/)
+#
+# Everything else (dotfiles, configs, system state) is managed by:
+# - NixOS configuration (declarative system state)
+# - Stow dotfiles in ~/dev/dot_files
+# - Home-manager for user environment
 #
 # Usage: forge-backup.sh <ssh_username> <ssh_host>
 
@@ -35,48 +33,32 @@ function act() {
     --verbose \
     --exclude-caches-all \
     \
-    `# one-off, special excludes` \
-    --exclude .config/Slack \
-    --exclude .config/discord \
-    --exclude .config/google-chrome* \
-    --exclude .oh-my-zsh \
-    --exclude Downloads \
-    --exclude videos \
+    `# Development build artifacts and caches` \
+    --exclude "**/node_modules" \
+    --exclude "**/.venv" \
+    --exclude "**/venv" \
+    --exclude "**/__pycache__" \
+    --exclude "**/.pytest_cache" \
+    --exclude "**/target/debug" \
+    --exclude "**/target/release" \
+    --exclude "**/.next" \
+    --exclude "**/.nuxt" \
+    --exclude "**/dist" \
+    --exclude "**/build" \
+    --exclude "**/.cache" \
     \
-    `# System caches and temporary files` \
-    --exclude .ansible \
-    --exclude .cache \
-    --exclude .telegram-unread \
-    --exclude .zoom \
-    \
-    `# Development tool caches (can be rebuilt via mise/package managers)` \
-    --exclude .cargo/git \
-    --exclude .cargo/registry \
-    --exclude .npm \
-    --exclude .rustup \
-    --exclude .venv \
-    --exclude mise \
-    --exclude node_modules \
-    \
-    `# Browser data (except essential configs already in dotfiles)` \
-    --exclude .mozilla/firefox/*/OfflineCache \
-    --exclude .mozilla/firefox/*/cache2 \
-    --exclude .mozilla/firefox/*/storage \
-    --exclude .mozilla/firefox/*/thumbnails \
-    \
-    `# Virtualization and snaps` \
-    --exclude "VirtualBox VMs" \
-    --exclude .docker/containers \
-    --exclude .docker/volumes \
-    --exclude snap \
-    \
-    `# IDE and editor temporary files` \
-    --exclude "*.swp" \
-    --exclude "*.tmp" \
-    --exclude "*~" \
+    `# Editor and tool temporary files` \
+    --exclude "**/*.swp" \
+    --exclude "**/*.tmp" \
+    --exclude "**/*~" \
+    --exclude "**/.DS_Store" \
     \
     --directory="$HOME" \
-    . \
+    .aws \
+    dev \
+    docs \
+    pics \
+    videos \
     | ssh "$SSH_USERNAME@$SSH_HOST" \
       "cat > ~/backups/forge/forge-backup-$TIMESTAMP.tar.gz" \
     2>&1 | tee "/tmp/forge-backup-log-$TIMESTAMP.txt"

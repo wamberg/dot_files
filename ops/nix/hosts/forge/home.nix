@@ -3,6 +3,22 @@
 let
   # Path to dotfiles repository
   dotfilesPath = "/home/wamberg/dev/dot_files";
+
+  # Path to NixOS flake
+  nixPath = "${dotfilesPath}/ops/nix";
+
+  # NixOS rebuild commands
+  nbuild = pkgs.writeShellScriptBin "nbuild" ''
+    cd ${nixPath} && \
+    sudo nixos-rebuild switch --flake .#forge && \
+    cd -
+  '';
+
+  ntest = pkgs.writeShellScriptBin "ntest" ''
+    cd ${nixPath} && \
+    sudo nixos-rebuild test --flake .#forge && \
+    cd -
+  '';
 in
 {
   imports = [
@@ -14,6 +30,10 @@ in
 
   # Host-specific packages for forge
   home.packages = with pkgs; [
+    # NixOS management
+    nbuild         # Rebuild and switch NixOS configuration
+    ntest          # Test NixOS configuration without switching
+
     # Media tools
     ffmpeg-full    # Video/audio converter with all codecs
     pngquant       # PNG image optimization
