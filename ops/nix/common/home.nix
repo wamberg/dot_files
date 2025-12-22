@@ -45,7 +45,6 @@
     glow       # Markdown renderer
 
     # Shell
-    direnv     # shell env management
     zsh        # Z shell
   ];
 
