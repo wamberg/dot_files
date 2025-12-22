@@ -55,7 +55,7 @@
     settings = {
       "$schema" = "https://starship.rs/config-schema.json";
 
-      format = "$directory$git_branch$git_state$git_status$cmd_duration$line_break$python$character";
+      format = "$directory$git_branch$git_state$git_status$cmd_duration$line_break$nix_shell$python$character";
 
       directory = {
         style = "bold #bd93f9";
@@ -97,10 +97,19 @@
       };
 
       python = {
-        format = "[$virtualenv]($style) ";
+        format = "[.venv]($style) ";
         style = "#6272a4";
         detect_extensions = [];
         detect_files = [];
+      };
+
+      nix_shell = {
+        format = "[$symbol]($style)";
+        symbol = "❄️";
+        style = "bold #bd93f9";
+        impure_msg = "";
+        pure_msg = "";
+        unknown_msg = "";
       };
     };
   };
