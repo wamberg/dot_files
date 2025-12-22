@@ -6,10 +6,6 @@
 APP="${1:-all}"
 STATUS_DIR="/tmp/chat-notifications"
 
-# Icon paths
-TELEGRAM_ICON="/usr/share/icons/hicolor/64x64/apps/org.telegram.desktop.png"
-SLACK_ICON="/usr/share/pixmaps/slack.png"
-
 # Ensure status directory exists
 mkdir -p "$STATUS_DIR"
 

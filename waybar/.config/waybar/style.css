@@ -64,11 +64,11 @@ window#waybar {
 }
 
 #custom-slack-notifications {
-    background-image: url("/usr/share/pixmaps/slack.png");
+    background-image: url("/home/wamberg/.nix-profile/share/pixmaps/slack.png");
 }
 
 #custom-telegram-notifications {
-    background-image: url("/usr/share/icons/hicolor/32x32/apps/org.telegram.desktop.png");
+    background-image: url("/home/wamberg/.nix-profile/share/icons/hicolor/32x32/apps/org.telegram.desktop.png");
 }
 
 #custom-slack-notifications,
