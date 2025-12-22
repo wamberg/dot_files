@@ -69,12 +69,17 @@ fi
 
 echo ""
 print_step "Cleaning old home-manager generations (keeping last 5)..."
-read -rp "Delete home-manager generations older than 5? (y/N): " delete_hm_gens
-if [[ "$delete_hm_gens" =~ ^[Yy]$ ]]; then
-    nix-env --profile /nix/var/nix/profiles/per-user/$USER/home-manager --delete-generations +5
-    echo "Old home-manager generations deleted."
+HM_PROFILE="/nix/var/nix/profiles/per-user/$USER/home-manager"
+if [ -e "$HM_PROFILE" ]; then
+    read -rp "Delete home-manager generations older than 5? (y/N): " delete_hm_gens
+    if [[ "$delete_hm_gens" =~ ^[Yy]$ ]]; then
+        nix-env --profile "$HM_PROFILE" --delete-generations +5
+        echo "Old home-manager generations deleted."
+    else
+        echo "Keeping all home-manager generations."
+    fi
 else
-    echo "Keeping all home-manager generations."
+    echo "Home-manager profile not found (integrated with system generations)."
 fi
 
 echo ""
