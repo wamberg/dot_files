@@ -37,6 +37,7 @@ in
 
     # Audio
     pavucontrol    # PulseAudio/PipeWire volume control
+    pulseaudio     # PulseAudio tools (pactl)
 
     # System Utilities
     blueman        # Bluetooth manager GUI

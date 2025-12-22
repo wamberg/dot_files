@@ -33,7 +33,7 @@
   users.users.wamberg = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [ "wheel" "networkmanager" "video" ];
+    extraGroups = [ "wheel" "networkmanager" "video" "audio" ];
     # Password will be set during installation with nixos-install
   };
 
@@ -109,7 +109,7 @@
   boot.extraModulePackages = with config.boot.kernelPackages; [
     v4l2loopback
   ];
-  boot.kernelModules = [ "v4l2loopback" ];
+  boot.kernelModules = [ "v4l2loopback" "snd-usb-audio" ];
   boot.extraModprobeConfig = ''
     options v4l2loopback devices=1 video_nr=0 card_label="Virtual Camera" exclusive_caps=1
   '';
