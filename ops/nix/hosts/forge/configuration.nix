@@ -57,6 +57,9 @@
   # Desktop Environment - Niri Wayland Compositor
   programs.niri.enable = true;
 
+  # Keyboard layout
+  services.xserver.xkb.layout = "us";
+
   # Display Manager
   services.displayManager.sddm = {
     enable = true;
