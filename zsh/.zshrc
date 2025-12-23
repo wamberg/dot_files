@@ -3,6 +3,7 @@ export ZSH_THEME=""
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_TITLE="true"
 plugins=(
+  direnv
   docker
   fzf
   git
