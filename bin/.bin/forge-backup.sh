@@ -60,7 +60,7 @@ function act() {
     pics \
     videos \
     | ssh "$SSH_USERNAME@$SSH_HOST" \
-      "cat > ~/backups/forge/forge-backup-$TIMESTAMP.tar.gz" \
+      "cat > ~/backups/forge/forge-backup-${TIMESTAMP}.tar.gz" \
     2>&1 | tee "/tmp/forge-backup-log-$TIMESTAMP.txt"
 }
 

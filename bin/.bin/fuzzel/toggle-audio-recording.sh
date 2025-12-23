@@ -34,7 +34,7 @@ else
       -filter_complex "[0:a][1:a]amix=inputs=2[aout]" \
       -map "[aout]" \
       -c:a aac -b:a 128k \
-      /home/wamberg/videos/$(date +%Y%m%d_%H%M%S).m4a &
+      "/home/wamberg/videos/$(date +%Y%m%d_%H%M%S).m4a" &
 
     # Store the PID for proper cleanup
     echo $! > "$PID_FILE"

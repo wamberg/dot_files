@@ -27,6 +27,6 @@ else
       --audio=@DEFAULT_SOURCE@ \
       --codec=libx264 \
       --codec-param=crf=28 \
-      --file=/home/wamberg/videos/$(date +%Y%m%d_%H%M%S).mp4 &
+      --file="/home/wamberg/videos/$(date +%Y%m%d_%H%M%S).mp4" &
     notify-send "Recording" "Desktop recording started" -t 2000
 fi
