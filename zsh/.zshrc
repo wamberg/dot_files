@@ -135,11 +135,22 @@ c() {
 # session name.
 tns() {
   local name="${1:-${PWD##*/}}"
+  local has_envrc=false
+  [[ -f .envrc ]] && has_envrc=true
+
   tmux new-session -ds "${name}" -x "$(tput cols)" -y "$(tput lines)"
   tmux rename-window -t "${name}":0 "code"
+
+  # Wait for direnv to complete in first pane
+  $has_envrc && sleep 0.5
+
   tmux split-window -bt "${name}":0 -l "25%"
+  $has_envrc && sleep 0.5
+
   tmux select-pane -t 0
   tmux split-window -ht "${name}":0
+  $has_envrc && sleep 0.5
+
   tmux select-pane -t 2
   tmux attach-session -t "${name}"
 }
