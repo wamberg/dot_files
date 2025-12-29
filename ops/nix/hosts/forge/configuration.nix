@@ -65,6 +65,11 @@
     enable = true;
     wayland.enable = true;
     theme = "breeze";  # Default theme with cursor support
+    settings = {
+      General = {
+        background = "/home/wamberg/pics/wallpaper/bebop-ed.jpg";
+      };
+    };
   };
 
   # Audio - PipeWire
