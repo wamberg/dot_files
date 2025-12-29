@@ -59,6 +59,7 @@ in
     # Audio
     pavucontrol    # PulseAudio/PipeWire volume control
     pulseaudio     # PulseAudio tools (pactl)
+    whisper-cpp-vulkan  # speech-to-text
 
     # System Utilities
     blueman        # Bluetooth manager GUI
