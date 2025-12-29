@@ -40,8 +40,9 @@
   # Enable sudo for wheel group
   security.sudo.wheelNeedsPassword = true;
 
-  # Development tools (needed for nvim treesitter, mason, etc.)
+
   environment.systemPackages = with pkgs; [
+    # Development tools (needed for nvim treesitter, mason, etc.)
     gcc
     gnumake
     pkg-config
@@ -49,9 +50,8 @@
     python3
     cargo
     rustc
-
-    # Cursor theme for SDDM and system-wide
-    adwaita-icon-theme
+    adwaita-icon-theme  # Cursor theme for SDDM and system-wide
+    unrar      # Archive extraction
   ];
 
   # Desktop Environment - Niri Wayland Compositor
