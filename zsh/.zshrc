@@ -52,7 +52,29 @@ export PATH="${PATH}:${HOME}/.npm-packages/bin"
 export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix --hidden --follow --no-ignore-vcs --ignore-file ~/.gitignore_global"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type d --strip-cwd-prefix --hidden --follow --no-ignore-vcs --ignore-file ~/.gitignore_global"
-export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'
+
+# Load tinty-generated FZF colors
+_fzf_config_file="$HOME/.local/share/tinted-theming/tinty/artifacts/fzf-bash-file.config"
+_fzf_config_mtime=""
+
+_reload_fzf_colors() {
+  if [ -f "$_fzf_config_file" ]; then
+    local current_mtime=$(stat -c %Y "$_fzf_config_file" 2>/dev/null || stat -f %m "$_fzf_config_file" 2>/dev/null)
+    if [ "$current_mtime" != "$_fzf_config_mtime" ]; then
+      # Unset to avoid appending (tinty template appends to existing value)
+      unset FZF_DEFAULT_OPTS
+      source "$_fzf_config_file"
+      _fzf_config_mtime="$current_mtime"
+    fi
+  fi
+}
+
+# Load FZF colors initially
+_reload_fzf_colors
+
+# Reload FZF colors before each prompt if theme changed
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd _reload_fzf_colors
 
 # no history for commands that begin with space
 setopt histignorespace
