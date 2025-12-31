@@ -41,9 +41,6 @@
     # Compression
     pigz       # Parallel gzip
 
-    # Documentation
-    glow       # Markdown renderer
-
     # Notifications
     libnotify  # Desktop notifications (notify-send command)
 

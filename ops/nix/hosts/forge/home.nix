@@ -137,7 +137,6 @@ in
         claude
         fuzzel
         git
-        glow
         kitty
         mako
         mise

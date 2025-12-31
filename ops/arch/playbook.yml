@@ -14,7 +14,6 @@
           - fd
           - ffmpeg
           - fzf
-          - glow
           - git
           - git-delta
           - gnupg
@@ -107,7 +106,6 @@
         - claude
         - fuzzel
         - git
-        - glow
         - kitty
         - mako
         - mise

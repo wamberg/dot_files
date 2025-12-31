@@ -115,7 +115,6 @@ alias aupg='sudo apt upgrade'
 alias av="aws-vault"
 alias ave="aws-vault exec"
 alias dev="nix develop --command zsh"
-alias gmd="glow --width 180 --style light"
 alias pca="pre-commit run --all-files"
 alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
 alias rs="rsync -avP"
