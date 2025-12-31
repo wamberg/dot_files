@@ -1,0 +1,41 @@
+# Tinty configuration for theme management
+# https://github.com/tinted-theming/tinty
+
+default-scheme = "base24-dracula"
+shell = "sh -c '{}'"
+
+# Global hooks run after every theme change
+hooks = [
+    "~/.config/tinty/hooks/reload-kitty.sh",
+    "~/.config/tinty/hooks/reload-tmux.sh"
+]
+
+# Kitty terminal
+[[items]]
+name = "kitty"
+path = "https://github.com/tinted-theming/tinted-terminal"
+themes-dir = "themes/kitty"
+hook = "~/.config/tinty/hooks/reload-kitty.sh"
+supported-systems = ["base24", "base16"]
+
+# Tmux terminal multiplexer
+[[items]]
+name = "tmux"
+path = "https://github.com/tinted-theming/tinted-tmux"
+themes-dir = "colors"
+hook = "~/.config/tinty/hooks/reload-tmux.sh"
+supported-systems = ["base24", "base16"]
+
+# FZF fuzzy finder
+[[items]]
+name = "fzf"
+path = "https://github.com/tinted-theming/tinted-fzf"
+themes-dir = "bash"
+supported-systems = ["base16"]  # FZF only has base16 themes
+
+# Vim/Neovim
+[[items]]
+name = "vim"
+path = "https://github.com/tinted-theming/tinted-vim"
+themes-dir = "colors"
+supported-systems = ["base24", "base16"]

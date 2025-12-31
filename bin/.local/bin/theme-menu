@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Fuzzel-based theme selector for tinty
+# Select and apply themes interactively
+
+# Get list of available themes
+THEMES=$(tinty -c ~/.config/tinty/config.toml list | awk '{print $1}')
+
+# Show fuzzel menu
+SELECTED=$(echo "$THEMES" | fuzzel --dmenu --prompt="Theme: " --width=40)
+
+# Apply selected theme
+if [ -n "$SELECTED" ]; then
+    tinty -c ~/.config/tinty/config.toml apply "$SELECTED"
+
+    # Send notification if notify-send is available
+    if command -v notify-send &> /dev/null; then
+        notify-send "Theme Applied" "Applied $SELECTED theme"
+    fi
+fi

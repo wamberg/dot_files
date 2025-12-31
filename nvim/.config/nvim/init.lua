@@ -30,7 +30,7 @@ require("lazy").setup({
   "ggandor/leap.nvim",
   "lewis6991/gitsigns.nvim",
   "micarmst/vim-spellsync",
-  "Mofiqul/dracula.nvim",
+  "tinted-theming/tinted-vim",
   {
     "nvim-telescope/telescope.nvim",
     tag = "v0.2.0",
@@ -418,30 +418,33 @@ vim.opt.foldlevel = 99
 vim.opt.foldmethod = "manual"
 
 -- Display
-vim.cmd([[colorscheme dracula]])
+-- Load tinty-generated colorscheme
+vim.cmd([[source ~/.local/share/tinted-theming/tinty/artifacts/vim-colors-file.vim]])
+
 -- To identify highlight groups and their names:
 --   - Place cursor on an element and run `:Inspect` to see the highlight group(s)
 --   - Run `:InspectTree` to see the TreeSitter syntax tree and node types
 --   - Highlight group names like "@markup.heading.1.markdown" come from TreeSitter
-local colors = require("dracula").colors()
-vim.api.nvim_set_hl(0, "@markup.heading.1.markdown", { fg = colors.orange, bold = true })
-vim.api.nvim_set_hl(0, "@markup.heading.2.markdown", { fg = colors.cyan, bold = true })
-vim.api.nvim_set_hl(0, "@markup.heading.3.markdown", { fg = colors.green, bold = true })
-vim.api.nvim_set_hl(0, "@markup.heading.4.markdown", { fg = colors.pink, bold = true })
-vim.api.nvim_set_hl(0, "@markup.link.url.markdown_inline", { fg = colors.comment })
-vim.api.nvim_set_hl(0, "@markup.list", { fg = colors.purple })
-vim.api.nvim_set_hl(0, "@markup.raw.markdown_inline", { fg = colors.bright_yellow, bold = false })
-vim.api.nvim_set_hl(0, "@markup.strong.markdown_inline", { fg = colors.bright_magenta, bold = true })
+
+-- Custom markdown highlights using tinted-vim highlight groups
+-- These automatically adapt to any theme applied via tinty
+vim.api.nvim_set_hl(0, "@markup.heading.1.markdown", { link = "Constant" })  -- orange (gui09)
+vim.api.nvim_set_hl(0, "@markup.heading.2.markdown", { link = "tinted_gui0C" })  -- cyan
+vim.api.nvim_set_hl(0, "@markup.heading.3.markdown", { link = "String" })  -- green (gui0B)
+vim.api.nvim_set_hl(0, "@markup.heading.4.markdown", { link = "Statement" })  -- magenta/pink (gui0E)
+vim.api.nvim_set_hl(0, "@markup.link.url.markdown_inline", { link = "Comment" })  -- comment (gui03)
+vim.api.nvim_set_hl(0, "@markup.list", { link = "Statement" })  -- purple/magenta (gui0E)
+vim.api.nvim_set_hl(0, "@markup.raw.markdown_inline", { link = "Type" })  -- yellow (gui0A)
+vim.api.nvim_set_hl(0, "@markup.strong.markdown_inline", { link = "Statement" })  -- magenta (gui0E)
 
 -- Inherit from @markup.italic but add underline
 local italic_highlight = vim.api.nvim_get_hl(0, { name = "@markup.italic" })
 vim.api.nvim_set_hl(0, "@markup.quote.markdown", italic_highlight)
 italic_highlight.underline = true
-italic_highlight.fg = colors.yellow
 vim.api.nvim_set_hl(0, "@markup.italic.markdown_inline", italic_highlight)
-local special_highlight = vim.api.nvim_get_hl(0, { name = "Special" })
-special_highlight.fg = colors.bright_blue
-vim.api.nvim_set_hl(0, "Special", special_highlight)
+
+-- Link Special to Function (blue, gui0D)
+vim.api.nvim_set_hl(0, "Special", { link = "Function" })
 
 vim.api.nvim_set_hl(0, "SpellRare", { link = "SpellBad" })
 vim.api.nvim_set_hl(0, "SpellCap", { link = "SpellBad" })

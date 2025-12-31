@@ -44,6 +44,12 @@
     # Documentation
     glow       # Markdown renderer
 
+    # Notifications
+    libnotify  # Desktop notifications (notify-send command)
+
+    # Theming
+    tinty      # Base16/Base24 theme manager
+
     # Shell
     zsh        # Z shell
   ];

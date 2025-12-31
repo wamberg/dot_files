@@ -147,6 +147,7 @@ in
         nvim
         sql
         swappy
+        tinty
         tmux
         vifm
         waybar
