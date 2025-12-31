@@ -21,8 +21,8 @@
 [delta]
 	features = line-numbers decorations
 	whitespace-error-style = 22 reverse
-	syntax-theme = Dracula
 	side-by-side = true
+	# syntax-theme uses BAT_THEME environment variable (set by tinty)
 [pull]
 	ff = only
 [init]

@@ -56,6 +56,8 @@ export FZF_ALT_C_COMMAND="fd --type d --strip-cwd-prefix --hidden --follow --no-
 # Load tinty-generated FZF colors
 _fzf_config_file="$HOME/.local/share/tinted-theming/tinty/artifacts/fzf-bash-file.config"
 _fzf_config_mtime=""
+_tinty_current_scheme_file="$HOME/.local/share/tinted-theming/tinty/artifacts/current_scheme"
+_tinty_scheme_mtime=""
 
 _reload_fzf_colors() {
   if [ -f "$_fzf_config_file" ]; then
@@ -69,12 +71,27 @@ _reload_fzf_colors() {
   fi
 }
 
-# Load FZF colors initially
-_reload_fzf_colors
+_reload_bat_theme() {
+  if [ -f "$_tinty_current_scheme_file" ]; then
+    local current_mtime=$(stat -c %Y "$_tinty_current_scheme_file" 2>/dev/null || stat -f %m "$_tinty_current_scheme_file" 2>/dev/null)
+    if [ "$current_mtime" != "$_tinty_scheme_mtime" ]; then
+      source "$HOME/.config/tinty/scripts/set-bat-theme.sh"
+      _tinty_scheme_mtime="$current_mtime"
+    fi
+  fi
+}
 
-# Reload FZF colors before each prompt if theme changed
+_reload_tinty_themes() {
+  _reload_fzf_colors
+  _reload_bat_theme
+}
+
+# Load themes initially
+_reload_tinty_themes
+
+# Reload themes before each prompt if changed
 autoload -Uz add-zsh-hook
-add-zsh-hook precmd _reload_fzf_colors
+add-zsh-hook precmd _reload_tinty_themes
 
 # no history for commands that begin with space
 setopt histignorespace
