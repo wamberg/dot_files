@@ -100,6 +100,11 @@ alias tfa="terraform apply"
 
 ### Functions ###
 
+# SSH wrapper - use xterm-256color for compatibility with remote systems
+ssh() {
+  TERM=xterm-256color command ssh "$@"
+}
+
 # Echo and copy to clipboard
 ec() {
   printf '%s' "$1" | wl-copy
