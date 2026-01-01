@@ -5,12 +5,15 @@ default-timeout=5000
 anchor=top-center
 margin=10
 
-# Dracula color scheme
+# Border settings
+border-size=2
+border-radius=5
+
+# Color scheme - managed by tinty
+# These colors are updated by ~/.config/tinty/hooks/reload-mako.sh
 background-color=#282a36
 text-color=#f8f8f2
 border-color=#bd93f9
-border-size=2
-border-radius=5
 
 # Dismiss notifications
 # - on-button-left: dismiss on left click

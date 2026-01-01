@@ -11,7 +11,8 @@ hooks = [
     "~/.config/tinty/hooks/reload-fzf.sh",
     "~/.config/tinty/hooks/reload-vifm.sh",
     "~/.config/tinty/hooks/reload-waybar.sh",
-    "~/.config/tinty/hooks/reload-fuzzel.sh"
+    "~/.config/tinty/hooks/reload-fuzzel.sh",
+    "~/.config/tinty/hooks/reload-mako.sh"
 ]
 
 # Kitty terminal
@@ -54,4 +55,7 @@ supported-systems = ["base24", "base16"]
 # The hook generates CSS from YAML schemes (works with base16 and base24)
 
 # Fuzzel (application launcher) - handled via global hook
+# The hook generates colors from YAML schemes (works with base16 and base24)
+
+# Mako (notification daemon) - handled via global hook
 # The hook generates colors from YAML schemes (works with base16 and base24)
