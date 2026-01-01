@@ -30,8 +30,8 @@ themes-dir = "colors"
 hook = "~/.config/tinty/hooks/reload-tmux.sh"
 supported-systems = ["base24", "base16"]
 
-# FZF fuzzy finder - handled via hook with base16 fallback for base24 themes
-# The hook in ~/.config/tinty/hooks/reload-fzf.sh applies base16 equivalent when base24 is selected
+# FZF fuzzy finder - handled via global hook
+# The hook generates colors from YAML schemes (works with base16 and base24)
 
 # Vim/Neovim
 [[items]]
