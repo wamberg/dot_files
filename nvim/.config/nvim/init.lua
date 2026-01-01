@@ -428,14 +428,14 @@ vim.cmd([[source ~/.local/share/tinted-theming/tinty/artifacts/vim-colors-file.v
 
 -- Custom markdown highlights using tinted-vim highlight groups
 -- These automatically adapt to any theme applied via tinty
-vim.api.nvim_set_hl(0, "@markup.heading.1.markdown", { link = "Constant" })  -- orange (gui09)
-vim.api.nvim_set_hl(0, "@markup.heading.2.markdown", { link = "tinted_gui0C" })  -- cyan
-vim.api.nvim_set_hl(0, "@markup.heading.3.markdown", { link = "String" })  -- green (gui0B)
-vim.api.nvim_set_hl(0, "@markup.heading.4.markdown", { link = "Statement" })  -- magenta/pink (gui0E)
-vim.api.nvim_set_hl(0, "@markup.link.url.markdown_inline", { link = "Comment" })  -- comment (gui03)
-vim.api.nvim_set_hl(0, "@markup.list", { link = "Statement" })  -- purple/magenta (gui0E)
-vim.api.nvim_set_hl(0, "@markup.raw.markdown_inline", { link = "Type" })  -- yellow (gui0A)
-vim.api.nvim_set_hl(0, "@markup.strong.markdown_inline", { link = "Statement" })  -- magenta (gui0E)
+vim.api.nvim_set_hl(0, "@markup.heading.1.markdown", { link = "Constant" }) -- orange (gui09)
+vim.api.nvim_set_hl(0, "@markup.heading.2.markdown", { link = "tinted_gui0C" }) -- cyan
+vim.api.nvim_set_hl(0, "@markup.heading.3.markdown", { link = "String" }) -- green (gui0B)
+vim.api.nvim_set_hl(0, "@markup.heading.4.markdown", { link = "Statement" }) -- magenta/pink (gui0E)
+vim.api.nvim_set_hl(0, "@markup.link.url.markdown_inline", { link = "Comment" }) -- comment (gui03)
+vim.api.nvim_set_hl(0, "@markup.list", { link = "Statement" }) -- purple/magenta (gui0E)
+vim.api.nvim_set_hl(0, "@markup.raw.markdown_inline", { link = "Type" }) -- yellow (gui0A)
+vim.api.nvim_set_hl(0, "@markup.strong.markdown_inline", { link = "Statement" }) -- magenta (gui0E)
 
 -- Inherit from @markup.italic but add underline
 local italic_highlight = vim.api.nvim_get_hl(0, { name = "@markup.italic" })
