@@ -1,8 +1,8 @@
-# Dracula theme Starship configuration
+# Starship configuration with tinty theme support
+# Colors managed by tinty - do not edit color values directly
+# Scheme: {{scheme-name}} by {{scheme-author}}
 
 "$schema" = 'https://starship.rs/config-schema.json'
-
-palette = "dracula"
 
 format = """
 $directory\
@@ -11,26 +11,27 @@ $git_state\
 $git_status\
 $cmd_duration\
 $line_break\
+$nix_shell\
 $python\
 $character"""
 
 [directory]
-style = "bold purple"
+style = "bold #{{base0F-hex}}"
 truncation_length = 0
 truncate_to_repo = false
 
 [character]
-success_symbol = "[❯](pink)"
-error_symbol = "[❯](red)"
-vimcmd_symbol = "[❮](green)"
+success_symbol = "[❯](#{{base0E-hex}})"
+error_symbol = "[❯](#{{base08-hex}})"
+vimcmd_symbol = "[❮](#{{base0B-hex}})"
 
 [git_branch]
 format = "[$branch]($style)"
-style = "comment"
+style = "#{{base03-hex}}"
 
 [git_status]
 format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)]($style) ($ahead_behind$stashed)]($style)"
-style = "pink"
+style = "#{{base0E-hex}}"
 conflicted = "​"
 untracked = "​"
 modified = "​"
@@ -41,28 +42,22 @@ stashed = "≡"
 
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
-style = "comment"
+style = "#{{base03-hex}}"
 
 [cmd_duration]
 format = "[$duration]($style) "
-style = "yellow"
+style = "#{{base0A-hex}}"
 
 [python]
 format = "[$virtualenv]($style) "
-style = "comment"
+style = "#{{base03-hex}}"
 detect_extensions = []
 detect_files = []
 
-# Define Dracula color palette
-[palettes.dracula]
-background = "#282a36"
-current_line = "#44475a"
-foreground = "#f8f8f2"
-comment = "#6272a4"
-cyan = "#8be9fd"
-green = "#50fa7b"
-orange = "#ffb86c"
-pink = "#ff79c6"
-purple = "#bd93f9"
-red = "#ff5555"
-yellow = "#f1fa8c"
+[nix_shell]
+format = "[$symbol]($style)"
+symbol = "❄️"
+style = "bold #{{base0F-hex}}"
+impure_msg = ""
+pure_msg = ""
+unknown_msg = ""
