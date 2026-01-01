@@ -19,12 +19,15 @@ if [ -f "$TINTY_CURRENT_SCHEME_FILE" ]; then
         # Extract variant field from YAML
         VARIANT=$(grep "^variant:" "$SCHEME_FILE" | awk '{print $2}' | tr -d '"')
 
-        # Set freedesktop.org color-scheme preference
-        # 0 = no preference, 1 = prefer dark, 2 = prefer light
+        # Set color-scheme preferences for better app compatibility
+        # freedesktop.org: 0 = no preference, 1 = prefer dark, 2 = prefer light
+        # GNOME: "default" or "prefer-dark" or "prefer-light"
         if [ "$VARIANT" = "dark" ]; then
             dconf write /org/freedesktop/appearance/color-scheme "uint32 1"
+            dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
         elif [ "$VARIANT" = "light" ]; then
             dconf write /org/freedesktop/appearance/color-scheme "uint32 2"
+            dconf write /org/gnome/desktop/interface/color-scheme "'prefer-light'"
         fi
     fi
 fi
