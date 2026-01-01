@@ -1,0 +1,6 @@
+# Yazi theme configuration
+# Theme managed by tinty (tinted-theming)
+# https://yazi-rs.github.io/docs/configuration/theme
+
+[flavor]
+use = "base16-nord"

@@ -35,6 +35,7 @@ in
     ntest          # Test NixOS configuration without switching
 
     # Media tools
+    feh            # Image viewer
     ffmpeg-full    # Video/audio converter with all codecs
     pngquant       # PNG image optimization
     v4l-utils      # Video4Linux utilities (v4l2-ctl)
@@ -148,7 +149,7 @@ in
         swappy
         tinty
         tmux
-        vifm
+        yazi
         waybar
         zsh
       )

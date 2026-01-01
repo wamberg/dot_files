@@ -1,13 +1,14 @@
 # Tinty configuration for theme management
 # https://github.com/tinted-theming/tinty
 
-default-scheme = "base24-dracula"
+default-scheme = "base16-dracula"
 shell = "sh -c '{}'"
 
 # Global hooks run after every theme change
 hooks = [
     "~/.config/tinty/hooks/reload-kitty.sh",
-    "~/.config/tinty/hooks/reload-tmux.sh"
+    "~/.config/tinty/hooks/reload-tmux.sh",
+    "~/.config/tinty/hooks/reload-yazi.sh"
 ]
 
 # Kitty terminal
@@ -39,3 +40,13 @@ name = "vim"
 path = "https://github.com/tinted-theming/tinted-vim"
 themes-dir = "colors"
 supported-systems = ["base24", "base16"]
+
+# Delta (git diff pager)
+[[items]]
+name = "delta"
+path = "https://github.com/tinted-theming/tinted-delta"
+themes-dir = "configs"
+supported-systems = ["base24", "base16"]
+
+# Yazi (file manager) - handled via global hook, not as a tinty item
+# The hook symlinks flavors from the cloned repo to ~/.config/yazi/flavors/
