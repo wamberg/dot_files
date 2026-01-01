@@ -1,19 +1,142 @@
 #!/usr/bin/env bash
-# Fuzzel-based theme selector for tinty
-# Select and apply themes interactively
+# Fuzzel-based theme selector for tinty with favorites management
 
-# Get list of available themes
-THEMES=$(tinty -c ~/.config/tinty/config.toml list | awk '{print $1}')
+set -e
 
-# Show fuzzel menu
-SELECTED=$(echo "$THEMES" | fuzzel --dmenu --prompt="Theme: " --width=40)
+TINTY_CONFIG="$HOME/.config/tinty/config.toml"
+FAVORITES_FILE="$HOME/.config/tinty/favorites.txt"
+CURRENT_SCHEME_FILE="$HOME/.local/share/tinted-theming/tinty/artifacts/current_scheme"
 
-# Apply selected theme
-if [ -n "$SELECTED" ]; then
-    tinty -c ~/.config/tinty/config.toml apply "$SELECTED"
+# Ensure favorites file exists
+touch "$FAVORITES_FILE"
 
-    # Send notification if notify-send is available
-    if command -v notify-send &> /dev/null; then
-        notify-send "Theme Applied" "Applied $SELECTED theme"
+# Read current theme
+get_current_theme() {
+    if [ -f "$CURRENT_SCHEME_FILE" ]; then
+        cat "$CURRENT_SCHEME_FILE"
     fi
-fi
+}
+
+# Read favorites (sorted)
+get_favorites() {
+    sort -u "$FAVORITES_FILE"
+}
+
+# Check if theme is in favorites
+is_favorite() {
+    local theme="$1"
+    grep -Fxq "$theme" "$FAVORITES_FILE" 2>/dev/null
+}
+
+# Add theme to favorites
+add_favorite() {
+    local theme="$1"
+    if ! is_favorite "$theme"; then
+        echo "$theme" >> "$FAVORITES_FILE"
+        # Re-sort favorites
+        sort -u "$FAVORITES_FILE" -o "$FAVORITES_FILE"
+        notify-send "Favorite Added" "Added $theme to favorites"
+    else
+        notify-send "Already Favorited" "$theme is already in favorites"
+    fi
+}
+
+# Remove theme from favorites
+remove_favorite() {
+    local theme="$1"
+    if is_favorite "$theme"; then
+        grep -Fxv "$theme" "$FAVORITES_FILE" > "${FAVORITES_FILE}.tmp"
+        mv "${FAVORITES_FILE}.tmp" "$FAVORITES_FILE"
+        notify-send "Favorite Removed" "Removed $theme from favorites"
+    else
+        notify-send "Not Favorited" "$theme is not in favorites"
+    fi
+}
+
+# Apply theme
+apply_theme() {
+    local theme="$1"
+    tinty -c "$TINTY_CONFIG" apply "$theme"
+    if command -v notify-send &> /dev/null; then
+        notify-send "Theme Applied" "Applied $theme theme"
+    fi
+}
+
+# Show all themes menu with favorites marked
+show_all_themes() {
+    local all_themes=$(tinty -c "$TINTY_CONFIG" list | awk '{print $1}')
+    local menu_items=""
+
+    while IFS= read -r theme; do
+        if is_favorite "$theme"; then
+            menu_items+="⭐ $theme"$'\n'
+        else
+            menu_items+="$theme"$'\n'
+        fi
+    done <<< "$all_themes"
+
+    local selected=$(echo -n "$menu_items" | fuzzel --dmenu --prompt="All Themes: " --width=40)
+
+    if [ -n "$selected" ]; then
+        # Remove star prefix if present
+        theme_name=$(echo "$selected" | sed 's/^⭐ //')
+        apply_theme "$theme_name"
+    fi
+}
+
+# Build and show main menu
+show_main_menu() {
+    local current_theme=$(get_current_theme)
+    local menu_items=""
+
+    # Add favorite themes
+    local favorites=$(get_favorites)
+    if [ -n "$favorites" ]; then
+        while IFS= read -r theme; do
+            menu_items+="⭐ $theme"$'\n'
+        done <<< "$favorites"
+    fi
+
+    # Add menu options
+    menu_items+="📋 All themes"$'\n'
+
+    if [ -n "$current_theme" ]; then
+        if is_favorite "$current_theme"; then
+            menu_items+="➖ Remove current theme from favorites"$'\n'
+        else
+            menu_items+="➕ Add current theme to favorites"$'\n'
+        fi
+    fi
+
+    # Show menu
+    local selected=$(echo -n "$menu_items" | fuzzel --dmenu --prompt="Theme: " --width=40)
+
+    # Handle selection
+    if [ -z "$selected" ]; then
+        exit 0
+    fi
+
+    case "$selected" in
+        "📋 All themes")
+            show_all_themes
+            ;;
+        "➕ Add current theme to favorites")
+            add_favorite "$current_theme"
+            ;;
+        "➖ Remove current theme from favorites")
+            remove_favorite "$current_theme"
+            ;;
+        ⭐*)
+            # Selected a favorite theme
+            theme_name=$(echo "$selected" | sed 's/^⭐ //')
+            apply_theme "$theme_name"
+            ;;
+        *)
+            # Should not happen
+            exit 0
+            ;;
+    esac
+}
+
+# Main entry point
+show_main_menu
