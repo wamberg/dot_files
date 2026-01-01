@@ -143,6 +143,17 @@ ssh() {
   TERM=xterm-256color command ssh "$@"
 }
 
+# Smart cat - use bat when output is to terminal, regular cat when piped
+cat() {
+  if [ -t 1 ]; then
+    # stdout is a terminal, use bat with syntax highlighting
+    bat --paging=never "$@"
+  else
+    # stdout is piped/redirected, use plain cat for compatibility
+    command cat "$@"
+  fi
+}
+
 # Echo and copy to clipboard
 ec() {
   printf '%s' "$1" | wl-copy
