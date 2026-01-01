@@ -1,3 +1,4 @@
+base16-dracula
+base16-nord-light
 base16-one-light
-base24-dracula
-base24-one-light
+base16-papercolor-light

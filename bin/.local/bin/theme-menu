@@ -3,6 +3,9 @@
 
 set -e
 
+# Source shared library for bat theme mapping
+source "$HOME/.config/tinty/scripts/lib.sh"
+
 TINTY_CONFIG="$HOME/.config/tinty/config.toml"
 FAVORITES_FILE="$HOME/.config/tinty/favorites.txt"
 CURRENT_SCHEME_FILE="$HOME/.local/share/tinted-theming/tinty/artifacts/current_scheme"
@@ -15,6 +18,13 @@ get_current_theme() {
     if [ -f "$CURRENT_SCHEME_FILE" ]; then
         cat "$CURRENT_SCHEME_FILE"
     fi
+}
+
+# Get BAT_THEME for current tinty theme
+# Uses shared function from lib.sh
+get_bat_theme() {
+    local current_theme=$(get_current_theme)
+    get_bat_theme_for_scheme "$current_theme"
 }
 
 # Read favorites (sorted)
@@ -64,6 +74,8 @@ apply_theme() {
 
 # Show all themes menu with favorites marked
 show_all_themes() {
+    local current_theme=$(get_current_theme)
+    local bat_theme=$(get_bat_theme)
     local all_themes=$(tinty -c "$TINTY_CONFIG" list | awk '{print $1}')
     local menu_items=""
 
@@ -75,7 +87,9 @@ show_all_themes() {
         fi
     done <<< "$all_themes"
 
-    local selected=$(echo -n "$menu_items" | fuzzel --dmenu --prompt="All Themes: " --width=40)
+    # Build prompt with current theme info
+    local prompt="All | Current: $current_theme | bat: $bat_theme > "
+    local selected=$(echo -n "$menu_items" | fuzzel --dmenu --prompt="$prompt" --width=55)
 
     if [ -n "$selected" ]; then
         # Remove star prefix if present
@@ -108,8 +122,12 @@ show_main_menu() {
         fi
     fi
 
+    # Build prompt with current theme info
+    local bat_theme=$(get_bat_theme)
+    local prompt="Current: $current_theme | bat: $bat_theme > "
+
     # Show menu
-    local selected=$(echo -n "$menu_items" | fuzzel --dmenu --prompt="Theme: " --width=40)
+    local selected=$(echo -n "$menu_items" | fuzzel --dmenu --prompt="$prompt" --width=55)
 
     # Handle selection
     if [ -z "$selected" ]; then
