@@ -42,9 +42,13 @@ is_favorite() {
 add_favorite() {
     local theme="$1"
     if ! is_favorite "$theme"; then
-        echo "$theme" >> "$FAVORITES_FILE"
-        # Re-sort favorites
-        sort -u "$FAVORITES_FILE" -o "$FAVORITES_FILE"
+        # Add and re-sort, preserving symlink
+        {
+            cat "$FAVORITES_FILE" 2>/dev/null
+            echo "$theme"
+        } | sort -u > "${FAVORITES_FILE}.tmp"
+        cat "${FAVORITES_FILE}.tmp" > "$FAVORITES_FILE"
+        rm "${FAVORITES_FILE}.tmp"
         notify-send "Favorite Added" "Added $theme to favorites"
     else
         notify-send "Already Favorited" "$theme is already in favorites"
@@ -55,8 +59,10 @@ add_favorite() {
 remove_favorite() {
     local theme="$1"
     if is_favorite "$theme"; then
+        # Remove theme, preserving symlink
         grep -Fxv "$theme" "$FAVORITES_FILE" > "${FAVORITES_FILE}.tmp"
-        mv "${FAVORITES_FILE}.tmp" "$FAVORITES_FILE"
+        cat "${FAVORITES_FILE}.tmp" > "$FAVORITES_FILE"
+        rm "${FAVORITES_FILE}.tmp"
         notify-send "Favorite Removed" "Removed $theme from favorites"
     else
         notify-send "Not Favorited" "$theme is not in favorites"
