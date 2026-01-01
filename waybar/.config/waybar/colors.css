@@ -1,12 +1,23 @@
-@define-color background-darker rgba(30, 31, 41, 230);
-@define-color background #282a36;
-@define-color selection #44475a;
-@define-color foreground #f8f8f2;
-@define-color comment #6272a4;
-@define-color cyan #8be9fd;
-@define-color green #50fa7b;
-@define-color orange #ffb86c;
-@define-color pink #ff79c6;
-@define-color purple #bd93f9;
-@define-color red #ff5555;
-@define-color yellow #f1fa8c;
+/* Import base16 colors from tinty */
+@import url("file:///home/wamberg/.local/share/tinted-theming/tinty/artifacts/waybar-colors-file.css");
+
+/* Semantic color aliases for waybar styling */
+/* These map base16 colors to meaningful names */
+
+/* Background colors - use base16 colors for light/dark theme compatibility */
+@define-color background @base00;        /* Main background */
+@define-color background-darker @base01; /* Slightly emphasized background */
+@define-color selection @base02;         /* Selection/hover background */
+
+/* Text colors */
+@define-color foreground @base05;  /* Main text color */
+@define-color comment @base03;     /* Dimmed text */
+
+/* Accent colors */
+@define-color cyan @base0C;
+@define-color green @base0B;
+@define-color orange @base09;
+@define-color pink @base0E;
+@define-color purple @base0F;
+@define-color red @base08;
+@define-color yellow @base0A;
