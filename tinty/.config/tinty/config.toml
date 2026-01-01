@@ -9,7 +9,7 @@ hooks = [
     "~/.config/tinty/hooks/reload-kitty.sh",
     "~/.config/tinty/hooks/reload-tmux.sh",
     "~/.config/tinty/hooks/reload-fzf.sh",
-    "~/.config/tinty/hooks/reload-yazi.sh",
+    "~/.config/tinty/hooks/reload-vifm.sh",
     "~/.config/tinty/hooks/reload-waybar.sh",
     "~/.config/tinty/hooks/reload-fuzzel.sh"
 ]
@@ -47,8 +47,8 @@ path = "https://github.com/tinted-theming/tinted-delta"
 themes-dir = "configs"
 supported-systems = ["base24", "base16"]
 
-# Yazi (file manager) - handled via global hook, not as a tinty item
-# The hook symlinks flavors from the cloned repo to ~/.config/yazi/flavors/
+# Vifm (file manager) - handled via global hook
+# The hook generates colors from YAML schemes (works with base16 and base24)
 
 # Waybar (status bar) - handled via hook with base16 fallback for base24 themes
 # The hook in ~/.config/tinty/hooks/reload-waybar.sh applies base16 equivalent when base24 is selected

@@ -25,7 +25,7 @@
     stow       # Dotfiles manager
     tree       # Directory tree viewer
     unzip      # Archive extraction
-    yazi       # File manager
+    vifm       # File manager
 
     # Data tools
     jq         # JSON processor

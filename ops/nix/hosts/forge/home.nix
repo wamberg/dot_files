@@ -149,7 +149,7 @@ in
         swappy
         tinty
         tmux
-        yazi
+        vifm
         waybar
         zsh
       )

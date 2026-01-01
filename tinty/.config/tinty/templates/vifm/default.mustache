@@ -1,0 +1,34 @@
+" VIFM COLORS
+" {{scheme-name}}
+" Author: {{scheme-author}}
+" Base16 template for vifm
+
+" Clear existing highlights
+highlight clear
+
+" Main window
+highlight Win             cterm=none ctermfg=default    ctermbg=none
+
+" Top line and status
+highlight TopLine         cterm=none ctermfg=blue       ctermbg=none
+highlight TopLineSel      cterm=none ctermfg=magenta    ctermbg=none
+highlight StatusLine      cterm=none ctermfg=blue       ctermbg=none
+highlight Border          cterm=none ctermfg=blue       ctermbg=none
+
+" Selection and current line
+highlight Selected        cterm=bold ctermfg=magenta    ctermbg=default
+highlight CurrLine        cterm=bold ctermfg=default    ctermbg=blue
+
+" Command line
+highlight WildMenu        cterm=none,reverse ctermfg=blue ctermbg=default
+highlight CmdLine         cterm=none ctermfg=default ctermbg=none
+highlight ErrorMsg        cterm=none ctermfg=red ctermbg=default
+
+" File types
+highlight Directory       cterm=none ctermfg=blue ctermbg=default
+highlight Link            cterm=none ctermfg=cyan ctermbg=default
+highlight BrokenLink      cterm=none ctermfg=red ctermbg=default
+highlight Socket          cterm=none ctermfg=magenta ctermbg=default
+highlight Device          cterm=none ctermfg=red ctermbg=default
+highlight Fifo            cterm=none ctermfg=yellow ctermbg=default
+highlight Executable      cterm=none ctermfg=green ctermbg=default

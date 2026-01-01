@@ -1,0 +1,43 @@
+set dotfiles
+set grepprg='rg --line-number --hidden %i %a %s'
+set ignorecase
+set incsearch
+set nofollowlinks
+set nohlsearch
+set scrolloff=4
+set smartcase
+set sortnumbers
+set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
+set syscalls
+set trashdir=/tmp/
+set undolevels=100
+set vicmd=$EDITOR
+set viewcolumns=-{name}..,6{size},11{perms}
+set wildmenu
+set wildstyle=popup
+only
+
+mark h ~/
+
+" fzf file finder
+command! FZFfind :execute 'goto' fnameescape(term('fd --type f --hidden --follow | fzf 2>/dev/tty'))
+nnoremap <c-p> :FZFfind<cr>
+
+" fzf directory finder
+command! FZFcd :execute 'cd' fnameescape(term('fd --type d --hidden --follow | fzf 2>/dev/tty'))
+nnoremap <c-o> :FZFcd<cr>
+
+" Audio files
+filetype *.mp3,*.flac,*.wav,*.ogg,*.m4a,*.aac,*.wma,*.opus,*.ape,*.alac
+        \ mpv %f
+
+
+" Video files
+filetype *.mp4,*.mkv,*.avi,*.mov,*.wmv,*.flv,*.webm,*.m4v,*.3gp,*.ogv
+        \ mpv %f &
+
+" Image files
+filetype *.jpg,*.jpeg,*.png,*.gif,*.bmp,*.tiff,*.tif,*.webp,*.svg,*.ico
+        \ feh --scale-down --auto-zoom %f &
+
+colorscheme tinty
