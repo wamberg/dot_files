@@ -12,7 +12,8 @@ hooks = [
     "~/.config/tinty/hooks/reload-vifm.sh",
     "~/.config/tinty/hooks/reload-waybar.sh",
     "~/.config/tinty/hooks/reload-fuzzel.sh",
-    "~/.config/tinty/hooks/reload-mako.sh"
+    "~/.config/tinty/hooks/reload-mako.sh",
+    "~/.config/tinty/hooks/set-color-scheme-preference.sh"
 ]
 
 # Kitty terminal
