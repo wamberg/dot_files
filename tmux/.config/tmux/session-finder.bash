@@ -76,7 +76,10 @@ session_next() {
 session_finder() {
 	# Get sessions sorted by last attached time, with current session first
 	sessions=$($tmux ls -F '#{?session_attached,*,} #{session_name}' | sort -k2)
-	
+
+	# Load tinty FZF colors
+	source ~/.local/share/tinted-theming/tinty/artifacts/fzf-bash-file.config 2>/dev/null || true
+
 	# Use fzf to select or create a session
 	selection=$(echo "$sessions" | fzf --print-query --prompt="$prompt" || true)
 	
