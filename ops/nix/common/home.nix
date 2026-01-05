@@ -16,6 +16,13 @@
     neovim     # Text editor
     tmux       # Terminal multiplexer
 
+    # LSP servers and formatters for neovim
+    htmx-lsp             # HTMX LSP
+    lua-language-server  # Lua LSP
+    stylua               # Lua formatter
+    ty                   # Python LSP and type checker
+    nodePackages.typescript-language-server  # TypeScript/JavaScript LSP
+
     # AWS tools
     awscli2    # AWS CLI v2
     aws-vault  # AWS credential manager

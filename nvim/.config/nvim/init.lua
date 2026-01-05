@@ -39,35 +39,32 @@ require("lazy").setup({
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    config = function()
-      local configs = require("nvim-treesitter.configs")
-      configs.setup({
-        ensure_installed = {
-          "bash",
-          "css",
-          "dockerfile",
-          "git_config",
-          "git_rebase",
-          "gitcommit",
-          "go",
-          "html",
-          "htmldjango",
-          "json",
-          "lua",
-          "make",
-          "markdown",
-          "markdown_inline",
-          "python",
-          "sql",
-          "toml",
-          "typescript",
-          "vimdoc",
-        },
-        highlight = {
-          enable = true,
-        },
-      })
-    end,
+    opts = {
+      ensure_installed = {
+        "bash",
+        "css",
+        "dockerfile",
+        "git_config",
+        "git_rebase",
+        "gitcommit",
+        "go",
+        "html",
+        "htmldjango",
+        "json",
+        "lua",
+        "make",
+        "markdown",
+        "markdown_inline",
+        "python",
+        "sql",
+        "toml",
+        "typescript",
+        "vimdoc",
+      },
+      highlight = {
+        enable = true,
+      },
+    },
   },
   "ojroques/nvim-bufdel",
   "RRethy/vim-illuminate",
@@ -79,20 +76,14 @@ require("lazy").setup({
   },
 
   { -- LSP Configuration & Plugins
-    "neovim/nvim-lspconfig",
+    -- Note: We don't need nvim-lspconfig in Neovim 0.11+
+    -- Using built-in vim.lsp.config and vim.lsp.enable() instead
+    name = "lsp-setup",
+    dir = vim.fn.stdpath("config"),
     dependencies = {
-      -- Automatically install LSPs and related tools to stdpath for Neovim
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-      "WhoIsSethDaniel/mason-tool-installer.nvim",
-
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { "j-hui/fidget.nvim", opts = {} },
-
-      -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
-      -- used for completion, annotations and signatures of Neovim apis
-      { "folke/neodev.nvim", opts = {} },
     },
     config = function()
       -- Brief aside: **What is LSP?**
@@ -214,50 +205,66 @@ require("lazy").setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        htmx = { filetypes = { "html", "htmldjango" } },
-        pyright = {},
-        ts_ls = {},
+        htmx = {
+          filetypes = { "html", "htmldjango" },
+        },
+        ty = {
+          filetypes = { "python" },
+        },
+        ts_ls = {
+          filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+        },
         lua_ls = {
-          -- cmd = {...},
-          -- filetypes = { ...},
-          -- capabilities = {},
+          filetypes = { "lua" },
           settings = {
             Lua = {
+              runtime = {
+                version = "LuaJIT",
+              },
               completion = {
                 callSnippet = "Replace",
               },
-              -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
+              diagnostics = {
+                globals = { "vim" }, -- Recognize 'vim' global
+              },
+              workspace = {
+                library = {
+                  vim.env.VIMRUNTIME,
+                  "${3rd}/luv/library",
+                },
+                checkThirdParty = false,
+              },
+              telemetry = {
+                enable = false,
+              },
             },
           },
         },
       }
 
-      -- Ensure the servers and tools above are installed
-      --  To check the current status of installed tools and/or manually install
-      --  other tools, you can run
-      --    :Mason
-      --
-      --  You can press `g?` for help in this menu.
-      require("mason").setup()
+      -- NixOS: LSP servers are installed via Nix, not Mason
+      -- Mason is disabled to avoid dynamically-linked binary issues on NixOS
+      -- See: https://nix.dev/permalink/stub-ld
 
-      -- You can add other tools here that you want Mason to install
-      -- for you, so that they are available from within Neovim.
-      local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        "stylua", -- Used to format Lua code
-      })
-      require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+      -- Map server names to their actual binary commands
+      local server_commands = {
+        lua_ls = { "lua-language-server" },
+        ty = { "ty", "server" },
+        ts_ls = { "typescript-language-server", "--stdio" },
+        htmx = { "htmx-lsp", "--level", "DEBUG" },
+      }
 
-      require("mason-lspconfig").setup({
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-            require("lspconfig")[server_name].setup(server)
-          end,
-        },
-      })
+      -- Configure each LSP server using vim.lsp.config (Neovim 0.11+)
+      for server_name, server_config in pairs(servers) do
+        vim.lsp.config[server_name] = vim.tbl_deep_extend("force", {
+          cmd = server_commands[server_name],
+          root_markers = { ".git", "pyproject.toml", "package.json" },
+          capabilities = capabilities,
+        }, server_config or {})
+
+        -- Enable the LSP server
+        vim.lsp.enable(server_name)
+      end
     end,
   },
 
@@ -336,6 +343,9 @@ require("lazy").setup({
           end,
         },
         completion = { completeopt = "menu,menuone,noinsert" },
+        performance = {
+          debug = true,
+        },
         sorting = {
           priority_weight = 2,
           comparators = {
