@@ -17,6 +17,9 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";  # Not /boot/efi
 
+  # Clean /tmp on boot
+  boot.tmp.cleanOnBoot = true;
+
   # Hostname
   networking.hostName = "forge";
 
