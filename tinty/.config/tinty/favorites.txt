@@ -1,5 +1,4 @@
 base16-dracula
+base16-github
 base16-gruvbox-dark-hard
-base16-nord-light
-base16-one-light
 base16-papercolor-light

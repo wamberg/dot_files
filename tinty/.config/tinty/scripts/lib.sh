@@ -24,6 +24,10 @@ get_bat_theme_for_scheme() {
         *gruvbox*light*)
             echo "gruvbox-light"
             ;;
+        base16-github|base24-github)
+            # GitHub light themes (not -dark variants)
+            echo "GitHub"
+            ;;
         *nord*light*)
             # Nord light doesn't have a delta equivalent, use generic light fallback
             echo "base16"
