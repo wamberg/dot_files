@@ -200,8 +200,8 @@ function M.setup_markdown_surround()
   vim.b.surround_98 = "**\r**"
 end
 
--- Find project from topics file and insert formatted template
-function M.find_project()
+-- Helper function to show project picker and execute callback with selected project
+local function show_project_picker(callback)
   local project_file = vim.fn.expand("~/dev/garden/topics/202508111053.md")
 
   -- Check if file exists
@@ -250,22 +250,69 @@ function M.find_project()
           actions.close(prompt_bufnr)
           local selection = action_state.get_selected_entry()
           if selection then
-            -- Format and insert the project name
-            local formatted_text = "_" .. selection[1] .. "_"
-
-            -- Insert at cursor position
-            local cursor = vim.api.nvim_win_get_cursor(0)
-            local row, col = cursor[1], cursor[2]
-            vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { formatted_text })
-
-            -- Move cursor to end of inserted text
-            vim.api.nvim_win_set_cursor(0, { row, col + #formatted_text })
+            callback(selection[1])
           end
         end)
         return true
       end,
     })
     :find()
+end
+
+-- Find project from topics file and insert formatted template
+function M.find_project()
+  show_project_picker(function(project_name)
+    -- Format and insert the project name
+    local formatted_text = "_" .. project_name .. "_"
+
+    -- Insert at cursor position
+    local cursor = vim.api.nvim_win_get_cursor(0)
+    local row, col = cursor[1], cursor[2]
+    vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { formatted_text })
+
+    -- Move cursor to end of inserted text
+    vim.api.nvim_win_set_cursor(0, { row, col + #formatted_text })
+  end)
+end
+
+-- Insert timestamped project entry with format: ### HH:MM - _ProjectName_
+function M.insert_timestamped_project_entry()
+  show_project_picker(function(project_name)
+    -- Get current timestamp
+    local timestamp = os.date("%H:%M")
+
+    -- Get current cursor position
+    local cursor = vim.api.nvim_win_get_cursor(0)
+    local row = cursor[1]
+
+    -- Get the current line and move to the end of it
+    local current_line = vim.api.nvim_buf_get_lines(0, row - 1, row, false)[1]
+    local col = #current_line -- End of the line
+
+    -- Format the complete entry - split into lines for nvim_buf_set_text
+    -- Two newlines before, timestamp line, two newlines after
+    local formatted_lines = {
+      "",
+      "",
+      "### " .. timestamp .. " - _" .. project_name .. "_",
+      "",
+      "",
+    }
+
+    -- Insert at end of current line
+    vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, formatted_lines)
+
+    -- Calculate new cursor position (after all the lines)
+    local new_row = row + 4 -- Move down 4 lines (2 before + timestamp + 2 after, cursor on last line)
+    local new_col = 0 -- Start of the line
+
+    vim.api.nvim_win_set_cursor(0, { new_row, new_col })
+
+    -- Enter insert mode - schedule to ensure cursor positioning completes first
+    vim.schedule(function()
+      vim.cmd("startinsert")
+    end)
+  end)
 end
 
 return M
