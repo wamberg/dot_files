@@ -419,7 +419,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 -- Line numbers
-vim.opt.number = false
+vim.opt.number = true
+vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes"
 
 -- Folds
