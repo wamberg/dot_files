@@ -38,33 +38,14 @@ require("lazy").setup({
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    -- tree-sitter CLI installed via Nix for parser compilation
+    -- Parsers managed by lazy.nvim in ~/.local/share/nvim/lazy/nvim-treesitter/parser/
     build = ":TSUpdate",
-    opts = {
-      ensure_installed = {
-        "bash",
-        "css",
-        "dockerfile",
-        "git_config",
-        "git_rebase",
-        "gitcommit",
-        "go",
-        "html",
-        "htmldjango",
-        "json",
-        "lua",
-        "make",
-        "markdown",
-        "markdown_inline",
-        "python",
-        "sql",
-        "toml",
-        "typescript",
-        "vimdoc",
-      },
-      highlight = {
-        enable = true,
-      },
-    },
+    init = function()
+      -- Add runtime subdirectory for TreeSitter queries (highlights.scm, etc.)
+      -- This is needed because newer nvim-treesitter moved queries to runtime/queries/
+      vim.opt.runtimepath:append(vim.fn.stdpath("data") .. "/lazy/nvim-treesitter/runtime")
+    end,
   },
   "ojroques/nvim-bufdel",
   "RRethy/vim-illuminate",
@@ -417,6 +398,24 @@ require("lazy").setup({
       })
     end,
   },
+})
+
+-- Enable TreeSitter highlighting for file buffers
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  callback = function(args)
+    -- Skip special buffers (plugins, help, etc.)
+    local buftype = vim.bo[args.buf].buftype
+    if buftype ~= "" then
+      return
+    end
+
+    -- Try to start TreeSitter, silently ignore if parser not available
+    local ok, err = pcall(vim.treesitter.start, args.buf)
+    -- Uncomment to see warnings when parsers are missing:
+    -- if not ok then
+    --   vim.notify("TreeSitter parser not available for " .. vim.bo.filetype, vim.log.levels.WARN)
+    -- end
+  end,
 })
 
 -- Line numbers
