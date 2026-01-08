@@ -36,7 +36,7 @@
   users.users.wamberg = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [ "wheel" "networkmanager" "video" "audio" ];
+    extraGroups = [ "wheel" "networkmanager" "video" "audio" "docker" ];
     # Password will be set during installation with nixos-install
   };
 
@@ -158,6 +158,9 @@
       PermitRootLogin = "no";
     };
   };
+
+  # Docker
+  virtualisation.docker.enable = true;
 
   # Home-manager configuration
   home-manager.users.wamberg = import ./home.nix;
