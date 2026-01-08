@@ -69,8 +69,10 @@ in
     adwaita-icon-theme  # Includes default cursor theme
 
     # Development Tools
-    claude-code    # Claude AI coding assistant CLI
     aider-chat     # AI pair programming tool
+    beads          # Issue tracker for AI agents
+    claude-code    # Claude AI coding assistant CLI
+    direnv         # Shell Env Management
 
     # Core Applications
     firefox-devedition  # Firefox Developer Edition
