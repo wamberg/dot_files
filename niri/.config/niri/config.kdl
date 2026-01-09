@@ -158,6 +158,9 @@ binds {
   Mod+8 hotkey-overlay-title="Theme menu" {
     spawn "/home/wamberg/.local/bin/theme-menu.sh";
   }
+  Mod+9 hotkey-overlay-title="Wallpaper menu" {
+    spawn "/home/wamberg/.local/bin/wallpaper-menu.sh";
+  }
 
   ////
   // column actions
