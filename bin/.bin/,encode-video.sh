@@ -15,8 +15,12 @@ if [[ "${1-}" =~ ^-*h(elp)?$ ]]; then
     echo '       [output dir]: (Optional) Directory for the encoded output video'
     echo '       [subtitle file path]: (Optional) Path to external subtitle file (overrides auto-detection)'
     echo ''
-    echo 'Subtitles: English text subtitles are automatically detected and copied from the input.'
-    echo '           Bitmap subtitles (PGS, VobSub) are not supported in MP4 and will be skipped.'
+    echo 'Features:'
+    echo '  - HDR10/HLG: Automatically detected and preserved (color metadata, 10-bit)'
+    echo '  - 4K: Uses CRF 23 for better quality (CRF 25 for lower resolutions)'
+    echo '  - Audio: All audio tracks are copied (surround, stereo, commentary)'
+    echo '  - Subtitles: English text subtitles auto-detected and copied'
+    echo '               Bitmap subtitles (PGS, VobSub) are skipped (incompatible with MP4)'
     exit
 fi
 
@@ -97,6 +101,52 @@ if [[ -z "$subtitle_path" ]]; then
   fi
 fi
 
+# Detect video properties (HDR, resolution, color metadata)
+echo "Analyzing video properties..."
+
+# Extract resolution using simple format
+width=$(ffprobe -v error -select_streams v:0 \
+  -show_entries stream=width -of default=noprint_wrappers=1:nokey=1 "$input_path" 2>/dev/null || echo "")
+height=$(ffprobe -v error -select_streams v:0 \
+  -show_entries stream=height -of default=noprint_wrappers=1:nokey=1 "$input_path" 2>/dev/null || echo "")
+
+# Extract color metadata (trim whitespace and commas)
+color_trc=$(ffprobe -v error -select_streams v:0 \
+  -show_entries stream=color_transfer -of default=noprint_wrappers=1:nokey=1 "$input_path" 2>/dev/null | tr -d ',' | xargs || echo "")
+color_primaries=$(ffprobe -v error -select_streams v:0 \
+  -show_entries stream=color_primaries -of default=noprint_wrappers=1:nokey=1 "$input_path" 2>/dev/null | tr -d ',' | xargs || echo "")
+color_space=$(ffprobe -v error -select_streams v:0 \
+  -show_entries stream=color_space -of default=noprint_wrappers=1:nokey=1 "$input_path" 2>/dev/null | tr -d ',' | xargs || echo "")
+
+# Detect HDR (PQ = smpte2084, HLG = arib-std-b67)
+is_hdr=false
+if [[ "$color_trc" == "smpte2084" || "$color_trc" == "arib-std-b67" ]]; then
+  is_hdr=true
+  echo "HDR detected (transfer: $color_trc, primaries: $color_primaries)"
+fi
+
+# Determine CRF based on resolution (lower = better quality, larger file)
+# 4K (2160p+) gets CRF 23, everything else gets CRF 25
+crf=25
+if [[ -n "$height" ]] && [[ "$height" -ge 2160 ]]; then
+  crf=23
+  echo "4K content detected (${width}x${height}), using CRF $crf"
+else
+  echo "Resolution: ${width:-unknown}x${height:-unknown}, using CRF $crf"
+fi
+
+# Build color metadata flags
+color_flags=""
+if [[ -n "$color_primaries" && "$color_primaries" != "unknown" ]]; then
+  color_flags+=" -color_primaries $color_primaries"
+fi
+if [[ -n "$color_trc" && "$color_trc" != "unknown" ]]; then
+  color_flags+=" -color_trc $color_trc"
+fi
+if [[ -n "$color_space" && "$color_space" != "unknown" ]]; then
+  color_flags+=" -colorspace $color_space"
+fi
+
 # Build the ffmpeg command
 if [[ "$use_gpu" == true ]]; then
   # GPU encoding using VAAPI (AMD)
@@ -105,20 +155,32 @@ if [[ "$use_gpu" == true ]]; then
   if [[ -n "$subtitle_path" ]]; then
     # External subtitle file provided
     cmd+=" -i \"${subtitle_path}\""
-    cmd+=" -map 0:v:0 -map 0:a:0 -map 1:s:0"
+    cmd+=" -map 0:v:0 -map 0:a -map 1:s:0"
     cmd+=" -c:s mov_text -metadata:s:s:0 language=eng"
   elif [[ -n "$sub_stream_index" ]]; then
     # Embedded subtitle detected
-    cmd+=" -map 0:v:0 -map 0:a:0 ${sub_map_args}"
+    cmd+=" -map 0:v:0 -map 0:a ${sub_map_args}"
     cmd+=" ${sub_codec_args}"
   else
     # No subtitles
-    cmd+=" -map 0:v:0 -map 0:a:0"
+    cmd+=" -map 0:v:0 -map 0:a"
   fi
 
-  cmd+=" -vf 'format=nv12,hwupload'"
-  cmd+=" -c:v hevc_vaapi -qp 25"
+  # Use 10-bit (p010) for HDR content, 8-bit (nv12) for SDR
+  if [[ "$is_hdr" == true ]]; then
+    cmd+=" -vf 'format=p010,hwupload'"
+  else
+    cmd+=" -vf 'format=nv12,hwupload'"
+  fi
+
+  cmd+=" -c:v hevc_vaapi -qp $crf"
   cmd+=" -c:a eac3 -b:a 448k"
+
+  # Add color metadata if available
+  if [[ -n "$color_flags" ]]; then
+    cmd+="$color_flags"
+  fi
+
   cmd+=" -movflags +faststart -map_metadata -1"
   cmd+=" -f mp4 \"${output_path}\""
 else
@@ -128,20 +190,32 @@ else
   if [[ -n "$subtitle_path" ]]; then
     # External subtitle file provided
     cmd+=" -i \"${subtitle_path}\""
-    cmd+=" -map 0:v:0 -map 0:a:0 -map 1:s:0"
+    cmd+=" -map 0:v:0 -map 0:a -map 1:s:0"
     cmd+=" -c:s mov_text -metadata:s:s:0 language=eng"
   elif [[ -n "$sub_stream_index" ]]; then
     # Embedded subtitle detected
-    cmd+=" -map 0:v:0 -map 0:a:0 ${sub_map_args}"
+    cmd+=" -map 0:v:0 -map 0:a ${sub_map_args}"
     cmd+=" ${sub_codec_args}"
   else
     # No subtitles
-    cmd+=" -map 0:v:0 -map 0:a:0"
+    cmd+=" -map 0:v:0 -map 0:a"
   fi
 
-  cmd+=" -c:v libx265 -preset medium -crf 25 -profile:v main10 -level 5.1 -pix_fmt yuv420p10le"
-  cmd+=" -x265-params 'aq-mode=3:psy-rd=1.0:rc-lookahead=32'"
+  # Build x265 params with HDR support if detected
+  x265_params="aq-mode=3:psy-rd=1.0:rc-lookahead=32"
+  if [[ "$is_hdr" == true ]]; then
+    x265_params+=":hdr10-opt=1:repeat-headers=1"
+  fi
+
+  cmd+=" -c:v libx265 -preset medium -crf $crf -profile:v main10 -level 5.1 -pix_fmt yuv420p10le"
+  cmd+=" -x265-params '$x265_params'"
   cmd+=" -c:a eac3 -b:a 448k"
+
+  # Add color metadata if available
+  if [[ -n "$color_flags" ]]; then
+    cmd+="$color_flags"
+  fi
+
   cmd+=" -movflags +faststart -map_metadata -1"
   cmd+=" -f mp4 \"${output_path}\""
 fi
