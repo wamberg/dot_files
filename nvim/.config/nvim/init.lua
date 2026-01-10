@@ -430,6 +430,7 @@ vim.opt.foldmethod = "manual"
 -- Display
 -- Load tinty-generated colorscheme
 vim.cmd([[source ~/.local/share/tinted-theming/tinty/artifacts/vim-colors-file.vim]])
+vim.opt.winborder = "rounded"
 
 -- To identify highlight groups and their names:
 --   - Place cursor on an element and run `:Inspect` to see the highlight group(s)
