@@ -34,6 +34,9 @@ in
     nbuild         # Rebuild and switch NixOS configuration
     ntest          # Test NixOS configuration without switching
 
+    # AMD GPU support (forge has AMD GPU)
+    (btop.override { rocmSupport = true; })
+
     # Media tools
     feh            # Image viewer
     ffmpeg-full    # Video/audio converter with all codecs

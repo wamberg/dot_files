@@ -5,7 +5,6 @@
   home.packages = with pkgs; [
     # Modern CLI replacements
     bat        # Better cat
-    btop       # Better top
     fd         # Better find
     fzf        # Fuzzy finder
     ripgrep    # Better grep
