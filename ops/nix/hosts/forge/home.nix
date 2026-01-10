@@ -36,6 +36,7 @@ in
 
     # AMD GPU support (forge has AMD GPU)
     (btop.override { rocmSupport = true; })
+    libva-utils    # VAAPI diagnostics (vainfo command)
 
     # Media tools
     feh            # Image viewer

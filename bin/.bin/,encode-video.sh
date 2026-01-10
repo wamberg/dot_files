@@ -9,17 +9,25 @@ fi
 
 # Display help
 if [[ "${1-}" =~ ^-*h(elp)?$ ]]; then
-    echo 'Usage: ./encode-video.sh <input video path> [output dir] [subtitle file path]'
+    echo 'Usage: ./encode-video.sh [--gpu] <input video path> [output dir] [subtitle file path]'
+    echo '       --gpu: (Optional) Use AMD GPU hardware encoding (faster, lower quality-per-bit)'
     echo '       <input video path>: Path to the source video file'
     echo '       [output dir]: (Optional) Directory for the encoded output video'
     echo '       [subtitle file path]: (Optional) Path to the subtitle .srt file'
     exit
 fi
 
+# Check for --gpu flag
+use_gpu=false
+if [[ "${1-}" == "--gpu" ]]; then
+  use_gpu=true
+  shift
+fi
+
 # Check required argument
 if [[ $# -lt 1 ]]; then
   echo "Error: Input video path is required."
-  echo 'Usage: ./encode-video.sh <input video path> [output dir] [subtitle file path]'
+  echo 'Usage: ./encode-video.sh [--gpu] <input video path> [output dir] [subtitle file path]'
   exit 1
 fi
 
@@ -43,18 +51,35 @@ if [[ -f "$output_path" ]]; then
 fi
 
 # Build the ffmpeg command
-cmd="ffmpeg -i \"${input_path}\"" # Specify the input video file path
+if [[ "$use_gpu" == true ]]; then
+  # GPU encoding using VAAPI (AMD)
+  cmd="ffmpeg -vaapi_device /dev/dri/renderD128 -i \"${input_path}\""
 
-if [[ -n "$subtitle_path" ]]; then
-  cmd+=" -i \"${subtitle_path}\"" # Add the subtitle file as an input
-  cmd+=" -c:s mov_text -metadata:s:s:0 language=eng" # Specify subtitle codec and metadata
+  if [[ -n "$subtitle_path" ]]; then
+    cmd+=" -i \"${subtitle_path}\""
+    cmd+=" -c:s mov_text -metadata:s:s:0 language=eng"
+  fi
+
+  cmd+=" -vf 'format=nv12,hwupload'"
+  cmd+=" -c:v hevc_vaapi -qp 25"
+  cmd+=" -c:a eac3 -b:a 448k"
+  cmd+=" -movflags +faststart -map_metadata -1"
+  cmd+=" -f mp4 \"${output_path}\""
+else
+  # CPU encoding using libx265 (higher quality, slower)
+  cmd="ffmpeg -i \"${input_path}\""
+
+  if [[ -n "$subtitle_path" ]]; then
+    cmd+=" -i \"${subtitle_path}\""
+    cmd+=" -c:s mov_text -metadata:s:s:0 language=eng"
+  fi
+
+  cmd+=" -c:v libx265 -preset medium -crf 25 -profile:v main10 -level 5.1 -pix_fmt yuv420p10le"
+  cmd+=" -x265-params 'aq-mode=3:psy-rd=1.0:rc-lookahead=32'"
+  cmd+=" -c:a eac3 -b:a 448k"
+  cmd+=" -movflags +faststart -map_metadata -1"
+  cmd+=" -f mp4 \"${output_path}\""
 fi
-
-cmd+=" -c:v libx265 -preset medium -crf 25 -profile:v main10 -level 5.1 -pix_fmt yuv420p10le"
-cmd+=" -x265-params 'aq-mode=3:psy-rd=1.0:rc-lookahead=32'"
-cmd+=" -c:a eac3 -b:a 448k"
-cmd+=" -movflags +faststart -map_metadata -1"
-cmd+=" -f mp4 \"${output_path}\"" # Force the output container to MP4 and set the output path
 
 # Running the command
 echo "Encoding the video with the following command:"
