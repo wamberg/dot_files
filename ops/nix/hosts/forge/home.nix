@@ -44,6 +44,7 @@ in
     pngquant       # PNG image optimization
     v4l-utils      # Video4Linux utilities (v4l2-ctl)
     wl-clipboard   # Wayland clipboard (wl-copy/wl-paste)
+    zathura        # PDF viewer
 
     # Desktop Environment Tools
     waybar         # Status bar
@@ -121,6 +122,32 @@ in
     package = pkgs.adwaita-icon-theme;
     size = 24;
     gtk.enable = true;
+  };
+
+  # Default applications
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "application/pdf" = "org.pwmt.zathura.desktop";
+
+      # Web browser
+      "text/html" = "firefox-developer-edition.desktop";
+      "x-scheme-handler/http" = "firefox-developer-edition.desktop";
+      "x-scheme-handler/https" = "firefox-developer-edition.desktop";
+
+      # Images
+      "image/jpeg" = "feh.desktop";
+      "image/png" = "feh.desktop";
+      "image/gif" = "feh.desktop";
+
+      # Video
+      "video/mp4" = "mpv.desktop";
+      "video/x-matroska" = "mpv.desktop";
+
+      # Audio
+      "audio/mpeg" = "mpv.desktop";
+      "audio/flac" = "mpv.desktop";
+    };
   };
 
   # Install oh-my-zsh (framework only, .zshrc managed by stow)

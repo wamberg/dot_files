@@ -45,15 +45,15 @@
 
 
   environment.systemPackages = with pkgs; [
-    # Development tools (needed for nvim treesitter, mason, etc.)
+    adwaita-icon-theme  # Cursor theme for SDDM and system-wide
+    cargo
+    cifs-utils     # SMB/CIFS network share mounting
     gcc
     gnumake
-    pkg-config
     nodejs
+    pkg-config
     python3
-    cargo
     rustc
-    adwaita-icon-theme  # Cursor theme for SDDM and system-wide
     unrar      # Archive extraction
   ];
 
