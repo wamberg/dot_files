@@ -133,11 +133,6 @@ alias dcp="docker compose -f docker-compose.yml -f docker-compose.production.yml
 alias dcr="docker compose run --rm"
 alias dcs="docker compose -f docker-compose.yml -f docker-compose.staging.yml"
 
-# terraform
-alias tf="terraform"
-alias tfp="terraform plan"
-alias tfa="terraform apply"
-
 ### Functions ###
 
 # SSH wrapper - use xterm-256color for compatibility with remote systems
