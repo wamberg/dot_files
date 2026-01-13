@@ -43,10 +43,8 @@
 
     # Homebrew casks (GUI applications)
     casks = [
-      # Example macOS apps you might want:
-      # "1password"
-      # "docker"
-      # "iterm2"
+      "1password"      # 1Password GUI
+      "1password-cli"  # 1Password CLI (op command)
     ];
 
     # Homebrew taps (third-party repositories)

@@ -10,7 +10,7 @@ let
   # Darwin rebuild commands (equivalent to nbuild/ntest on NixOS)
   dbuild = pkgs.writeShellScriptBin "dbuild" ''
     cd ${nixPath} && \
-    darwin-rebuild switch --flake .#mac && \
+    sudo $(which darwin-rebuild) switch --flake .#mac && \
     cd -
   '';
 
