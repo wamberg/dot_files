@@ -48,14 +48,14 @@
     # Compression
     pigz       # Parallel gzip
 
-    # Notifications
-    libnotify  # Desktop notifications (notify-send command)
-
     # Theming
     tinty      # Base16/Base24 theme manager
 
     # Shell
     zsh        # Z shell
+  ] ++ lib.optionals pkgs.stdenv.isLinux [
+    # Linux-only packages
+    libnotify  # Desktop notifications (notify-send command)
   ];
 
   # Starship prompt
