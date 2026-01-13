@@ -5,7 +5,6 @@
   home.packages = with pkgs; [
     # Modern CLI replacements
     bat        # Better cat
-    btop       # Better top
     fd         # Better find
     fzf        # Fuzzy finder
     ripgrep    # Better grep
@@ -14,6 +13,7 @@
     delta      # Better git diffs (git-delta)
     mise       # Version manager (node, python, etc.)
     neovim     # Text editor
+    tree-sitter  # TreeSitter CLI (for parser compilation)
     tmux       # Terminal multiplexer
 
     # LSP servers and formatters for neovim

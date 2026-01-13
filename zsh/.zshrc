@@ -3,6 +3,7 @@ export ZSH_THEME=""
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_TITLE="true"
 plugins=(
+  direnv
   docker
   fzf
   git
@@ -115,6 +116,7 @@ alias aupg='sudo apt upgrade'
 alias av="aws-vault"
 alias ave="aws-vault exec"
 alias dev="nix develop --command zsh"
+alias o="xdg-open"
 alias pca="pre-commit run --all-files"
 alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
 alias rs="rsync -avP"
@@ -130,11 +132,6 @@ alias dcd="docker compose down"
 alias dcp="docker compose -f docker-compose.yml -f docker-compose.production.yml"
 alias dcr="docker compose run --rm"
 alias dcs="docker compose -f docker-compose.yml -f docker-compose.staging.yml"
-
-# terraform
-alias tf="terraform"
-alias tfp="terraform plan"
-alias tfa="terraform apply"
 
 ### Functions ###
 

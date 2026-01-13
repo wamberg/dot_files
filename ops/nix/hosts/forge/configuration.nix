@@ -17,6 +17,9 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";  # Not /boot/efi
 
+  # Clean /tmp on boot
+  boot.tmp.cleanOnBoot = true;
+
   # Hostname
   networking.hostName = "forge";
 
@@ -33,7 +36,7 @@
   users.users.wamberg = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [ "wheel" "networkmanager" "video" "audio" ];
+    extraGroups = [ "wheel" "networkmanager" "video" "audio" "docker" ];
     # Password will be set during installation with nixos-install
   };
 
@@ -42,15 +45,15 @@
 
 
   environment.systemPackages = with pkgs; [
-    # Development tools (needed for nvim treesitter, mason, etc.)
+    adwaita-icon-theme  # Cursor theme for SDDM and system-wide
+    cargo
+    cifs-utils     # SMB/CIFS network share mounting
     gcc
     gnumake
-    pkg-config
     nodejs
+    pkg-config
     python3
-    cargo
     rustc
-    adwaita-icon-theme  # Cursor theme for SDDM and system-wide
     unrar      # Archive extraction
   ];
 
@@ -155,6 +158,9 @@
       PermitRootLogin = "no";
     };
   };
+
+  # Docker
+  virtualisation.docker.enable = true;
 
   # Home-manager configuration
   home-manager.users.wamberg = import ./home.nix;

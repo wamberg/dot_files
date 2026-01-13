@@ -1,4 +1,4 @@
 base16-dracula
-base16-github
 base16-gruvbox-dark-hard
+base16-gruvbox-light
 base16-papercolor-light
