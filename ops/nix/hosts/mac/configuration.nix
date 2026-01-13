@@ -15,6 +15,15 @@
   programs.zsh.enable = true;
   environment.shells = [ pkgs.zsh ];
 
+  # Define user account (required for home-manager on Darwin)
+  users.users.wamberg = {
+    name = "wamberg";
+    home = "/Users/wamberg";
+  };
+
+  # Set primary user (required for homebrew and other user-specific features)
+  system.primaryUser = "wamberg";
+
   # Homebrew integration (for macOS GUI apps)
   # This allows declarative management of Mac App Store apps and casks
   homebrew = {
@@ -52,6 +61,8 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     users.wamberg = import ./home.nix;
+    # Backup conflicting files with .backup extension
+    backupFileExtension = "backup";
   };
 
   # Allow unfree packages

@@ -25,9 +25,6 @@ in
     ../../common/home.nix
   ];
 
-  # Allow unfree packages in home-manager
-  nixpkgs.config.allowUnfree = true;
-
   # Host-specific packages for mac
   home.packages = with pkgs; [
     # Darwin management
@@ -109,6 +106,16 @@ in
       done
     else
       echo "Warning: ${dotfilesPath} not found, skipping dotfiles stow"
+    fi
+  '';
+
+  # Create tinty symlink for tinted-theming path (macOS-specific workaround)
+  # Tinty expects config at ~/.config/tinted-theming/tinty/ but stow creates ~/.config/tinty/
+  home.activation.setupTintySymlink = config.lib.dag.entryAfter ["stowDotfiles"] ''
+    if [ -d "$HOME/.config/tinty" ] && [ ! -e "$HOME/.config/tinted-theming/tinty" ]; then
+      echo "Creating tinty symlink for tinted-theming compatibility..."
+      $DRY_RUN_CMD mkdir -p "$HOME/.config/tinted-theming"
+      $DRY_RUN_CMD ln -sf "$HOME/.config/tinty" "$HOME/.config/tinted-theming/tinty"
     fi
   '';
 
