@@ -131,11 +131,6 @@ in
     defaultApplications = {
       "application/pdf" = "org.pwmt.zathura.desktop";
 
-      # Web browser
-      "text/html" = "firefox-developer-edition.desktop";
-      "x-scheme-handler/http" = "firefox-developer-edition.desktop";
-      "x-scheme-handler/https" = "firefox-developer-edition.desktop";
-
       # Images
       "image/jpeg" = "feh.desktop";
       "image/png" = "feh.desktop";
