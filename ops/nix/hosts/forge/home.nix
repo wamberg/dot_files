@@ -41,6 +41,7 @@ in
     # Media tools
     feh            # Image viewer
     ffmpeg-full    # Video/audio converter with all codecs
+    jellyfin-media-player  # Jellyfin desktop client
     pngquant       # PNG image optimization
     v4l-utils      # Video4Linux utilities (v4l2-ctl)
     wl-clipboard   # Wayland clipboard (wl-copy/wl-paste)
