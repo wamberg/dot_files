@@ -88,6 +88,7 @@ in
 
     # Communication
     discord        # Discord client
+    iamb           # Matrix chat client (terminal)
     slack          # Slack client
     telegram-desktop  # Telegram client
 
@@ -167,6 +168,7 @@ in
         claude
         fuzzel
         git
+        iamb
         kitty
         mako
         mise

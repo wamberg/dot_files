@@ -5,6 +5,7 @@
 # - AWS credentials (.aws/)
 # - Development projects (dev/) - keeps .git, excludes build artifacts
 # - Documents and calibre library (docs/)
+# - iamb Matrix client state and encryption keys (.local/share/iamb/)
 # - Pictures and wallpapers (pics/)
 # - Videos (videos/)
 #
@@ -55,6 +56,7 @@ function act() {
     \
     --directory="$HOME" \
     .aws \
+    .local/share/iamb \
     dev \
     docs \
     pics \
