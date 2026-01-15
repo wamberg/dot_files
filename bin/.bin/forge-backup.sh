@@ -24,7 +24,7 @@ function arrange() {
   : "${2:?"SSH host required"}"
   SSH_USERNAME=$1
   SSH_HOST=$2
-  TIMESTAMP="$(date -Iminutes)"
+  TIMESTAMP="$(date +%Y-%m-%dT%H%M%z)"
 }
 
 function act() {
