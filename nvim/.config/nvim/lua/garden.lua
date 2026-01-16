@@ -193,6 +193,33 @@ function M.toggle_todo()
   vim.api.nvim_buf_set_lines(0, row - 1, row, false, { new_line })
 end
 
+-- Find the line number after all entries in the "## Log" section
+-- Returns nil if section not found
+local function find_log_section_end()
+  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  local log_section_start = nil
+  local last_entry_line = nil
+
+  for i, line in ipairs(lines) do
+    -- Find "## Log" header
+    if log_section_start == nil and string.match(line, "^## Log%s*$") then
+      log_section_start = i
+      last_entry_line = i
+    elseif log_section_start then
+      -- Check if we hit another H2 section (end of Log section)
+      if string.match(line, "^## ") then
+        break
+      end
+      -- Track any non-empty line as potential last entry
+      if line ~= "" then
+        last_entry_line = i
+      end
+    end
+  end
+
+  return log_section_start and last_entry_line or nil
+end
+
 -- Setup markdown-specific vim-surround mappings
 function M.setup_markdown_surround()
   -- Custom vim-surround mapping for markdown bold (**)
@@ -309,6 +336,61 @@ function M.insert_timestamped_project_entry()
     vim.api.nvim_win_set_cursor(0, { new_row, new_col })
 
     -- Enter insert mode - schedule to ensure cursor positioning completes first
+    vim.schedule(function()
+      vim.cmd("startinsert")
+    end)
+  end)
+end
+
+-- Insert a timestamped log entry in the ## Log section
+function M.garden_log()
+  local last_entry_line = find_log_section_end()
+
+  if not last_entry_line then
+    vim.notify("No '## Log' section found in document", vim.log.levels.ERROR)
+    return
+  end
+
+  local timestamp = os.date("%H:%M")
+  local formatted_lines = { "", "### " .. timestamp, "", "" }
+
+  -- Insert after the last entry line
+  vim.api.nvim_buf_set_lines(0, last_entry_line, last_entry_line, false, formatted_lines)
+
+  -- Position cursor on the second blank line (one blank line visible after header)
+  local new_row = last_entry_line + 4 -- After blank + header + blank + cursor line
+  vim.api.nvim_win_set_cursor(0, { new_row, 0 })
+
+  vim.schedule(function()
+    vim.cmd("startinsert")
+  end)
+end
+
+-- Insert a timestamped project entry in the ## Log section
+function M.garden_log_project()
+  local last_entry_line = find_log_section_end()
+
+  if not last_entry_line then
+    vim.notify("No '## Log' section found in document", vim.log.levels.ERROR)
+    return
+  end
+
+  show_project_picker(function(project_name)
+    local timestamp = os.date("%H:%M")
+    local formatted_lines = {
+      "",
+      "### " .. timestamp .. " - _" .. project_name .. "_",
+      "",
+      "",
+    }
+
+    -- Insert after the last entry line
+    vim.api.nvim_buf_set_lines(0, last_entry_line, last_entry_line, false, formatted_lines)
+
+    -- Position cursor on the second blank line (one blank line visible after header)
+    local new_row = last_entry_line + 4
+    vim.api.nvim_win_set_cursor(0, { new_row, 0 })
+
     vim.schedule(function()
       vim.cmd("startinsert")
     end)
