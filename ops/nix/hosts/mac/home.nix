@@ -43,7 +43,8 @@ in
     # firefox        # Firefox (macOS version)
     # obsidian       # Note-taking app
 
-    # Add other cross-platform GUI apps here, or manage via Homebrew casks
+    # Media tools
+    ffmpeg-full    # Video/audio converter with all codecs
   ];
 
   # Username and home directory
