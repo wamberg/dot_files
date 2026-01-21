@@ -8,7 +8,8 @@
 
   # System-wide packages for mac
   environment.systemPackages = with pkgs; [
-    # macOS-specific system tools can go here
+    nodejs
+    python3
   ];
 
   # Default shell
