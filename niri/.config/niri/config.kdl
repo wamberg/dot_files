@@ -76,9 +76,7 @@ window-rule {
 
 window-rule {
   match app-id="feh"
-  default-column-width { proportion 0.64; }
-  default-window-height { proportion 0.36; }
-  open-floating true
+  default-column-width { proportion 0.62; }
 }
 
 window-rule {
