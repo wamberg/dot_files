@@ -48,17 +48,18 @@ in
     zathura        # PDF viewer
 
     # Desktop Environment Tools
-    waybar         # Status bar
-    mako           # Notification daemon
+    bemoji         # Emoji search
     fuzzel         # Application launcher
+    grim           # Screenshot tool
+    mako           # Notification daemon
+    slurp          # Screen area selector
     swappy         # Screenshot editor
     swaybg         # Wallpaper setter
     swaylock       # Screen locker
+    waybar         # Status bar
+    wf-recorder    # Screen recorder
     wlsunset       # Color temperature adjuster
     xwayland-satellite  # Xwayland integration
-    grim           # Screenshot tool
-    slurp          # Screen area selector
-    wf-recorder    # Screen recorder
 
     # Terminal
     kitty          # GPU-accelerated terminal
