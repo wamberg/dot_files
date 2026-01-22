@@ -1,0 +1,15 @@
+[[zones]]
+id = "America/Los_Angeles"
+name = "US West"
+
+[[zones]]
+id = "America/Bogota"
+name = "Colombia"
+
+[[zones]]
+id = "America/Argentina/Buenos_Aires"
+name = "Argentina"
+
+[[zones]]
+id = "Europe/Bucharest"
+name = "Romania"

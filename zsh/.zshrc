@@ -82,9 +82,23 @@ _reload_bat_theme() {
   fi
 }
 
+_colorfgbg_config_file="$HOME/.local/share/tinted-theming/tinty/artifacts/colorfgbg.sh"
+_colorfgbg_config_mtime=""
+
+_reload_colorfgbg() {
+  if [ -f "$_colorfgbg_config_file" ]; then
+    local current_mtime=$(stat -c %Y "$_colorfgbg_config_file" 2>/dev/null || stat -f %m "$_colorfgbg_config_file" 2>/dev/null)
+    if [ "$current_mtime" != "$_colorfgbg_config_mtime" ]; then
+      source "$_colorfgbg_config_file"
+      _colorfgbg_config_mtime="$current_mtime"
+    fi
+  fi
+}
+
 _reload_tinty_themes() {
   _reload_fzf_colors
   _reload_bat_theme
+  _reload_colorfgbg
 }
 
 # Load themes initially

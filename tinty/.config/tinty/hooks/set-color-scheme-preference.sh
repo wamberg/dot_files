@@ -22,12 +22,15 @@ if [ -f "$TINTY_CURRENT_SCHEME_FILE" ]; then
         # Set color-scheme preferences for better app compatibility
         # freedesktop.org: 0 = no preference, 1 = prefer dark, 2 = prefer light
         # GNOME: "default" or "prefer-dark" or "prefer-light"
+        ARTIFACTS_DIR="$HOME/.local/share/tinted-theming/tinty/artifacts"
         if [ "$VARIANT" = "dark" ]; then
             dconf write /org/freedesktop/appearance/color-scheme "uint32 1"
             dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
+            echo 'export COLORFGBG="15;0"' > "$ARTIFACTS_DIR/colorfgbg.sh"
         elif [ "$VARIANT" = "light" ]; then
             dconf write /org/freedesktop/appearance/color-scheme "uint32 2"
             dconf write /org/gnome/desktop/interface/color-scheme "'prefer-light'"
+            echo 'export COLORFGBG="0;15"' > "$ARTIFACTS_DIR/colorfgbg.sh"
         fi
     fi
 fi

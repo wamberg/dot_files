@@ -56,6 +56,7 @@ in
     swappy         # Screenshot editor
     swaybg         # Wallpaper setter
     swaylock       # Screen locker
+    tz             # Time zone viewer
     waybar         # Status bar
     wf-recorder    # Screen recorder
     wlsunset       # Color temperature adjuster
