@@ -50,6 +50,7 @@
     cifs-utils     # SMB/CIFS network share mounting
     gcc
     gnumake
+    go
     nodejs
     pkg-config
     python3

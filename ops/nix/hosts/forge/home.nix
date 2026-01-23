@@ -78,7 +78,6 @@ in
 
     # Development Tools
     aider-chat     # AI pair programming tool
-    beads          # Issue tracker for AI agents
     claude-code    # Claude AI coding assistant CLI
     direnv         # Shell Env Management
 
