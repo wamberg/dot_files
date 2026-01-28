@@ -14,7 +14,7 @@ case "$choice" in
         ;;
     "Switch Audio Output")
         # Device mappings
-        HEADPHONES_SINK="alsa_output.usb-Focusrite_Scarlett_2i2_USB_Y8CZJFM0AA378C-00.HiFi__Line1__sink"
+        HEADPHONES_SINK="alsa_output.usb-Focusrite_Scarlett_2i2_USB_Y8CZJFM0AA378C-00.HiFi__Line__sink"
         SPEAKERS_SINK="alsa_output.pci-0000_09_00.1.hdmi-stereo-extra4"
         SOUNDBAR_SINK="bluez_output.94_4F_4C_03_D5_4C.1"
 
