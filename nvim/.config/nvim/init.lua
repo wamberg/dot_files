@@ -27,7 +27,9 @@ require("lazy").setup({
   "christoomey/vim-tmux-navigator",
   "editorconfig/editorconfig-vim",
   "folke/zen-mode.nvim",
-  "ggandor/leap.nvim",
+  {
+    url = "https://codeberg.org/andyg/leap.nvim",
+  },
   "lewis6991/gitsigns.nvim",
   "micarmst/vim-spellsync",
   "tinted-theming/tinted-vim",
