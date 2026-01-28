@@ -86,7 +86,7 @@ echo ""
 print_step "Running garbage collection..."
 echo "Before:"
 du -sh /nix/store
-sudo nix-collect-garbage -d
+sudo nix-collect-garbage
 echo ""
 echo "After:"
 du -sh /nix/store
