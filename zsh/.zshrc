@@ -113,7 +113,6 @@ setopt histignorespace
 
 ### Plugin configuration ###
 source $ZSH/oh-my-zsh.sh    # Activate oh-my-zsh
-eval "$(mise activate zsh)" # Activate mise
 
 # Starship.rs prompt configuration
 bindkey -v # Set Vi mode
