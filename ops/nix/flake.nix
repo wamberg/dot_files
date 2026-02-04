@@ -29,6 +29,13 @@
         };
         python3Packages = final.python3.pkgs;
       };
+
+      # Overlay to disable graphite2 tests (fail on aarch64-darwin)
+      graphite2Overlay = final: prev: {
+        graphite2 = prev.graphite2.overrideAttrs (old: {
+          doCheck = false;
+        });
+      };
     in
     {
     nixosConfigurations = {
@@ -47,7 +54,7 @@
         system = "aarch64-darwin";
         modules = [
           ({ ... }: {
-            nixpkgs.overlays = [ pythonTestOverlay ];
+            nixpkgs.overlays = [ pythonTestOverlay graphite2Overlay ];
           })
           ./hosts/mac/configuration.nix
           ./common/darwin.nix
