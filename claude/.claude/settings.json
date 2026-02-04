@@ -6,8 +6,10 @@
     "MAX_THINKING_TOKENS": "1024"
   },
   "model": "global.anthropic.claude-opus-4-5-20251101-v1:0",
-  "alwaysThinkingEnabled": true,
   "enabledPlugins": {
-    "lua-lsp@claude-plugins-official": true
-  }
+    "lua-lsp@claude-plugins-official": true,
+    "superpowers@superpowers-marketplace": true,
+    "elements-of-style@superpowers-marketplace": true
+  },
+  "alwaysThinkingEnabled": true
 }
