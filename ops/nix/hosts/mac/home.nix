@@ -34,6 +34,7 @@ in
     # Development Tools
     claude-code    # Claude AI coding assistant CLI
     aider-chat     # AI pair programming tool
+    direnv         # Per-directory environment variables
 
     # Terminal
     # Note: kitty works on macOS too
