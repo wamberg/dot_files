@@ -58,22 +58,22 @@ current_gen=$(sudo nix-env --list-generations --profile /nix/var/nix/profiles/sy
 echo "Current generation: $current_gen"
 
 echo ""
-print_step "Cleaning old NixOS generations (keeping last 5)..."
-read -rp "Delete generations older than 5? (y/N): " delete_gens
+print_step "Cleaning old NixOS generations (keeping last 3)..."
+read -rp "Delete generations older than 3? (y/N): " delete_gens
 if [[ "$delete_gens" =~ ^[Yy]$ ]]; then
-    sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations +5
+    sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations +3
     echo "Old system generations deleted."
 else
     echo "Keeping all generations."
 fi
 
 echo ""
-print_step "Cleaning old home-manager generations (keeping last 5)..."
+print_step "Cleaning old home-manager generations (keeping last 3)..."
 HM_PROFILE="/nix/var/nix/profiles/per-user/$USER/home-manager"
 if [ -e "$HM_PROFILE" ]; then
-    read -rp "Delete home-manager generations older than 5? (y/N): " delete_hm_gens
+    read -rp "Delete home-manager generations older than 3? (y/N): " delete_hm_gens
     if [[ "$delete_hm_gens" =~ ^[Yy]$ ]]; then
-        nix-env --profile "$HM_PROFILE" --delete-generations +5
+        nix-env --profile "$HM_PROFILE" --delete-generations +3
         echo "Old home-manager generations deleted."
     else
         echo "Keeping all home-manager generations."
