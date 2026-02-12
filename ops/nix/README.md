@@ -376,31 +376,3 @@ sudo nix-collect-garbage -d
 nix flake check
 ```
 
-## Notes for AI Coding Agent
-
-When proposing changes to this configuration:
-
-**DO:**
-- Respect the directory structure above
-- Use proper NixOS module patterns with options, config, and conditionals
-- Keep common/ minimal and truly universal
-- Make modules self-contained and optional
-- Consider: "Would every host need this?" when deciding common vs module
-- Prefer clear/simple over clever/complex (user is learning)
-- Remember dotfiles are managed by stow - Nix should not conflict
-- Ask which host(s) need the proposed change
-
-**DON'T:**
-- Create modules until they're needed by multiple hosts
-- Edit hardware-configuration.nix (it's auto-generated)
-- Add overlays/lib directories until there's actual content for them
-- Force migration of configs from stow to Nix (it's optional)
-- Add secrets management until user has a specific need
-- Assume binary cache is available
-- Create helper functions before seeing the duplication pattern
-
-**Remember:**
-- User is learning Nix - explain what you're doing
-- Start with simplest solution that works
-- Extract patterns only after seeing duplication
-- This is iteration 1 of a learning journey
