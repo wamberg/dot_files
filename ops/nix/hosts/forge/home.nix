@@ -82,7 +82,6 @@ in
     direnv         # Shell Env Management
 
     # Core Applications
-    firefox-devedition  # Firefox Developer Edition
     google-chrome  # Chrome browser
     mpv            # Video player
     obsidian       # Note-taking app
@@ -107,6 +106,15 @@ in
   # Username and home directory
   home.username = "wamberg";
   home.homeDirectory = "/home/wamberg";
+
+  # Firefox Developer Edition (installed via module for native messaging host support)
+  programs.firefox = {
+    enable = true;
+    package = pkgs.firefox-devedition;
+    nativeMessagingHosts = [
+      pkgs._1password-gui
+    ];
+  };
 
   # 1Password SSH agent integration (system-level GUI/CLI config in configuration.nix)
   programs.ssh = {
