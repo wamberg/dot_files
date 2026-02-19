@@ -499,8 +499,13 @@ vim.cmd([[
 
 -- Window keymaps
 vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { desc = "Clear [H]ighlight" })
-vim.keymap.set("n", "j", "gj", { noremap = true }) -- navigate long lines as multiple lines
-vim.keymap.set("n", "k", "gk", { noremap = true }) -- navigate long lines as multiple lines
+-- Navigate wrapped lines as display lines, but use actual lines with a count (e.g. 20j)
+vim.keymap.set("n", "j", function()
+  return vim.v.count == 0 and "gj" or "j"
+end, { noremap = true, expr = true })
+vim.keymap.set("n", "k", function()
+  return vim.v.count == 0 and "gk" or "k"
+end, { noremap = true, expr = true })
 
 -- Code Keymaps
 vim.keymap.set("n", "<leader>F", ":Format<CR>", { desc = "[F]ormat" })
