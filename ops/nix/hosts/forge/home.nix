@@ -80,6 +80,7 @@ in
     aider-chat     # AI pair programming tool
     claude-code    # Claude AI coding assistant CLI
     direnv         # Shell Env Management
+    nodePackages.prettier  # Code formatter
 
     # Core Applications
     google-chrome  # Chrome browser
