@@ -493,7 +493,9 @@ vim.keymap.set("n", "k", function()
 end, { noremap = true, expr = true })
 
 -- Code Keymaps
-vim.keymap.set("n", "<leader>F", function() require("conform").format() end, { desc = "[F]ormat" })
+vim.keymap.set("n", "<leader>F", function()
+  require("conform").format()
+end, { desc = "[F]ormat" })
 vim.keymap.set("n", "<leader>fk", require("telescope.builtin").keymaps, { desc = "[F]ind [K]eymaps" })
 
 -- Telescope Keymaps

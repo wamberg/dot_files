@@ -77,7 +77,6 @@ in
     adwaita-icon-theme  # Includes default cursor theme
 
     # Development Tools
-    aider-chat     # AI pair programming tool
     claude-code    # Claude AI coding assistant CLI
     direnv         # Shell Env Management
     nodePackages.prettier  # Code formatter
@@ -178,7 +177,6 @@ in
 
       # Packages to stow
       packages=(
-        aider
         bat
         bin
         claude
