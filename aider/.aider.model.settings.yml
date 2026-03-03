@@ -1,4 +1,0 @@
-- name: aider/extra_params
-  extra_params:
-    extra_headers:
-      x-litellm-tags: aider

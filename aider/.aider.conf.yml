@@ -1,8 +1,0 @@
-model:           bedrock/global.anthropic.claude-sonnet-4-5-20250929-v1:0
-weak-model:      bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0
-thinking-tokens: 32k
-add-gitignore-files: true
-auto-commits: false
-dark-mode: true
-check-model-accepts-settings: false
-show-model-warnings: false

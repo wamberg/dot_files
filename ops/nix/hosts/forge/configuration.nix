@@ -152,6 +152,14 @@
     polkitPolicyOwners = [ "wamberg" ];
   };
 
+  # Allow 1Password browser integration with Firefox Developer Edition
+  environment.etc."1password/custom_allowed_browsers" = {
+    text = ''
+      firefox-devedition
+    '';
+    mode = "0755";
+  };
+
   # Services
   services.openssh = {
     enable = true;

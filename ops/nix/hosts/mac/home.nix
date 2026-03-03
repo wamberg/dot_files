@@ -33,7 +33,6 @@ in
 
     # Development Tools
     claude-code    # Claude AI coding assistant CLI
-    aider-chat     # AI pair programming tool
     direnv         # Per-directory environment variables
 
     # Terminal
@@ -78,7 +77,6 @@ in
 
       # Packages to stow (subset of forge's list - no Wayland tools)
       packages=(
-        aider
         bat
         bin
         claude

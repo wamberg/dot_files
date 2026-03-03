@@ -27,6 +27,19 @@ if is_running; then
     fi
     notify-send "Recording" "Audio recording stopped" -t 2000
 else
+    # Prompt for optional recording name
+    recording_name=$(echo "" | fuzzel --dmenu --prompt "Recording name (optional): " --width 40) || exit 0
+
+    # Build filename with optional suffix
+    timestamp=$(date +%Y%m%d_%H%M%S)
+    # Slugify: lowercase, replace spaces with hyphens, remove special chars
+    slug=$(echo "$recording_name" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -cd '[:alnum:]-')
+    if [[ -n "$slug" ]]; then
+        filename="${timestamp}_${slug}.m4a"
+    else
+        filename="${timestamp}.m4a"
+    fi
+
     # Start audio recording
     ffmpeg \
       -f pulse -i @DEFAULT_SINK@.monitor \
@@ -34,9 +47,9 @@ else
       -filter_complex "[0:a][1:a]amix=inputs=2[aout]" \
       -map "[aout]" \
       -c:a aac -b:a 128k \
-      "/home/wamberg/videos/$(date +%Y%m%d_%H%M%S).m4a" &
+      "/home/wamberg/videos/${filename}" &
 
     # Store the PID for proper cleanup
     echo $! > "$PID_FILE"
-    notify-send "Recording" "Audio recording started" -t 2000
+    notify-send "Recording" "Audio recording started: ${filename}" -t 2000
 fi

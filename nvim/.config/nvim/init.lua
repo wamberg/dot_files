@@ -255,24 +255,9 @@ require("lazy").setup({
     "stevearc/conform.nvim",
     opts = {
       notify_on_error = false,
-      format_on_save = function(bufnr)
-        -- Disable "format_on_save lsp_fallback" for languages that don't
-        -- have a well standardized coding style. You can add additional
-        -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true, html = true }
-        return {
-          timeout_ms = 500,
-          lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
-        }
-      end,
       formatters_by_ft = {
         lua = { "stylua" },
-        -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "ruff_format" },
-        --
-        -- You can use a sub-list to tell conform to run *until* a formatter
-        -- is found.
-        -- javascript = { { "prettierd", "prettier" } },
+        markdown = { "prettier" },
       },
     },
   },
@@ -499,11 +484,18 @@ vim.cmd([[
 
 -- Window keymaps
 vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { desc = "Clear [H]ighlight" })
-vim.keymap.set("n", "j", "gj", { noremap = true }) -- navigate long lines as multiple lines
-vim.keymap.set("n", "k", "gk", { noremap = true }) -- navigate long lines as multiple lines
+-- Navigate wrapped lines as display lines, but use actual lines with a count (e.g. 20j)
+vim.keymap.set("n", "j", function()
+  return vim.v.count == 0 and "gj" or "j"
+end, { noremap = true, expr = true })
+vim.keymap.set("n", "k", function()
+  return vim.v.count == 0 and "gk" or "k"
+end, { noremap = true, expr = true })
 
 -- Code Keymaps
-vim.keymap.set("n", "<leader>F", ":Format<CR>", { desc = "[F]ormat" })
+vim.keymap.set("n", "<leader>F", function()
+  require("conform").format()
+end, { desc = "[F]ormat" })
 vim.keymap.set("n", "<leader>fk", require("telescope.builtin").keymaps, { desc = "[F]ind [K]eymaps" })
 
 -- Telescope Keymaps
@@ -776,6 +768,7 @@ vim.keymap.set("n", "<leader>gn", garden.new_note, { desc = "[G]arden [N]ew" })
 vim.keymap.set("n", "<leader>gg", garden.go_today, { desc = "[G]arden [G]o: Today" })
 vim.keymap.set("n", "[g", garden.go_previous_diary, { desc = "Garden [G]o: Previous" })
 vim.keymap.set("n", "]g", garden.go_next_diary, { desc = "Garden [G]o: Next" })
+vim.keymap.set("n", "<leader>gf", garden.find_diary, { desc = "[G]arden [F]ile" })
 vim.keymap.set("n", "<leader>fh", garden.find_header, { desc = "[F]ind [H]eader" })
 vim.keymap.set("n", "<leader>fl", garden.find_link, { desc = "[F]ind [L]ink" })
 vim.keymap.set("n", "<leader>gl", garden.garden_log, { desc = "[G]arden [L]og" })

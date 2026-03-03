@@ -7,6 +7,9 @@ let
   # Path to NixOS flake
   nixPath = "${dotfilesPath}/ops/nix";
 
+  # Pi coding agent version (update manually: npm view @mariozechner/pi-coding-agent version)
+  piVersion = "0.55.3";
+
   # NixOS rebuild commands
   nbuild = pkgs.writeShellScriptBin "nbuild" ''
     cd ${nixPath} && \
@@ -77,12 +80,11 @@ in
     adwaita-icon-theme  # Includes default cursor theme
 
     # Development Tools
-    aider-chat     # AI pair programming tool
     claude-code    # Claude AI coding assistant CLI
     direnv         # Shell Env Management
+    nodePackages.prettier  # Code formatter
 
     # Core Applications
-    firefox-devedition  # Firefox Developer Edition
     google-chrome  # Chrome browser
     mpv            # Video player
     obsidian       # Note-taking app
@@ -107,6 +109,15 @@ in
   # Username and home directory
   home.username = "wamberg";
   home.homeDirectory = "/home/wamberg";
+
+  # Firefox Developer Edition (installed via module for native messaging host support)
+  programs.firefox = {
+    enable = true;
+    package = pkgs.firefox-devedition;
+    nativeMessagingHosts = [
+      pkgs._1password-gui
+    ];
+  };
 
   # 1Password SSH agent integration (system-level GUI/CLI config in configuration.nix)
   programs.ssh = {
@@ -169,7 +180,6 @@ in
 
       # Packages to stow
       packages=(
-        aider
         bat
         bin
         claude
@@ -183,6 +193,7 @@ in
         niri
         npm
         nvim
+        pi
         sql
         swappy
         tinty
@@ -227,5 +238,12 @@ in
       echo "Installing tmux plugin manager (tpm)..."
       $DRY_RUN_CMD ${pkgs.git}/bin/git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm --depth 1
     fi
+  '';
+
+  # Install Pi coding agent via npm (pinned version)
+  home.activation.installPi = config.lib.dag.entryAfter ["writeBoundary"] ''
+    export PATH="${pkgs.nodejs}/bin:$PATH"
+    echo "Installing Pi coding agent v${piVersion}..."
+    $DRY_RUN_CMD npm install -g @mariozechner/pi-coding-agent@${piVersion}
   '';
 }

@@ -220,6 +220,80 @@ local function find_log_section_end()
   return log_section_start and last_entry_line or nil
 end
 
+-- Telescope picker for diary entries, sorted reverse-chronologically
+-- Searching "monday" shows most recent Mondays first, etc.
+function M.find_diary()
+  local pickers = require("telescope.pickers")
+  local finders = require("telescope.finders")
+  local conf = require("telescope.config").values
+  local sorters = require("telescope.sorters")
+  local actions = require("telescope.actions")
+  local action_state = require("telescope.actions.state")
+
+  local diary_files = get_sorted_diary_files()
+  local entries = {}
+  local total = #diary_files
+
+  for i = #diary_files, 1, -1 do -- reverse chronological
+    local file = diary_files[i]
+    local date_str = vim.fn.fnamemodify(file, ":t:r") -- "2024-03-15"
+    local y, m, d = date_str:match("(%d+)-(%d+)-(%d+)")
+    if y then
+      local time = os.time({ year = y, month = m, day = d })
+      local display = os.date("%A, %B %d, %Y", time) -- "Friday, March 15, 2024"
+      -- recency_rank: 0 for most recent, 1 for oldest
+      local recency_rank = (#diary_files - i) / total
+      table.insert(entries, { display = display, date = date_str, path = file, recency_rank = recency_rank })
+    end
+  end
+
+  -- Custom sorter: base fuzzy score + small recency bonus so that
+  -- equally-matched entries (e.g. all "Monday"s) sort most-recent-first.
+  local base_sorter = conf.generic_sorter({})
+
+  local recency_sorter = sorters.Sorter:new({
+    discard = base_sorter.discard,
+    scoring_function = function(self, prompt, line, entry, cb_add, cb_filter)
+      local base_score = base_sorter:scoring_function(prompt, line, entry, cb_add, cb_filter)
+      if base_score < 0 then
+        return -1 -- filtered out
+      end
+      -- Add a tiny recency nudge (0 to 0.999) so recent entries win ties.
+      -- Telescope sorts lower scores first, so recent entries get smaller nudge.
+      local rank = (entry.value and entry.value.recency_rank) or 0
+      return base_score + rank * 0.999
+    end,
+    highlighter = base_sorter.highlighter,
+  })
+
+  pickers
+    .new({}, {
+      prompt_title = "Diary Entries",
+      finder = finders.new_table({
+        results = entries,
+        entry_maker = function(entry)
+          return {
+            value = entry,
+            display = entry.date .. "  " .. entry.display,
+            ordinal = entry.date .. " " .. entry.display,
+            path = entry.path,
+          }
+        end,
+      }),
+      sorter = recency_sorter,
+      previewer = conf.file_previewer({}),
+      attach_mappings = function(prompt_bufnr)
+        actions.select_default:replace(function()
+          actions.close(prompt_bufnr)
+          local selection = action_state.get_selected_entry()
+          vim.cmd("edit " .. selection.value.path)
+        end)
+        return true
+      end,
+    })
+    :find()
+end
+
 -- Setup markdown-specific vim-surround mappings
 function M.setup_markdown_surround()
   -- Custom vim-surround mapping for markdown bold (**)
