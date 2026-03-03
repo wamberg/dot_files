@@ -27,6 +27,9 @@ print_error() {
     echo -e "${RED}Error:${NC} $1"
 }
 
+# sudo resets PATH, so nix commands become invisible. Preserve PATH for sudo.
+sudo() { command sudo env PATH="$PATH" "$@"; }
+
 echo ""
 print_step "Listing current nix-darwin generations..."
 sudo nix-env --list-generations --profile /nix/var/nix/profiles/system

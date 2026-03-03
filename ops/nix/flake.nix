@@ -16,27 +16,6 @@
   };
 
   outputs = { self, nixpkgs, home-manager, nix-darwin, ... }:
-    let
-      # Overlay to disable tests for all Python packages
-      pythonTestOverlay = final: prev: {
-        python3 = prev.python3.override {
-          packageOverrides = python-final: python-prev:
-            prev.lib.mapAttrs (name: value:
-              if prev.lib.isDerivation value && value ? overrideAttrs
-              then value.overrideAttrs (old: { doCheck = false; doInstallCheck = false; })
-              else value
-            ) python-prev;
-        };
-        python3Packages = final.python3.pkgs;
-      };
-
-      # Overlay to disable graphite2 tests (fail on aarch64-darwin)
-      graphite2Overlay = final: prev: {
-        graphite2 = prev.graphite2.overrideAttrs (old: {
-          doCheck = false;
-        });
-      };
-    in
     {
     nixosConfigurations = {
       forge = nixpkgs.lib.nixosSystem {
@@ -53,9 +32,6 @@
       mac = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
-          ({ ... }: {
-            nixpkgs.overlays = [ pythonTestOverlay graphite2Overlay ];
-          })
           ./hosts/mac/configuration.nix
           ./common/darwin.nix
           home-manager.darwinModules.home-manager
