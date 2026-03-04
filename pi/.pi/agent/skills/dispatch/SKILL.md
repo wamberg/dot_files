@@ -72,7 +72,7 @@ fi
 Agent dispatched in tmux window "$FEATURE_NAME"
 
 To monitor:
-  Ctrl+b, then select window "$FEATURE_NAME"
+  Ctrl+a, then select window "$FEATURE_NAME"
 
 The agent will notify you if it hits a blocker.
 You can continue working in this session.
