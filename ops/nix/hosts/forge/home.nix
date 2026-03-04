@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-stable, ... }:
 
 let
   # Path to dotfiles repository
@@ -96,7 +96,7 @@ in
     telegram-desktop  # Telegram client
 
     # Productivity
-    calibre        # E-book manager
+    pkgs-stable.calibre  # E-book manager (from stable; unstable broken, see NixOS/nixpkgs#493843)
     libreoffice-fresh  # Office suite
 
     # Gaming

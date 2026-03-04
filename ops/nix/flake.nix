@@ -4,6 +4,11 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    # Pinned stable nixpkgs for packages broken on unstable.
+    # TODO: Remove once calibre builds on unstable again.
+    # Tracking: https://github.com/NixOS/nixpkgs/issues/493843
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -15,11 +20,19 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-darwin, ... }:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nix-darwin, ... }:
+    let
+      forgeSystem = "x86_64-linux";
+      pkgs-stable = import nixpkgs-stable {
+        system = forgeSystem;
+        config.allowUnfree = true;
+      };
+    in
     {
     nixosConfigurations = {
       forge = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        system = forgeSystem;
+        specialArgs = { inherit pkgs-stable; };
         modules = [
           ./hosts/forge/configuration.nix
           ./common/nixos.nix

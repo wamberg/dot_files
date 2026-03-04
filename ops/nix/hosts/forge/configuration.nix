@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-stable, ... }:
 
 {
   imports = [ ./hardware-configuration.nix ];
@@ -172,6 +172,7 @@
   virtualisation.docker.enable = true;
 
   # Home-manager configuration
+  home-manager.extraSpecialArgs = { inherit pkgs-stable; };
   home-manager.users.wamberg = import ./home.nix;
 
   system.stateVersion = "25.11";
