@@ -553,14 +553,16 @@
           # Applications
           - calibre
           - discord
+          - feh
           - firefox-developer-edition
           - kitty
           - libreoffice-fresh
           - mpv
-          - obs-studio
           - obsidian
           - steam
           - telegram-desktop
+          - zathura
+          - zathura-pdf-mupdf
           # Desktop Environment
           - adwaita-icon-theme
           - fuzzel
