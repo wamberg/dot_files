@@ -18,21 +18,24 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    claude-desktop.url = "github:aaddrick/claude-desktop-debian";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nix-darwin, ... }:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nix-darwin, claude-desktop, ... }:
     let
       forgeSystem = "x86_64-linux";
       pkgs-stable = import nixpkgs-stable {
         system = forgeSystem;
         config.allowUnfree = true;
       };
+      claude-desktop-fhs = claude-desktop.packages.${forgeSystem}.claude-desktop-fhs;
     in
     {
     nixosConfigurations = {
       forge = nixpkgs.lib.nixosSystem {
         system = forgeSystem;
-        specialArgs = { inherit pkgs-stable; };
+        specialArgs = { inherit pkgs-stable claude-desktop-fhs; };
         modules = [
           ./hosts/forge/configuration.nix
           ./common/nixos.nix

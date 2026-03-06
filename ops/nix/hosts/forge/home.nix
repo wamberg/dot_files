@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-stable, ... }:
+{ config, pkgs, pkgs-stable, claude-desktop-fhs, ... }:
 
 let
   # Path to dotfiles repository
@@ -81,6 +81,7 @@ in
 
     # Development Tools
     claude-code    # Claude AI coding assistant CLI
+    claude-desktop-fhs  # Claude Desktop with MCP support (FHS environment)
     direnv         # Shell Env Management
     nodePackages.prettier  # Code formatter
 

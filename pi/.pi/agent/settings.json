@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.55.3",
+  "lastChangelogVersion": "0.55.4",
   "defaultProvider": "amazon-bedrock",
   "defaultModel": "us.anthropic.claude-opus-4-6-v1",
   "hideThinkingBlock": true,

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Claude
+GenericName=Claude Desktop
+Exec=env CLAUDE_USE_WAYLAND=1 CLAUDE_MENU_BAR=hidden claude-desktop %u
+Icon=claude-desktop
+Terminal=false
+Type=Application
+StartupWMClass=Claude
