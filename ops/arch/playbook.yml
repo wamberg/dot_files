@@ -7,6 +7,7 @@
         name:
           - base-devel
           - bat
+          - aws-cli-v2
           - btop
           - ca-certificates
           - cryptsetup
@@ -19,10 +20,12 @@
           - gnupg
           - jq
           - less
+          - libnotify
           - libvorbis
           - libvpx
           - mise
           - ncdu
+          - neovim
           - openssh
           - opus
           - pass
@@ -36,8 +39,10 @@
           - stow
           - sudo
           - tmux
+          - tree
           - udisks2
           - unzip
+          - unrar
           - vifm
           - wget
           - x264
