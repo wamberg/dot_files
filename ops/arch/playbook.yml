@@ -131,6 +131,26 @@
       changed_when: stow_result.stdout != ""
       tags:
         - dev
+    - name: User | wamberg | Set default applications
+      become: yes
+      become_user: wamberg
+      ansible.builtin.copy:
+        content: |
+          [Default Applications]
+          application/pdf=org.pwmt.zathura.desktop
+          image/jpeg=feh.desktop
+          image/png=feh.desktop
+          image/gif=feh.desktop
+          video/mp4=mpv.desktop
+          video/x-matroska=mpv.desktop
+          audio/mpeg=mpv.desktop
+          audio/flac=mpv.desktop
+        dest: /home/wamberg/.config/mimeapps.list
+        owner: wamberg
+        group: wamberg
+        mode: '0644'
+      tags:
+        - dev
     - name: User | wamberg | Check for missing mise tools
       become: yes
       become_user: wamberg
