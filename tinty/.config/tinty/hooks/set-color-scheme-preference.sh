@@ -24,12 +24,20 @@ if [ -f "$TINTY_CURRENT_SCHEME_FILE" ]; then
         # GNOME: "default" or "prefer-dark" or "prefer-light"
         ARTIFACTS_DIR="$HOME/.local/share/tinted-theming/tinty/artifacts"
         if [ "$VARIANT" = "dark" ]; then
-            dconf write /org/freedesktop/appearance/color-scheme "uint32 1"
-            dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
+            if [[ "$OSTYPE" == darwin* ]]; then
+                osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to true'
+            else
+                dconf write /org/freedesktop/appearance/color-scheme "uint32 1"
+                dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
+            fi
             echo 'export COLORFGBG="15;0"' > "$ARTIFACTS_DIR/colorfgbg.sh"
         elif [ "$VARIANT" = "light" ]; then
-            dconf write /org/freedesktop/appearance/color-scheme "uint32 2"
-            dconf write /org/gnome/desktop/interface/color-scheme "'prefer-light'"
+            if [[ "$OSTYPE" == darwin* ]]; then
+                osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to false'
+            else
+                dconf write /org/freedesktop/appearance/color-scheme "uint32 2"
+                dconf write /org/gnome/desktop/interface/color-scheme "'prefer-light'"
+            fi
             echo 'export COLORFGBG="0;15"' > "$ARTIFACTS_DIR/colorfgbg.sh"
         fi
     fi

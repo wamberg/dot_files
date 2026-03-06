@@ -24,7 +24,7 @@ name = "kitty"
 path = "https://github.com/tinted-theming/tinted-terminal"
 themes-dir = "themes/kitty"
 hook = "~/.config/tinty/hooks/reload-kitty.sh"
-supported-systems = ["base24", "base16"]
+supported-systems = ["base16", "base24"]
 
 # Tmux terminal multiplexer
 [[items]]

@@ -3,7 +3,6 @@ export ZSH_THEME=""
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_TITLE="true"
 plugins=(
-  direnv
   docker
   fzf
   git
@@ -11,6 +10,8 @@ plugins=(
 export plugins
 
 ### User configuration ###
+
+eval "$(mise activate zsh)"
 
 # common exports
 export EDITOR=$(which nvim)

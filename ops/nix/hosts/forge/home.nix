@@ -188,7 +188,6 @@ in
         git
         iamb
         kitty
-        mako
         mise
         mpv
         niri

@@ -5,6 +5,7 @@
       community.general.pacman:
         update_cache: yes
         name:
+          - aws-cli-v2
           - base-devel
           - bat
           - btop
@@ -19,10 +20,12 @@
           - gnupg
           - jq
           - less
+          - libnotify
           - libvorbis
           - libvpx
           - mise
           - ncdu
+          - neovim
           - openssh
           - opus
           - pass
@@ -36,7 +39,9 @@
           - stow
           - sudo
           - tmux
+          - tree
           - udisks2
+          - unrar
           - unzip
           - vifm
           - wget
@@ -98,30 +103,60 @@
       become: yes
       become_user: wamberg
       become_flags: "--login"
-      ansible.builtin.shell: 'stow --dir="${HOME}/dev/dot_files" --target="${HOME}/" -vS {{ item }}'
+      ansible.builtin.shell: 'stow --no-folding --dir="${HOME}/dev/dot_files" --target="${HOME}/" -vS {{ item }}'
       loop:
-        - aider
         - bat
         - bin
+        - btop
         - claude
         - fuzzel
         - git
         - kitty
-        - mako
         - mise
         - mpv
         - niri
         - npm
         - nvim
+        - pi
         - sql
-        - starship
         - swappy
+        - tinty
         - tmux
         - vifm
         - waybar
         - zsh
       register: stow_result
       changed_when: stow_result.stdout != ""
+      tags:
+        - dev
+    - name: User | wamberg | Install tinty theme repositories
+      become: yes
+      become_user: wamberg
+      become_flags: "--login"
+      ansible.builtin.command: tinty -c ~/.config/tinty/config.toml install
+      register: tinty_install
+      changed_when: "'installed' in tinty_install.stdout"
+      tags:
+        - dev
+        - desktop
+    - name: User | wamberg | Set default applications
+      become: yes
+      become_user: wamberg
+      ansible.builtin.copy:
+        content: |
+          [Default Applications]
+          application/pdf=org.pwmt.zathura.desktop
+          image/jpeg=feh.desktop
+          image/png=feh.desktop
+          image/gif=feh.desktop
+          video/mp4=mpv.desktop
+          video/x-matroska=mpv.desktop
+          audio/mpeg=mpv.desktop
+          audio/flac=mpv.desktop
+        dest: /home/wamberg/.config/mimeapps.list
+        owner: wamberg
+        group: wamberg
+        mode: '0644'
       tags:
         - dev
     - name: User | wamberg | Check for missing mise tools
@@ -213,58 +248,6 @@
           - vulkan-icd-loader
           - openblas
         state: present
-      tags:
-        - dev
-    - name: System | Packages | Ensure playwright system dependencies
-      community.general.pacman:
-        name:
-          - chromium
-          - nss
-          - atk
-          - at-spi2-atk
-          - gtk3
-          - gdk-pixbuf2
-          - xorg-server-xvfb
-        state: present
-      tags:
-        - dev
-    - name: User | wamberg | Check if aider is installed
-      become: yes
-      become_user: wamberg
-      ansible.builtin.stat:
-        path: /home/wamberg/.local/share/uv/tools/aider-chat/bin/aider
-      register: aider_installed
-      tags:
-        - dev
-    - name: User | wamberg | Install aider-install
-      become: yes
-      become_user: wamberg
-      ansible.builtin.pip:
-        name: aider-install
-        extra_args: --user
-      when: not aider_installed.stat.exists
-      tags:
-        - dev
-    - name: User | wamberg | Install aider using aider-install
-      become: yes
-      become_user: wamberg
-      ansible.builtin.shell: ~/.local/bin/aider-install
-      when: not aider_installed.stat.exists
-      tags:
-        - dev
-    - name: User | wamberg | Check if playwright chromium is installed
-      become: yes
-      become_user: wamberg
-      ansible.builtin.stat:
-        path: /home/wamberg/.cache/ms-playwright/chromium-*/chrome-linux/chrome
-      register: playwright_chromium
-      tags:
-        - dev
-    - name: User | wamberg | Install playwright chromium browser
-      become: yes
-      become_user: wamberg
-      ansible.builtin.shell: ~/.local/share/uv/tools/aider-chat/bin/python -m playwright install chromium
-      when: not playwright_chromium.stat.exists
       tags:
         - dev
     - name: System | Power | Create swapfile for hibernation
@@ -533,10 +516,16 @@
         name:
           - 1password
           - 1password-cli
+          - aws-vault
+          - bemoji
+          - claude-desktop-bin
           - google-chrome
+          - jftui
           - niri
           - slack-desktop
+          - tinty-git
           - ttf-ms-fonts
+          - tz
           - zoom
       become: yes
       become_user: aur_builder
@@ -548,14 +537,15 @@
           # Applications
           - calibre
           - discord
+          - feh
           - firefox-developer-edition
           - kitty
           - libreoffice-fresh
           - mpv
-          - obs-studio
           - obsidian
-          - steam
           - telegram-desktop
+          - zathura
+          - zathura-pdf-mupdf
           # Desktop Environment
           - adwaita-icon-theme
           - fuzzel
@@ -610,28 +600,6 @@
         state: present
       tags:
         - desktop
-    - name: System | Packages | Install virtualization packages
-      community.general.pacman:
-        name:
-          - qemu-full
-          - virt-manager
-          - libvirt
-          - ebtables
-          - dnsmasq
-          - bridge-utils
-        state: present
-        extra_args: --ask=4
-      tags:
-        - desktop
-        - virtualization
-    - name: User | wamberg | Add to libvirt group
-      ansible.builtin.user:
-        name: wamberg
-        groups: libvirt
-        append: yes
-      tags:
-        - desktop
-        - virtualization
     - name: System | Kernel | Set vm.max_map_count for gaming
       ansible.posix.sysctl:
         name: vm.max_map_count
@@ -681,6 +649,32 @@
         - wireplumber.service
       tags:
         - desktop
+    - name: Audio | WirePlumber | Ensure conf.d directory exists
+      become: yes
+      become_user: wamberg
+      ansible.builtin.file:
+        path: /home/wamberg/.config/wireplumber/wireplumber.conf.d
+        state: directory
+        mode: '0755'
+      tags:
+        - desktop
+    - name: Audio | WirePlumber | Configure Bluetooth A2DP roles
+      become: yes
+      become_user: wamberg
+      ansible.builtin.copy:
+        content: |
+          monitor.bluez.properties = {
+            bluez5.roles = [ a2dp_source bap_sink bap_source hfp_hf hfp_ag ]
+            bluez5.codecs = [ sbc sbc_xq aac ldac aptx aptx_hd aptx_ll aptx_ll_duplex faststream faststream_duplex lc3 opus_05 opus_05_51 opus_05_71 opus_05_duplex opus_05_pro ]
+            bluez5.enable-sbc-xq = true
+            bluez5.hfphsp-backend = "native"
+          }
+        dest: /home/wamberg/.config/wireplumber/wireplumber.conf.d/50-bluez-a2dp.conf
+        owner: wamberg
+        group: wamberg
+        mode: '0644'
+      tags:
+        - desktop
     - name: Service | Bluetooth | Enable and start service
       ansible.builtin.systemd:
         name: bluetooth
@@ -688,14 +682,6 @@
         enabled: yes
       tags:
         - desktop
-    - name: Service | libvirtd | Enable and start service
-      ansible.builtin.systemd:
-        name: libvirtd
-        state: started
-        enabled: yes
-      tags:
-        - desktop
-        - virtualization
   handlers:
     - name: update grub config
       ansible.builtin.command: grub-mkconfig -o /boot/grub/grub.cfg
