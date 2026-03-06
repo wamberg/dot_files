@@ -105,9 +105,9 @@
       become_flags: "--login"
       ansible.builtin.shell: 'stow --dir="${HOME}/dev/dot_files" --target="${HOME}/" -vS {{ item }}'
       loop:
-        - aider
         - bat
         - bin
+        - btop
         - claude
         - fuzzel
         - git
@@ -118,9 +118,11 @@
         - niri
         - npm
         - nvim
+        - pi
         - sql
         - starship
         - swappy
+        - tinty
         - tmux
         - vifm
         - waybar
