@@ -538,10 +538,16 @@
         name:
           - 1password
           - 1password-cli
+          - aws-vault
+          - bemoji
+          - claude-desktop-bin
           - google-chrome
+          - jellyfin-media-player
           - niri
           - slack-desktop
+          - tinty
           - ttf-ms-fonts
+          - tz
           - zoom
       become: yes
       become_user: aur_builder
