@@ -5,9 +5,9 @@
       community.general.pacman:
         update_cache: yes
         name:
+          - aws-cli-v2
           - base-devel
           - bat
-          - aws-cli-v2
           - btop
           - ca-certificates
           - cryptsetup
@@ -41,8 +41,8 @@
           - tmux
           - tree
           - udisks2
-          - unzip
           - unrar
+          - unzip
           - vifm
           - wget
           - x264
