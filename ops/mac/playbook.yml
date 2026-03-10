@@ -39,3 +39,98 @@
           - 1password-cli
           - kitty
         state: present
+
+    - name: Setup | Create directories
+      ansible.builtin.file:
+        path: "{{ item.path }}"
+        state: directory
+        mode: "{{ item.mode | default('0755') }}"
+      loop:
+        - { path: "{{ ansible_env.HOME }}/.ssh", mode: "0700" }
+        - { path: "{{ ansible_env.HOME }}/.tmux/plugins" }
+        - { path: "{{ ansible_env.HOME }}/dev" }
+        - { path: "{{ ansible_env.HOME }}/docs" }
+        - { path: "{{ ansible_env.HOME }}/pics" }
+        - { path: "{{ ansible_env.HOME }}/videos" }
+
+    - name: Setup | Check for oh-my-zsh
+      ansible.builtin.stat:
+        path: "{{ ansible_env.HOME }}/.oh-my-zsh"
+      register: omz_stat
+
+    - name: Setup | Install oh-my-zsh
+      when: not omz_stat.stat.exists
+      ansible.builtin.shell:
+        cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+        creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
+
+    - name: Setup | Remove oh-my-zsh default .zshrc
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/.zshrc"
+        state: absent
+      when: not omz_stat.stat.exists
+
+    - name: Setup | Stow dotfiles
+      ansible.builtin.shell: >
+        stow --dir="{{ ansible_env.HOME }}/dev/dot_files"
+        --target="{{ ansible_env.HOME }}/"
+        --restow --no-folding --verbose=1
+        {{ item }}
+      loop:
+        - bat
+        - bin
+        - claude
+        - git
+        - kitty
+        - mise
+        - npm
+        - nvim
+        - sql
+        - tinty
+        - tmux
+        - vifm
+        - zsh
+      register: stow_result
+      changed_when: stow_result.stdout != ""
+
+    - name: Setup | Check if tpm is installed
+      ansible.builtin.stat:
+        path: "{{ ansible_env.HOME }}/.tmux/plugins/tpm/.git"
+      register: tpm_stat
+
+    - name: Setup | Clone tmux plugin manager
+      ansible.builtin.git:
+        repo: "https://github.com/tmux-plugins/tpm"
+        dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
+        depth: 1
+      when: not tpm_stat.stat.exists
+
+    - name: Setup | Configure 1Password SSH agent
+      ansible.builtin.blockinfile:
+        path: "{{ ansible_env.HOME }}/.ssh/config"
+        create: yes
+        mode: "0600"
+        block: |
+          Host *
+              IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+
+    - name: Setup | Create tinty symlink for tinted-theming path
+      ansible.builtin.file:
+        src: "{{ ansible_env.HOME }}/.config/tinty"
+        dest: "{{ ansible_env.HOME }}/.config/tinted-theming/tinty"
+        state: link
+        force: no
+      ignore_errors: yes
+
+    - name: Setup | Check for missing mise tools
+      ansible.builtin.shell: "{{ ansible_env.HOME }}/.local/share/mise/bin/mise ls --missing"
+      register: mise_missing
+      changed_when: false
+      environment:
+        PATH: "{{ ansible_env.HOME }}/.local/share/mise/bin:{{ ansible_env.HOME }}/.local/share/mise/shims:{{ ansible_env.PATH }}"
+
+    - name: Setup | Install mise tools
+      ansible.builtin.shell: "{{ ansible_env.HOME }}/.local/share/mise/bin/mise install"
+      when: mise_missing.stdout != ""
+      environment:
+        PATH: "{{ ansible_env.HOME }}/.local/share/mise/bin:{{ ansible_env.HOME }}/.local/share/mise/shims:{{ ansible_env.PATH }}"
