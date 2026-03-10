@@ -48,6 +48,7 @@
       loop:
         - { path: "{{ ansible_env.HOME }}/.ssh", mode: "0700" }
         - { path: "{{ ansible_env.HOME }}/.tmux/plugins" }
+        - { path: "{{ ansible_env.HOME }}/.config/tinted-theming" }
         - { path: "{{ ansible_env.HOME }}/dev" }
         - { path: "{{ ansible_env.HOME }}/docs" }
         - { path: "{{ ansible_env.HOME }}/pics" }
@@ -91,7 +92,7 @@
         - vifm
         - zsh
       register: stow_result
-      changed_when: stow_result.stdout != ""
+      changed_when: stow_result.stderr != ""
 
     - name: Setup | Check if tpm is installed
       ansible.builtin.stat:
