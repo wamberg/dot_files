@@ -1,0 +1,41 @@
+- hosts: localhost
+  tasks:
+    - name: Packages | Install Homebrew formulae
+      community.general.homebrew:
+        name:
+          - awscli
+          - aws-vault
+          - bat
+          - curl
+          - fd
+          - fzf
+          - git
+          - git-delta
+          - gnupg
+          - jq
+          - less
+          - mise
+          - ncdu
+          - neovim
+          - pass
+          - pigz
+          - ripgrep
+          - rsync
+          - sqlite
+          - stow
+          - tmux
+          - tree
+          - unzip
+          - vifm
+          - vim
+          - wget
+          - zsh
+        state: present
+
+    - name: Packages | Install Homebrew casks
+      community.general.homebrew_cask:
+        name:
+          - 1password
+          - 1password-cli
+          - kitty
+        state: present
