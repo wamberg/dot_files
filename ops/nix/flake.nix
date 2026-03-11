@@ -1,5 +1,5 @@
 {
-  description = "NixOS and nix-darwin configuration for wamberg's machines";
+  description = "NixOS configuration for wamberg's machines";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -14,15 +14,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-darwin = {
-      url = "github:LnL7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     claude-desktop.url = "github:aaddrick/claude-desktop-debian";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nix-darwin, claude-desktop, ... }:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, claude-desktop, ... }:
     let
       forgeSystem = "x86_64-linux";
       pkgs-stable = import nixpkgs-stable {
@@ -40,17 +35,6 @@
           ./hosts/forge/configuration.nix
           ./common/nixos.nix
           home-manager.nixosModules.home-manager
-        ];
-      };
-    };
-
-    darwinConfigurations = {
-      mac = nix-darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        modules = [
-          ./hosts/mac/configuration.nix
-          ./common/darwin.nix
-          home-manager.darwinModules.home-manager
         ];
       };
     };
