@@ -124,14 +124,10 @@
       ignore_errors: yes
 
     - name: Setup | Check for missing mise tools
-      ansible.builtin.shell: "{{ ansible_env.HOME }}/.local/share/mise/bin/mise ls --missing"
+      ansible.builtin.shell: mise ls --missing
       register: mise_missing
       changed_when: false
-      environment:
-        PATH: "{{ ansible_env.HOME }}/.local/share/mise/bin:{{ ansible_env.HOME }}/.local/share/mise/shims:{{ ansible_env.PATH }}"
 
     - name: Setup | Install mise tools
-      ansible.builtin.shell: "{{ ansible_env.HOME }}/.local/share/mise/bin/mise install"
+      ansible.builtin.shell: mise install
       when: mise_missing.stdout != ""
-      environment:
-        PATH: "{{ ansible_env.HOME }}/.local/share/mise/bin:{{ ansible_env.HOME }}/.local/share/mise/shims:{{ ansible_env.PATH }}"
