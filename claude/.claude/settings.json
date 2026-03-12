@@ -7,10 +7,17 @@
   },
   "model": "us.anthropic.claude-opus-4-6-v1",
   "enabledPlugins": {
-    "lua-lsp@claude-plugins-official": true,
     "superpowers@superpowers-marketplace": true,
     "elements-of-style@superpowers-marketplace": true
   },
   "alwaysThinkingEnabled": true,
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "extraKnownMarketplaces": {
+    "superpowers-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "obra/superpowers-marketplace"
+      }
+    }
+  }
 }
