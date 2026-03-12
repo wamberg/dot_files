@@ -103,7 +103,7 @@
       become: yes
       become_user: wamberg
       become_flags: "--login"
-      ansible.builtin.shell: 'stow --dir="${HOME}/dev/dot_files" --target="${HOME}/" -vS {{ item }}'
+      ansible.builtin.shell: 'stow --no-folding --dir="${HOME}/dev/dot_files" --target="${HOME}/" -vS {{ item }}'
       loop:
         - bat
         - bin
