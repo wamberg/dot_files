@@ -649,6 +649,32 @@
         - wireplumber.service
       tags:
         - desktop
+    - name: Audio | WirePlumber | Ensure conf.d directory exists
+      become: yes
+      become_user: wamberg
+      ansible.builtin.file:
+        path: /home/wamberg/.config/wireplumber/wireplumber.conf.d
+        state: directory
+        mode: '0755'
+      tags:
+        - desktop
+    - name: Audio | WirePlumber | Configure Bluetooth A2DP roles
+      become: yes
+      become_user: wamberg
+      ansible.builtin.copy:
+        content: |
+          monitor.bluez.properties = {
+            bluez5.roles = [ a2dp_source bap_sink bap_source hfp_hf hfp_ag ]
+            bluez5.codecs = [ sbc sbc_xq aac ldac aptx aptx_hd aptx_ll aptx_ll_duplex faststream faststream_duplex lc3 opus_05 opus_05_51 opus_05_71 opus_05_duplex opus_05_pro ]
+            bluez5.enable-sbc-xq = true
+            bluez5.hfphsp-backend = "native"
+          }
+        dest: /home/wamberg/.config/wireplumber/wireplumber.conf.d/50-bluez-a2dp.conf
+        owner: wamberg
+        group: wamberg
+        mode: '0644'
+      tags:
+        - desktop
     - name: Service | Bluetooth | Enable and start service
       ansible.builtin.systemd:
         name: bluetooth
