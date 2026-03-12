@@ -520,6 +520,7 @@
           - bemoji
           - claude-desktop-bin
           - google-chrome
+          - jftui
           - niri
           - slack-desktop
           - tinty-git
