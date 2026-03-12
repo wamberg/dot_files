@@ -112,7 +112,6 @@
         - fuzzel
         - git
         - kitty
-        - mako
         - mise
         - mpv
         - niri
@@ -130,6 +129,16 @@
       changed_when: stow_result.stdout != ""
       tags:
         - dev
+    - name: User | wamberg | Install tinty theme repositories
+      become: yes
+      become_user: wamberg
+      become_flags: "--login"
+      ansible.builtin.command: tinty -c ~/.config/tinty/config.toml install
+      register: tinty_install
+      changed_when: "'installed' in tinty_install.stdout"
+      tags:
+        - dev
+        - desktop
     - name: User | wamberg | Set default applications
       become: yes
       become_user: wamberg
@@ -509,12 +518,9 @@
           - 1password-cli
           - aws-vault
           - bemoji
-          - claude-desktop-bin
-          - google-chrome
-          - jellyfin-media-player
           - niri
           - slack-desktop
-          - tinty
+          - tinty-git
           - ttf-ms-fonts
           - tz
           - zoom
@@ -534,7 +540,6 @@
           - libreoffice-fresh
           - mpv
           - obsidian
-          - steam
           - telegram-desktop
           - zathura
           - zathura-pdf-mupdf
@@ -592,28 +597,6 @@
         state: present
       tags:
         - desktop
-    - name: System | Packages | Install virtualization packages
-      community.general.pacman:
-        name:
-          - qemu-full
-          - virt-manager
-          - libvirt
-          - ebtables
-          - dnsmasq
-          - bridge-utils
-        state: present
-        extra_args: --ask=4
-      tags:
-        - desktop
-        - virtualization
-    - name: User | wamberg | Add to libvirt group
-      ansible.builtin.user:
-        name: wamberg
-        groups: libvirt
-        append: yes
-      tags:
-        - desktop
-        - virtualization
     - name: System | Kernel | Set vm.max_map_count for gaming
       ansible.posix.sysctl:
         name: vm.max_map_count
@@ -670,14 +653,6 @@
         enabled: yes
       tags:
         - desktop
-    - name: Service | libvirtd | Enable and start service
-      ansible.builtin.systemd:
-        name: libvirtd
-        state: started
-        enabled: yes
-      tags:
-        - desktop
-        - virtualization
   handlers:
     - name: update grub config
       ansible.builtin.command: grub-mkconfig -o /boot/grub/grub.cfg
