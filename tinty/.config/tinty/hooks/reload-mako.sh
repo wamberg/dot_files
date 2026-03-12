@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
-# Reload mako with tinty colors (works with both base16 and base24)
+# Generate mako config from tinty theme (matches starship pattern)
 
 TINTY_CURRENT_SCHEME_FILE="$HOME/.local/share/tinted-theming/tinty/artifacts/current_scheme"
-MAKO_TEMPLATE="$HOME/.config/tinty/templates/mako/inline.mustache"
+MAKO_TEMPLATE="$HOME/.config/tinty/templates/mako/default.mustache"
 MAKO_CONFIG="$HOME/.config/mako/config"
-MAKO_COLORS_ARTIFACT="$HOME/.local/share/tinted-theming/tinty/artifacts/mako-colors.config"
 
 if [ -f "$TINTY_CURRENT_SCHEME_FILE" ] && [ -f "$MAKO_TEMPLATE" ]; then
     CURRENT_SCHEME=$(cat "$TINTY_CURRENT_SCHEME_FILE")
@@ -20,7 +19,6 @@ if [ -f "$TINTY_CURRENT_SCHEME_FILE" ] && [ -f "$MAKO_TEMPLATE" ]; then
     fi
 
     if [ -n "$SCHEME_FILE" ] && [ -f "$SCHEME_FILE" ]; then
-        # Extract colors and metadata from YAML
         BASE00=$(grep -E "^(  )?base00:" "$SCHEME_FILE" | awk '{print $2}' | tr -d '"#')
         BASE05=$(grep -E "^(  )?base05:" "$SCHEME_FILE" | awk '{print $2}' | tr -d '"#')
         BASE08=$(grep -E "^(  )?base08:" "$SCHEME_FILE" | awk '{print $2}' | tr -d '"#')
@@ -29,34 +27,20 @@ if [ -f "$TINTY_CURRENT_SCHEME_FILE" ] && [ -f "$MAKO_TEMPLATE" ]; then
         SCHEME_NAME=$(grep "^name:" "$SCHEME_FILE" | sed 's/^name: *"\(.*\)"/\1/')
         SCHEME_AUTHOR=$(grep "^author:" "$SCHEME_FILE" | sed 's/^author: *"\(.*\)"/\1/')
 
-        # Generate mako colors from template (using | as delimiter to handle / in author names)
+        mkdir -p "$(dirname "$MAKO_CONFIG")"
+
         sed -e "s|{{scheme-name}}|$SCHEME_NAME|g" \
             -e "s|{{scheme-author}}|$SCHEME_AUTHOR|g" \
             -e "s|{{base00-hex}}|$BASE00|g" \
             -e "s|{{base05-hex}}|$BASE05|g" \
+            -e "s|{{base08-hex}}|$BASE08|g" \
+            -e "s|{{base0A-hex}}|$BASE0A|g" \
             -e "s|{{base0D-hex}}|$BASE0D|g" \
-            "$MAKO_TEMPLATE" > "$MAKO_COLORS_ARTIFACT"
+            "$MAKO_TEMPLATE" > "$MAKO_CONFIG"
+    fi
 
-        # Update mako config with new colors
-        if [ -f "$MAKO_CONFIG" ]; then
-            # Replace the color section in the config file
-            awk -v colors="$(cat "$MAKO_COLORS_ARTIFACT")" '
-                BEGIN { in_colors=0 }
-                /^# Color scheme - managed by tinty/ {
-                    print colors
-                    in_colors=1
-                    next
-                }
-                /^$/ && in_colors { in_colors=0 }
-                !in_colors { print }
-            ' "$MAKO_CONFIG" > "$MAKO_CONFIG.tmp"
-
-            mv "$MAKO_CONFIG.tmp" "$MAKO_CONFIG"
-        fi
-
-        # Reload mako to apply new colors
-        if pgrep mako >/dev/null 2>&1; then
-            makoctl reload
-        fi
+    # Reload mako to apply new colors
+    if pgrep mako >/dev/null 2>&1; then
+        makoctl reload
     fi
 fi

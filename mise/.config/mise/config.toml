@@ -9,7 +9,6 @@ stylua = "latest"
 tree-sitter = "latest"
 ty = "latest"
 rust = "latest"
-"cargo:tinty" = "latest"
 
 [settings]
 experimental = true
