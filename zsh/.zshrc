@@ -11,6 +11,8 @@ export plugins
 
 ### User configuration ###
 
+eval "$(mise activate zsh)"
+
 # common exports
 export EDITOR=$(which nvim)
 export LANG='en_US.UTF-8'
