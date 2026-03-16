@@ -552,6 +552,7 @@
           - swaybg
           - swaylock
           - waybar
+          - xdg-desktop-portal-gtk
           - wlsunset
           - xwayland-satellite
           # System Utilities

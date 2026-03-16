@@ -63,45 +63,6 @@ window#waybar {
     color: @red;
 }
 
-#custom-slack-notifications {
-    background-image: url("/home/wamberg/.nix-profile/share/pixmaps/slack.png");
-}
-
-#custom-telegram-notifications {
-    background-image: url("/home/wamberg/.nix-profile/share/icons/hicolor/32x32/apps/org.telegram.desktop.png");
-}
-
-#custom-slack-notifications,
-#custom-telegram-notifications {
-    background-repeat: no-repeat;
-    background-size: 22px 22px;
-    background-position: center;
-    padding: 0 8px;
-}
-
-#custom-slack-notifications.hidden,
-#custom-telegram-notifications.hidden {
-    background-image: none;
-    min-width: 0;
-    padding: 0;
-    margin: 0;
-    opacity: 0;
-}
-
-#custom-slack-notifications.unread,
-#custom-telegram-notifications.unread {
-    animation: pulse 2s ease-in-out infinite alternate;
-}
-
-@keyframes pulse {
-    from {
-        opacity: 0.6;
-    }
-    to {
-        opacity: 1.0;
-    }
-}
-
 #pulseaudio {
     margin-right: 15px;
 }
