@@ -1,8 +1,7 @@
 local M = {}
 
 -- Configuration
-M.model = "small.en-tdrz"
-M.whisper_home = vim.fn.expand("~/.local/share/whisper")
+M.model_path = "/usr/share/whisper.cpp-model-medium.en/ggml-medium.en.bin"
 M.whisper_exec = "whisper-cli"
 
 -- Generate unique temp file base name
@@ -10,18 +9,13 @@ M.tmp_file = vim.fn.tempname() .. "_whisper"
 
 -- Check if whisper.cpp is properly set up
 function M.check_whisper_setup()
-  local model_path = M.whisper_home .. "/ggml-" .. M.model .. ".bin"
-
-  local whisper_exists = vim.fn.executable(M.whisper_exec) == 1
-  local model_exists = vim.fn.filereadable(model_path) == 1
-
-  if not whisper_exists then
-    vim.notify("The 'whisper' executable was not found at " .. M.whisper_exec, vim.log.levels.ERROR)
+  if vim.fn.executable(M.whisper_exec) ~= 1 then
+    vim.notify("whisper-cli not found", vim.log.levels.ERROR)
     return false
   end
 
-  if not model_exists then
-    vim.notify("The '" .. M.model .. "' model was not found at " .. model_path, vim.log.levels.ERROR)
+  if vim.fn.filereadable(M.model_path) ~= 1 then
+    vim.notify("Whisper model not found at " .. M.model_path, vim.log.levels.ERROR)
     return false
   end
 
@@ -94,10 +88,9 @@ function M.transcribe()
 
   -- Transcribe with main whisper binary for clean output
   local cmd = string.format(
-    "%s -m %s/ggml-%s.bin -f %s -otxt -of %s --no-timestamps",
+    "%s -m %s -f %s -otxt -of %s --no-timestamps",
     M.whisper_exec,
-    M.whisper_home,
-    M.model,
+    M.model_path,
     audio_file,
     M.tmp_file
   )

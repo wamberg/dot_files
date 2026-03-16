@@ -503,7 +503,8 @@
         name:
           - claude-code
           - whisper.cpp
-          - whisper.cpp-model-medium
+          - whisper.cpp-model-small.en-tdrz
+          - whisper.cpp-model-medium.en
       become: yes
       become_user: aur_builder
       tags:
