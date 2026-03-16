@@ -4,12 +4,12 @@ set ignorecase
 set incsearch
 set nofollowlinks
 set nohlsearch
+set notrash
 set scrolloff=4
 set smartcase
 set sortnumbers
 set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
 set syscalls
-set trashdir=/tmp/
 set undolevels=100
 set vicmd=$EDITOR
 set viewcolumns=-{name}..,6{size},11{perms}
