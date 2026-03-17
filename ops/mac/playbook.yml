@@ -47,35 +47,35 @@
         state: directory
         mode: "{{ item.mode | default('0755') }}"
       loop:
-        - { path: "{{ ansible_env.HOME }}/.ssh", mode: "0700" }
-        - { path: "{{ ansible_env.HOME }}/.tmux/plugins" }
-        - { path: "{{ ansible_env.HOME }}/.config/tinted-theming" }
-        - { path: "{{ ansible_env.HOME }}/dev" }
-        - { path: "{{ ansible_env.HOME }}/docs" }
-        - { path: "{{ ansible_env.HOME }}/pics" }
-        - { path: "{{ ansible_env.HOME }}/videos" }
+        - { path: "{{ ansible_facts['env']['HOME'] }}/.ssh", mode: "0700" }
+        - { path: "{{ ansible_facts['env']['HOME'] }}/.tmux/plugins" }
+        - { path: "{{ ansible_facts['env']['HOME'] }}/.config/tinted-theming" }
+        - { path: "{{ ansible_facts['env']['HOME'] }}/dev" }
+        - { path: "{{ ansible_facts['env']['HOME'] }}/docs" }
+        - { path: "{{ ansible_facts['env']['HOME'] }}/pics" }
+        - { path: "{{ ansible_facts['env']['HOME'] }}/videos" }
 
     - name: Setup | Check for oh-my-zsh
       ansible.builtin.stat:
-        path: "{{ ansible_env.HOME }}/.oh-my-zsh"
+        path: "{{ ansible_facts['env']['HOME'] }}/.oh-my-zsh"
       register: omz_stat
 
     - name: Setup | Install oh-my-zsh
       when: not omz_stat.stat.exists
       ansible.builtin.shell:
         cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-        creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
+        creates: "{{ ansible_facts['env']['HOME'] }}/.oh-my-zsh"
 
     - name: Setup | Remove oh-my-zsh default .zshrc
       ansible.builtin.file:
-        path: "{{ ansible_env.HOME }}/.zshrc"
+        path: "{{ ansible_facts['env']['HOME'] }}/.zshrc"
         state: absent
       when: not omz_stat.stat.exists
 
     - name: Setup | Stow dotfiles
       ansible.builtin.shell: >
-        stow --dir="{{ ansible_env.HOME }}/dev/dot_files"
-        --target="{{ ansible_env.HOME }}/"
+        stow --dir="{{ ansible_facts['env']['HOME'] }}/dev/dot_files"
+        --target="{{ ansible_facts['env']['HOME'] }}/"
         --restow --no-folding --verbose=1
         {{ item }}
       loop:
@@ -97,19 +97,19 @@
 
     - name: Setup | Check if tpm is installed
       ansible.builtin.stat:
-        path: "{{ ansible_env.HOME }}/.tmux/plugins/tpm/.git"
+        path: "{{ ansible_facts['env']['HOME'] }}/.tmux/plugins/tpm/.git"
       register: tpm_stat
 
     - name: Setup | Clone tmux plugin manager
       ansible.builtin.git:
         repo: "https://github.com/tmux-plugins/tpm"
-        dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
+        dest: "{{ ansible_facts['env']['HOME'] }}/.tmux/plugins/tpm"
         depth: 1
       when: not tpm_stat.stat.exists
 
     - name: Setup | Configure 1Password SSH agent
       ansible.builtin.blockinfile:
-        path: "{{ ansible_env.HOME }}/.ssh/config"
+        path: "{{ ansible_facts['env']['HOME'] }}/.ssh/config"
         create: yes
         mode: "0600"
         block: |
@@ -118,8 +118,8 @@
 
     - name: Setup | Create tinty symlink for tinted-theming path
       ansible.builtin.file:
-        src: "{{ ansible_env.HOME }}/.config/tinty"
-        dest: "{{ ansible_env.HOME }}/.config/tinted-theming/tinty"
+        src: "{{ ansible_facts['env']['HOME'] }}/.config/tinty"
+        dest: "{{ ansible_facts['env']['HOME'] }}/.config/tinted-theming/tinty"
         state: link
         force: no
       ignore_errors: yes
