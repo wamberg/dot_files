@@ -121,6 +121,7 @@
         - sql
         - swappy
         - tinty
+        - tz
         - tmux
         - vifm
         - waybar
