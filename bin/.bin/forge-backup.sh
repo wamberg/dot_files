@@ -56,7 +56,6 @@ function act() {
     \
     --directory="$HOME" \
     .aws \
-    .local/share/iamb \
     dev \
     docs \
     pics \
