@@ -25,7 +25,7 @@ echo "Done!"
 description = "Lint shell scripts"
 run = """
 echo "Linting shell scripts..."
-find ./ -name 'tmux' -prune -o -name '*.sh' -print0 | xargs -0 shellcheck
+find ./ -path './claude/.claude/plugins' -prune -o -name 'tmux' -prune -o -name '*.sh' -print0 | xargs -0 shellcheck
 
 echo "Done!"
 """
