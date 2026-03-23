@@ -127,12 +127,12 @@ Report: "Work discarded. Worktree and branch removed."
 
 ## Quick Reference
 
-| Option | Merge | Push | Keep Worktree | Clean Up Branch |
-|--------|-------|------|---------------|-----------------|
-| 1. Merge locally | ✓ | — | Remove | Delete |
-| 2. Create PR | — | ✓ | Keep | Keep |
-| 3. Keep as-is | — | — | Keep | Keep |
-| 4. Discard | — | — | Remove | Force delete |
+| Option           | Merge | Push | Keep Worktree | Clean Up Branch |
+| ---------------- | ----- | ---- | ------------- | --------------- |
+| 1. Merge locally | ✓     | —    | Remove        | Delete          |
+| 2. Create PR     | —     | ✓    | Keep          | Keep            |
+| 3. Keep as-is    | —     | —    | Keep          | Keep            |
+| 4. Discard       | —     | —    | Remove        | Force delete    |
 
 ## Common Mistakes
 
@@ -147,7 +147,9 @@ Report: "Work discarded. Worktree and branch removed."
 ## Integration
 
 **Called by:**
+
 - **executing-plans** — after all tasks complete and tests pass
 
 **Pairs with:**
+
 - **using-git-worktrees** — cleans up the worktree created by that skill

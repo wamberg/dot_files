@@ -57,6 +57,7 @@ digraph brainstorming {
 ## The Process
 
 **Understanding the idea:**
+
 - Check out the current project state first (files, docs, recent commits)
 - Ask questions one at a time to refine the idea
 - Prefer multiple choice questions when possible, but open-ended is fine too
@@ -64,11 +65,13 @@ digraph brainstorming {
 - Focus on understanding: purpose, constraints, success criteria
 
 **Exploring approaches:**
+
 - Propose 2-3 different approaches with trade-offs
 - Present options conversationally with your recommendation and reasoning
 - Lead with your recommended option and explain why
 
 **Presenting the design:**
+
 - Once you believe you understand what you're building, present the design
 - Scale each section to its complexity: a few sentences if straightforward, up to 200-300 words if nuanced
 - Ask after each section whether it looks right so far
@@ -78,12 +81,14 @@ digraph brainstorming {
 ## After the Design
 
 **Documentation:**
+
 - Create the directory `docs/plans/YYYY-MM-DD-<feature-name>/`
 - Write the validated design to `docs/plans/YYYY-MM-DD-<feature-name>/design.md`
 - Use elements-of-style skill
 - Commit the design document to git
 
 **Implementation:**
+
 - Invoke the writing-plans skill to create the implementation plan
 - Do NOT invoke any other skill. writing-plans is the next step.
 

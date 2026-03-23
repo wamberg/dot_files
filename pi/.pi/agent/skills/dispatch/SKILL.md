@@ -93,7 +93,9 @@ The dispatch is complete. Return control to the user in the current session. Do 
 ## Integration
 
 **Called by:**
+
 - **writing-plans** — after plan is saved and user confirms dispatch
 
 **Invokes:**
+
 - **using-git-worktrees** — to create the isolated workspace

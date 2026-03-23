@@ -20,6 +20,7 @@ git check-ignore -q .worktrees 2>/dev/null
 ```
 
 **If NOT ignored:**
+
 1. Add `.worktrees/` to `.gitignore`
 2. Commit the change: `git commit -m "chore: gitignore .worktrees/"`
 3. Proceed
@@ -110,7 +111,9 @@ Tests passing ([N] tests, 0 failures)
 ## Integration
 
 **Called by:**
+
 - **dispatch** — to create isolated workspace before launching agent
 
 **Pairs with:**
+
 - **finishing-a-development-branch** — cleans up worktree after work is complete

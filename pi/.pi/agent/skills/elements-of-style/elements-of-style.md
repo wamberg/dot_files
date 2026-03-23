@@ -45,7 +45,7 @@ the witch's malice
 
 This is the usage of the United States Government Printing Office and of the Oxford University Press.
 
-Exceptions are the possessive of ancient proper names in *-es* and *-is*, the possessive *Jesus'*, and such forms as *for conscience' sake*, *for righteousness' sake*. But such forms as *Achilles' heel*, *Moses' laws*, *Isis' temple* are commonly replaced by
+Exceptions are the possessive of ancient proper names in _-es_ and _-is_, the possessive _Jesus'_, and such forms as _for conscience' sake_, _for righteousness' sake_. But such forms as _Achilles' heel_, _Moses' laws_, _Isis' temple_ are commonly replaced by
 
 the heel of Achilles
 
@@ -53,7 +53,7 @@ the laws of Moses
 
 the temple of Isis
 
-The pronominal possessives *hers*, *its*, *theirs*, *yours*, and *oneself* have no apostrophe.
+The pronominal possessives _hers_, _its_, _theirs_, _yours_, and _oneself_ have no apostrophe.
 
 ### Rule 2. In a series of three or more terms with a single conjunction, use a comma after each term except the last.
 
@@ -75,7 +75,7 @@ Brown, Shipley & Co.
 
 The best way to see a country, unless you are pressed for time, is to travel on foot.
 
-This rule is difficult to apply; it is frequently hard to decide whether a single word, such as *however*, or a brief phrase, is or is not parenthetic. If the interruption to the flow of the sentence is but slight, the writer may safely omit the commas. But whether the interruption be slight or considerable, he must never insert one comma and omit the other. Such punctuation as
+This rule is difficult to apply; it is frequently hard to decide whether a single word, such as _however_, or a brief phrase, is or is not parenthetic. If the interruption to the flow of the sentence is but slight, the writer may safely omit the commas. But whether the interruption be slight or considerable, he must never insert one comma and omit the other. Such punctuation as
 
 Marjorie's husband, Colonel Nelson paid us a visit yesterday,
 
@@ -99,13 +99,13 @@ April 6, 1917.
 
 Monday, November 11, 1918.
 
-\(2\) the abbreviations *etc.* and *jr.*
+\(2\) the abbreviations _etc._ and _jr._
 
 \(3\) non-restrictive relative clauses, that is, those which do not serve to identify or define the antecedent noun, and similar clauses introduced by conjunctions indicating time or place.
 
 The audience, which had at first been indifferent, became more and more interested.
 
-In this sentence the clause introduced by *which* does not serve to tell which of several possible audiences is meant; what audience is in question is supposed to be already known. The clause adds, parenthetically, a statement supplementing that in the main clause. The sentence is virtually a combination of two statements which might have been made independently:
+In this sentence the clause introduced by _which_ does not serve to tell which of several possible audiences is meant; what audience is in question is supposed to be already known. The clause adds, parenthetically, a statement supplementing that in the main clause. The sentence is virtually a combination of two statements which might have been made independently:
 
 The audience had at first been indifferent. It became more and more interested.
 
@@ -113,7 +113,7 @@ Compare the restrictive relative clause, not set off by commas, in the sentence,
 
 The candidate who best meets these requirements will obtain the place.
 
-Here the clause introduced by *who* does serve to tell which of several possible candidates is meant; the sentence cannot be split up into two independent statements.
+Here the clause introduced by _who_ does serve to tell which of several possible candidates is meant; the sentence cannot be split up into two independent statements.
 
 The difference in punctuation in the two sentences following is based on the same principle:
 
@@ -121,7 +121,7 @@ Nether Stowey, where Coleridge wrote The Rime of the Ancient Mariner, is a few m
 
 The day will come when you will admit your mistake.
 
-Nether Stowey is completely identified by its name; the statement about Coleridge is therefore supplementary and parenthetic. The *day* spoken of is identified only by the dependent clause, which is therefore restrictive.
+Nether Stowey is completely identified by its name; the statement about Coleridge is therefore supplementary and parenthetic. The _day_ spoken of is identified only by the dependent clause, which is therefore restrictive.
 
 Similar in principle to the enclosing of parenthetic expressions between commas is the setting off by commas of phrases or dependent clauses preceding or following the main clause of a sentence.
 
@@ -137,7 +137,7 @@ The early records of the city have disappeared, and the story of its first years
 
 The situation is perilous, but there is still one chance of escape.
 
-Sentences of this type, isolated from their context, may seem to be in need of rewriting. As they make complete sense when the comma is reached, the second clause has the appearance of an afterthought. Further, *and* is the least specific of connectives. Used between independent clauses, it indicates only that a relation exists between them without defining that relation. In the example above, the relation is that of cause and result. The two sentences might be rewritten:
+Sentences of this type, isolated from their context, may seem to be in need of rewriting. As they make complete sense when the comma is reached, the second clause has the appearance of an afterthought. Further, _and_ is the least specific of connectives. Used between independent clauses, it indicates only that a relation exists between them without defining that relation. In the example above, the relation is that of cause and result. The two sentences might be rewritten:
 
 As the early records of the city have disappeared, the story of its first years can no longer be reconstructed.
 
@@ -151,19 +151,19 @@ In this perilous situation, there is still one chance of escape.
 
 But a writer may err by making his sentences too uniformly compact and periodic, and an occasional loose sentence prevents the style from becoming too formal and gives the reader a certain relief. Consequently, loose sentences of the type first quoted are common in easy, unstudied writing. But a writer should be careful not to construct too many of his sentences after this pattern (see Rule 14).
 
-Two-part sentences of which the second member is introduced by *as* (in the sense of *because*), *for*, *or*, *nor*, and *while* (in the sense of *and at the same time*) likewise require a comma before the conjunction.
+Two-part sentences of which the second member is introduced by _as_ (in the sense of _because_), _for_, _or_, _nor_, and _while_ (in the sense of _and at the same time_) likewise require a comma before the conjunction.
 
-If the second member is introduced by an adverb, a semicolon, not a comma, is required (see Rule 5). The connectives *so* and *yet* may be used either as adverbs or as conjunctions, accordingly as the second clause is felt to be co-ordinate or subordinate; consequently either mark of punctuation may be justified. But these uses of *so* (equivalent to *accordingly* or to *so that*) are somewhat colloquial and should, as a rule, be avoided in writing. A simple correction, usually serviceable, is to omit the word *so* and begin the first clause with *as* or *since*:
+If the second member is introduced by an adverb, a semicolon, not a comma, is required (see Rule 5). The connectives _so_ and _yet_ may be used either as adverbs or as conjunctions, accordingly as the second clause is felt to be co-ordinate or subordinate; consequently either mark of punctuation may be justified. But these uses of _so_ (equivalent to _accordingly_ or to _so that_) are somewhat colloquial and should, as a rule, be avoided in writing. A simple correction, usually serviceable, is to omit the word _so_ and begin the first clause with _as_ or _since_:
 
-| Original | Revision |
-| --- | --- |
+| Original                                                                           | Revision                                                                           |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | I had never been in the place before; so I had difficulty in finding my way about. | As I had never been in the place before, I had difficulty in finding my way about. |
 
 If a dependent clause, or an introductory phrase requiring to be set off by a comma, precedes the second independent clause, no comma is needed after the conjunction.
 
 The situation is perilous, but if we are prepared to act promptly, there is still one chance of escape.
 
-When the subject is the same for both clauses and is expressed only once, a comma is required if the connective is *but*. If the connective is *and*, the comma should be omitted if the relation between the two statements is close or immediate.
+When the subject is the same for both clauses and is expressed only once, a comma is required if the connective is _but_. If the connective is _and_, the comma should be omitted if the relation between the two statements is close or immediate.
 
 I have heard his arguments, but am still unconvinced.
 
@@ -191,7 +191,7 @@ It is nearly half past five, and we cannot reach town before dark.
 
 A comparison of the three forms given above will show clearly the advantage of the first. It is, at least in the examples given, better than the second form, because it suggests the close relationship between the two statements in a way that the second does not attempt, and better than the third, because briefer and therefore more forcible. Indeed it may be said that this simple method of indicating relationship between statements is one of the most useful devices of composition. The relationship, as above, is commonly one of cause or of consequence.
 
-Note that if the second clause is preceded by an adverb, such as *accordingly*, *besides*, *then*, *therefore*, or *thus*, and not by a conjunction, the semicolon is still required.
+Note that if the second clause is preceded by an adverb, such as _accordingly_, _besides_, _then_, _therefore_, or _thus_, and not by a conjunction, the semicolon is still required.
 
 Two exceptions to the rule may be admitted. If the clauses are very short, and are alike in form, a comma is usually permissible:
 
@@ -227,18 +227,18 @@ Rules 3, 4, 5, and 6 cover the most important principles in the punctuation of o
 
 Walking slowly down the road, he saw a woman accompanied by two children.
 
-The word *walking* refers to the subject of the sentence, not to the woman. If the writer wishes to make it refer to the woman, he must recast the sentence:
+The word _walking_ refers to the subject of the sentence, not to the woman. If the writer wishes to make it refer to the woman, he must recast the sentence:
 
 He saw a woman accompanied by two children, walking slowly down the road.
 
 Participial phrases preceded by a conjunction or by a preposition, nouns in apposition, adjectives, and adjective phrases come under the same rule if they begin the sentence.
 
-| Original | Revision |
-| --- | --- |
-| On arriving in Chicago, his friends met him at the station. | When he arrived (or, On his arrival) in Chicago, his friends met him at the station. |
-| A soldier of proved valor, they entrusted him with the defence of the city. | A soldier of proved valor, he was entrusted with the defence of the city. |
-| Young and inexperienced, the task seemed easy to me. | Young and inexperienced, I thought the task easy. |
-| Without a friend to counsel him, the temptation proved irresistible. | Without a friend to counsel him, he found the temptation irresistible. |
+| Original                                                                    | Revision                                                                             |
+| --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| On arriving in Chicago, his friends met him at the station.                 | When he arrived (or, On his arrival) in Chicago, his friends met him at the station. |
+| A soldier of proved valor, they entrusted him with the defence of the city. | A soldier of proved valor, he was entrusted with the defence of the city.            |
+| Young and inexperienced, the task seemed easy to me.                        | Young and inexperienced, I thought the task easy.                                    |
+| Without a friend to counsel him, the temptation proved irresistible.        | Without a friend to counsel him, he found the temptation irresistible.               |
 
 Sentences violating this rule are often ludicrous.
 
@@ -302,7 +302,7 @@ Again, the object is to aid the reader. The practice here recommended enables hi
 
 Ending with a digression, or with an unimportant detail, is particularly to be avoided.
 
-If the paragraph forms part of a larger composition, its relation to what precedes, or its function as a part of the whole, may need to be expressed. This can sometimes be done by a mere word or phrase (*again*; *therefore*; *for the same reason*) in the topic sentence. Sometimes, however, it is expedient to precede the topic sentence by one or more sentences of introduction or transition. If more than one such sentence is required, it is generally better to set apart the transitional sentences as a separate paragraph.
+If the paragraph forms part of a larger composition, its relation to what precedes, or its function as a part of the whole, may need to be expressed. This can sometimes be done by a mere word or phrase (_again_; _therefore_; _for the same reason_) in the topic sentence. Sometimes, however, it is expedient to precede the topic sentence by one or more sentences of introduction or transition. If more than one such sentence is required, it is generally better to set apart the transitional sentences as a separate paragraph.
 
 According to the writer's purpose, he may, as indicated above, relate the body of the paragraph to the topic sentence in one or more of several different ways. He may make the meaning of the topic sentence clearer by restating it in other forms, by defining its terms, by denying the contrary, by giving illustrations or specific instances; he may establish it by proofs; or he may develop it by showing its implications and consequences. In a long paragraph, he may carry out several of these processes.
 
@@ -358,52 +358,52 @@ The first would be the right form in a paragraph on the dramatists of the Restor
 
 As a rule, avoid making one passive depend directly upon another.
 
-| Original | Revision |
-| --- | --- |
-| Gold was not allowed to be exported. | It was forbidden to export gold (The export of gold was prohibited). |
-| He has been proved to have been seen entering the building. | It has been proved that he was seen to enter the building. |
+| Original                                                    | Revision                                                             |
+| ----------------------------------------------------------- | -------------------------------------------------------------------- |
+| Gold was not allowed to be exported.                        | It was forbidden to export gold (The export of gold was prohibited). |
+| He has been proved to have been seen entering the building. | It has been proved that he was seen to enter the building.           |
 
 In both the examples above, before correction, the word properly related to the second passive is made the subject of the first.
 
 A common fault is to use as the subject of a passive construction a noun which expresses the entire action, leaving to the verb no function beyond that of completing the sentence.
 
-| Original | Revision |
-| --- | --- |
-| A survey of this region was made in 1900. | This region was surveyed in 1900. |
-| Mobilization of the army was rapidly effected. | The army was rapidly mobilized. |
+| Original                                          | Revision                           |
+| ------------------------------------------------- | ---------------------------------- |
+| A survey of this region was made in 1900.         | This region was surveyed in 1900.  |
+| Mobilization of the army was rapidly effected.    | The army was rapidly mobilized.    |
 | Confirmation of these reports cannot be obtained. | These reports cannot be confirmed. |
 
 Compare the _sentence,_ “The export of gold was prohibited,” in which the predicate “was prohibited” expresses something not implied in “export.”
 
-The habitual use of the active voice makes for forcible writing. This is true not only in narrative principally concerned with action, but in writing of any kind. Many a tame sentence of description or exposition can be made lively and emphatic by substituting a verb in the active voice for some such perfunctory expression as *there is*, or *could be heard*.
+The habitual use of the active voice makes for forcible writing. This is true not only in narrative principally concerned with action, but in writing of any kind. Many a tame sentence of description or exposition can be made lively and emphatic by substituting a verb in the active voice for some such perfunctory expression as _there is_, or _could be heard_.
 
-| Original | Revision |
-| --- | --- |
-| There were a great number of dead leaves lying on the ground. | Dead leaves covered the ground. |
-| The sound of a guitar somewhere in the house could be heard. | Somewhere in the house a guitar hummed sleepily. |
-| The reason that he left college was that his health became impaired. | Failing health compelled him to leave college. |
-| It was not long before he was very sorry that he had said what he had. | He soon repented his words. |
+| Original                                                               | Revision                                         |
+| ---------------------------------------------------------------------- | ------------------------------------------------ |
+| There were a great number of dead leaves lying on the ground.          | Dead leaves covered the ground.                  |
+| The sound of a guitar somewhere in the house could be heard.           | Somewhere in the house a guitar hummed sleepily. |
+| The reason that he left college was that his health became impaired.   | Failing health compelled him to leave college.   |
+| It was not long before he was very sorry that he had said what he had. | He soon repented his words.                      |
 
 ### Rule 11. Put statements in positive form.
 
-Make definite assertions. Avoid tame, colorless, hesitating, non-committal language. Use the word *not* as a means of denial or in antithesis, never as a means of evasion.
+Make definite assertions. Avoid tame, colorless, hesitating, non-committal language. Use the word _not_ as a means of denial or in antithesis, never as a means of evasion.
 
-| Original | Revision |
-| --- | --- |
-| He was not very often on time. | He usually came late. |
-| He did not think that studying Latin was much use. | He thought the study of Latin useless. |
+| Original                                                                                                                                                                                                       | Revision                                                                                                |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| He was not very often on time.                                                                                                                                                                                 | He usually came late.                                                                                   |
+| He did not think that studying Latin was much use.                                                                                                                                                             | He thought the study of Latin useless.                                                                  |
 | The Taming of the Shrew is rather weak in spots. Shakespeare does not portray Katharine as a very admirable character, nor does Bianca remain long in memory as an important character in Shakespeare's works. | The women in The Taming of the Shrew are unattractive. Katharine is disagreeable, Bianca insignificant. |
 
 The last example, before correction, is indefinite as well as negative. The corrected version, consequently, is simply a guess at the writer's intention.
 
-All three examples show the weakness inherent in the word *not*. Consciously or unconsciously, the reader is dissatisfied with being told only what is not; he wishes to be told what is. Hence, as a rule, it is better to express even a negative in positive form.
+All three examples show the weakness inherent in the word _not_. Consciously or unconsciously, the reader is dissatisfied with being told only what is not; he wishes to be told what is. Hence, as a rule, it is better to express even a negative in positive form.
 
-| Original | Revision |
-| --- | --- |
-| not honest | dishonest |
-| not important | trifling |
-| did not remember | forgot |
-| did not pay any attention to | ignored |
+| Original                        | Revision   |
+| ------------------------------- | ---------- |
+| not honest                      | dishonest  |
+| not important                   | trifling   |
+| did not remember                | forgot     |
+| did not pay any attention to    | ignored    |
 | did not have much confidence in | distrusted |
 
 The antithesis of negative and positive is strong:
@@ -412,7 +412,7 @@ Not charity, but simple justice.
 
 Not that I loved Caesar less, but Rome the more.
 
-Negative words other than *not* are usually strong:
+Negative words other than _not_ are usually strong:
 
 The sun never sets upon the British flag.
 
@@ -420,10 +420,10 @@ The sun never sets upon the British flag.
 
 Prefer the specific to the general, the definite to the vague, the concrete to the abstract.
 
-| Original | Revision |
-| --- | --- |
-| A period of unfavorable weather set in. | It rained every day for a week. |
-| He showed satisfaction as he took possession of his well-earned reward. | He grinned as he pocketed the coin. |
+| Original                                                                                                                       | Revision                                                           |
+| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| A period of unfavorable weather set in.                                                                                        | It rained every day for a week.                                    |
+| He showed satisfaction as he took possession of his well-earned reward.                                                        | He grinned as he pocketed the coin.                                |
 | There is a general agreement among those who have enjoyed the experience that surf-riding is productive of great exhilaration. | All who have tried surf-riding agree that it is most exhilarating. |
 
 If those who have studied the art of writing are in accord on any one point, it is on this, that the surest method of arousing and holding the attention of the reader is by being specific, definite, and concrete. Critics have pointed out how much of the effectiveness of the greatest writers, Homer, Dante, Shakespeare, results from their constant definiteness and concreteness. Browning, to cite a more modern author, affords many striking examples. Take, for instance, the lines from My Last Duchess,
@@ -460,8 +460,8 @@ In exposition and in argument, the writer must likewise never lose his hold upon
 
 Herbert Spencer, from whose Philosophy of Style the preceding paragraph is quoted, illustrates the principle by the sentences:
 
-| Original | Revision |
-| --- | --- |
+| Original                                                                                                                                       | Revision                                                                                                                             |
+| ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | In proportion as the manners, customs, and amusements of a nation are cruel and barbarous, the regulations of their penal code will be severe. | In proportion as men delight in battles, bull-fights, and combats of gladiators, will they punish by hanging, burning, and the rack. |
 
 ### Rule 13. Omit needless words.
@@ -470,50 +470,50 @@ Vigorous writing is concise. A sentence should contain no unnecessary words, a p
 
 Many expressions in common use violate this principle:
 
-| Original | Revision |
-| --- | --- |
-| the question as to whether | whether (the question whether) |
-| there is no doubt but that | no doubt (doubtless) |
-| used for fuel purposes | used for fuel |
-| he is a man who | he |
-| in a hasty manner | hastily |
-| this is a subject which | this subject |
-| His story is a strange one. | His story is strange. |
+| Original                    | Revision                       |
+| --------------------------- | ------------------------------ |
+| the question as to whether  | whether (the question whether) |
+| there is no doubt but that  | no doubt (doubtless)           |
+| used for fuel purposes      | used for fuel                  |
+| he is a man who             | he                             |
+| in a hasty manner           | hastily                        |
+| this is a subject which     | this subject                   |
+| His story is a strange one. | His story is strange.          |
 
-In especial the expression *the fact that* should be revised out of every sentence in which it occurs.
+In especial the expression _the fact that_ should be revised out of every sentence in which it occurs.
 
-| Original | Revision |
-| --- | --- |
-| owing to the fact that | since (because) |
-| in spite of the fact that | though (although) |
-| call your attention to the fact that | remind you (notify you) |
-| I was unaware of the fact that | I was unaware that (did not know) |
-| the fact that he had not succeeded | his failure |
-| the fact that I had arrived | my arrival |
+| Original                             | Revision                          |
+| ------------------------------------ | --------------------------------- |
+| owing to the fact that               | since (because)                   |
+| in spite of the fact that            | though (although)                 |
+| call your attention to the fact that | remind you (notify you)           |
+| I was unaware of the fact that       | I was unaware that (did not know) |
+| the fact that he had not succeeded   | his failure                       |
+| the fact that I had arrived          | my arrival                        |
 
-See also under *case*, *character*, *nature*, *system* in Chapter V.
+See also under _case_, _character_, _nature_, _system_ in Chapter V.
 
-*Who is*, *which was*, and the like are often superfluous.
+_Who is_, _which was_, and the like are often superfluous.
 
-| Original | Revision |
-| --- | --- |
+| Original                                      | Revision                               |
+| --------------------------------------------- | -------------------------------------- |
 | His brother, who is a member of the same firm | His brother, a member of the same firm |
-| Trafalgar, which was Nelson's last battle | Trafalgar, Nelson's last battle |
+| Trafalgar, which was Nelson's last battle     | Trafalgar, Nelson's last battle        |
 
 As positive statement is more concise than negative, and the active voice more concise than the passive, many of the examples given under Rules 11 and 12 illustrate this rule as well.
 
 A common violation of conciseness is the presentation of a single complex idea, step by step, in a series of sentences or independent clauses which might to advantage be combined into one.
 
-| Original | Revision |
-| --- | --- |
+| Original                                                                                                                                                                                                                                                                                           | Revision                                                                                                                                                                     |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Macbeth was very ambitious. This led him to wish to become king of Scotland. The witches told him that this wish of his would come true. The king of Scotland at this time was Duncan. Encouraged by his wife, Macbeth murdered Duncan. He was thus enabled to succeed Duncan as king. (51 words.) | Encouraged by his wife, Macbeth achieved his ambition and realized the prediction of the witches by murdering Duncan and becoming king of Scotland in his place. (26 words.) |
-| There were several less important courses, but these were the most important, and although they did not come every day, they came often enough to keep you in such a state of mind that you never knew what your next move would be. (43 words.) | These, the most important courses of all, came, if not daily, at least often enough to keep one under constant strain. (21 words.) |
+| There were several less important courses, but these were the most important, and although they did not come every day, they came often enough to keep you in such a state of mind that you never knew what your next move would be. (43 words.)                                                   | These, the most important courses of all, came, if not daily, at least often enough to keep one under constant strain. (21 words.)                                           |
 
 ### Rule 14. Avoid a succession of loose sentences
 
 This rule refers especially to loose sentences of a particular type, those consisting of two co-ordinate clauses, the second introduced by a conjunction or relative. Although single sentences of this type may be unexceptionable (see under Rule 4), a series soon becomes monotonous and tedious.
 
-An unskilful writer will sometimes construct a whole paragraph of sentences of this kind, using as connectives *and*, *but*, *so*, and less frequently, *who*, *which*, *when*, *where*, and *while*, these last in non-restrictive senses (see under Rule 3).
+An unskilful writer will sometimes construct a whole paragraph of sentences of this kind, using as connectives _and_, _but_, _so_, and less frequently, _who_, _which_, _when_, _where_, and _while_, these last in non-restrictive senses (see under Rule 3).
 
 The third concert of the subscription series was given last evening, and a large audience was in attendance. Mr. Edward Appleton was the soloist, and the Boston Symphony Orchestra furnished the instrumental music. The former showed himself to be an artist of the first rank, while the latter proved itself fully deserving of its high reputation. The interest aroused by the series has been very gratifying to the Committee, and it is planned to give a similar series annually hereafter. The fourth concert will be given on Tuesday, May 10, when an equally attractive programme will be presented.
 
@@ -527,26 +527,26 @@ This principle, that of parallel construction, requires that expressions of simi
 
 The unskillful writer often violates this principle, from a mistaken belief that he should constantly vary the form of his expressions. It is true that in repeating a statement in order to emphasize it he may have need to vary its form. For illustration, see the paragraph from Stevenson quoted under Rule _9_. But apart from this, he should follow the principle of parallel construction.
 
-| Original | Revision |
-| --- | --- |
+| Original                                                                                          | Revision                                                                                        |
+| ------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | Formerly, science was taught by the textbook method, while now the laboratory method is employed. | Formerly, science was taught by the textbook method; now it is taught by the laboratory method. |
 
 The left-hand version gives the impression that the writer is undecided or timid; he seems unable or afraid to choose one form of expression and hold to it. The right-hand version shows that the writer has at least made his choice and abided by it.
 
 By this principle, an article or a preposition applying to all the members of a series must either be used only before the first term or else be repeated before each term.
 
-| Original | Revision |
-| --- | --- |
-| The French, the Italians, Spanish, and Portuguese | The French, the Italians, the Spanish, and the Portuguese |
-| In spring, summer, or in winter | In spring, summer, or winter (In spring, in summer, or in winter) |
+| Original                                          | Revision                                                          |
+| ------------------------------------------------- | ----------------------------------------------------------------- |
+| The French, the Italians, Spanish, and Portuguese | The French, the Italians, the Spanish, and the Portuguese         |
+| In spring, summer, or in winter                   | In spring, summer, or winter (In spring, in summer, or in winter) |
 
-Correlative expressions (*both, and*; *not, but*; *not only, but also*; *either, or*; *first, second, third*; and the like) should be followed by the same grammatical construction, that is, virtually, by the same part of speech. (Such combinations as “both Henry and I,” “not silk, but a cheap substitute,” are obviously within the rule.) Many violations of this rule (as the first three below) arise from faulty arrangement; others (as the last) from the use of unlike constructions.
+Correlative expressions (_both, and_; _not, but_; _not only, but also_; _either, or_; _first, second, third_; and the like) should be followed by the same grammatical construction, that is, virtually, by the same part of speech. (Such combinations as “both Henry and I,” “not silk, but a cheap substitute,” are obviously within the rule.) Many violations of this rule (as the first three below) arise from faulty arrangement; others (as the last) from the use of unlike constructions.
 
-| Original | Revision |
-| --- | --- |
-| It was both a long ceremony and very tedious. | The ceremony was both long and tedious. |
-| A time not for words, but action. | A time not for words, but for action. |
-| Either you must grant his request or incur his ill will. | You must either grant his request or incur his ill will. |
+| Original                                                                                     | Revision                                                                                   |
+| -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| It was both a long ceremony and very tedious.                                                | The ceremony was both long and tedious.                                                    |
+| A time not for words, but action.                                                            | A time not for words, but for action.                                                      |
+| Either you must grant his request or incur his ill will.                                     | You must either grant his request or incur his ill will.                                   |
 | My objections are, first, the injustice of the measure; second, that it is unconstitutional. | My objections are, first, that the measure is unjust; second, that it is unconstitutional. |
 
 See also the third example under Rule 12 and the last under Rule 13.
@@ -559,30 +559,30 @@ The position of the words in a sentence is the principal means of showing their 
 
 The subject of a sentence and the principal verb should not, as a rule, be separated by a phrase or clause that can be transferred to the beginning.
 
-| Original | Revision |
-| --- | --- |
+| Original                                                                                   | Revision                                                                                  |
+| ------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
 | Wordsworth, in the fifth book of The Excursion, gives a minute description of this church. | In the fifth book of The Excursion, Wordsworth gives a minute description of this church. |
-| Cast iron, when treated in a Bessemer converter, is changed into steel. | By treatment in a Bessemer converter, cast iron is changed into steel. |
+| Cast iron, when treated in a Bessemer converter, is changed into steel.                    | By treatment in a Bessemer converter, cast iron is changed into steel.                    |
 
 The objection is that the interposed phrase or clause needlessly interrupts the natural order of the main clause. Usually, however, this objection does not hold when the order is interrupted only by a relative clause or by an expression in apposition. Nor does it hold in periodic sentences in which the interruption is a deliberately used means of creating suspense (see examples under Rule 18).
 
 The relative pronoun should come, as a rule, immediately after its antecedent.
 
-| Original | Revision |
-| --- | --- |
-| There was a look in his eye that boded mischief. | In his eye was a look that boded mischief. |
-| He wrote three articles about his adventures in Spain, which were published in Harper's Magazine. | He published in Harper's Magazine three articles about his adventures in Spain. |
+| Original                                                                                                   | Revision                                                                                                  |
+| ---------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| There was a look in his eye that boded mischief.                                                           | In his eye was a look that boded mischief.                                                                |
+| He wrote three articles about his adventures in Spain, which were published in Harper's Magazine.          | He published in Harper's Magazine three articles about his adventures in Spain.                           |
 | This is a portrait of Benjamin Harrison, grandson of William Henry Harrison, who became President in 1889. | This is a portrait of Benjamin Harrison, grandson of William Henry Harrison. He became President in 1889. |
 
 If the antecedent consists of a group of words, the relative comes at the end of the group, unless this would cause ambiguity.
 
 The Superintendent of the Chicago Division, who
 
-| Original | Revision |
-| --- | --- |
+| Original                                                              | Revision                                                               |
+| --------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | A proposal to amend the Sherman Act, which has been variously judged. | A proposal, which has been variously judged, to amend the Sherman Act. |
-| — | A proposal to amend the much-debated Sherman Act. |
-| The grandson of William Henry Harrison, who | William Henry Harrison's grandson, who |
+| —                                                                     | A proposal to amend the much-debated Sherman Act.                      |
+| The grandson of William Henry Harrison, who                           | William Henry Harrison's grandson, who                                 |
 
 A noun in apposition may come between antecedent and relative, because in such a combination no real ambiguity can arise.
 
@@ -590,10 +590,10 @@ The Duke of York, his brother, who was regarded with hostility by the Whigs
 
 Modifiers should come, if possible, next to the word they modify. If several expressions modify the same word, they should be so arranged that no wrong relation is suggested.
 
-| Original | Revision |
-| --- | --- |
-| All the members were not present. | Not all the members were present. |
-| He only found two mistakes. | He found only two mistakes. |
+| Original                                                                                                                                                   | Revision                                                                                                                                           |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| All the members were not present.                                                                                                                          | Not all the members were present.                                                                                                                  |
+| He only found two mistakes.                                                                                                                                | He found only two mistakes.                                                                                                                        |
 | Major R. E. Joyce will give a lecture on Tuesday evening in Bailey Hall, to which the public is invited, on “My Experiences in Mesopotamia” at eight P. M. | On Tuesday evening at eight P. M., Major R. E. Joyce will give in Bailey Hall a lecture on “My Experiences in Mesopotamia.” The public is invited. |
 
 ### Rule 17. In summaries, keep to one tense.
@@ -616,12 +616,12 @@ In notebooks, in newspapers, in handbooks of literature, summaries of one kind o
 
 The proper place in the sentence for the word, or group of words, which the writer desires to make most prominent is usually the end.
 
-| Original | Revision |
-| --- | --- |
+| Original                                                                                              | Revision                                                                                             |
+| ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | Humanity has hardly advanced in fortitude since that time, though it has advanced in many other ways. | Humanity, since that time, has advanced in many other ways, but it has hardly advanced in fortitude. |
-| This steel is principally used for making razors, because of its hardness. | Because of its hardness, this steel is principally used in making razors. |
+| This steel is principally used for making razors, because of its hardness.                            | Because of its hardness, this steel is principally used in making razors.                            |
 
-The word or group of words entitled to this position of prominence is usually the logical predicate, that is, the *new* element in the sentence, as it is in the second example.
+The word or group of words entitled to this position of prominence is usually the logical predicate, that is, the _new_ element in the sentence, as it is in the second example.
 
 The effectiveness of the periodic sentence arises from the prominence which it gives to the main statement.
 
@@ -639,7 +639,7 @@ A subject coming first in its sentence may be emphatic, but hardly by its positi
 
 Great kings worshipped at his shrine,
 
-the emphasis upon *kings* arises largely from its meaning and from the context. To receive special emphasis, the subject of a sentence must take the position of the predicate.
+the emphasis upon _kings_ arises largely from its meaning and from the context. To receive special emphasis, the subject of a sentence must take the position of the predicate.
 
 Through the middle of the valley flowed a winding stream.
 
@@ -647,125 +647,125 @@ The principle that the proper place for what is to be made most prominent is the
 
 ## V. Words And Expressions Commonly Misused
 
-(Some of the forms here listed, as *like I did*, are downright bad English; others, as the split infinitive, have their defenders, but are in such general disfavor that it is at least inadvisable to use them; still others, as *case*, *factor*, *feature*, *interesting*, *one of the most*, are good in their place, but are constantly obtruding themselves into places where they have no right to be. If the writer will make it his purpose from the beginning to express accurately his own individual thought, and will refuse to be satisfied with a ready-made formula that saves him the trouble of doing so, this last set of expressions will cause him little trouble. But if he finds that in a moment of inadvertence he has used one of them, his proper course will probably be not to patch up the sentence by substituting one word or set of words for another, but to recast it completely, as illustrated in a number of examples below and in others under Rules 12 and 13.)
+(Some of the forms here listed, as _like I did_, are downright bad English; others, as the split infinitive, have their defenders, but are in such general disfavor that it is at least inadvisable to use them; still others, as _case_, _factor_, _feature_, _interesting_, _one of the most_, are good in their place, but are constantly obtruding themselves into places where they have no right to be. If the writer will make it his purpose from the beginning to express accurately his own individual thought, and will refuse to be satisfied with a ready-made formula that saves him the trouble of doing so, this last set of expressions will cause him little trouble. But if he finds that in a moment of inadvertence he has used one of them, his proper course will probably be not to patch up the sentence by substituting one word or set of words for another, but to recast it completely, as illustrated in a number of examples below and in others under Rules 12 and 13.)
 
 **All right.** Idiomatic in familiar speech as a detached phrase in the sense, “Agreed,” or “Go ahead.” In other uses better avoided. Always written as two words.
 
 **As good or better than.** Expressions of this type should be corrected by rearranging the sentence.
 
-| Original | Revision |
-| --- | --- |
+| Original                                  | Revision                                                 |
+| ----------------------------------------- | -------------------------------------------------------- |
 | My opinion is as good or better than his. | My opinion is as good as his, or better (if not better). |
 
-**As to whether.** *Whether* is sufficient; see under Rule 13.
+**As to whether.** _Whether_ is sufficient; see under Rule 13.
 
-**Bid.** Takes the infinitive without *to*. The past tense in the sense, _“ordered,”_ is *bade*.
+**Bid.** Takes the infinitive without _to_. The past tense in the sense, _“ordered,”_ is _bade_.
 
-**But.** Unnecessary after *doubt* and *help*.
+**But.** Unnecessary after _doubt_ and _help_.
 
-| Original | Revision |
-| --- | --- |
-| I have no doubt but that | I have no doubt that |
+| Original                       | Revision                      |
+| ------------------------------ | ----------------------------- |
+| I have no doubt but that       | I have no doubt that          |
 | He could not help see but that | He could not help seeing that |
 
-The too frequent use of *but* as a conjunction leads to the fault discussed under Rule 14. A loose sentence formed with *but* can always be converted into a periodic sentence formed with *although*, as illustrated under Rule 4.
+The too frequent use of _but_ as a conjunction leads to the fault discussed under Rule 14. A loose sentence formed with _but_ can always be converted into a periodic sentence formed with _although_, as illustrated under Rule 4.
 
-Particularly awkward is the following of one *but* by another, making a contrast to a contrast or a reservation to a reservation. This is easily corrected by re-arrangement.
+Particularly awkward is the following of one _but_ by another, making a contrast to a contrast or a reservation to a reservation. This is easily corrected by re-arrangement.
 
-| Original | Revision |
-| --- | --- |
+| Original                                                                                                                                    | Revision                                                                                                                                |
+| ------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | America had vast resources, but she seemed almost wholly unprepared for war. But within a year she had created an army of four million men. | America seemed almost wholly unprepared for war, but she had vast resources. Within a year she had created an army of four million men. |
 
-**Can.** Means *am (is, are) able*. Not to be used as a substitute for *may*.
+**Can.** Means _am (is, are) able_. Not to be used as a substitute for _may_.
 
 **Case.** The Concise Oxford Dictionary begins its definition of this word: “instance of a thing's occurring; usual state of affairs.” In these two senses, the word is usually unnecessary.
 
-| Original | Revision |
-| --- | --- |
-| In many cases, the rooms were poorly ventilated. | Many of the rooms were poorly ventilated. |
-| It has rarely been the case that any mistake has been made. | Few mistakes have been made. |
+| Original                                                    | Revision                                  |
+| ----------------------------------------------------------- | ----------------------------------------- |
+| In many cases, the rooms were poorly ventilated.            | Many of the rooms were poorly ventilated. |
+| It has rarely been the case that any mistake has been made. | Few mistakes have been made.              |
 
 See Wood, Suggestions to Authors, pp. 68–71, and Quiller-Couch, The Art of Writing, pp. 103–106.
 
-**Certainly.** Used indiscriminately by some writers, much as others use *very*, to intensify any and every statement. A mannerism of this kind, bad in speech, is even worse in writing.
+**Certainly.** Used indiscriminately by some writers, much as others use _very_, to intensify any and every statement. A mannerism of this kind, bad in speech, is even worse in writing.
 
 **Character.** Often simply redundant, used from a mere habit of wordiness.
 
-| Original | Revision |
-| --- | --- |
+| Original                    | Revision     |
+| --------------------------- | ------------ |
 | Acts of a hostile character | Hostile acts |
 
-**Claim, vb.** With object-noun, means *lay claim to*. May be used with a dependent clause if this sense is clearly involved: “He claimed that he was the sole surviving heir.” (But even here, “claimed to be” would be better.) Not to be used as a substitute for *declare*, *maintain*, or *charge*.
+**Claim, vb.** With object-noun, means _lay claim to_. May be used with a dependent clause if this sense is clearly involved: “He claimed that he was the sole surviving heir.” (But even here, “claimed to be” would be better.) Not to be used as a substitute for _declare_, _maintain_, or _charge_.
 
 **Clever.** This word has been greatly overused; it is best restricted to ingenuity displayed in small matters.
 
-**Compare.** To *compare to* is to point out or imply resemblances, between objects regarded as essentially of different order; to *compare with* is mainly to point out differences, between objects regarded as essentially of the same order. Thus life has been compared to a pilgrimage, to a drama, to a battle; Congress may be compared with the British Parliament. Paris has been compared to ancient Athens; it may be compared with modern London.
+**Compare.** To _compare to_ is to point out or imply resemblances, between objects regarded as essentially of different order; to _compare with_ is mainly to point out differences, between objects regarded as essentially of the same order. Thus life has been compared to a pilgrimage, to a drama, to a battle; Congress may be compared with the British Parliament. Paris has been compared to ancient Athens; it may be compared with modern London.
 
-**Consider.** Not followed by *as* when it means “believe to be.” “I consider him thoroughly competent.” Compare, “The lecturer considered Cromwell first as soldier and second as administrator,” where “considered” means “examined” or “discussed.”
+**Consider.** Not followed by _as_ when it means “believe to be.” “I consider him thoroughly competent.” Compare, “The lecturer considered Cromwell first as soldier and second as administrator,” where “considered” means “examined” or “discussed.”
 
-**Data.** A plural, like *phenomena* and *strata*.
+**Data.** A plural, like _phenomena_ and _strata_.
 
 These data were tabulated.
 
-**Dependable.** A needless substitute for *reliable*, *trustworthy*.
+**Dependable.** A needless substitute for _reliable_, _trustworthy_.
 
-**Different than.** Not permissible. Substitute *different from*, *other than*, or *unlike*.
+**Different than.** Not permissible. Substitute _different from_, _other than_, or _unlike_.
 
-**Divided into.** Not to be misused for *composed of*. The line is sometimes difficult to draw; doubtless plays are divided into acts, but poems are composed of stanzas.
+**Divided into.** Not to be misused for _composed of_. The line is sometimes difficult to draw; doubtless plays are divided into acts, but poems are composed of stanzas.
 
-**Don't.** Contraction of *do not*. The contraction of *does not* is *doesn't*.
+**Don't.** Contraction of _do not_. The contraction of _does not_ is _doesn't_.
 
-**Due to.** Incorrectly used for *through*, *because of*, or *owing to*, in adverbial phrases: “He lost the first game, due to carelessness.” In correct use related as predicate or as modifier to a particular noun: “This invention is due to Edison;” “losses due to preventable fires.”
+**Due to.** Incorrectly used for _through_, _because of_, or _owing to_, in adverbial phrases: “He lost the first game, due to carelessness.” In correct use related as predicate or as modifier to a particular noun: “This invention is due to Edison;” “losses due to preventable fires.”
 
-**Folk.** A collective noun, equivalent to *people*. Use the singular form only.
+**Folk.** A collective noun, equivalent to _people_. Use the singular form only.
 
-**Effect.** As noun, means *result*; as verb, means *_to_ bring about*, *accomplish* (not to be confused with *affect*, which means “to influence”).
+**Effect.** As noun, means _result_; as verb, means _*to* bring about_, _accomplish_ (not to be confused with _affect_, which means “to influence”).
 
 As noun, often loosely used in perfunctory writing about fashions, music, painting, and other arts: “an Oriental effect;” “effects in pale green;” “very delicate effects;” “broad effects;” “subtle effects;” “a charming effect was produced by.” The writer who has a definite meaning to express will not take refuge in such vagueness.
 
-**Etc.** Equivalent to *and the rest*, *and so forth*, and hence not to be used if one of these would be insufficient, that is, if the reader would be left in doubt as to any important particulars. Least open to objection when it represents the last terms of a list already given in full, or immaterial words at the end of a quotation.
+**Etc.** Equivalent to _and the rest_, _and so forth_, and hence not to be used if one of these would be insufficient, that is, if the reader would be left in doubt as to any important particulars. Least open to objection when it represents the last terms of a list already given in full, or immaterial words at the end of a quotation.
 
-At the end of a list introduced by *such as*, *for example*, or any similar expression, *etc.* is incorrect.
+At the end of a list introduced by _such as_, _for example_, or any similar expression, _etc._ is incorrect.
 
 **Fact.** Use this word only of matters of a kind capable of direct verification, not of matters of judgment. That a particular event happened on a given date, that lead melts at a certain temperature, are facts. But such conclusions as that Napoleon was the greatest of modern generals, or that the climate of California is delightful, however incontestable they _may be_, are not properly facts.
 
-On the formula *the fact that*, see under Rule 13.
+On the formula _the fact that_, see under Rule 13.
 
 **Factor.** A hackneyed word; the expressions of which it forms part can usually be replaced by something more direct and idiomatic.
 
-| Original | Revision |
-| --- | --- |
-| His superior training was the great factor in his winning the match. | He won the match by being better trained. |
+| Original                                                                         | Revision                                                                 |
+| -------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| His superior training was the great factor in his winning the match.             | He won the match by being better trained.                                |
 | Heavy artillery has become an increasingly important factor in deciding battles. | Heavy artillery has played a constantly larger part in deciding battles. |
 
-**Feature.** Another hackneyed word; like *factor* it usually adds nothing to the sentence in which it occurs.
+**Feature.** Another hackneyed word; like _factor_ it usually adds nothing to the sentence in which it occurs.
 
-| Original | Revision |
-| --- | --- |
+| Original                                                                               | Revision                                                                                                                           |
+| -------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | A feature of the entertainment especially worthy of mention was the singing of Miss A. | (Better use the same number of words to tell what Miss A. sang, or if the programme has already been given, to tell how she sang.) |
 
-As a verb, in the advertising sense of *offer as a special attraction*, to be avoided.
+As a verb, in the advertising sense of _offer as a special attraction_, to be avoided.
 
-**Fix.** Colloquial in America for *arrange*, *prepare*, *mend*. In writing restrict it to its literary senses, *fasten*, *make firm or immovable*, etc.
+**Fix.** Colloquial in America for _arrange_, _prepare_, _mend_. In writing restrict it to its literary senses, _fasten_, _make firm or immovable_, etc.
 
-**Get.** The colloquial *have got* for *have* should not be used in writing. The preferable form of the participle is *got*.
+**Get.** The colloquial _have got_ for _have_ should not be used in writing. The preferable form of the participle is _got_.
 
 **He is a man who.** A common type of redundant expression; see Rule 13.
 
-| Original | Revision |
-| --- | --- |
-| He is a man who is very ambitious. | He is very ambitious. |
+| Original                                                | Revision                             |
+| ------------------------------------------------------- | ------------------------------------ |
+| He is a man who is very ambitious.                      | He is very ambitious.                |
 | Spain is a country which I have always wanted to visit. | I have always wanted to visit Spain. |
 
 **Help.** See under **But**.
 
-**However.** In the meaning *nevertheless*, not to come first in its sentence or clause.
+**However.** In the meaning _nevertheless_, not to come first in its sentence or clause.
 
-| Original | Revision |
-| --- | --- |
+| Original                                                                          | Revision                                                                           |
+| --------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | The roads were almost impassable. However, we at last succeeded in reaching camp. | The roads were almost impassable. At last, however, we succeeded in reaching camp. |
 
-When *however* comes first, it means *in whatever way* or *to whatever extent*.
+When _however_ comes first, it means _in whatever way_ or _to whatever extent_.
 
 However you advise him, he will probably do as he thinks best.
 
@@ -773,83 +773,83 @@ However discouraging the prospect, he never lost heart.
 
 **Interesting.** Avoid this word as a perfunctory means of introduction. Instead of announcing that what you are about to tell is interesting, make it so.
 
-| Original | Revision |
-| --- | --- |
-| An interesting story is told of | (Tell the story without preamble.) |
+| Original                                                                                           | Revision                                           |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| An interesting story is told of                                                                    | (Tell the story without preamble.)                 |
 | In connection with the anticipated visit of Mr. B. to America, it is interesting to recall that he | Mr. B., who it is expected will soon visit America |
 
-**Kind of.** Not to be used as a substitute for *rather* (before adjectives and verbs), or except in familiar style, for *something like* (before nouns). Restrict it to its literal sense: “Amber is a kind of fossil resin;” “I dislike that kind of notoriety.” The same holds true of *sort of*.
+**Kind of.** Not to be used as a substitute for _rather_ (before adjectives and verbs), or except in familiar style, for _something like_ (before nouns). Restrict it to its literal sense: “Amber is a kind of fossil resin;” “I dislike that kind of notoriety.” The same holds true of _sort of_.
 
-**Less.** Should not be misused for *fewer*.
+**Less.** Should not be misused for _fewer_.
 
-| Original | Revision |
-| --- | --- |
+| Original                                      | Revision                                       |
+| --------------------------------------------- | ---------------------------------------------- |
 | He had less men than in the previous campaign | He had fewer men than in the previous campaign |
 
-*Less* refers to quantity, *fewer* to number. “His troubles are less than mine” means “His troubles are not so great as mine.” “His troubles are fewer than mine” means “His troubles are not so numerous as mine.” It is, however, correct to say, “The signers of the petition were less than a hundred,” where the round number *a hundred* is something like a collective noun, and *less* is thought of as meaning a less quantity or amount.
+_Less_ refers to quantity, _fewer_ to number. “His troubles are less than mine” means “His troubles are not so great as mine.” “His troubles are fewer than mine” means “His troubles are not so numerous as mine.” It is, however, correct to say, “The signers of the petition were less than a hundred,” where the round number _a hundred_ is something like a collective noun, and _less_ is thought of as meaning a less quantity or amount.
 
-**Like.** Not to be misused for *as*. *Like* governs nouns and pronouns; before phrases and clauses the equivalent word is *as*.
+**Like.** Not to be misused for _as_. _Like_ governs nouns and pronouns; before phrases and clauses the equivalent word is _as_.
 
-| Original | Revision |
-| --- | --- |
+| Original                                   | Revision                                 |
+| ------------------------------------------ | ---------------------------------------- |
 | We spent the evening like in the old days. | We spent the evening as in the old days. |
-| He thought like I did. | He thought as I did (like me). |
+| He thought like I did.                     | He thought as I did (like me).           |
 
-**Line, along these lines.** *Line* in the sense of *course of procedure*, *conduct*, *thought*, is allowable, but has been so much overworked, particularly in the phrase *along these lines*, that a writer who aims at freshness or originality had better discard it entirely.
+**Line, along these lines.** _Line_ in the sense of _course of procedure_, _conduct_, _thought_, is allowable, but has been so much overworked, particularly in the phrase _along these lines_, that a writer who aims at freshness or originality had better discard it entirely.
 
-| Original | Revision |
-| --- | --- |
-| Mr. B. also spoke along the same lines. | Mr. B. also spoke, to the same effect. |
-| He is studying along the line of French literature. | He is studying French literature. |
+| Original                                            | Revision                               |
+| --------------------------------------------------- | -------------------------------------- |
+| Mr. B. also spoke along the same lines.             | Mr. B. also spoke, to the same effect. |
+| He is studying along the line of French literature. | He is studying French literature.      |
 
 **Literal, literally.** Often incorrectly used in support of exaggeration or violent metaphor.
 
-| Original | Revision |
-| --- | --- |
-| A literal flood of abuse. | A flood of abuse. |
+| Original                    | Revision                              |
+| --------------------------- | ------------------------------------- |
+| A literal flood of abuse.   | A flood of abuse.                     |
 | Literally dead with fatigue | Almost dead with fatigue (dead tired) |
 
-**Lose out.** Meant to be more emphatic than *lose*, but actually less so, because of its commonness. The same holds true of *try out*, *win out*, *sign up*, *register up*. With a number of verbs, *out* and *up* form idiomatic combinations: *find out*, *run out*, *turn out*, *cheer up*, *dry up*, *make up*, and others, each distinguishable in meaning from the simple verb. *Lose out* is not.
+**Lose out.** Meant to be more emphatic than _lose_, but actually less so, because of its commonness. The same holds true of _try out_, _win out_, _sign up_, _register up_. With a number of verbs, _out_ and _up_ form idiomatic combinations: _find out_, _run out_, _turn out_, _cheer up_, _dry up_, _make up_, and others, each distinguishable in meaning from the simple verb. _Lose out_ is not.
 
-**Most.** Not to be used for *almost*.
+**Most.** Not to be used for _almost_.
 
-| Original | Revision |
-| --- | --- |
-| Most everybody | Almost everybody |
+| Original          | Revision            |
+| ----------------- | ------------------- |
+| Most everybody    | Almost everybody    |
 | Most all the time | Almost all the time |
 
-**Nature.** Often simply redundant, used like *character*.
+**Nature.** Often simply redundant, used like _character_.
 
-| Original | Revision |
-| --- | --- |
+| Original                   | Revision     |
+| -------------------------- | ------------ |
 | Acts of a hostile _nature_ | Hostile acts |
 
 Often vaguely used in such expressions as a “lover of nature;” “poems about nature.” Unless more specific statements follow, the reader cannot tell whether the poems have to do with natural scenery, rural life, the sunset, the untracked wilderness, or the habits of squirrels.
 
-**Near by.** Adverbial phrase, not yet fully accepted as good English, though the analogy of *close by* and *hard by* seems to justify it. *Near*, or *near at hand*, is as good, if not better.
+**Near by.** Adverbial phrase, not yet fully accepted as good English, though the analogy of _close by_ and _hard by_ seems to justify it. _Near_, or _near at hand_, is as good, if not better.
 
-Not to be used as an adjective; use *neighboring*.
+Not to be used as an adjective; use _neighboring_.
 
-**Oftentimes, ofttimes.** Archaic forms, no longer in good use. The modern word is *often*.
+**Oftentimes, ofttimes.** Archaic forms, no longer in good use. The modern word is _often_.
 
-**One hundred and one.** Retain the *and* in this and similar expressions, in accordance with the unvarying usage of English prose from Old English times.
+**One hundred and one.** Retain the _and_ in this and similar expressions, in accordance with the unvarying usage of English prose from Old English times.
 
 **One of the most.** Avoid beginning essays or paragraphs with this formula, as, “One of the most interesting developments of modern science is, etc.;” “Switzerland is one of the most interesting countries of Europe.” There is nothing wrong in this; it is simply threadbare and forcible-feeble.
 
 A common blunder is to use a singular verb in a relative clause following this or a similar expression, when the relative is the subject.
 
-| Original | Revision |
-| --- | --- |
+| Original                                              | Revision                                               |
+| ----------------------------------------------------- | ------------------------------------------------------ |
 | One of the ablest men that has attacked this problem. | One of the ablest men that have attacked this problem. |
 
 **Participle for verbal noun.**
 
-| Original | Revision |
-| --- | --- |
-| Do you mind me asking a question? | Do you mind my asking a question? |
+| Original                                                                | Revision                                                                  |
+| ----------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| Do you mind me asking a question?                                       | Do you mind my asking a question?                                         |
 | There was little prospect of the Senate accepting even this compromise. | There was little prospect of the Senate's accepting even this compromise. |
 
-In the left-hand column, *asking* and *accepting* are present participles; in the right-hand column, they are verbal nouns (gerunds). The construction shown in the left-hand column is occasionally found, and has its defenders. Yet it is easy to see that the second sentence has to do not with a prospect of the Senate, but with a prospect of accepting. In this example, at least, the construction is plainly illogical.
+In the left-hand column, _asking_ and _accepting_ are present participles; in the right-hand column, they are verbal nouns (gerunds). The construction shown in the left-hand column is occasionally found, and has its defenders. Yet it is easy to see that the second sentence has to do not with a prospect of the Senate, but with a prospect of accepting. In this example, at least, the construction is plainly illogical.
 
 As the authors of The King's English point out, there are sentences apparently, but not really, of this type, in which the possessive is not called for.
 
@@ -863,87 +863,87 @@ By using the possessive, the writer will always be on the safe side.
 
 In the examples above, the subject of the action is a single, unmodified term, immediately preceding the verbal noun, and the construction is as good as any that could be used. But in any sentence in which it is a mere clumsy substitute for something simpler, or in which the use of the possessive is awkward or impossible, should of course be recast.
 
-| Original | Revision |
-| --- | --- |
-| In the event of a reconsideration of the whole matter's becoming necessary | If it should become necessary to reconsider the whole matter |
+| Original                                                                                             | Revision                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| In the event of a reconsideration of the whole matter's becoming necessary                           | If it should become necessary to reconsider the whole matter                                      |
 | There was great dissatisfaction with the decision of the arbitrators being favorable to the company. | There was great dissatisfaction that the arbitrators should have decided in favor of the company. |
 
-**People.** *The people* is a political term, not to be confused with *the public*. From the people comes political support or opposition; from the public comes artistic appreciation or commercial patronage.
+**People.** _The people_ is a political term, not to be confused with _the public_. From the people comes political support or opposition; from the public comes artistic appreciation or commercial patronage.
 
-**Phase.** Means a stage of transition or development: “the phases of the moon;” “the last phase.” Not to be used for *aspect* or *topic*.
+**Phase.** Means a stage of transition or development: “the phases of the moon;” “the last phase.” Not to be used for _aspect_ or _topic_.
 
-| Original | Revision |
-| --- | --- |
+| Original                     | Revision                         |
+| ---------------------------- | -------------------------------- |
 | Another phase of the subject | Another point (another question) |
 
-**Possess.** Not to be used as a mere substitute for *have* or *own*.
+**Possess.** Not to be used as a mere substitute for _have_ or _own_.
 
-| Original | Revision |
-| --- | --- |
-| He possessed great courage. | He had great courage (was very brave). |
-| He was the fortunate possessor of | He owned |
+| Original                          | Revision                               |
+| --------------------------------- | -------------------------------------- |
+| He possessed great courage.       | He had great courage (was very brave). |
+| He was the fortunate possessor of | He owned                               |
 
-**Prove.** The past participle is *proved*.
+**Prove.** The past participle is _proved_.
 
 **Respective, respectively.** These words may usually be omitted with advantage.
 
-| Original | Revision |
-| --- | --- |
-| Works of fiction are listed under the names of their respective authors. | Works of fiction are listed under the names of their authors. |
+| Original                                                                    | Revision                                                          |
+| --------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| Works of fiction are listed under the names of their respective authors.    | Works of fiction are listed under the names of their authors.     |
 | The one mile and two mile runs were won by Jones and Cummings respectively. | The one mile and two mile runs were won by Jones and by Cummings. |
 
-In some kinds of formal writing, as geometrical proofs, it may be necessary to use *respectively*, but it should not appear in writing on ordinary subjects.
+In some kinds of formal writing, as geometrical proofs, it may be necessary to use _respectively_, but it should not appear in writing on ordinary subjects.
 
-**Shall, Will.** The future tense requires *shall* for the first person, *will* for the second and third. The formula to express the speaker's belief regarding his future action or state is *I shall*; *I will* expresses his determination or his consent.
+**Shall, Will.** The future tense requires _shall_ for the first person, _will_ for the second and third. The formula to express the speaker's belief regarding his future action or state is _I shall_; _I will_ expresses his determination or his consent.
 
 **Should.** See under **Would**.
 
-**So.** Avoid, in writing, the use of *so* as an intensifier: “so good;” “so warm;” “so delightful.”
+**So.** Avoid, in writing, the use of _so_ as an intensifier: “so good;” “so warm;” “so delightful.”
 
-On the use of *so* to introduce clauses, see Rule 4.
+On the use of _so_ to introduce clauses, see Rule 4.
 
 **Sort of.** See under **Kind of**.
 
-**Split Infinitive.** There is precedent from the fourteenth century downward for interposing an adverb between *to* and the infinitive which it governs, but the construction is in disfavor and is avoided by nearly all careful writers.
+**Split Infinitive.** There is precedent from the fourteenth century downward for interposing an adverb between _to_ and the infinitive which it governs, but the construction is in disfavor and is avoided by nearly all careful writers.
 
-| Original | Revision |
-| --- | --- |
+| Original              | Revision              |
+| --------------------- | --------------------- |
 | To diligently inquire | To inquire diligently |
 
-**State.** Not to be used as a mere substitute for *say*, *remark*. Restrict it to the sense of *express fully or clearly*, as, “He refused to state his objections.”
+**State.** Not to be used as a mere substitute for _say_, _remark_. Restrict it to the sense of _express fully or clearly_, as, “He refused to state his objections.”
 
-**Student Body.** A needless and awkward expression meaning no more than the simple word *students*.
+**Student Body.** A needless and awkward expression meaning no more than the simple word _students_.
 
-| Original | Revision |
-| --- | --- |
-| A member of the student body | A student |
-| Popular with the student body | Liked by the students |
+| Original                             | Revision                         |
+| ------------------------------------ | -------------------------------- |
+| A member of the student body         | A student                        |
+| Popular with the student body        | Liked by the students            |
 | The student body passed resolutions. | The students passed resolutions. |
 
 **System.** Frequently used without need.
 
-| Original | Revision |
-| --- | --- |
+| Original                                                  | Revision                                     |
+| --------------------------------------------------------- | -------------------------------------------- |
 | Dayton has adopted the commission system of _government._ | Dayton has adopted government by commission. |
-| The dormitory system | Dormitories |
+| The dormitory system                                      | Dormitories                                  |
 
 **Thanking You in Advance.** This sounds as if the writer meant, “It will not be worth my while to write to you again.” In making your request, write, “Will you please,” or “I shall be obliged,” and if anything further seems necessary write a letter of acknowledgment later.
 
-**They.** A common inaccuracy is the use of the plural pronoun when the antecedent is a distributive expression such as *each*, *each one*, *everybody*, *every one*, *many a man*, which, though implying more than one person, requires the pronoun to be in the singular. Similar to this, but with even less justification, is the use of the plural pronoun with the antecedent *anybody*, *any one*, *somebody*, *some one*, the intention being either to avoid the awkward “he or she,” or to avoid committing oneself to either. Some bashful speakers even say, “A friend of mine told me that they, etc.”
+**They.** A common inaccuracy is the use of the plural pronoun when the antecedent is a distributive expression such as _each_, _each one_, _everybody_, _every one_, _many a man_, which, though implying more than one person, requires the pronoun to be in the singular. Similar to this, but with even less justification, is the use of the plural pronoun with the antecedent _anybody_, _any one_, _somebody_, _some one_, the intention being either to avoid the awkward “he or she,” or to avoid committing oneself to either. Some bashful speakers even say, “A friend of mine told me that they, etc.”
 
-Use *he* with all the above words, unless the antecedent is or must be feminine.
+Use _he_ with all the above words, unless the antecedent is or must be feminine.
 
 **Very.** Use this word sparingly. Where emphasis is necessary, use words strong in themselves.
 
-**Viewpoint.** Write *point of view*, but do not misuse this, as many do, for *view* or *opinion*.
+**Viewpoint.** Write _point of view_, but do not misuse this, as many do, for _view_ or _opinion_.
 
-**While.** Avoid the indiscriminate use of this word for *and*, *but*, and *although*. Many writers use it frequently as a substitute for *and* or *but*, either from a mere desire to vary the connective, or from uncertainty which of the two connectives is the more appropriate. In this use it is best replaced by a semicolon.
+**While.** Avoid the indiscriminate use of this word for _and_, _but_, and _although_. Many writers use it frequently as a substitute for _and_ or _but_, either from a mere desire to vary the connective, or from uncertainty which of the two connectives is the more appropriate. In this use it is best replaced by a semicolon.
 
-| Original | Revision |
-| --- | --- |
+| Original                                                                                                       | Revision                                                                                                 |
+| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | The office and salesrooms are on the ground floor, while the rest of the building is devoted to manufacturing. | The office and salesrooms are on the ground floor; the rest of the building is devoted to manufacturing. |
 
-Its use as a virtual equivalent of *although* is allowable in sentences where this leads to no ambiguity or absurdity.
+Its use as a virtual equivalent of _although_ is allowable in sentences where this leads to no ambiguity or absurdity.
 
 While I admire his energy, I wish it were employed in a better cause.
 
@@ -953,43 +953,43 @@ I admire his energy; at the same time I wish it were employed in a better cause.
 
 Compare:
 
-| Original | Revision |
-| --- | --- |
+| Original                                                                                    | Revision                                                                                       |
+| ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | While the temperature reaches 90 or 95 degrees in the daytime, the nights are often chilly. | Although the temperature reaches 90 or 95 degrees in the daytime, the nights are often chilly. |
 
 The paraphrase,
 
 The temperature reaches 90 or 95 degrees in the daytime; at the same time the nights are often chilly,
 
-shows why the use of *while* is incorrect.
+shows why the use of _while_ is incorrect.
 
-In general, the writer will do well to use *while* only with strict literalness, in the sense of *during the time that*.
+In general, the writer will do well to use _while_ only with strict literalness, in the sense of _during the time that_.
 
-**Whom.** Often incorrectly used for *who* before *he said* or similar expressions, when it is really the subject of a following verb.
+**Whom.** Often incorrectly used for _who_ before _he said_ or similar expressions, when it is really the subject of a following verb.
 
-| Original | Revision |
-| --- | --- |
-| His brother, whom he said would send him the money | His brother, who he said would send him the money |
-| The man whom he thought was his friend | The man who (that) he thought was his friend (whom he thought his friend) |
+| Original                                           | Revision                                                                  |
+| -------------------------------------------------- | ------------------------------------------------------------------------- |
+| His brother, whom he said would send him the money | His brother, who he said would send him the money                         |
+| The man whom he thought was his friend             | The man who (that) he thought was his friend (whom he thought his friend) |
 
-**Worth while.** Overworked as a term of vague approval and (with *not*) of disapproval. Strictly applicable only to actions: “Is it worth while to telegraph?”
+**Worth while.** Overworked as a term of vague approval and (with _not_) of disapproval. Strictly applicable only to actions: “Is it worth while to telegraph?”
 
-| Original | Revision |
-| --- | --- |
+| Original                       | Revision                                                                                                  |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------- |
 | His books are not worth while. | His books are not worth reading (are not worth one's while to read; do not repay reading; are worthless). |
 
-The use of *worth while* before a noun (“a worth while story”) is indefensible.
+The use of _worth while_ before a noun (“a worth while story”) is indefensible.
 
-**Would.** A conditional statement in the first person requires *should*, not *would*.
+**Would.** A conditional statement in the first person requires _should_, not _would_.
 
 I should not have succeeded without his help.
 
-The equivalent of *shall* in indirect quotation after a verb in the past tense is *should*, not *would*.
+The equivalent of _shall_ in indirect quotation after a verb in the past tense is _should_, not _would_.
 
 He predicted that before long we should have a great surprise.
 
-To express habitual or repeated action, the past tense, without *would*, is usually sufficient, and from its brevity, more emphatic.
+To express habitual or repeated action, the past tense, without _would_, is usually sufficient, and from its brevity, more emphatic.
 
-| Original | Revision |
-| --- | --- |
+| Original                                    | Revision                                |
+| ------------------------------------------- | --------------------------------------- |
 | Once a year he would visit the old mansion. | Once a year he visited the old mansion. |

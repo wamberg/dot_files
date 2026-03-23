@@ -90,7 +90,9 @@ After all tasks are complete:
 ## Integration
 
 **Called by:**
+
 - **dispatch** — launches this skill in a fresh agent session
 
 **Invokes:**
+
 - **finishing-a-development-branch** — after all tasks complete and tests pass

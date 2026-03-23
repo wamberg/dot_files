@@ -64,6 +64,7 @@ Place wallpaper images in ~/pics/wallpaper
 ### whisper.cpp
 
 This is manually installed, not automated through the playbook. To set it up:
+
 - `gcl https://github.com/ggml-org/whisper.cpp.git /opt/`
 - `cd /opt/whisper.cpp/`
 - `sh ./models/download-ggml-model.sh base.en`
@@ -74,15 +75,15 @@ In a virtualbox guest machine:
 
 1. Start a new machine with the arch linux iso mounted
 2. Perform a minimal installation, on the guest OS run:
-  1. `pacman -Sy`
-  2. `pacman -S archlinux-keyring`
-  3. `pacman -S archinstall`
-  3. `archinstall`, make sure to create the user, "wamberg"
-3. Enable directory sharing, on the guest OS run:
-  1. `sudo pacman -S virtualbox-guest-utils linux-headers`
-  2. `sudo systemctl enable vboxservice.service`
-  3. `sudo usermod -aG vboxsf $USER`
-  4. `sudo reboot`
+3. `pacman -Sy`
+4. `pacman -S archlinux-keyring`
+5. `pacman -S archinstall`
+6. `archinstall`, make sure to create the user, "wamberg"
+7. Enable directory sharing, on the guest OS run:
+8. `sudo pacman -S virtualbox-guest-utils linux-headers`
+9. `sudo systemctl enable vboxservice.service`
+10. `sudo usermod -aG vboxsf $USER`
+11. `sudo reboot`
 
 Then I can run commands in the the **Bootstrap** or **Management with Ansible** commands as needed.
 
