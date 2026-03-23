@@ -26,14 +26,16 @@ set_wallpaper() {
 
 # Show wallpaper selection menu
 show_menu() {
-    local wallpapers=$(get_wallpapers)
+    local wallpapers
+    wallpapers=$(get_wallpapers)
 
     if [ -z "$wallpapers" ]; then
         notify-send "No Wallpapers" "No images found in $WALLPAPER_DIR"
         exit 1
     fi
 
-    local selected=$(echo "$wallpapers" | fuzzel --dmenu --prompt="Wallpaper > ")
+    local selected
+    selected=$(echo "$wallpapers" | fuzzel --dmenu --prompt="Wallpaper > ")
 
     if [ -n "$selected" ]; then
         set_wallpaper "$selected"

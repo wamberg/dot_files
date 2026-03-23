@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Fuzzel-based theme selector for tinty with favorites management
+# shellcheck source=/dev/null
 
 set -e
 
@@ -23,7 +24,8 @@ get_current_theme() {
 # Get BAT_THEME for current tinty theme
 # Uses shared function from lib.sh
 get_bat_theme() {
-    local current_theme=$(get_current_theme)
+    local current_theme
+    current_theme=$(get_current_theme)
     get_bat_theme_for_scheme "$current_theme"
 }
 
@@ -80,9 +82,12 @@ apply_theme() {
 
 # Show all themes menu with favorites marked
 show_all_themes() {
-    local current_theme=$(get_current_theme)
-    local bat_theme=$(get_bat_theme)
-    local all_themes=$(tinty -c "$TINTY_CONFIG" list | awk '{print $1}')
+    local current_theme
+    current_theme=$(get_current_theme)
+    local bat_theme
+    bat_theme=$(get_bat_theme)
+    local all_themes
+    all_themes=$(tinty -c "$TINTY_CONFIG" list | awk '{print $1}')
     local menu_items=""
 
     while IFS= read -r theme; do
@@ -95,22 +100,25 @@ show_all_themes() {
 
     # Build prompt with current theme info
     local prompt="All | Current: $current_theme | bat: $bat_theme > "
-    local selected=$(echo -n "$menu_items" | fuzzel --dmenu --prompt="$prompt" --width=55)
+    local selected
+    selected=$(echo -n "$menu_items" | fuzzel --dmenu --prompt="$prompt" --width=55)
 
     if [ -n "$selected" ]; then
         # Remove star prefix if present
-        theme_name=$(echo "$selected" | sed 's/^⭐ //')
+        theme_name=${selected#⭐ }
         apply_theme "$theme_name"
     fi
 }
 
 # Build and show main menu
 show_main_menu() {
-    local current_theme=$(get_current_theme)
+    local current_theme
+    current_theme=$(get_current_theme)
     local menu_items=""
 
     # Add favorite themes
-    local favorites=$(get_favorites)
+    local favorites
+    favorites=$(get_favorites)
     if [ -n "$favorites" ]; then
         while IFS= read -r theme; do
             menu_items+="⭐ $theme"$'\n'
@@ -129,11 +137,13 @@ show_main_menu() {
     fi
 
     # Build prompt with current theme info
-    local bat_theme=$(get_bat_theme)
+    local bat_theme
+    bat_theme=$(get_bat_theme)
     local prompt="Current: $current_theme | bat: $bat_theme > "
 
     # Show menu
-    local selected=$(echo -n "$menu_items" | fuzzel --dmenu --prompt="$prompt" --width=55)
+    local selected
+    selected=$(echo -n "$menu_items" | fuzzel --dmenu --prompt="$prompt" --width=55)
 
     # Handle selection
     if [ -z "$selected" ]; then
@@ -152,7 +162,7 @@ show_main_menu() {
             ;;
         ⭐*)
             # Selected a favorite theme
-            theme_name=$(echo "$selected" | sed 's/^⭐ //')
+            theme_name=${selected#⭐ }
             apply_theme "$theme_name"
             ;;
         *)

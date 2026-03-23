@@ -27,6 +27,8 @@ function arrange() {
   TIMESTAMP="$(date +%Y-%m-%dT%H%M%z)"
 }
 
+# SC2029: $TIMESTAMP is intentionally expanded client-side
+# shellcheck disable=SC2029
 function act() {
   tar \
     --create \
