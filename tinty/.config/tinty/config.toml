@@ -6,16 +6,16 @@ shell = "sh -c '{}'"
 
 # Global hooks run after every theme change
 hooks = [
-    "~/.config/tinty/hooks/reload-kitty.sh",
-    "~/.config/tinty/hooks/reload-tmux.sh",
-    "~/.config/tinty/hooks/reload-fzf.sh",
-    "~/.config/tinty/hooks/reload-vifm.sh",
-    "~/.config/tinty/hooks/reload-waybar.sh",
-    "~/.config/tinty/hooks/reload-fuzzel.sh",
-    "~/.config/tinty/hooks/reload-mako.sh",
-    "~/.config/tinty/hooks/reload-starship.sh",
-    "~/.config/tinty/hooks/set-color-scheme-preference.sh",
-    "~/.config/tinty/hooks/reload-pi.sh"
+  "~/.config/tinty/hooks/reload-kitty.sh",
+  "~/.config/tinty/hooks/reload-tmux.sh",
+  "~/.config/tinty/hooks/reload-fzf.sh",
+  "~/.config/tinty/hooks/reload-vifm.sh",
+  "~/.config/tinty/hooks/reload-waybar.sh",
+  "~/.config/tinty/hooks/reload-fuzzel.sh",
+  "~/.config/tinty/hooks/reload-mako.sh",
+  "~/.config/tinty/hooks/reload-starship.sh",
+  "~/.config/tinty/hooks/set-color-scheme-preference.sh",
+  "~/.config/tinty/hooks/reload-pi.sh",
 ]
 
 # Kitty terminal
