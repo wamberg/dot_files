@@ -1,0 +1,24 @@
+[tools]
+shellcheck = "latest"
+yamlfmt = "latest"
+
+[tasks.format]
+description = "Format Lua and YAML files"
+run = """
+echo "Formatting Lua files..."
+find ./ -name '*.lua' -print0 | xargs -0 stylua
+
+echo "Formatting YAML files..."
+find ops/arch -name '*.yml' -print0 | xargs -0 yamlfmt
+
+echo "Done!"
+"""
+
+[tasks.lint]
+description = "Lint shell scripts"
+run = """
+echo "Linting shell scripts..."
+find ./ -name 'tmux' -prune -o -name '*.sh' -print0 | xargs -0 shellcheck
+
+echo "Done!"
+"""
