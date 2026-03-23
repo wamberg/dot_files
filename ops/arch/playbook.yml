@@ -68,6 +68,19 @@
         enabled: yes
       tags:
         - dev
+    - name: System | Time | Set RTC to local time for Windows dual-boot
+      ansible.builtin.command:
+        cmd: timedatectl set-local-rtc 1
+      changed_when: false
+      tags:
+        - system
+    - name: System | Time | Enable NTP synchronization
+      ansible.builtin.systemd:
+        name: systemd-timesyncd
+        state: started
+        enabled: yes
+      tags:
+        - system
     - name: User | wamberg | Set shell to zsh and add to docker, wheel, video groups
       ansible.builtin.user:
         name: wamberg
