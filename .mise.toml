@@ -4,8 +4,11 @@ taplo = "latest"
 yamlfmt = "latest"
 
 [tasks.format]
-description = "Format Lua, TOML, and YAML files"
+description = "Format Lua, JSON, Markdown, TOML, and YAML files"
 run = """
+echo "Formatting JSON and Markdown files..."
+prettier --write '**/*.json' '**/*.md'
+
 echo "Formatting Lua files..."
 find ./ -name '*.lua' -print0 | xargs -0 stylua
 
