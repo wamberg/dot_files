@@ -10,8 +10,6 @@
     "superpowers@superpowers-marketplace": true,
     "elements-of-style@superpowers-marketplace": true
   },
-  "alwaysThinkingEnabled": true,
-  "skipDangerousModePermissionPrompt": true,
   "extraKnownMarketplaces": {
     "superpowers-marketplace": {
       "source": {
@@ -19,5 +17,8 @@
         "repo": "obra/superpowers-marketplace"
       }
     }
-  }
+  },
+  "alwaysThinkingEnabled": true,
+  "effortLevel": "medium",
+  "skipDangerousModePermissionPrompt": true
 }
