@@ -1,12 +1,16 @@
 [tools]
 shellcheck = "latest"
+taplo = "latest"
 yamlfmt = "latest"
 
 [tasks.format]
-description = "Format Lua and YAML files"
+description = "Format Lua, TOML, and YAML files"
 run = """
 echo "Formatting Lua files..."
 find ./ -name '*.lua' -print0 | xargs -0 stylua
+
+echo "Formatting TOML files..."
+find ./ -name '*.toml' -not -path './.git/*' -print0 | xargs -0 taplo fmt
 
 echo "Formatting YAML files..."
 find ops/arch -name '*.yml' -print0 | xargs -0 yamlfmt
