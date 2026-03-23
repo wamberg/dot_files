@@ -87,13 +87,8 @@ function M.transcribe()
   end
 
   -- Transcribe with main whisper binary for clean output
-  local cmd = string.format(
-    "%s -m %s -f %s -otxt -of %s --no-timestamps",
-    M.whisper_exec,
-    M.model_path,
-    audio_file,
-    M.tmp_file
-  )
+  local cmd =
+    string.format("%s -m %s -f %s -otxt -of %s --no-timestamps", M.whisper_exec, M.model_path, audio_file, M.tmp_file)
 
   -- Run the command and capture return code
   local result = vim.fn.system(cmd)
