@@ -15,7 +15,6 @@ hooks = [
   "~/.config/tinty/hooks/reload-mako.sh",
   "~/.config/tinty/hooks/reload-starship.sh",
   "~/.config/tinty/hooks/set-color-scheme-preference.sh",
-  "~/.config/tinty/hooks/reload-pi.sh",
 ]
 
 # Kitty terminal
