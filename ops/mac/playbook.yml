@@ -1,5 +1,10 @@
 - hosts: localhost
   tasks:
+    - name: Packages | Tap tinted-theming
+      community.general.homebrew_tap:
+        name: tinted-theming/tinted
+        state: present
+
     - name: Packages | Install Homebrew formulae
       community.general.homebrew:
         name:
@@ -24,6 +29,7 @@
           - sqlite
           - starship
           - stow
+          - tinty
           - tmux
           - tree
           - unzip
