@@ -17,6 +17,7 @@ eval "$(mise activate zsh)"
 export EDITOR=$(which nvim)
 export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
+export MANPAGER='nvim +Man!'
 export SHELL=$(which zsh)
 export PATH="${PATH}:$HOME/.bin:$HOME/.local/bin"
 
@@ -124,18 +125,17 @@ KEYTIMEOUT=1
 bindkey -M vicmd 'V' edit-command-line # this remaps `vv` to `V` (but overrides `visual-mode`)
 
 ### Aliases ###
-alias acs='apt-cache search'
-alias aupd='sudo apt update'
-alias aupg='sudo apt upgrade'
 alias av="aws-vault"
 alias ave="aws-vault exec"
-alias dev="nix develop --command zsh"
 alias o="xdg-open"
 alias pca="pre-commit run --all-files"
 alias randpass="openssl rand -base64 45 | tr -d /=+ | cut -c -30"
 alias rs="rsync -avP"
 alias ta="tmux attach"
-alias xc="wl-copy"
+case "$OSTYPE" in
+  darwin*) alias xc="pbcopy" ;;
+  *) alias xc="wl-copy" ;;
+esac
 alias zr=",zr.sh"
 
 # docker
@@ -166,13 +166,12 @@ cat() {
 }
 
 # Echo and copy to clipboard
-ec() {
-  printf '%s' "$1" | wl-copy
-}
-
 # Copy file to clipboard
 cf() {
-  cat "$1" | wl-copy
+  case "$OSTYPE" in
+    darwin*) cat "$1" | pbcopy ;;
+    *) cat "$1" | wl-copy ;;
+  esac
 }
 
 # cd into a fuzzy (via fzf) directory
