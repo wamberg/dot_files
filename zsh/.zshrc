@@ -138,6 +138,7 @@ case "$OSTYPE" in
   darwin*) alias xc="pbcopy" ;;
   *) alias xc="wl-copy" ;;
 esac
+alias peon="bash ~/.claude/hooks/peon-ping/peon.sh"
 alias zr=",zr.sh"
 
 # docker
@@ -246,9 +247,16 @@ pj() {
   jq '.' "$@"
 }
 
-# cd fzf find
+# cd fzf find directories
 cdf() {
   local dir
   dir=$(find . -type d -not -path '*/.*' | fzf --exact)
+  [[ -n "$dir" ]] && cd -- "$dir"
+}
+
+# cd fzf find hidden directories
+cdh() {
+  local dir
+  dir=$(find . -type d | fzf --exact)
   [[ -n "$dir" ]] && cd -- "$dir"
 }

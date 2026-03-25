@@ -142,6 +142,15 @@
       changed_when: stow_result.stdout != ""
       tags:
         - dev
+    - name: User | wamberg | Install peonping
+      become: yes
+      become_user: wamberg
+      become_flags: "--login"
+      ansible.builtin.shell:
+        cmd: curl -fsSL peonping.com/install | bash
+        creates: /home/wamberg/.claude/hooks/peon-ping/peon.sh
+      tags:
+        - dev
     - name: User | wamberg | Install tinty theme repositories
       become: yes
       become_user: wamberg
@@ -682,6 +691,29 @@
             bluez5.hfphsp-backend = "native"
           }
         dest: /home/wamberg/.config/wireplumber/wireplumber.conf.d/50-bluez-a2dp.conf
+        owner: wamberg
+        group: wamberg
+        mode: '0644'
+      tags:
+        - desktop
+    - name: Audio | WirePlumber | Disable audio sink suspend
+      become: yes
+      become_user: wamberg
+      ansible.builtin.copy:
+        content: |
+          monitor.alsa.rules = [
+            {
+              matches = [
+                { node.name = "~alsa_output.*" }
+              ]
+              actions = {
+                update-props = {
+                  session.suspend-timeout-seconds = 0
+                }
+              }
+            }
+          ]
+        dest: /home/wamberg/.config/wireplumber/wireplumber.conf.d/50-disable-suspend.conf
         owner: wamberg
         group: wamberg
         mode: '0644'
