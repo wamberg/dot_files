@@ -51,6 +51,22 @@ require("lazy").setup({
   },
   "ojroques/nvim-bufdel",
   "RRethy/vim-illuminate",
+  {
+    "kristijanhusak/vim-dadbod-ui",
+    dependencies = {
+      { "tpope/vim-dadbod", lazy = true },
+      { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
+    },
+    cmd = {
+      "DBUI",
+      "DBUIToggle",
+      "DBUIAddConnection",
+      "DBUIFindBuffer",
+    },
+    init = function()
+      vim.g.db_ui_use_nerd_fonts = 1
+    end,
+  },
   { "tpope/vim-surround" },
   {
     "windwp/nvim-autopairs",
@@ -381,6 +397,14 @@ require("lazy").setup({
           { name = "nvim_lsp", group_index = 2 },
           { name = "luasnip", group_index = 2 },
           { name = "path", group_index = 2 },
+        },
+      })
+
+      -- vim-dadbod completion for SQL files
+      cmp.setup.filetype({ "sql" }, {
+        sources = {
+          { name = "vim-dadbod-completion" },
+          { name = "buffer" },
         },
       })
     end,
