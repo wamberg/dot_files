@@ -1,0 +1,89 @@
+- name: Swapfile hibernation setup
+  when: hibernate_method == "swapfile"
+  tags:
+    - hibernation
+  block:
+    - name: System | Power | Create swapfile for hibernation
+      ansible.builtin.command:
+        cmd: dd if=/dev/zero of={{ swapfile_path }} bs=1M count={{ swapfile_size_mb }}
+        creates: "{{ swapfile_path }}"
+      register: swapfile_created
+
+    - name: System | Power | Set swapfile permissions
+      ansible.builtin.file:
+        path: "{{ swapfile_path }}"
+        mode: '0600'
+        owner: root
+        group: root
+
+    - name: System | Power | Format swapfile
+      ansible.builtin.command:
+        cmd: mkswap {{ swapfile_path }}
+      when: swapfile_created.changed
+
+    - name: System | Power | Add swapfile to fstab
+      ansible.builtin.lineinfile:
+        path: /etc/fstab
+        line: "{{ swapfile_path }} none swap defaults 0 0"
+        state: present
+
+    - name: System | Power | Enable swapfile
+      ansible.builtin.command:
+        cmd: swapon {{ swapfile_path }}
+      register: swapon_result
+      changed_when: swapon_result.rc == 0
+      failed_when: false
+
+    - name: System | Power | Get swapfile offset
+      ansible.builtin.shell: filefrag -v {{ swapfile_path }} | awk '$1=="0:" {print substr($4, 1, length($4)-2)}'
+      register: swapfile_offset
+      changed_when: false
+
+    - name: System | Power | Get root partition UUID
+      ansible.builtin.shell: blkid -s UUID -o value $(findmnt -n -o SOURCE /)
+      register: root_uuid
+      changed_when: false
+
+    - name: System | Power | Configure GRUB for swapfile hibernation
+      ansible.builtin.lineinfile:
+        path: /etc/default/grub
+        regexp: '^GRUB_CMDLINE_LINUX_DEFAULT='
+        line: 'GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet resume=UUID={{ root_uuid.stdout }} resume_offset={{ swapfile_offset.stdout }}"'
+        backup: yes
+      notify: update grub config
+
+- name: Partition hibernation setup
+  when: hibernate_method == "partition"
+  tags:
+    - hibernation
+  block:
+    - name: System | Power | Get swap partition UUID
+      ansible.builtin.shell: blkid -s UUID -o value {{ swap_partition_device }}
+      register: swap_uuid
+      changed_when: false
+
+    - name: System | Power | Configure GRUB for partition hibernation
+      ansible.builtin.lineinfile:
+        path: /etc/default/grub
+        regexp: '^GRUB_CMDLINE_LINUX_DEFAULT='
+        line: 'GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet resume=UUID={{ swap_uuid.stdout }}"'
+        backup: yes
+      notify: update grub config
+
+- name: System | Power | Add resume hook to mkinitcpio
+  ansible.builtin.lineinfile:
+    path: /etc/mkinitcpio.conf
+    regexp: '^HOOKS='
+    line: 'HOOKS=(base udev autodetect keyboard keymap consolefont modconf block filesystems fsck resume)'
+    backup: yes
+  notify: regenerate initramfs
+  tags:
+    - hibernation
+
+- name: System | Power | Test hibernate capability
+  ansible.builtin.command: systemctl hibernate --dry-run
+  register: hibernate_test
+  failed_when: hibernate_test.rc != 0
+  changed_when: false
+  tags:
+    - hibernation

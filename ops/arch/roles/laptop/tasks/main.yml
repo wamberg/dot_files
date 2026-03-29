@@ -1,0 +1,24 @@
+- name: System | Power | Ensure logind.conf.d directory exists
+  ansible.builtin.file:
+    path: /etc/systemd/logind.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  tags:
+    - laptop
+
+- name: System | Power | Configure lid close to keep system running
+  ansible.builtin.copy:
+    content: |
+      [Login]
+      HandleLidSwitch=ignore
+      HandleLidSwitchExternalPower=ignore
+      HandleLidSwitchDocked=ignore
+    dest: /etc/systemd/logind.conf.d/lid.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart logind
+  tags:
+    - laptop

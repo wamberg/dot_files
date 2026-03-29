@@ -1,0 +1,88 @@
+- name: System | Packages | Install essential desktop packages
+  community.general.pacman:
+    name: "{{ desktop_packages_common + desktop_packages_host | default([]) }}"
+    state: present
+  tags:
+    - desktop
+
+- name: Service | SDDM | Enable display manager
+  ansible.builtin.systemd:
+    name: sddm
+    enabled: yes
+  tags:
+    - desktop
+
+- name: Service | PipeWire | Enable user services
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+    scope: user
+  loop:
+    - pipewire.service
+    - pipewire-pulse.service
+    - wireplumber.service
+  tags:
+    - desktop
+
+- name: Audio | WirePlumber | Ensure conf.d directory exists
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.file:
+    path: /home/{{ username }}/.config/wireplumber/wireplumber.conf.d
+    state: directory
+    mode: '0755'
+  tags:
+    - desktop
+
+- name: Audio | WirePlumber | Configure Bluetooth A2DP roles
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.copy:
+    content: |
+      monitor.bluez.properties = {
+        bluez5.roles = [ a2dp_source bap_sink bap_source hfp_hf hfp_ag ]
+        bluez5.codecs = [ sbc sbc_xq aac ldac aptx aptx_hd aptx_ll aptx_ll_duplex faststream faststream_duplex lc3 opus_05 opus_05_51 opus_05_71 opus_05_duplex opus_05_pro ]
+        bluez5.enable-sbc-xq = true
+        bluez5.hfphsp-backend = "native"
+      }
+    dest: /home/{{ username }}/.config/wireplumber/wireplumber.conf.d/50-bluez-a2dp.conf
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0644'
+  tags:
+    - desktop
+
+- name: Audio | WirePlumber | Disable audio sink suspend
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.copy:
+    content: |
+      monitor.alsa.rules = [
+        {
+          matches = [
+            { node.name = "~alsa_output.*" }
+          ]
+          actions = {
+            update-props = {
+              session.suspend-timeout-seconds = 0
+            }
+          }
+        }
+      ]
+    dest: /home/{{ username }}/.config/wireplumber/wireplumber.conf.d/50-disable-suspend.conf
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0644'
+  tags:
+    - desktop
+
+- name: Service | Bluetooth | Enable and start service
+  ansible.builtin.systemd:
+    name: bluetooth
+    state: started
+    enabled: yes
+  tags:
+    - desktop

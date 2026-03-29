@@ -1,0 +1,367 @@
+- name: System | Packages | Ensure CLI tools are installed
+  community.general.pacman:
+    update_cache: yes
+    name:
+      - aws-cli-v2
+      - base-devel
+      - bat
+      - btop
+      - ca-certificates
+      - cryptsetup
+      - curl
+      - fd
+      - ffmpeg
+      - fzf
+      - git
+      - git-delta
+      - gnupg
+      - jq
+      - less
+      - libnotify
+      - libvorbis
+      - libvpx
+      - mise
+      - ncdu
+      - neovim
+      - openssh
+      - opus
+      - pass
+      - pigz
+      - pngquant
+      - reflector
+      - ripgrep
+      - rsync
+      - sqlite
+      - starship
+      - stow
+      - sudo
+      - tmux
+      - tree
+      - udisks2
+      - unrar
+      - unzip
+      - vifm
+      - wget
+      - x264
+      - x265
+      - xclip
+      - zsh
+    state: present
+  tags:
+    - cli
+
+- name: System | Packages | Install microcode
+  community.general.pacman:
+    name: "{{ microcode_package }}"
+    state: present
+  tags:
+    - cli
+
+- name: System | Packages | Install GPU packages
+  community.general.pacman:
+    name: "{{ gpu_packages }}"
+    state: present
+  when: gpu_packages | length > 0
+  tags:
+    - cli
+
+- name: System | Packages | Ensure Docker is installed
+  community.general.pacman:
+    update_cache: yes
+    name:
+      - docker
+      - docker-compose
+    state: present
+  tags:
+    - dev
+
+- name: Service | Docker | Enable and start service
+  ansible.builtin.systemd:
+    name: docker
+    state: started
+    enabled: yes
+  tags:
+    - dev
+
+- name: System | Time | Set RTC to local time for Windows dual-boot
+  ansible.builtin.command:
+    cmd: timedatectl set-local-rtc 1
+  changed_when: false
+  when: enable_dual_boot
+  tags:
+    - system
+
+- name: System | Time | Enable NTP synchronization
+  ansible.builtin.systemd:
+    name: systemd-timesyncd
+    state: started
+    enabled: yes
+  tags:
+    - system
+
+- name: User | {{ username }} | Set shell to zsh and add to docker, wheel, video groups
+  ansible.builtin.user:
+    name: "{{ username }}"
+    shell: /bin/zsh
+    groups: docker,wheel,video
+    append: yes
+  tags:
+    - dev
+
+- name: User | {{ username }} | Check for .zshrc
+  ansible.builtin.stat:
+    path: "/home/{{ username }}/.zshrc"
+  register: zshrc_stat
+  become: yes
+  become_user: "{{ username }}"
+  tags:
+    - dev
+
+- name: User | {{ username }} | Install oh-my-zsh if needed
+  when: not zshrc_stat.stat.exists
+  become: yes
+  become_user: "{{ username }}"
+  tags:
+    - dev
+  block:
+    - name: User | {{ username }} | Install oh-my-zsh
+      ansible.builtin.shell:
+        cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+        creates: /home/{{ username }}/.oh-my-zsh
+    - name: User | {{ username }} | Remove oh-my-zsh .zshrc
+      ansible.builtin.file:
+        path: /home/{{ username }}/.zshrc
+        state: absent
+
+- name: User | {{ username }} | Stow dot_files
+  become: yes
+  become_user: "{{ username }}"
+  become_flags: "--login"
+  ansible.builtin.shell: 'stow --no-folding --dir="${HOME}/dev/dot_files" --target="${HOME}/" -vS {{ item }}'
+  loop: "{{ stow_packages_common + stow_packages_host | default([]) }}"
+  register: stow_result
+  changed_when: stow_result.stdout != ""
+  tags:
+    - dev
+
+- name: User | {{ username }} | Install peonping
+  become: yes
+  become_user: "{{ username }}"
+  become_flags: "--login"
+  ansible.builtin.shell:
+    cmd: curl -fsSL peonping.com/install | bash
+    creates: /home/{{ username }}/.claude/hooks/peon-ping/peon.sh
+  tags:
+    - dev
+
+- name: User | {{ username }} | Install tinty theme repositories
+  become: yes
+  become_user: "{{ username }}"
+  become_flags: "--login"
+  ansible.builtin.command: tinty -c ~/.config/tinty/config.toml install
+  register: tinty_install
+  changed_when: "'installed' in tinty_install.stdout"
+  tags:
+    - dev
+    - desktop
+
+- name: User | {{ username }} | Set default applications
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.copy:
+    content: |
+      [Default Applications]
+      x-scheme-handler/http=firefox-developer-edition.desktop
+      x-scheme-handler/https=firefox-developer-edition.desktop
+      x-scheme-handler/chrome=firefox-developer-edition.desktop
+      text/html=firefox-developer-edition.desktop
+      application/xhtml+xml=firefox-developer-edition.desktop
+      application/pdf=org.pwmt.zathura.desktop
+      image/jpeg=feh.desktop
+      image/png=feh.desktop
+      image/gif=feh.desktop
+      video/mp4=mpv.desktop
+      video/x-matroska=mpv.desktop
+      audio/mpeg=mpv.desktop
+      audio/flac=mpv.desktop
+    dest: /home/{{ username }}/.config/mimeapps.list
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0644'
+  tags:
+    - dev
+
+- name: User | {{ username }} | Check for missing mise tools
+  become: yes
+  become_user: "{{ username }}"
+  become_flags: "--login"
+  ansible.builtin.shell: 'mise ls --missing'
+  register: mise_missing
+  changed_when: false
+  tags:
+    - dev
+
+- name: User | {{ username }} | Install mise tools
+  become: yes
+  become_user: "{{ username }}"
+  become_flags: "--login"
+  ansible.builtin.shell: 'mise install'
+  when: mise_missing.stdout != ""
+  tags:
+    - dev
+
+- name: User | tmux | Ensure plugins directory exists
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.file:
+    path: /home/{{ username }}/.tmux/plugins
+    state: directory
+    mode: '0755'
+    force: yes
+  tags:
+    - dev
+
+- name: User | tmux | Check if tpm is already installed
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.stat:
+    path: /home/{{ username }}/.tmux/plugins/tpm/.git
+  register: tpm_git_stat
+  tags:
+    - dev
+
+- name: User | tmux | Clone plugin manager (tpm)
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.git:
+    repo: "https://github.com/tmux-plugins/tpm"
+    dest: "/home/{{ username }}/.tmux/plugins/tpm"
+    depth: 1
+  when: not tpm_git_stat.stat.exists
+  tags:
+    - dev
+
+- name: User | {{ username }} | Ensure common directories exist
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.file:
+    path: /home/{{ username }}/{{ item.path }}
+    state: directory
+    mode: "{{ item.mode }}"
+  loop: "{{ user_directories + user_directories_host | default([]) }}"
+  tags:
+    - dev
+
+- name: User | {{ username }} | Configure 1Password SSH agent
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.blockinfile:
+    path: /home/{{ username }}/.ssh/config
+    create: yes
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0600'
+    block: |
+      Host *
+          IdentityAgent ~/.1password/agent.sock
+  tags:
+    - dev
+
+- name: User | {{ username }} | Check if GPG key exists
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.shell: gpg --list-secret-keys --keyid-format=long
+  register: gpg_keys
+  changed_when: false
+  failed_when: false
+  tags:
+    - dev
+
+- name: User | {{ username }} | Create GPG batch file for key generation
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.copy:
+    content: |
+      Key-Type: RSA
+      Key-Length: 4096
+      Subkey-Type: RSA
+      Subkey-Length: 4096
+      Name-Real: {{ username }}
+      Name-Email: {{ username }}@{{ ansible_hostname }}
+      Expire-Date: 0
+      %no-protection
+      %commit
+    dest: /tmp/gpg_batch_file
+    mode: '0600'
+  when: gpg_keys.stdout == ""
+  tags:
+    - dev
+
+- name: User | {{ username }} | Generate GPG key
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.shell: gpg --batch --generate-key /tmp/gpg_batch_file
+  when: gpg_keys.stdout == ""
+  tags:
+    - dev
+
+- name: User | {{ username }} | Clean up GPG batch file
+  ansible.builtin.file:
+    path: /tmp/gpg_batch_file
+    state: absent
+  when: gpg_keys.stdout == ""
+  tags:
+    - dev
+
+- name: User | {{ username }} | Get GPG key ID
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.shell: gpg --list-secret-keys --keyid-format=long | grep sec | head -1 | sed 's/.*\/\([A-F0-9]\{16\}\).*/\1/'
+  register: gpg_key_id
+  changed_when: false
+  tags:
+    - dev
+
+- name: User | {{ username }} | Check if pass is initialized
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.stat:
+    path: /home/{{ username }}/.password-store/.gpg-id
+  register: pass_initialized
+  tags:
+    - dev
+
+- name: User | {{ username }} | Initialize pass with GPG key
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.shell: pass init {{ gpg_key_id.stdout }}
+  when: not pass_initialized.stat.exists
+  tags:
+    - dev
+
+- name: System | Upgrade all packages
+  community.general.pacman:
+    update_cache: yes
+    upgrade: yes
+  tags:
+    - never
+    - upgrade
+
+- name: System | Check for orphaned packages
+  ansible.builtin.command:
+    cmd: pacman -Qtdq
+  register: orphans
+  changed_when: false
+  failed_when: false
+  tags:
+    - never
+    - upgrade
+
+- name: System | Remove orphaned packages
+  community.general.pacman:
+    name: "{{ orphans.stdout_lines }}"
+    state: absent
+  when: orphans.stdout != ""
+  tags:
+    - never
+    - upgrade

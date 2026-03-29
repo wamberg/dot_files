@@ -1,0 +1,21 @@
+microcode_package: amd-ucode
+
+gpu_packages:
+  - libva-mesa-driver
+
+desktop_packages_host:
+  - calibre
+
+aur_desktop_packages_host: []
+
+stow_packages_host: []
+
+user_directories_host:
+  - path: docs/calibre
+    mode: "0755"
+
+enable_dual_boot: true
+
+hibernate_method: swapfile
+swapfile_path: /swapfile
+swapfile_size_mb: 16384

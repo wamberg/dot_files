@@ -1,0 +1,103 @@
+username: wamberg
+
+stow_packages_common:
+  - bat
+  - bin
+  - btop
+  - claude
+  - fuzzel
+  - git
+  - kitty
+  - mise
+  - mpv
+  - niri
+  - npm
+  - nvim
+  - sql
+  - swappy
+  - tinty
+  - tz
+  - tmux
+  - vifm
+  - waybar
+  - zsh
+
+user_directories:
+  - path: videos
+    mode: "0755"
+  - path: pics/wallpaper
+    mode: "0755"
+  - path: .ssh
+    mode: "0700"
+
+aur_cli_packages:
+  - claude-code
+  - whisper.cpp
+  - whisper.cpp-model-small.en-tdrz
+  - whisper.cpp-model-medium.en
+
+aur_desktop_packages_common:
+  - 1password
+  - 1password-cli
+  - aws-vault
+  - bemoji
+  - claude-desktop-bin
+  - google-chrome
+  - jftui
+  - niri
+  - slack-desktop
+  - tinty-git
+  - ttf-ms-fonts
+  - tz
+  - zoom
+
+desktop_packages_common:
+  # Applications
+  - discord
+  - feh
+  - firefox-developer-edition
+  - kitty
+  - libreoffice-fresh
+  - mpv
+  - obsidian
+  - telegram-desktop
+  - zathura
+  - zathura-pdf-mupdf
+  # Desktop Environment
+  - adwaita-icon-theme
+  - fuzzel
+  - sddm
+  - swappy
+  - swaybg
+  - swaylock
+  - waybar
+  - xdg-desktop-portal-gtk
+  - wlsunset
+  - xwayland-satellite
+  # System Utilities
+  - blueman
+  - bluez
+  - bluez-utils
+  - gvfs
+  - linux-firmware
+  - linux-headers
+  - mako
+  - playerctl
+  - polkit-gnome
+  - wl-clipboard
+  # Audio/Video
+  - grim
+  - slurp
+  - v4l-utils
+  - wf-recorder
+  # Audio system
+  - pavucontrol
+  - pipewire
+  - pipewire-alsa
+  - pipewire-pulse
+  - wireplumber
+  # Fonts
+  - noto-fonts-emoji
+  - otf-font-awesome
+  - ttf-jetbrains-mono
+  - ttf-liberation

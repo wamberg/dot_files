@@ -1,0 +1,3 @@
+[all]
+forge ansible_connection=local
+freya ansible_connection=local

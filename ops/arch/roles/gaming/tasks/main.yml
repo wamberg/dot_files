@@ -1,0 +1,69 @@
+- name: System | Repository | Enable multilib
+  ansible.builtin.lineinfile:
+    path: /etc/pacman.conf
+    regexp: '^#?\[multilib\]'
+    line: '[multilib]'
+    state: present
+  tags:
+    - gaming
+
+- name: System | Repository | Enable multilib Include line
+  ansible.builtin.lineinfile:
+    path: /etc/pacman.conf
+    insertafter: '^\[multilib\]'
+    regexp: '^#?Include = /etc/pacman.d/mirrorlist'
+    line: 'Include = /etc/pacman.d/mirrorlist'
+    state: present
+  tags:
+    - gaming
+
+- name: System | Repository | Update package cache after multilib
+  community.general.pacman:
+    update_cache: yes
+  tags:
+    - gaming
+
+- name: System | Packages | Install 32-bit libraries for Steam and gaming
+  community.general.pacman:
+    name:
+      - lib32-mesa
+      - lib32-vulkan-radeon
+      - lib32-libva-mesa-driver
+      - lib32-systemd
+      - lib32-pipewire
+      - v4l2loopback-dkms
+    state: present
+  tags:
+    - gaming
+
+- name: System | Kernel | Set vm.max_map_count for gaming
+  ansible.posix.sysctl:
+    name: vm.max_map_count
+    value: '2147483642'
+    state: present
+    sysctl_file: /etc/sysctl.d/80-gamecompatibility.conf
+  tags:
+    - gaming
+
+- name: System | Kernel | Configure v4l2loopback module parameters
+  ansible.builtin.copy:
+    content: |
+      # v4l2loopback with exclusive_caps for app compatibility
+      options v4l2loopback devices=1 video_nr=0 card_label="Virtual Camera" exclusive_caps=1
+    dest: /etc/modprobe.d/v4l2loopback.conf
+    owner: root
+    group: root
+    mode: '0644'
+  tags:
+    - gaming
+
+- name: System | Kernel | Ensure v4l2loopback is loaded on boot
+  ansible.builtin.lineinfile:
+    path: /etc/modules-load.d/v4l2loopback.conf
+    line: v4l2loopback
+    create: yes
+    owner: root
+    group: root
+    mode: '0644'
+  tags:
+    - gaming
