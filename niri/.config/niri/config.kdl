@@ -5,6 +5,10 @@ input {
       layout "us"
     }
   }
+
+  touchpad {
+    tap
+  }
 }
 
 layout {
