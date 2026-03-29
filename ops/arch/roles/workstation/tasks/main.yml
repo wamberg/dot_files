@@ -5,6 +5,16 @@
   tags:
     - desktop
 
+- name: User | {{ username }} | Install tinty theme repositories
+  become: yes
+  become_user: "{{ username }}"
+  become_flags: "--login"
+  ansible.builtin.command: tinty -c ~/.config/tinty/config.toml install
+  register: tinty_install
+  changed_when: "'installed' in tinty_install.stdout"
+  tags:
+    - desktop
+
 - name: Service | SDDM | Enable display manager
   ansible.builtin.systemd:
     name: sddm
