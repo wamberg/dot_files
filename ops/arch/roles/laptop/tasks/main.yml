@@ -57,15 +57,15 @@
   ansible.builtin.copy:
     content: |
       #!/bin/bash
-      NIRI_SOCKET=$(find /run/user/1000/ -name "niri-*.sock" 2>/dev/null | head -1)
+      NIRI_SOCKET=$(find /run/user/1000/ -name "niri.wayland-*.sock" 2>/dev/null | head -1)
       if [ -z "$NIRI_SOCKET" ]; then
         exit 0
       fi
       export NIRI_SOCKET
       if grep -q closed /proc/acpi/button/lid/LID0/state; then
-        sudo -u {{ username }} niri msg action power-off-monitors
+        sudo -u {{ username }} NIRI_SOCKET="$NIRI_SOCKET" niri msg action power-off-monitors
       else
-        sudo -u {{ username }} niri msg action power-on-monitors
+        sudo -u {{ username }} NIRI_SOCKET="$NIRI_SOCKET" niri msg action power-on-monitors
       fi
     dest: /etc/acpi/lid.sh
     owner: root
