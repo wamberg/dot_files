@@ -149,7 +149,7 @@
   become_user: "{{ username }}"
   become_flags: "--login"
   ansible.builtin.shell:
-    cmd: curl -fsSL peonping.com/install | bash
+    cmd: SSH_CONNECTION=ansible curl -fsSL peonping.com/install | bash
     creates: /home/{{ username }}/.claude/hooks/peon-ping/peon.sh
   tags:
     - dev
