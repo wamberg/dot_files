@@ -22,3 +22,63 @@
   notify: restart logind
   tags:
     - laptop
+
+- name: System | Packages | Install acpid
+  community.general.pacman:
+    name: acpid
+    state: present
+  tags:
+    - laptop
+
+- name: System | Power | Create acpi events directory
+  ansible.builtin.file:
+    path: /etc/acpi/events
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  tags:
+    - laptop
+
+- name: System | Power | Configure lid event handler
+  ansible.builtin.copy:
+    content: |
+      event=button/lid.*
+      action=/etc/acpi/lid.sh
+    dest: /etc/acpi/events/lid
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart acpid
+  tags:
+    - laptop
+
+- name: System | Power | Create lid handler script
+  ansible.builtin.copy:
+    content: |
+      #!/bin/bash
+      NIRI_SOCKET=$(find /run/user/1000/ -name "niri-*.sock" 2>/dev/null | head -1)
+      if [ -z "$NIRI_SOCKET" ]; then
+        exit 0
+      fi
+      export NIRI_SOCKET
+      if grep -q closed /proc/acpi/button/lid/LID0/state; then
+        sudo -u {{ username }} niri msg action power-off-monitors
+      else
+        sudo -u {{ username }} niri msg action power-on-monitors
+      fi
+    dest: /etc/acpi/lid.sh
+    owner: root
+    group: root
+    mode: '0755'
+  notify: restart acpid
+  tags:
+    - laptop
+
+- name: Service | acpid | Enable and start service
+  ansible.builtin.systemd:
+    name: acpid
+    state: started
+    enabled: yes
+  tags:
+    - laptop
