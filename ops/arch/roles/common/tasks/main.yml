@@ -276,7 +276,7 @@
       Subkey-Type: RSA
       Subkey-Length: 4096
       Name-Real: {{ username }}
-      Name-Email: {{ username }}@{{ ansible_hostname }}
+      Name-Email: {{ username }}@{{ ansible_facts['hostname'] }}
       Expire-Date: 0
       %no-protection
       %commit
