@@ -4,7 +4,7 @@
     "menuBarEnabled": false,
     "legacyQuickEntryEnabled": false,
     "coworkScheduledTasksEnabled": true,
-    "ccdScheduledTasksEnabled": false,
+    "ccdScheduledTasksEnabled": true,
     "sidebarMode": "chat",
     "coworkWebSearchEnabled": true
   }

@@ -161,6 +161,12 @@
         "source": "github",
         "repo": "anthropics/claude-plugins-official"
       }
+    },
+    "pbs-claude-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "pbs-digital/pbs-claude-marketplace"
+      }
     }
   },
   "alwaysThinkingEnabled": true,
