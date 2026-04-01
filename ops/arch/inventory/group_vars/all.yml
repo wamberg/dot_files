@@ -32,9 +32,10 @@ user_directories:
 
 aur_cli_packages:
   - claude-code
+  - claudectx-bin
   - whisper.cpp
-  - whisper.cpp-model-small.en-tdrz
   - whisper.cpp-model-medium.en
+  - whisper.cpp-model-small.en-tdrz
 
 aur_desktop_packages_common:
   - 1password
