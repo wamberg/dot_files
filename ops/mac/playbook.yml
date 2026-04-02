@@ -5,15 +5,22 @@
         name: tinted-theming/tinted
         state: present
 
+    - name: Packages | Tap foxj77 (claudectx)
+      community.general.homebrew_tap:
+        name: foxj77/tap
+        state: present
+
     - name: Packages | Install Homebrew formulae
       community.general.homebrew:
         name:
           - awscli
           - aws-vault
           - bat
+          - claudectx
           - curl
           - fd
           - fzf
+          - gh
           - git
           - git-delta
           - gnupg
