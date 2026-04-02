@@ -14,6 +14,7 @@
       - fzf
       - git
       - git-delta
+      - github-cli
       - gnupg
       - jq
       - less
