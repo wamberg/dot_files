@@ -4,7 +4,7 @@ stow_packages_common:
   - bat
   - bin
   - btop
-  - claude
+  - claude-desktop
   - fuzzel
   - git
   - kitty
@@ -32,7 +32,6 @@ user_directories:
 
 aur_cli_packages:
   - claude-code
-  - claudectx-bin
   - whisper.cpp
   - whisper.cpp-model-medium.en
   - whisper.cpp-model-small.en-tdrz

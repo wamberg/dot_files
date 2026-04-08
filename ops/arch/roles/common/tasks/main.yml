@@ -139,26 +139,16 @@
   become_user: "{{ username }}"
   become_flags: "--login"
   ansible.builtin.shell: 'stow --no-folding --dir="${HOME}/dev/dot_files" --target="${HOME}/" -vS {{ item }}'
-  loop: "{{ (stow_packages_common + stow_packages_host | default([])) | difference(['claude']) }}"
+  loop: "{{ stow_packages_common + stow_packages_host | default([]) }}"
   register: stow_result
   changed_when: stow_result.stdout != ""
   tags:
     - dev
 
-- name: User | {{ username }} | Stow claude to $HOME (skip etc/)
-  become: yes
-  become_user: "{{ username }}"
-  become_flags: "--login"
-  ansible.builtin.shell: 'stow --no-folding --dir="${HOME}/dev/dot_files" --target="${HOME}/" --ignore="etc" -vS claude'
-  register: stow_claude_home
-  changed_when: stow_claude_home.stdout != ""
-  tags:
-    - dev
-
-- name: System | Stow claude managed settings to /etc
-  ansible.builtin.shell: 'stow --no-folding --dir="/home/{{ username }}/dev/dot_files" --target="/" --ignore=".claude" -vS claude'
-  register: stow_claude_etc
-  changed_when: stow_claude_etc.stdout != ""
+- name: System | Stow claude-code-cli managed settings to /etc
+  ansible.builtin.shell: 'stow --no-folding --dir="/home/{{ username }}/dev/dot_files" --target="/" --ignore="profiles" -vS claude-code-cli'
+  register: stow_claude_code_cli
+  changed_when: stow_claude_code_cli.stdout != ""
   tags:
     - dev
 
