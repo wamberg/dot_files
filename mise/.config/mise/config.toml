@@ -1,14 +1,15 @@
 [tools]
-nodejs = "24.10.0"
-python = "3.14.3"
-lua-language-server = "latest"
+"npm:htmx-lsp" = "latest"
 "npm:prettier" = "latest"
 "npm:typescript-language-server" = "latest"
-"npm:htmx-lsp" = "latest"
+lua-language-server = "latest"
+nodejs = "24.10.0"
+python = "3.14.3"
+rust = "latest"
 stylua = "latest"
 tree-sitter = "latest"
 ty = "latest"
-rust = "latest"
+uv = "latest"
 
 [settings]
 experimental = true
