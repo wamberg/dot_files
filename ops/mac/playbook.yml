@@ -5,18 +5,12 @@
         name: tinted-theming/tinted
         state: present
 
-    - name: Packages | Tap foxj77 (claudectx)
-      community.general.homebrew_tap:
-        name: foxj77/tap
-        state: present
-
     - name: Packages | Install Homebrew formulae
       community.general.homebrew:
         name:
           - awscli
           - aws-vault
           - bat
-          - claudectx
           - curl
           - fd
           - fzf
@@ -107,15 +101,14 @@
       register: stow_result
       changed_when: stow_result.stderr != ""
 
-    - name: Setup | Stow claude to $HOME (skip etc/)
+    - name: Setup | Stow claude-desktop to $HOME
       ansible.builtin.shell: >
         stow --dir="{{ ansible_facts['env']['HOME'] }}/dev/dot_files"
         --target="{{ ansible_facts['env']['HOME'] }}/"
         --restow --no-folding --verbose=1
-        --ignore="etc"
-        claude
-      register: stow_claude_home
-      changed_when: stow_claude_home.stderr != ""
+        claude-desktop
+      register: stow_claude_desktop
+      changed_when: stow_claude_desktop.stderr != ""
 
     - name: Setup | Create managed settings directory for Claude Code
       become: yes
@@ -127,7 +120,7 @@
     - name: Setup | Symlink Claude Code managed settings
       become: yes
       ansible.builtin.file:
-        src: "{{ ansible_facts['env']['HOME'] }}/dev/dot_files/claude/etc/claude-code/managed-settings.json"
+        src: "{{ ansible_facts['env']['HOME'] }}/dev/dot_files/claude-code-cli/etc/claude-code/managed-settings.json"
         dest: "/Library/Application Support/ClaudeCode/managed-settings.json"
         state: link
         force: yes
