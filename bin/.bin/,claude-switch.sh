@@ -15,6 +15,17 @@ if [ ${#profiles[@]} -eq 0 ]; then
     exit 1
 fi
 
+# Show current profile
+if [ "$1" = "--current" ]; then
+    if [ -L "$TARGET" ]; then
+        basename "$(dirname "$(readlink "$TARGET")")"
+    else
+        echo "No profile set (settings.json is not a symlink)" >&2
+        exit 1
+    fi
+    exit 0
+fi
+
 # Select profile: use argument or fzf
 if [ -n "$1" ]; then
     profile="$1"
