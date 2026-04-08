@@ -8,7 +8,9 @@
 
 ## Solution
 
-A shell script (`,claude-switch.sh`) that writes a profile's `settings.json` to `~/.claude/settings.json`, resolving any 1Password secret references via `op inject`. Each profile's `settings.json` is the source of truth for all settings including `enabledPlugins`, so nothing is lost on switch.
+A shell script (`,claude-switch.sh`) that symlinks `~/.claude/settings.json` to the selected profile's `settings.json` in the dot_files repo. Each profile's `settings.json` is the source of truth for all settings including `enabledPlugins`, so nothing is lost on switch.
+
+Because `~/.claude/settings.json` is a symlink into a git-tracked file, any runtime changes (e.g., selecting a new model during a session) show up as dirty state in `git status`, making drift detectable.
 
 ## Script: `bin/.bin/,claude-switch.sh`
 
@@ -16,21 +18,17 @@ A shell script (`,claude-switch.sh`) that writes a profile's `settings.json` to 
 
 1. Read profile directory names from `~/dev/dot_files/claude-code-cli/profiles/`.
 2. If a profile name is passed as an argument, use it. Otherwise, present the list via `fzf`.
-3. Pipe the selected profile's `settings.json` through `op inject` to resolve any `{{ op://... }}` references.
-4. Write the resolved output to `~/.claude/settings.json`.
-5. Print which profile was activated.
+3. Symlink `~/.claude/settings.json` to the selected profile's `settings.json` (`ln -sf`).
+4. Print which profile was activated.
 
 ### Notes
 
-- If a profile has no `op://` references, `op inject` passes it through unchanged.
 - The script does not manage MCP servers. Those are handled via `.mcp.json` with env var expansion at the project level.
 - Profile switching only takes effect on the next `claude` launch (settings are read at startup, not mid-session).
 
 ### Dependencies
 
 - `fzf` (interactive selection)
-- `op` (1Password CLI, for secret injection)
-- `jq` (not required -- `op inject` handles the templating)
 
 ## Directory Restructure
 
@@ -82,7 +80,7 @@ The `claude/` directory is removed. Its contents split into `claude-code-cli/` (
 
 ## Profile settings.json Format
 
-Each profile's `settings.json` is a valid Claude Code settings file with optional `{{ op://... }}` references for secrets. Example:
+Each profile's `settings.json` is a standard Claude Code settings file. Example:
 
 ```json
 {
@@ -99,7 +97,7 @@ Each profile's `settings.json` is a valid Claude Code settings file with optiona
 }
 ```
 
-Profiles without secrets need no `op://` references and work as plain JSON.
+No secrets should be stored in these files since they are git-tracked.
 
 ## Out of Scope
 
