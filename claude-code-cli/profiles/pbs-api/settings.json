@@ -5,5 +5,8 @@
     "CLAUDE_CODE_USE_BEDROCK": "1",
     "MAX_THINKING_TOKENS": "10000"
   },
-  "model": "us.anthropic.claude-opus-4-6-v1[1m]"
+  "model": "us.anthropic.claude-opus-4-6-v1[1m]",
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true
+  }
 }
