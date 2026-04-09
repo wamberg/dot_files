@@ -50,14 +50,12 @@
     state: present
   tags:
     - cli
-
 - name: System | Packages | Install microcode
   community.general.pacman:
     name: "{{ microcode_package }}"
     state: present
   tags:
     - cli
-
 - name: System | Packages | Install GPU packages
   community.general.pacman:
     name: "{{ gpu_packages }}"
@@ -65,7 +63,6 @@
   when: gpu_packages | length > 0
   tags:
     - cli
-
 - name: System | Packages | Ensure Docker is installed
   community.general.pacman:
     update_cache: yes
@@ -75,7 +72,6 @@
     state: present
   tags:
     - dev
-
 - name: Service | Docker | Enable and start service
   ansible.builtin.systemd:
     name: docker
@@ -83,7 +79,6 @@
     enabled: yes
   tags:
     - dev
-
 - name: System | Time | Set RTC to local time for Windows dual-boot
   ansible.builtin.command:
     cmd: timedatectl set-local-rtc 1
@@ -91,7 +86,6 @@
   when: enable_dual_boot
   tags:
     - system
-
 - name: System | Time | Enable NTP synchronization
   ansible.builtin.systemd:
     name: systemd-timesyncd
@@ -99,7 +93,6 @@
     enabled: yes
   tags:
     - system
-
 - name: User | {{ username }} | Set shell to zsh and add to docker, wheel, video groups
   ansible.builtin.user:
     name: "{{ username }}"
@@ -108,7 +101,6 @@
     append: yes
   tags:
     - dev
-
 - name: User | {{ username }} | Check for .zshrc
   ansible.builtin.stat:
     path: "/home/{{ username }}/.zshrc"
@@ -117,7 +109,6 @@
   become_user: "{{ username }}"
   tags:
     - dev
-
 - name: User | {{ username }} | Install oh-my-zsh if needed
   when: not zshrc_stat.stat.exists
   become: yes
@@ -133,7 +124,6 @@
       ansible.builtin.file:
         path: /home/{{ username }}/.zshrc
         state: absent
-
 - name: User | {{ username }} | Stow dot_files
   become: yes
   become_user: "{{ username }}"
@@ -144,14 +134,12 @@
   changed_when: stow_result.stdout != ""
   tags:
     - dev
-
 - name: System | Stow claude-code-cli managed settings to /etc
   ansible.builtin.shell: 'stow --no-folding --dir="/home/{{ username }}/dev/dot_files" --target="/" --ignore="profiles" -vS claude-code-cli'
   register: stow_claude_code_cli
   changed_when: stow_claude_code_cli.stdout != ""
   tags:
     - dev
-
 - name: User | {{ username }} | Install peonping
   become: yes
   become_user: "{{ username }}"
@@ -161,7 +149,6 @@
     creates: /home/{{ username }}/.claude/hooks/peon-ping/peon.sh
   tags:
     - dev
-
 - name: User | {{ username }} | Set default applications
   become: yes
   become_user: "{{ username }}"
@@ -187,7 +174,6 @@
     mode: '0644'
   tags:
     - dev
-
 - name: User | {{ username }} | Check for missing mise tools
   become: yes
   become_user: "{{ username }}"
@@ -197,7 +183,6 @@
   changed_when: false
   tags:
     - dev
-
 - name: User | {{ username }} | Install mise tools
   become: yes
   become_user: "{{ username }}"
@@ -206,7 +191,6 @@
   when: mise_missing.stdout != ""
   tags:
     - dev
-
 - name: User | tmux | Ensure plugins directory exists
   become: yes
   become_user: "{{ username }}"
@@ -217,7 +201,6 @@
     force: yes
   tags:
     - dev
-
 - name: User | tmux | Check if tpm is already installed
   become: yes
   become_user: "{{ username }}"
@@ -226,7 +209,6 @@
   register: tpm_git_stat
   tags:
     - dev
-
 - name: User | tmux | Clone plugin manager (tpm)
   become: yes
   become_user: "{{ username }}"
@@ -237,7 +219,6 @@
   when: not tpm_git_stat.stat.exists
   tags:
     - dev
-
 - name: User | {{ username }} | Ensure common directories exist
   become: yes
   become_user: "{{ username }}"
@@ -248,7 +229,6 @@
   loop: "{{ user_directories + user_directories_host | default([]) }}"
   tags:
     - dev
-
 - name: User | {{ username }} | Configure 1Password SSH agent
   become: yes
   become_user: "{{ username }}"
@@ -263,7 +243,6 @@
           IdentityAgent ~/.1password/agent.sock
   tags:
     - dev
-
 - name: User | {{ username }} | Check if GPG key exists
   become: yes
   become_user: "{{ username }}"
@@ -273,7 +252,6 @@
   failed_when: false
   tags:
     - dev
-
 - name: User | {{ username }} | Create GPG batch file for key generation
   become: yes
   become_user: "{{ username }}"
@@ -293,7 +271,6 @@
   when: gpg_keys.stdout == ""
   tags:
     - dev
-
 - name: User | {{ username }} | Generate GPG key
   become: yes
   become_user: "{{ username }}"
@@ -301,7 +278,6 @@
   when: gpg_keys.stdout == ""
   tags:
     - dev
-
 - name: User | {{ username }} | Clean up GPG batch file
   ansible.builtin.file:
     path: /tmp/gpg_batch_file
@@ -309,7 +285,6 @@
   when: gpg_keys.stdout == ""
   tags:
     - dev
-
 - name: User | {{ username }} | Get GPG key ID
   become: yes
   become_user: "{{ username }}"
@@ -318,7 +293,6 @@
   changed_when: false
   tags:
     - dev
-
 - name: User | {{ username }} | Check if pass is initialized
   become: yes
   become_user: "{{ username }}"
@@ -327,7 +301,6 @@
   register: pass_initialized
   tags:
     - dev
-
 - name: User | {{ username }} | Initialize pass with GPG key
   become: yes
   become_user: "{{ username }}"
@@ -335,7 +308,6 @@
   when: not pass_initialized.stat.exists
   tags:
     - dev
-
 - name: System | Upgrade all packages
   community.general.pacman:
     update_cache: yes
@@ -343,7 +315,6 @@
   tags:
     - never
     - upgrade
-
 - name: System | Check for orphaned packages
   ansible.builtin.command:
     cmd: pacman -Qtdq
@@ -353,7 +324,6 @@
   tags:
     - never
     - upgrade
-
 - name: System | Remove orphaned packages
   community.general.pacman:
     name: "{{ orphans.stdout_lines }}"

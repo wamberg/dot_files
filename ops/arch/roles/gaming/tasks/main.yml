@@ -6,7 +6,6 @@
     state: present
   tags:
     - gaming
-
 - name: System | Repository | Enable multilib Include line
   ansible.builtin.lineinfile:
     path: /etc/pacman.conf
@@ -16,13 +15,11 @@
     state: present
   tags:
     - gaming
-
 - name: System | Repository | Update package cache after multilib
   community.general.pacman:
     update_cache: yes
   tags:
     - gaming
-
 - name: System | Packages | Install 32-bit libraries for Steam and gaming
   community.general.pacman:
     name:
@@ -35,7 +32,6 @@
     state: present
   tags:
     - gaming
-
 - name: System | Kernel | Set vm.max_map_count for gaming
   ansible.posix.sysctl:
     name: vm.max_map_count
@@ -44,7 +40,6 @@
     sysctl_file: /etc/sysctl.d/80-gamecompatibility.conf
   tags:
     - gaming
-
 - name: System | Kernel | Configure v4l2loopback module parameters
   ansible.builtin.copy:
     content: |
@@ -56,7 +51,6 @@
     mode: '0644'
   tags:
     - gaming
-
 - name: System | Kernel | Ensure v4l2loopback is loaded on boot
   ansible.builtin.lineinfile:
     path: /etc/modules-load.d/v4l2loopback.conf

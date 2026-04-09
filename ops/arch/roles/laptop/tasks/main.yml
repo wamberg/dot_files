@@ -7,7 +7,6 @@
     mode: '0755'
   tags:
     - laptop
-
 - name: System | Power | Configure lid close to keep system running
   ansible.builtin.copy:
     content: |
@@ -22,14 +21,12 @@
   notify: restart logind
   tags:
     - laptop
-
 - name: System | Packages | Install acpid
   community.general.pacman:
     name: acpid
     state: present
   tags:
     - laptop
-
 - name: System | Power | Create acpi events directory
   ansible.builtin.file:
     path: /etc/acpi/events
@@ -39,7 +36,6 @@
     mode: '0755'
   tags:
     - laptop
-
 - name: System | Power | Configure lid event handler
   ansible.builtin.copy:
     content: |
@@ -52,7 +48,6 @@
   notify: restart acpid
   tags:
     - laptop
-
 - name: System | Power | Create lid handler script
   ansible.builtin.copy:
     content: |
@@ -74,7 +69,6 @@
   notify: restart acpid
   tags:
     - laptop
-
 - name: Service | acpid | Enable and start service
   ansible.builtin.systemd:
     name: acpid

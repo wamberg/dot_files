@@ -4,17 +4,14 @@
     - common
     - aur
     - workstation
-
 - hosts: forge
   become: yes
   roles:
     - gaming
-
 - hosts: freya
   become: yes
   roles:
     - laptop
-
 - hosts: all
   become: yes
   roles:

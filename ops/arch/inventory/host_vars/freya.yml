@@ -1,16 +1,9 @@
 microcode_package: intel-ucode
-
 gpu_packages: []
-
 desktop_packages_host: []
-
 aur_desktop_packages_host: []
-
 stow_packages_host: []
-
 user_directories_host: []
-
 enable_dual_boot: false
-
 hibernate_method: partition
 swap_partition_device: /dev/nvme0n1p2

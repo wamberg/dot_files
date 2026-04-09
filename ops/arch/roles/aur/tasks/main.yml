@@ -7,7 +7,6 @@
   tags:
     - aur_setup
     - desktop
-
 - name: User | aur_builder | Grant passwordless sudo for pacman
   ansible.builtin.lineinfile:
     path: /etc/sudoers.d/11-aur_builder
@@ -21,7 +20,6 @@
   tags:
     - aur_setup
     - desktop
-
 - name: User | aur_builder | Create Ansible temporary directory
   ansible.builtin.file:
     path: /home/aur_builder/.ansible/tmp
@@ -32,7 +30,6 @@
   tags:
     - aur_setup
     - desktop
-
 - name: System | Packages | Ensure yay is installed
   kewlfft.aur.aur:
     name: yay
@@ -41,7 +38,6 @@
   become_user: aur_builder
   tags:
     - desktop
-
 - name: User | aur_builder | Check for 1Password GPG key
   ansible.builtin.command:
     cmd: gpg --list-keys 3FEF9748469ADBE15DA7CA80AC2D62742012EA22
@@ -52,7 +48,6 @@
   become_user: aur_builder
   tags:
     - desktop
-
 - name: User | aur_builder | Import 1Password GPG key
   ansible.builtin.shell:
     cmd: "curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import"
@@ -61,7 +56,6 @@
   become_user: aur_builder
   tags:
     - desktop
-
 - name: System | Packages | Install essential AUR cli packages
   kewlfft.aur.aur:
     name: "{{ aur_cli_packages }}"
@@ -69,7 +63,6 @@
   become_user: aur_builder
   tags:
     - cli
-
 - name: System | Packages | Install essential AUR desktop packages
   kewlfft.aur.aur:
     name: "{{ aur_desktop_packages_common + aur_desktop_packages_host | default([]) }}"

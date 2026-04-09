@@ -1,5 +1,4 @@
 username: wamberg
-
 stow_packages_common:
   - bat
   - bin
@@ -21,7 +20,6 @@ stow_packages_common:
   - vifm
   - waybar
   - zsh
-
 user_directories:
   - path: videos
     mode: "0755"
@@ -29,13 +27,11 @@ user_directories:
     mode: "0755"
   - path: .ssh
     mode: "0700"
-
 aur_cli_packages:
   - claude-code
   - whisper.cpp
   - whisper.cpp-model-medium.en
   - whisper.cpp-model-small.en-tdrz
-
 aur_desktop_packages_common:
   - 1password
   - 1password-cli
@@ -50,7 +46,6 @@ aur_desktop_packages_common:
   - ttf-ms-fonts
   - tz
   - zoom
-
 desktop_packages_common:
   # Applications
   - discord

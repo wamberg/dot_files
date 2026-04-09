@@ -4,7 +4,6 @@
     state: present
   tags:
     - desktop
-
 - name: User | {{ username }} | Install tinty theme repositories
   become: yes
   become_user: "{{ username }}"
@@ -14,14 +13,12 @@
   changed_when: "'installed' in tinty_install.stdout"
   tags:
     - desktop
-
 - name: Service | SDDM | Enable display manager
   ansible.builtin.systemd:
     name: sddm
     enabled: yes
   tags:
     - desktop
-
 - name: Service | PipeWire | Enable user services
   become: yes
   become_user: "{{ username }}"
@@ -36,7 +33,6 @@
     - wireplumber.service
   tags:
     - desktop
-
 - name: Audio | WirePlumber | Ensure conf.d directory exists
   become: yes
   become_user: "{{ username }}"
@@ -46,7 +42,6 @@
     mode: '0755'
   tags:
     - desktop
-
 - name: Audio | WirePlumber | Configure Bluetooth A2DP roles
   become: yes
   become_user: "{{ username }}"
@@ -64,7 +59,6 @@
     mode: '0644'
   tags:
     - desktop
-
 - name: Audio | WirePlumber | Disable audio sink suspend
   become: yes
   become_user: "{{ username }}"
@@ -88,7 +82,6 @@
     mode: '0644'
   tags:
     - desktop
-
 - name: Service | Bluetooth | Enable and start service
   ansible.builtin.systemd:
     name: bluetooth
