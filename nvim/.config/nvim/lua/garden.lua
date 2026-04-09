@@ -7,15 +7,16 @@ local M = {}
 local GARDEN_DIR = "~/dev/garden"
 local DIARY_DIR = GARDEN_DIR .. "/diary"
 
--- Create a new unique note in ~/dev/garden/ with timestamp filename
+-- Create a new unique note in ~/dev/garden/raw/ with timestamp filename
 function M.new_note()
   -- Get current timestamp in YYYYMMDDHHMM format
   local timestamp = os.date("%Y%m%d%H%M")
   local filename = timestamp .. ".md"
-  local filepath = vim.fn.expand(GARDEN_DIR .. "/" .. filename)
+  local rawpath = vim.fn.expand(GARDEN_DIR .. "/raw")
+  local filepath = vim.fn.expand(rawpath .. filename)
 
   -- Create the directory if it doesn't exist
-  vim.fn.mkdir(vim.fn.expand(GARDEN_DIR), "p")
+  vim.fn.mkdir(vim.fn.expand(rawpath), "p")
 
   -- Open the new file
   vim.cmd("edit " .. filepath)
@@ -303,7 +304,7 @@ end
 
 -- Helper function to show project picker and execute callback with selected project
 local function show_project_picker(callback)
-  local project_file = vim.fn.expand("~/dev/garden/topics/202508111053.md")
+  local project_file = vim.fn.expand("~/dev/garden2/wiki/work/project-names.md")
 
   -- Check if file exists
   if vim.fn.filereadable(project_file) == 0 then
