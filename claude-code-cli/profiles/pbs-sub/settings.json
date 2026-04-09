@@ -5,6 +5,7 @@
   },
   "model": "opus[1m]",
   "enabledPlugins": {
-    "superpowers@claude-plugins-official": true
+    "superpowers@claude-plugins-official": true,
+    "gardener@bazaar": true
   }
 }
