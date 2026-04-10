@@ -1,0 +1,32 @@
+- name: System | SSH | Ensure sshd_config.d directory exists
+  ansible.builtin.file:
+    path: /etc/ssh/sshd_config.d
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  tags:
+    - sshd
+- name: System | SSH | Deploy sshd configuration
+  ansible.builtin.copy:
+    content: |
+      PermitRootLogin no
+      PasswordAuthentication no
+      KbdInteractiveAuthentication no
+
+      Match Address *,!192.168.0.0/16,!10.0.0.0/8,!172.16.0.0/12
+        DenyUsers *
+    dest: /etc/ssh/sshd_config.d/10-local-only.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart sshd
+  tags:
+    - sshd
+- name: Service | sshd | Enable and start service
+  ansible.builtin.systemd:
+    name: sshd
+    state: started
+    enabled: yes
+  tags:
+    - sshd

@@ -12,6 +12,7 @@
   become: yes
   roles:
     - laptop
+    - sshd
 - hosts: all
   become: yes
   roles:
