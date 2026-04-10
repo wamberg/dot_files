@@ -11,4 +11,4 @@ tmux rename-window -t garden:0 "code"
 tmux split-window -bt garden:0 -l "25%" -c "$HOME/dev/garden"
 tmux split-window -ht garden:0 -c "$HOME/dev/garden"
 tmux select-pane -t 2
-tmux send-keys -t garden:0.0 ",claude-switch.sh pbs-vanilla && claude --allow-dangerously-skip-permissions --dangerously-skip-permissions --plugin-dir $HOME/dev/bazaar/plugins/gardener --name $(date +%Y-%m-%d)-garden --remote-control" Enter
+tmux send-keys -t garden:0.1 ",claude-switch.sh pbs-vanilla && claude --allow-dangerously-skip-permissions --dangerously-skip-permissions --plugin-dir $HOME/dev/bazaar/plugins/gardener --name $(date +%Y-%m-%d)-garden --remote-control" Enter
