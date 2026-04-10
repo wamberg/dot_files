@@ -7,7 +7,6 @@
   },
   "model": "us.anthropic.claude-opus-4-6-v1[1m]",
   "enabledPlugins": {
-    "superpowers@claude-plugins-official": true,
-    "gardener@bazaar": true
+    "superpowers@claude-plugins-official": true
   }
 }
