@@ -1,0 +1,11 @@
+[Unit]
+Description=Create tmux sessions for bazaar and garden
+After=default.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=%h/.bin/,freya-sessions.sh
+
+[Install]
+WantedBy=default.target

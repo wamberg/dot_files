@@ -13,6 +13,7 @@
   roles:
     - laptop
     - sshd
+    - freya-sessions
 - hosts: all
   become: yes
   roles:

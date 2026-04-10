@@ -1,0 +1,19 @@
+- name: Stow | systemd | Stow systemd user units
+  become: yes
+  become_user: "{{ username }}"
+  become_flags: "--login"
+  ansible.builtin.shell: 'stow --no-folding --dir="${HOME}/dev/dot_files" --target="${HOME}/" -vS systemd'
+  register: stow_result
+  changed_when: stow_result.stdout != ""
+  tags:
+    - freya-sessions
+- name: Service | freya-sessions | Enable user service
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.systemd:
+    name: freya-sessions.service
+    enabled: yes
+    scope: user
+    daemon_reload: yes
+  tags:
+    - freya-sessions
