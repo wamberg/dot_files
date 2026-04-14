@@ -13,4 +13,3 @@ uv = "latest"
 
 [settings]
 experimental = true
-python_compile = true

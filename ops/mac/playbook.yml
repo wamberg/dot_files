@@ -113,19 +113,17 @@
       changed_when: stow_claude_desktop.stderr != ""
 
     - name: Setup | Create managed settings directory for Claude Code
-      become: yes
-      ansible.builtin.file:
-        path: "/Library/Application Support/ClaudeCode"
-        state: directory
-        mode: '0755'
+      ansible.builtin.command:
+        cmd: sudo mkdir -p '/Library/Application Support/ClaudeCode'
+        creates: /Library/Application Support/ClaudeCode
 
     - name: Setup | Symlink Claude Code managed settings
-      become: yes
-      ansible.builtin.file:
-        src: "{{ ansible_facts['env']['HOME'] }}/dev/dot_files/claude-code-cli/etc/claude-code/managed-settings.json"
-        dest: "/Library/Application Support/ClaudeCode/managed-settings.json"
-        state: link
-        force: yes
+      ansible.builtin.shell: >
+        sudo ln -sf
+        '{{ ansible_facts["env"]["HOME"] }}/dev/dot_files/claude-code-cli/etc/claude-code/managed-settings.json'
+        '/Library/Application Support/ClaudeCode/managed-settings.json'
+      register: claude_symlink
+      changed_when: claude_symlink.rc == 0
 
     - name: Setup | Check if tpm is installed
       ansible.builtin.stat:
