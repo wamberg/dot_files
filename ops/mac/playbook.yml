@@ -32,6 +32,7 @@
           - stow
           - tinty
           - tmux
+          - tz
           - tree
           - unzip
           - vifm
@@ -96,6 +97,7 @@
         - sql
         - tinty
         - tmux
+        - tz
         - vifm
         - zsh
       register: stow_result
