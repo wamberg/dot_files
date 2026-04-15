@@ -29,6 +29,7 @@ user_directories:
     mode: "0700"
 aur_cli_packages:
   - claude-code
+  - downgrade
   - whisper.cpp
   - whisper.cpp-model-medium.en
   - whisper.cpp-model-small.en-tdrz
