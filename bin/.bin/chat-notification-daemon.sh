@@ -5,7 +5,7 @@
 
 # Map of D-Bus app names to niri app_ids
 declare -A APP_MAP=(
-    ["Slack"]="Slack"
+    ["Slack"]="slack"
     ["Telegram Desktop"]="org.telegram.desktop"
 )
 

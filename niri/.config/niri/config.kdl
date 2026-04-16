@@ -63,7 +63,7 @@ window-rule {
 }
 
 window-rule {
-  match app-id="Slack"
+  match app-id="slack"
   open-on-workspace "2"
 }
 
@@ -139,7 +139,7 @@ binds {
     spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "1password" "env" "DISPLAY=:1" "1password";
   }
   Alt+S hotkey-overlay-title="slack" {
-    spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "Slack" "slack" "--enable-features=UseOzonePlatform" "--ozone-platform=wayland";
+    spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "slack" "slack" "--enable-features=UseOzonePlatform" "--ozone-platform=wayland";
   }
   Alt+T hotkey-overlay-title="telegram" {
     spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "org.telegram.desktop" "Telegram";
