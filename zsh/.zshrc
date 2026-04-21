@@ -10,8 +10,6 @@ export plugins
 
 ### User configuration ###
 
-eval "$(mise activate zsh)"
-
 # common exports
 export EDITOR=$(which nvim)
 export LANG='en_US.UTF-8'
@@ -52,6 +50,9 @@ export PATH="${PATH}:${GOPATH}/bin"
 # Node
 export NODE_PATH=~/.npm-packages/lib/node_modules
 export PATH="${PATH}:${HOME}/.npm-packages/bin"
+
+# mise - activate after all PATH entries are set
+eval "$(mise activate zsh)"
 
 # fzf
 export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix --hidden --follow --no-ignore-vcs --ignore-file ~/.gitignore_global"
