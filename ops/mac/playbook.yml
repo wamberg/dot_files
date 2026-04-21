@@ -5,6 +5,11 @@
         name: tinted-theming/tinted
         state: present
 
+    - name: Packages | Tap PeonPing
+      community.general.homebrew_tap:
+        name: PeonPing/tap
+        state: present
+
     - name: Packages | Install Homebrew formulae
       community.general.homebrew:
         name:
@@ -24,6 +29,7 @@
           - ncdu
           - neovim
           - pass
+          - peon-ping
           - pigz
           - ripgrep
           - rsync
@@ -124,6 +130,11 @@
         '/Library/Application Support/ClaudeCode/managed-settings.json'
       register: claude_symlink
       changed_when: claude_symlink.rc == 0
+
+    - name: Setup | Run peon-ping-setup
+      ansible.builtin.command:
+        cmd: peon-ping-setup
+        creates: "{{ ansible_facts['env']['HOME'] }}/.claude/hooks/peon-ping"
 
     - name: Setup | Check if tpm is installed
       ansible.builtin.stat:
