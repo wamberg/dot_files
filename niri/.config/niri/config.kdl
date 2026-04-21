@@ -154,6 +154,9 @@ binds {
   Mod+Ctrl+Shift+L hotkey-overlay-title="Lock Display" {
     spawn "sh" "-c" "swaylock &";
   }
+  Mod+Ctrl+Shift+O hotkey-overlay-title="Monitor Off" {
+    power-off-monitors;
+  }
   Mod+Ctrl+Shift+P hotkey-overlay-title="Power Menu" {
     spawn "sh" "-c" "systemctl $(printf \"poweroff\\nreboot\\nhibernate\" | fuzzel --dmenu)";
   }
