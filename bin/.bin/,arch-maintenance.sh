@@ -45,7 +45,7 @@ orphans=$(pacman -Qtdq 2>/dev/null || true)
 if [[ -n "$orphans" ]]; then
     echo "Found orphaned packages:"
     echo "$orphans"
-    sudo pacman -Rs "$orphans"
+    pacman -Qtdq | sudo pacman -Rs -
 else
     echo "No orphaned packages found."
 fi
