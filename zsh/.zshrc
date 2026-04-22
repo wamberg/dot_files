@@ -21,9 +21,6 @@ export PATH="${PATH}:$HOME/.bin:$HOME/.local/bin"
 # aws-vault
 export AWS_VAULT_BACKEND=pass
 
-# Claude Code
-export CLAUDE_CODE_SUBPROCESS_ENV_SCRUB=1
-
 # mac exports
 case "$OSTYPE" in
   darwin*)
