@@ -6,6 +6,7 @@
       - base-devel
       - bat
       - btop
+      - bubblewrap
       - ca-certificates
       - cryptsetup
       - curl
@@ -32,6 +33,7 @@
       - reflector
       - ripgrep
       - rsync
+      - socat
       - sqlite
       - starship
       - stow
@@ -124,6 +126,18 @@
       ansible.builtin.file:
         path: /home/{{ username }}/.zshrc
         state: absent
+- name: User | {{ username }} | Pre-create bin directories so stow places file symlinks inside
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.file:
+    path: /home/{{ username }}/{{ item }}
+    state: directory
+    mode: '0755'
+  loop:
+    - .bin
+    - .local/bin
+  tags:
+    - dev
 - name: User | {{ username }} | Stow dot_files
   become: yes
   become_user: "{{ username }}"
