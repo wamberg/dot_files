@@ -1,6 +1,7 @@
 microcode_package: intel-ucode
 gpu_packages: []
 desktop_packages_host: []
+aur_cli_packages_host: []
 aur_desktop_packages_host: []
 stow_packages_host: []
 user_directories_host: []

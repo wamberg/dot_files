@@ -58,7 +58,7 @@
     - desktop
 - name: System | Packages | Install essential AUR cli packages
   kewlfft.aur.aur:
-    name: "{{ aur_cli_packages }}"
+    name: "{{ aur_cli_packages + aur_cli_packages_host | default([]) }}"
   become: yes
   become_user: aur_builder
   tags:
