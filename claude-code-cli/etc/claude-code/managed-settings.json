@@ -133,6 +133,7 @@
     ]
   },
   "alwaysThinkingEnabled": true,
+  "disableAutoMode": "disable",
   "effortLevel": "medium",
   "skipDangerousModePermissionPrompt": true
 }
