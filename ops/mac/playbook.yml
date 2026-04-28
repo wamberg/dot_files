@@ -52,6 +52,7 @@
         name:
           - 1password
           - 1password-cli
+          - claude
           - kitty
         state: present
 
