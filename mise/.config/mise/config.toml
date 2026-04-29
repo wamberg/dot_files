@@ -4,7 +4,7 @@
 "npm:typescript-language-server" = "latest"
 lua-language-server = "latest"
 nodejs = "24.10.0"
-python = "3.14.3"
+python = "3.14.4"
 rust = "latest"
 stylua = "latest"
 tree-sitter = "latest"
