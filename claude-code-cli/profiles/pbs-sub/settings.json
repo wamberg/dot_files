@@ -4,5 +4,6 @@
     "MAX_THINKING_TOKENS": "10000"
   },
   "model": "opus[1m]",
-  "enabledPlugins": {}
+  "enabledPlugins": {},
+  "theme": "light"
 }
