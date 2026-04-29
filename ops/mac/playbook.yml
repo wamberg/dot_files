@@ -110,6 +110,19 @@
       register: stow_result
       changed_when: stow_result.stderr != ""
 
+    - name: Setup | Stat Claude Desktop config (clobbered by the app on launch)
+      ansible.builtin.stat:
+        path: "{{ ansible_facts['env']['HOME'] }}/.config/Claude/claude_desktop_config.json"
+      register: claude_desktop_config_stat
+
+    - name: Setup | Remove non-symlink Claude Desktop config so stow can re-link
+      ansible.builtin.file:
+        path: "{{ ansible_facts['env']['HOME'] }}/.config/Claude/claude_desktop_config.json"
+        state: absent
+      when:
+        - claude_desktop_config_stat.stat.exists
+        - not claude_desktop_config_stat.stat.islnk
+
     - name: Setup | Stow claude-desktop to $HOME
       ansible.builtin.shell: >
         stow --dir="{{ ansible_facts['env']['HOME'] }}/dev/dot_files"
