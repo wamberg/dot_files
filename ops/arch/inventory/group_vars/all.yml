@@ -67,6 +67,7 @@ desktop_packages_common:
   - swaybg
   - swaylock
   - waybar
+  - xdg-desktop-portal-gnome
   - xdg-desktop-portal-gtk
   - wlsunset
   - xwayland-satellite
