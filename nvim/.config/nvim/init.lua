@@ -809,3 +809,11 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     require("garden").setup_markdown_surround()
   end,
 })
+
+-- YAML specific changes
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "yaml",
+  callback = function()
+    vim.opt_local.foldmethod = "indent"
+  end,
+})
