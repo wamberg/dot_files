@@ -304,7 +304,7 @@ end
 
 -- Helper function to show project picker and execute callback with selected project
 local function show_project_picker(callback)
-  local project_file = vim.fn.expand("~/dev/garden2/wiki/work/project-names.md")
+  local project_file = vim.fn.expand("~/dev/garden/wiki/work/project-names.md")
 
   -- Check if file exists
   if vim.fn.filereadable(project_file) == 0 then
@@ -315,15 +315,22 @@ local function show_project_picker(callback)
   -- Read and parse the file
   local lines = vim.fn.readfile(project_file)
   local projects = {}
+  local in_frontmatter = false
 
-  for _, line in ipairs(lines) do
-    -- Match bullet points: - Project Name, * Project Name, + Project Name
-    local project = string.match(line, "^%s*[%-%*%+]%s+(.+)")
-    if project then
-      -- Trim whitespace
-      project = string.gsub(project, "^%s*(.-)%s*$", "%1")
-      if project ~= "" then
-        table.insert(projects, project)
+  for i, line in ipairs(lines) do
+    if i == 1 and line == "---" then
+      in_frontmatter = true
+    elseif in_frontmatter and line == "---" then
+      in_frontmatter = false
+    elseif not in_frontmatter then
+      -- Match bullet points: - Project Name, * Project Name, + Project Name
+      local project = string.match(line, "^%s*[%-%*%+]%s+(.+)")
+      if project then
+        -- Trim whitespace
+        project = string.gsub(project, "^%s*(.-)%s*$", "%1")
+        if project ~= "" then
+          table.insert(projects, project)
+        end
       end
     end
   end
