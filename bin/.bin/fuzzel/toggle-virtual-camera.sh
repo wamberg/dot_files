@@ -28,7 +28,7 @@ else
       -video_size 1280x720 \
       -framerate 30 \
       -i /dev/video1 \
-      -vf "crop=853:480:213:120,scale=1280:720,eq=brightness=0.04:contrast=1.05,colortemperature=temperature=7500" \
+      -vf "crop=640:360:320:180,scale=1280:720,eq=brightness=0.04:contrast=1.05,colortemperature=temperature=7500" \
       -pix_fmt yuv420p \
       -f v4l2 /dev/video0 &
     notify-send "Virtual Camera" "Started" -t 2000
