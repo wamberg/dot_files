@@ -5,14 +5,11 @@
 # - AWS credentials (.aws/)
 # - Development projects (dev/) - keeps .git, excludes build artifacts
 # - Documents and calibre library (docs/)
-# - iamb Matrix client state and encryption keys (.local/share/iamb/)
 # - Pictures and wallpapers (pics/)
 # - Videos (videos/)
 #
 # Everything else (dotfiles, configs, system state) is managed by:
-# - NixOS configuration (declarative system state)
 # - Stow dotfiles in ~/dev/dot_files
-# - Home-manager for user environment
 #
 # Usage: forge-backup.sh <ssh_username> <ssh_host>
 
