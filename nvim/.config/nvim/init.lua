@@ -5,7 +5,7 @@ vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappin
 
 -- Bootstrap Lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",
@@ -25,7 +25,6 @@ require("lazy").setup({
     dependencies = "nvim-tree/nvim-web-devicons",
   },
   "christoomey/vim-tmux-navigator",
-  "editorconfig/editorconfig-vim",
   "folke/zen-mode.nvim",
   {
     url = "https://codeberg.org/andyg/leap.nvim",
@@ -132,7 +131,7 @@ require("lazy").setup({
           map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
 
           -- Find references for the word under your cursor.
-          map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+          map("gR", require("telescope.builtin").lsp_references, "[G]oto [R]eferences (telescope)")
 
           -- Jump to the implementation of the word under your cursor.
           --  Useful when your language has ways of declaring types without an actual implementation.
@@ -159,31 +158,10 @@ require("lazy").setup({
           -- or a suggestion from your LSP for this to activate.
           map("<leader>oa", vim.lsp.buf.code_action, "C[o]de [A]ction")
 
-          -- Opens a popup that displays documentation about the word under your cursor
-          --  See `:help K` for why this keymap.
-          map("K", vim.lsp.buf.hover, "Hover Documentation")
-
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
           map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
-          -- The following two autocommands are used to highlight references of the
-          -- word under your cursor when your cursor rests there for a little while.
-          --    See `:help CursorHold` for information about when this is executed
-          --
-          -- When you move your cursor, the highlights will be cleared (the second autocommand).
-          local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client.server_capabilities.documentHighlightProvider then
-            vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-              buffer = event.buf,
-              callback = vim.lsp.buf.document_highlight,
-            })
-
-            vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-              buffer = event.buf,
-              callback = vim.lsp.buf.clear_references,
-            })
-          end
         end,
       })
 
@@ -294,17 +272,7 @@ require("lazy").setup({
           end
           return "make install_jsregexp"
         end)(),
-        dependencies = {
-          -- `friendly-snippets` contains a variety of premade snippets.
-          --    See the README about individual language/framework/plugin snippets:
-          --    https://github.com/rafamadriz/friendly-snippets
-          -- {
-          --   'rafamadriz/friendly-snippets',
-          --   config = function()
-          --     require('luasnip.loaders.from_vscode').lazy_load()
-          --   end,
-          -- },
-        },
+        dependencies = {},
       },
       "saadparwaiz1/cmp_luasnip",
 
@@ -327,9 +295,6 @@ require("lazy").setup({
           end,
         },
         completion = { completeopt = "menu,menuone,noinsert" },
-        performance = {
-          debug = true,
-        },
         sorting = {
           priority_weight = 2,
           comparators = {
@@ -733,7 +698,6 @@ vim.keymap.set({ "n", "x", "o" }, "<leader>s", "<Plug>(leap)", { silent = true, 
 
 ---- Buffers
 --Bufferline setup
-vim.opt.termguicolors = true
 require("bufferline").setup({})
 -- bufdel setup
 require("bufdel").setup({
@@ -765,8 +729,6 @@ end, { desc = "[Q]uit" })
 
 ---- LSP Config
 --Diagnostic keymaps
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>gq", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
