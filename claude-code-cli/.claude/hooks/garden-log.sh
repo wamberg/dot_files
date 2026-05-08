@@ -3,7 +3,9 @@ set -euo pipefail
 
 mode="${1:-auto}"   # 'auto' (hook-driven, throttled) or 'manual' (slash command, no throttle)
 
-# Per-session opt-out
+# Per-session opt-out. Also set on the inner `claude -p` below so its SessionEnd
+# hook short-circuits — without this, async mode lets the recursive spawn tree
+# fork-bomb the system.
 [ "${GARDEN_LOG_DISABLED:-0}" = "1" ] && exit 0
 
 # Hook events pipe JSON on stdin; manual invocation has no stdin.
@@ -42,7 +44,6 @@ diary_file="$diary_dir/$(date +%Y-%m-%d).md"
 [ -f "$diary_file" ] || exit 0
 
 project=$(basename "${cwd:-$PWD}")
-project_md=${project//_/\\\\_}   # double-escape: bash → awk -v → markdown emits "\_"
 
 # Last ~100 user/assistant turns, flattened to plain text
 turns=$(jq -r '
@@ -55,14 +56,14 @@ turns=$(jq -r '
 
 [ -n "$turns" ] || exit 0
 
-prompt='Summarize the recent conversation turns in exactly 3 sentences. Focus on (a) the current state of work and (b) what we are trying to accomplish next. Output only the summary, no preamble.'
+prompt='Summarize the recent conversation turns in exactly 3 sentences, written in the first person as a journal entry from my perspective (use "I", not "we" or "the user"). Focus on (a) the current state of my work and (b) what I am trying to accomplish next. Output only the summary, no preamble.'
 
-summary=$(printf '%s\n\n%s' "$prompt" "$turns" | claude -p --model claude-haiku-4-5 2>/dev/null) || exit 0
+summary=$(printf '%s\n\n%s' "$prompt" "$turns" | GARDEN_LOG_DISABLED=1 claude -p --model claude-haiku-4-5 2>/dev/null) || exit 0
 [ -n "$summary" ] || exit 0
 
 # Insert into ## Log section, before next ## heading (or at file end)
 ts=$(date +%H:%M)
-entry=$(printf '\n### %s - _%s_ (claude)\n\n%s\n' "$ts" "$project_md" "$summary")
+entry=$(printf '\n### %s - _%s_ (claude)\n\n%s\n' "$ts" "$project" "$summary")
 
 tmp=$(mktemp)
 awk -v entry="$entry" '
