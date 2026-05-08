@@ -62,7 +62,7 @@ summary=$(printf '%s\n\n%s' "$prompt" "$turns" | claude -p --model claude-haiku-
 
 # Insert into ## Log section, before next ## heading (or at file end)
 ts=$(date +%H:%M)
-entry=$(printf '\n### %s - _%s_ (summary)\n\n%s\n' "$ts" "$project_md" "$summary")
+entry=$(printf '\n### %s - _%s_ (claude)\n\n%s\n' "$ts" "$project_md" "$summary")
 
 tmp=$(mktemp)
 awk -v entry="$entry" '
