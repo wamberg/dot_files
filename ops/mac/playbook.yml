@@ -132,6 +132,16 @@
       register: stow_claude_desktop
       changed_when: stow_claude_desktop.stderr != ""
 
+    - name: Setup | Stow claude-code-cli user-home subtree
+      ansible.builtin.shell: >
+        stow --dir="{{ ansible_facts['env']['HOME'] }}/dev/dot_files"
+        --target="{{ ansible_facts['env']['HOME'] }}/"
+        --restow --no-folding --verbose=1
+        --ignore="etc" --ignore="profiles"
+        claude-code-cli
+      register: stow_claude_code_cli_user
+      changed_when: stow_claude_code_cli_user.stderr != ""
+
     - name: Setup | Create managed settings directory for Claude Code
       ansible.builtin.command:
         cmd: sudo mkdir -p '/Library/Application Support/ClaudeCode'

@@ -146,7 +146,6 @@
   register: claude_desktop_config_stat
   tags:
     - dev
-
 - name: User | {{ username }} | Remove non-symlink Claude Desktop config so stow can re-link
   become: yes
   become_user: "{{ username }}"
@@ -158,7 +157,6 @@
     - not claude_desktop_config_stat.stat.islnk
   tags:
     - dev
-
 - name: User | {{ username }} | Stow dot_files
   become: yes
   become_user: "{{ username }}"
@@ -170,9 +168,18 @@
   tags:
     - dev
 - name: System | Stow claude-code-cli managed settings to /etc
-  ansible.builtin.shell: 'stow --no-folding --dir="/home/{{ username }}/dev/dot_files" --target="/" --ignore="profiles" -vS claude-code-cli'
+  ansible.builtin.shell: 'stow --no-folding --dir="/home/{{ username }}/dev/dot_files" --target="/" --ignore="profiles" --ignore="\.claude" -vS claude-code-cli'
   register: stow_claude_code_cli
   changed_when: stow_claude_code_cli.stdout != ""
+  tags:
+    - dev
+- name: User | {{ username }} | Stow claude-code-cli user-home subtree
+  become: yes
+  become_user: "{{ username }}"
+  become_flags: "--login"
+  ansible.builtin.shell: 'stow --no-folding --dir="${HOME}/dev/dot_files" --target="${HOME}/" --ignore="etc" --ignore="profiles" -vS claude-code-cli'
+  register: stow_claude_code_cli_user
+  changed_when: stow_claude_code_cli_user.stdout != ""
   tags:
     - dev
 - name: User | {{ username }} | Install peonping

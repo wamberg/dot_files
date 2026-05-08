@@ -23,6 +23,11 @@
             "async": true
           }
         ]
+      },
+      {
+        "hooks": [
+          { "type": "command", "command": "$HOME/.claude/hooks/garden-log.sh" }
+        ]
       }
     ],
     "SubagentStart": [
@@ -89,6 +94,12 @@
             "timeout": 10,
             "async": true
           }
+        ]
+      },
+      {
+        "matcher": "idle_prompt",
+        "hooks": [
+          { "type": "command", "command": "$HOME/.claude/hooks/garden-log.sh" }
         ]
       }
     ],
