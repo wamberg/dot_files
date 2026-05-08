@@ -145,7 +145,7 @@ binds {
     spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "org.telegram.desktop" "Telegram";
   }
   Alt+A hotkey-overlay-title="claude" {
-    spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "com.anthropic.claude-desktop" "env" "CLAUDE_USE_WAYLAND=1" "CLAUDE_MENU_BAR=hidden" "claude-desktop";
+    spawn "/home/wamberg/.bin/,niri-run-raise-or-rotate.sh" "claude" "env" "CLAUDE_USE_WAYLAND=1" "CLAUDE_MENU_BAR=hidden" "claude-desktop";
   }
   Alt+W hotkey-overlay-title="Toggle Waybar" { spawn "sh" "-c" "pkill waybar || waybar &"; }
 
