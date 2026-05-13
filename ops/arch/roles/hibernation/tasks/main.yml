@@ -64,7 +64,7 @@
   ansible.builtin.lineinfile:
     path: /etc/mkinitcpio.conf
     regexp: '^HOOKS='
-    line: 'HOOKS=(base udev autodetect keyboard keymap consolefont modconf block filesystems fsck resume)'
+    line: 'HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block filesystems fsck resume)'
     backup: yes
   notify: regenerate initramfs
   tags:
