@@ -184,6 +184,9 @@ binds {
   Mod+Ctrl+F { expand-column-to-available-width; }
   Mod+Minus { set-column-width "-10%"; }
   Mod+Equal { set-column-width "+10%"; }
+  Mod+S hotkey-overlay-title="Screenshare Size (1600x900)" {
+    spawn "sh" "-c" "niri msg action set-column-width 1600 && niri msg action set-window-height 900";
+  }
   Mod+Q { close-window; }
 
   Mod+H     { focus-column-left; }
