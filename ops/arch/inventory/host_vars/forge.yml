@@ -1,14 +1,9 @@
 microcode_package: amd-ucode
 gpu_packages:
   - libva-mesa-driver
-  - rocm-hip-runtime
-  - hipblas
-  - rocblas
-  - python-huggingface-hub
 desktop_packages_host:
   - calibre
-aur_cli_packages_host:
-  - llama.cpp-hip
+aur_cli_packages_host: []
 aur_desktop_packages_host: []
 stow_packages_host: []
 user_directories_host:
