@@ -12,6 +12,7 @@ stow_packages_common:
   - niri
   - npm
   - nvim
+  - pi
   - sql
   - swappy
   - tinty
@@ -30,6 +31,7 @@ user_directories:
 aur_cli_packages:
   - claude-code
   - downgrade
+  - pi-coding-agent
   - whisper.cpp
   - whisper.cpp-model-medium.en
   - whisper.cpp-model-small.en-tdrz
