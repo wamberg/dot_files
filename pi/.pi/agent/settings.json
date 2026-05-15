@@ -1,7 +1,8 @@
 {
-  "lastChangelogVersion": "0.57.1",
+  "lastChangelogVersion": "0.74.0",
   "defaultProvider": "amazon-bedrock",
-  "defaultModel": "us.anthropic.claude-opus-4-7-v1",
+  "defaultModel": "us.anthropic.claude-opus-4-7",
+  "defaultThinkingLevel": "low",
   "hideThinkingBlock": true,
   "theme": "auto"
 }
