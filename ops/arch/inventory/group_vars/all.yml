@@ -30,6 +30,7 @@ user_directories:
 aur_cli_packages:
   - claude-code
   - downgrade
+  - ideviceinstaller
   - whisper.cpp
   - whisper.cpp-model-medium.en
   - whisper.cpp-model-small.en-tdrz

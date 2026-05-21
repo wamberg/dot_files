@@ -1,0 +1,235 @@
+#!/usr/bin/env python3
+import atexit
+import os
+import shutil
+import subprocess
+import sys
+import tempfile
+from datetime import datetime
+from pathlib import Path
+
+BUNDLE_ID     = "com.dayananetworks.voicerecordpro"
+MOUNT_DIR     = Path("/tmp/iphone-voice-notes")
+RAW_DIR       = Path.home() / "dev/garden/raw"
+WHISPER_MODEL = "/usr/share/whisper.cpp-model-medium.en/ggml-medium.en.bin"
+AUDIO_EXTS    = {".m4a", ".wav", ".mp3"}
+
+CLAUDE_PROMPT = (
+    "Run the `/wiki-ingest` skill on every file currently in "
+    "~/dev/garden/raw/. Process them one at a time."
+)
+GARDENER_PLUGIN = Path.home() / "dev/bazaar/plugins/gardener"
+WIKI_INGEST_PROFILE = "pbs-vanilla"
+
+
+def require_tool(name):
+    if not shutil.which(name):
+        sys.exit(f"error: '{name}' not found in PATH — run Ansible first")
+
+
+def preflight():
+    for tool in ("idevice_id", "ifuse", "ffmpeg", "whisper-cli"):
+        require_tool(tool)
+    result = subprocess.run(["idevice_id", "-l"], capture_output=True, text=True)
+    if not result.stdout.strip():
+        sys.exit("error: no iPhone detected — plug in and tap 'Trust This Computer'")
+
+
+def mount():
+    MOUNT_DIR.mkdir(parents=True, exist_ok=True)
+    # Clear any stale mount from a previous run that crashed before atexit fired
+    unmount()
+    result = subprocess.run(
+        ["ifuse", "--documents", BUNDLE_ID, str(MOUNT_DIR)],
+        capture_output=True, text=True,
+    )
+    if result.returncode != 0:
+        sys.exit(
+            f"error: ifuse mount failed\n{result.stderr.strip()}\n"
+            "Check bundle id with: ideviceinstaller -l | grep -i record"
+        )
+    atexit.register(unmount)
+
+
+def unmount():
+    subprocess.run(["fusermount3", "-u", str(MOUNT_DIR)], capture_output=True)
+
+
+def discover_audio():
+    files = [
+        p for p in MOUNT_DIR.rglob("*")
+        if p.is_file() and p.suffix.lower() in AUDIO_EXTS
+    ]
+    return sorted(files, key=lambda p: p.stat().st_mtime)
+
+
+def make_slug(mtime, used_slugs):
+    base = datetime.fromtimestamp(mtime).strftime("%Y-%m-%d-%H%M")
+    if base not in used_slugs:
+        used_slugs.add(base)
+        return base
+    n = 2
+    while f"{base}-{n}" in used_slugs:
+        n += 1
+    slug = f"{base}-{n}"
+    used_slugs.add(slug)
+    return slug
+
+
+def transcribe(audio_path):
+    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as wav_tmp:
+        wav_path = wav_tmp.name
+
+    with tempfile.NamedTemporaryFile(suffix=".txt", delete=False) as txt_tmp:
+        txt_base = txt_tmp.name[: -len(".txt")]
+
+    try:
+        ffmpeg = subprocess.run(
+            [
+                "ffmpeg", "-y", "-i", str(audio_path),
+                "-ar", "16000", "-ac", "1", wav_path,
+            ],
+            capture_output=True,
+        )
+        if ffmpeg.returncode != 0:
+            print(f"  ffmpeg error: {ffmpeg.stderr.decode().strip()}", file=sys.stderr)
+            return ""
+
+        whisper = subprocess.run(
+            [
+                "whisper-cli",
+                "-m", WHISPER_MODEL,
+                "-f", wav_path,
+                "-nt",
+                "-otxt",
+                "-of", txt_base,
+            ],
+            capture_output=True,
+        )
+        if whisper.returncode != 0:
+            print(f"  whisper-cli error: {whisper.stderr.decode().strip()}", file=sys.stderr)
+            return ""
+
+        txt_path = Path(txt_base + ".txt")
+        if txt_path.exists():
+            return txt_path.read_text().strip()
+        return ""
+    finally:
+        Path(wav_path).unlink(missing_ok=True)
+        Path(txt_base + ".txt").unlink(missing_ok=True)
+
+
+def edit_transcript(slug, recorded_dt, transcript):
+    frontmatter = (
+        f"---\nrecorded: {recorded_dt.isoformat()}\nsource: voice-note\n---\n\n"
+        f"{transcript}\n"
+    )
+    with tempfile.NamedTemporaryFile(
+        suffix=".md", mode="w", delete=False, prefix=f"{slug}-"
+    ) as f:
+        f.write(frontmatter)
+        tmp_path = Path(f.name)
+
+    original_content = tmp_path.read_text()
+    editor = os.environ.get("EDITOR", "nvim")
+    subprocess.run([editor, str(tmp_path)])
+
+    edited_content = tmp_path.read_text()
+    return tmp_path, original_content, edited_content
+
+
+def prompt_keep_skip_abort(slug):
+    while True:
+        choice = input(f"  '{slug}' unchanged/empty — [k]eep / [s]kip / [a]bort? ").strip().lower()
+        if choice in ("k", "keep"):
+            return "keep"
+        if choice in ("s", "skip"):
+            return "skip"
+        if choice in ("a", "abort"):
+            return "abort"
+
+
+def main():
+    preflight()
+    mount()
+
+    RAW_DIR.mkdir(parents=True, exist_ok=True)
+    audio_files = discover_audio()
+
+    if not audio_files:
+        print("no audio files found in Voice Record Pro Documents folder")
+        return
+
+    print(f"found {len(audio_files)} audio file(s)")
+    saved = []
+    used_slugs = set()
+
+    for src in audio_files:
+        mtime = src.stat().st_mtime
+        slug = make_slug(mtime, used_slugs)
+        target = RAW_DIR / f"{slug}.md"
+
+        if target.exists():
+            print(f"  skip (exists): {slug}.md")
+            continue
+
+        print(f"  transcribing: {src.name} → {slug}")
+        transcript = transcribe(src)
+
+        recorded_dt = datetime.fromtimestamp(mtime)
+        tmp_path, original_content, edited_content = edit_transcript(
+            slug, recorded_dt, transcript
+        )
+
+        try:
+            unchanged = edited_content == original_content
+            empty = not edited_content.strip()
+
+            if unchanged or empty:
+                choice = prompt_keep_skip_abort(slug)
+                if choice == "abort":
+                    print("aborting")
+                    return
+                if choice == "skip":
+                    print(f"  skipped: {slug}")
+                    continue
+
+            shutil.move(str(tmp_path), str(target))
+            print(f"  saved: {target}")
+            os.remove(src)
+            saved.append(target)
+        finally:
+            tmp_path.unlink(missing_ok=True)
+
+    if saved:
+        print(f"\n{len(saved)} file(s) saved — handing off to Claude Code")
+        hand_off_to_claude()
+    else:
+        print("nothing saved this run")
+
+
+def hand_off_to_claude():
+    require_tool(",claude-switch.sh")
+    require_tool("claude")
+    current = subprocess.run(
+        [",claude-switch.sh", "--current"], capture_output=True, text=True
+    )
+    original_profile = current.stdout.strip() if current.returncode == 0 else "pbs-sub"
+
+    subprocess.run([",claude-switch.sh", WIKI_INGEST_PROFILE], check=True)
+    try:
+        session_name = datetime.now().strftime("%Y-%m-%d-wiki-ingest")
+        subprocess.run([
+            "claude",
+            "--allow-dangerously-skip-permissions",
+            "--dangerously-skip-permissions",
+            "--plugin-dir", str(GARDENER_PLUGIN),
+            "--name", session_name,
+            CLAUDE_PROMPT,
+        ])
+    finally:
+        subprocess.run([",claude-switch.sh", original_profile])
+
+
+if __name__ == "__main__":
+    main()

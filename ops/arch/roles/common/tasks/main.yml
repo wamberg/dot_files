@@ -17,8 +17,10 @@
       - git-delta
       - github-cli
       - gnupg
+      - ifuse
       - jq
       - less
+      - libimobiledevice
       - libnotify
       - libvorbis
       - libvpx
@@ -43,6 +45,7 @@
       - udisks2
       - unrar
       - unzip
+      - usbmuxd
       - vifm
       - wget
       - x264
@@ -81,6 +84,13 @@
     enabled: yes
   tags:
     - dev
+- name: Service | usbmuxd | Enable and start service
+  ansible.builtin.systemd:
+    name: usbmuxd
+    state: started
+    enabled: yes
+  tags:
+    - cli
 - name: System | Time | Set RTC to local time for Windows dual-boot
   ansible.builtin.command:
     cmd: timedatectl set-local-rtc 1
