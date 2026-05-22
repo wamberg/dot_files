@@ -1,0 +1,22 @@
+{
+  "version": 3,
+  "lines": [
+    [
+      { "id": "1", "type": "model", "color": "cyan" },
+      { "id": "2", "type": "separator" },
+      { "id": "12", "type": "thinking-effort", "color": "magenta" },
+      { "id": "13", "type": "separator" },
+      { "id": "3", "type": "context-length", "color": "brightBlack" },
+      { "id": "4", "type": "separator" },
+      { "id": "5", "type": "session-usage", "color": "green" },
+      { "id": "6", "type": "separator" },
+      { "id": "7", "type": "block-reset-timer", "color": "brightBlack" },
+      { "id": "8", "type": "separator" },
+      { "id": "9", "type": "weekly-usage", "color": "yellow" }
+    ],
+    [],
+    [
+      { "id": "10", "type": "skills", "color": "blue" }
+    ]
+  ]
+}

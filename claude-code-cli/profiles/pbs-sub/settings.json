@@ -4,6 +4,14 @@
     "MAX_THINKING_TOKENS": "10000"
   },
   "model": "opus[1m]",
-  "enabledPlugins": {},
-  "theme": "light"
+  "effortLevel": "medium",
+  "attribution": {
+    "commit": "false",
+    "pr": "false"
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "npx -y ccstatusline@latest --config ~/.config/ccstatusline/pbs-sub.json"
+  },
+  "enabledPlugins": {}
 }

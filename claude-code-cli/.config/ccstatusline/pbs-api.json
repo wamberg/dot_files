@@ -1,0 +1,18 @@
+{
+  "version": 3,
+  "lines": [
+    [
+      { "id": "1", "type": "model", "color": "cyan" },
+      { "id": "2", "type": "separator" },
+      { "id": "7", "type": "thinking-effort", "color": "magenta" },
+      { "id": "8", "type": "separator" },
+      { "id": "3", "type": "context-length", "color": "brightBlack" },
+      { "id": "4", "type": "separator" },
+      { "id": "5", "type": "session-cost", "color": "green" }
+    ],
+    [],
+    [
+      { "id": "6", "type": "skills", "color": "blue" }
+    ]
+  ]
+}
