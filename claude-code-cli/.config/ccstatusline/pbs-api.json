@@ -11,8 +11,6 @@
       { "id": "5", "type": "session-cost", "color": "green" }
     ],
     [],
-    [
-      { "id": "6", "type": "skills", "color": "blue" }
-    ]
+    []
   ]
 }

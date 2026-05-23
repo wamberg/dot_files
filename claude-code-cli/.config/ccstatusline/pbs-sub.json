@@ -15,8 +15,6 @@
       { "id": "9", "type": "weekly-usage", "color": "yellow" }
     ],
     [],
-    [
-      { "id": "10", "type": "skills", "color": "blue" }
-    ]
+    []
   ]
 }
