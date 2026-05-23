@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# ,cc — universal Claude Code entrypoint with profile switching + plugin dev mode
+set -e
+
+PROFILE="pbs-sub"
+PLUGINS_ROOT="$HOME/dev/bazaar/plugins"
+plugins=()
+passthrough=()
+mode=plugins
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -P|--profile) PROFILE="$2"; shift 2 ;;
+    --)           shift; passthrough+=("$@"); break ;;
+    -*)           mode=passthrough; passthrough+=("$1"); shift ;;
+    *)            if [[ $mode == plugins ]]; then plugins+=("$1"); else passthrough+=("$1"); fi
+                  shift ;;
+  esac
+done
+
+,claude-switch.sh "$PROFILE"
+
+plugin_args=()
+plugin_name_parts=()
+for p in "${plugins[@]}"; do
+  dir="$PLUGINS_ROOT/$p"
+  [[ -d $dir ]] || { echo ",cc: no such plugin: $dir" >&2; exit 1; }
+  plugin_args+=(--plugin-dir "$dir")
+  plugin_name_parts+=("$p")
+done
+
+project=$(basename "$PWD")
+name="$(date +%Y-%m-%d)-${PROFILE}"
+[[ ${#plugin_name_parts[@]} -gt 0 ]] && name+="-$(IFS=,; echo "${plugin_name_parts[*]}")"
+name+="-${project}"
+
+exec claude \
+  --dangerously-skip-permissions \
+  --name "$name" \
+  "${plugin_args[@]}" \
+  "${passthrough[@]}"
