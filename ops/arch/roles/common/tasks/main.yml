@@ -73,6 +73,7 @@
     update_cache: yes
     name:
       - docker
+      - docker-buildx
       - docker-compose
     state: present
   tags:
