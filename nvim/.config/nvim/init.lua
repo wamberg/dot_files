@@ -25,6 +25,7 @@ vim.pack.add({
   { src = "https://github.com/L3MON4D3/LuaSnip" },
   -- LuaSnip note: if regex-transform snippets are ever needed, run once manually:
   --   make -C ~/.local/share/nvim/site/pack/core/opt/LuaSnip install_jsregexp
+  { src = "https://github.com/HiPhish/rainbow-delimiters.nvim" },
 })
 
 -- Build hooks: run after plugin install/update
