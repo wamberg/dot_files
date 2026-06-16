@@ -295,11 +295,21 @@ function M.find_diary()
     :find()
 end
 
--- Setup markdown-specific vim-surround mappings
+-- Setup markdown-specific nvim-surround mappings
 function M.setup_markdown_surround()
-  -- Custom vim-surround mapping for markdown bold (**)
-  -- 98 is ASCII code for 'b' - use Sb to surround with **text**
-  vim.b.surround_98 = "**\r**"
+  -- Custom nvim-surround mapping for markdown bold (**)
+  -- Use ysiwb in normal mode or Sb in visual mode to surround with **text**
+  require("nvim-surround").buffer_setup({
+    surrounds = {
+      ["b"] = {
+        add = { "**", "**" },
+      },
+    },
+    -- Disable the default `b -> )` alias so our `b` surround takes effect.
+    aliases = {
+      ["b"] = false,
+    },
+  })
 end
 
 -- Helper function to show project picker and execute callback with selected project

@@ -1,378 +1,44 @@
 ---@diagnostic disable-next-line: undefined-global
 local vim = vim
 
-vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
+vim.g.mapleader = " " -- Make sure to set `mapleader` before plugins so mappings are correct
 
--- Bootstrap Lazy.nvim
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
+-- Install plugins via vim.pack (native, Neovim 0.12+)
+vim.pack.add({
+  { src = "https://github.com/akinsho/bufferline.nvim" },
+  { src = "https://github.com/nvim-tree/nvim-web-devicons" },
+  { src = "https://github.com/christoomey/vim-tmux-navigator" },
+  { src = "https://github.com/folke/zen-mode.nvim" },
+  { src = "https://codeberg.org/andyg/leap.nvim" },
+  { src = "https://github.com/lewis6991/gitsigns.nvim" },
+  { src = "https://github.com/micarmst/vim-spellsync" },
+  { src = "https://github.com/tinted-theming/tinted-vim" },
+  { src = "https://github.com/nvim-lua/plenary.nvim" },
+  { src = "https://github.com/nvim-telescope/telescope.nvim" },
+  { src = "https://github.com/nvim-telescope/telescope-fzf-native.nvim" },
+  { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+  { src = "https://github.com/ojroques/nvim-bufdel" },
+  { src = "https://github.com/RRethy/vim-illuminate" },
+  { src = "https://github.com/kylechui/nvim-surround" },
+  { src = "https://github.com/windwp/nvim-autopairs" },
+  { src = "https://github.com/stevearc/conform.nvim" },
+  { src = "https://github.com/L3MON4D3/LuaSnip" },
+  -- LuaSnip note: if regex-transform snippets are ever needed, run once manually:
+  --   make -C ~/.local/share/nvim/site/pack/core/opt/LuaSnip install_jsregexp
+})
 
--- Setup Lazy plugins
-require("lazy").setup({
-  {
-    "akinsho/bufferline.nvim",
-    version = "*",
-    dependencies = "nvim-tree/nvim-web-devicons",
-  },
-  "christoomey/vim-tmux-navigator",
-  "folke/zen-mode.nvim",
-  {
-    url = "https://codeberg.org/andyg/leap.nvim",
-  },
-  "lewis6991/gitsigns.nvim",
-  "micarmst/vim-spellsync",
-  "tinted-theming/tinted-vim",
-  {
-    "nvim-telescope/telescope.nvim",
-    tag = "v0.2.0",
-    dependencies = { "nvim-lua/plenary.nvim" },
-  },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    -- tree-sitter CLI installed via Nix for parser compilation
-    -- Parsers managed by lazy.nvim in ~/.local/share/nvim/lazy/nvim-treesitter/parser/
-    build = ":TSUpdate",
-    init = function()
-      -- Add runtime subdirectory for TreeSitter queries (highlights.scm, etc.)
-      -- This is needed because newer nvim-treesitter moved queries to runtime/queries/
-      vim.opt.runtimepath:append(vim.fn.stdpath("data") .. "/lazy/nvim-treesitter/runtime")
-    end,
-  },
-  "ojroques/nvim-bufdel",
-  "RRethy/vim-illuminate",
-  {
-    "kristijanhusak/vim-dadbod-ui",
-    dependencies = {
-      { "tpope/vim-dadbod", lazy = true },
-      { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
-    },
-    cmd = {
-      "DBUI",
-      "DBUIToggle",
-      "DBUIAddConnection",
-      "DBUIFindBuffer",
-    },
-    init = function()
-      vim.g.db_ui_use_nerd_fonts = 1
-    end,
-  },
-  { "tpope/vim-surround" },
-  {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    opts = {},
-  },
-
-  { -- LSP Configuration & Plugins
-    -- Note: We don't need nvim-lspconfig in Neovim 0.11+
-    -- Using built-in vim.lsp.config and vim.lsp.enable() instead
-    name = "lsp-setup",
-    dir = vim.fn.stdpath("config"),
-    dependencies = {
-      -- Useful status updates for LSP.
-      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { "j-hui/fidget.nvim", opts = {} },
-    },
-    config = function()
-      -- Brief aside: **What is LSP?**
-      --
-      -- LSP is an initialism you've probably heard, but might not understand what it is.
-      --
-      -- LSP stands for Language Server Protocol. It's a protocol that helps editors
-      -- and language tooling communicate in a standardized fashion.
-      --
-      -- In general, you have a "server" which is some tool built to understand a particular
-      -- language (such as `gopls`, `lua_ls`, `rust_analyzer`, etc.). These Language Servers
-      -- (sometimes called LSP servers, but that's kind of like ATM Machine) are standalone
-      -- processes that communicate with some "client" - in this case, Neovim!
-      --
-      -- LSP provides Neovim with features like:
-      --  - Go to definition
-      --  - Find references
-      --  - Autocompletion
-      --  - Symbol Search
-      --  - and more!
-      --
-      -- Thus, Language Servers are external tools that must be installed separately from
-      -- Neovim. This is where `mason` and related plugins come into play.
-      --
-      -- If you're wondering about lsp vs treesitter, you can check out the wonderfully
-      -- and elegantly composed help section, `:help lsp-vs-treesitter`
-
-      --  This function gets run when an LSP attaches to a particular buffer.
-      --    That is to say, every time a new file is opened that is associated with
-      --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
-      --    function will be executed to configure the current buffer
-      vim.api.nvim_create_autocmd("LspAttach", {
-        group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
-        callback = function(event)
-          -- NOTE: Remember that Lua is a real programming language, and as such it is possible
-          -- to define small helper and utility functions so you don't have to repeat yourself.
-          --
-          -- In this case, we create a function that lets us more easily define mappings specific
-          -- for LSP related items. It sets the mode, buffer and description for us each time.
-          local map = function(keys, func, desc)
-            vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
-          end
-
-          -- Jump to the definition of the word under your cursor.
-          --  This is where a variable was first declared, or where a function is defined, etc.
-          --  To jump back, press <C-t>.
-          map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-
-          -- Find references for the word under your cursor.
-          map("gR", require("telescope.builtin").lsp_references, "[G]oto [R]eferences (telescope)")
-
-          -- Jump to the implementation of the word under your cursor.
-          --  Useful when your language has ways of declaring types without an actual implementation.
-          map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
-
-          -- Jump to the type of the word under your cursor.
-          --  Useful when you're not sure what type a variable is and you want to see
-          --  the definition of its *type*, not where it was *defined*.
-          map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
-
-          -- Fuzzy find all the symbols in your current document.
-          --  Symbols are things like variables, functions, types, etc.
-          map("<leader>fs", require("telescope.builtin").lsp_document_symbols, "[F]ind [S]ymbols")
-
-          -- Fuzzy find all the symbols in your current workspace.
-          --  Similar to document symbols, except searches over your entire project.
-          map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
-
-          -- Rename the variable under your cursor.
-          --  Most Language Servers support renaming across files, etc.
-          map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-
-          -- Execute a code action, usually your cursor needs to be on top of an error
-          -- or a suggestion from your LSP for this to activate.
-          map("<leader>oa", vim.lsp.buf.code_action, "C[o]de [A]ction")
-
-          -- WARN: This is not Goto Definition, this is Goto Declaration.
-          --  For example, in C this would take you to the header.
-          map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-        end,
-      })
-
-      -- LSP servers and clients are able to communicate to each other what features they support.
-      --  By default, Neovim doesn't support everything that is in the LSP specification.
-      --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-      --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-
-      -- Enable the following language servers
-      --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-      --
-      --  Add any additional override configuration in the following tables. Available keys are:
-      --  - cmd (table): Override the default command used to start the server
-      --  - filetypes (table): Override the default list of associated filetypes for the server
-      --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-      --  - settings (table): Override the default settings passed when initializing the server.
-      --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-      local servers = {
-        htmx = {
-          filetypes = { "html", "htmldjango" },
-        },
-        ty = {
-          filetypes = { "python" },
-        },
-        ts_ls = {
-          filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-        },
-        lua_ls = {
-          filetypes = { "lua" },
-          settings = {
-            Lua = {
-              runtime = {
-                version = "LuaJIT",
-              },
-              completion = {
-                callSnippet = "Replace",
-              },
-              diagnostics = {
-                globals = { "vim" }, -- Recognize 'vim' global
-              },
-              workspace = {
-                library = {
-                  vim.env.VIMRUNTIME,
-                  "${3rd}/luv/library",
-                },
-                checkThirdParty = false,
-              },
-              telemetry = {
-                enable = false,
-              },
-            },
-          },
-        },
-      }
-
-      -- NixOS: LSP servers are installed via Nix, not Mason
-      -- Mason is disabled to avoid dynamically-linked binary issues on NixOS
-      -- See: https://nix.dev/permalink/stub-ld
-
-      -- Map server names to their actual binary commands
-      local server_commands = {
-        lua_ls = { "lua-language-server" },
-        ty = { "ty", "server" },
-        ts_ls = { "typescript-language-server", "--stdio" },
-        htmx = { "htmx-lsp", "--level", "DEBUG" },
-      }
-
-      -- Configure each LSP server using vim.lsp.config (Neovim 0.11+)
-      for server_name, server_config in pairs(servers) do
-        vim.lsp.config[server_name] = vim.tbl_deep_extend("force", {
-          cmd = server_commands[server_name],
-          root_markers = { ".git", "pyproject.toml", "package.json" },
-          capabilities = capabilities,
-        }, server_config or {})
-
-        -- Enable the LSP server
-        vim.lsp.enable(server_name)
+-- Build hooks: run after plugin install/update
+vim.api.nvim_create_autocmd("PackChanged", {
+  callback = function(args)
+    if args.data.kind == "install" or args.data.kind == "update" then
+      local name = args.data.spec.name
+      if name == "nvim-treesitter" then
+        vim.cmd("TSUpdate")
+      elseif name == "telescope-fzf-native.nvim" then
+        vim.fn.system({ "make", "-C", args.data.path })
       end
-    end,
-  },
-
-  { -- Autoformat
-    "stevearc/conform.nvim",
-    opts = {
-      notify_on_error = false,
-      formatters_by_ft = {
-        lua = { "stylua" },
-        markdown = { "prettier" },
-      },
-    },
-  },
-
-  { -- Autocompletion
-    "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
-    dependencies = {
-      -- Snippet Engine & its associated nvim-cmp source
-      {
-        "L3MON4D3/LuaSnip",
-        build = (function()
-          -- Build Step is needed for regex support in snippets.
-          -- This step is not supported in many windows environments.
-          -- Remove the below condition to re-enable on windows.
-          if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
-            return
-          end
-          return "make install_jsregexp"
-        end)(),
-        dependencies = {},
-      },
-      "saadparwaiz1/cmp_luasnip",
-
-      -- Adds other completion capabilities.
-      --  nvim-cmp does not ship with all sources by default. They are split
-      --  into multiple repos for maintenance purposes.
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-path",
-    },
-    config = function()
-      -- See `:help cmp`
-      local cmp = require("cmp")
-      local luasnip = require("luasnip")
-      luasnip.config.setup({})
-
-      cmp.setup({
-        snippet = {
-          expand = function(args)
-            luasnip.lsp_expand(args.body)
-          end,
-        },
-        completion = { completeopt = "menu,menuone,noinsert" },
-        sorting = {
-          priority_weight = 2,
-          comparators = {
-            -- Below is the default comparitor list and order for nvim-cmp
-            cmp.config.compare.offset,
-            -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
-            cmp.config.compare.exact,
-            cmp.config.compare.score,
-            cmp.config.compare.recently_used,
-            cmp.config.compare.locality,
-            cmp.config.compare.kind,
-            cmp.config.compare.sort_text,
-            cmp.config.compare.length,
-            cmp.config.compare.order,
-          },
-        },
-
-        -- For an understanding of why these mappings were
-        -- chosen, you will need to read `:help ins-completion`
-        --
-        -- No, but seriously. Please read `:help ins-completion`, it is really good!
-        mapping = cmp.mapping.preset.insert({
-          -- Select the [n]ext item
-          ["<C-n>"] = cmp.mapping.select_next_item(),
-          -- Select the [p]revious item
-          ["<C-p>"] = cmp.mapping.select_prev_item(),
-
-          -- Scroll the documentation window [b]ack / [f]orward
-          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-f>"] = cmp.mapping.scroll_docs(4),
-
-          -- Accept ([y]es) the completion.
-          --  This will auto-import if your LSP supports it.
-          --  This will expand snippets if the LSP sent a snippet.
-          ["<C-y>"] = cmp.mapping.confirm({ select = true }),
-
-          -- Manually trigger a completion from nvim-cmp.
-          --  Generally you don't need this, because nvim-cmp will display
-          --  completions whenever it has completion options available.
-          ["<C-Space>"] = cmp.mapping.complete({}),
-
-          -- Think of <c-l> as moving to the right of your snippet expansion.
-          --  So if you have a snippet that's like:
-          --  function $name($args)
-          --    $body
-          --  end
-          --
-          -- <c-l> will move you to the right of each of the expansion locations.
-          -- <c-h> is similar, except moving you backwards.
-          ["<C-l>"] = cmp.mapping(function()
-            if luasnip.expand_or_locally_jumpable() then
-              luasnip.expand_or_jump()
-            end
-          end, { "i", "s" }),
-          ["<C-h>"] = cmp.mapping(function()
-            if luasnip.locally_jumpable(-1) then
-              luasnip.jump(-1)
-            end
-          end, { "i", "s" }),
-
-          -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
-          --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
-        }),
-        sources = {
-          { name = "nvim_lsp", group_index = 2 },
-          { name = "luasnip", group_index = 2 },
-          { name = "path", group_index = 2 },
-        },
-      })
-
-      -- vim-dadbod completion for SQL files
-      cmp.setup.filetype({ "sql" }, {
-        sources = {
-          { name = "vim-dadbod-completion" },
-          { name = "buffer" },
-        },
-      })
-    end,
-  },
+    end
+  end,
 })
 
 -- Enable TreeSitter highlighting for file buffers
@@ -392,6 +58,113 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     -- end
   end,
 })
+
+-- LSP Configuration
+--
+-- LSP stands for Language Server Protocol. It enables features like:
+--  - Go to definition
+--  - Find references
+--  - Symbol Search
+--  - and more!
+--
+-- Language Servers are external tools that must be installed separately from Neovim.
+-- LSP servers, formatters, and tree-sitter CLI are managed by mise
+-- (see mise/.config/mise/config.toml).
+--
+-- If you're wondering about lsp vs treesitter, you can check out the wonderfully
+-- and elegantly composed help section, `:help lsp-vs-treesitter`
+
+-- This autocmd runs when an LSP attaches to a particular buffer.
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+  callback = function(event)
+    local map = function(keys, func, desc)
+      vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+    end
+
+    -- Jump to the definition of the word under your cursor.
+    -- To jump back, press <C-t>.
+    map("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+
+    -- Rename the variable under your cursor.
+    map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+
+    -- Execute a code action (cursor on error/suggestion).
+    map("<leader>oa", vim.lsp.buf.code_action, "C[o]de [A]ction")
+
+    -- Manual LSP completion trigger (insert mode)
+    local client = vim.lsp.get_client_by_id(event.data.client_id)
+    if client and client:supports_method("textDocument/completion") then
+      vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = false })
+      vim.keymap.set("i", "<C-Space>", function()
+        vim.lsp.completion.get()
+      end, { buffer = event.buf, desc = "LSP completion" })
+    end
+  end,
+})
+
+-- LSP capabilities (plain, no cmp dependency)
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+-- LSP server commands
+-- LSP servers, formatters, and tree-sitter CLI are managed by mise
+-- (see mise/.config/mise/config.toml).
+local server_commands = {
+  lua_ls = { "lua-language-server" },
+  ty = { "ty", "server" },
+  ts_ls = { "typescript-language-server", "--stdio" },
+  htmx = { "htmx-lsp", "--level", "DEBUG" },
+}
+
+local servers = {
+  htmx = {
+    filetypes = { "html", "htmldjango" },
+  },
+  ty = {
+    filetypes = { "python" },
+  },
+  ts_ls = {
+    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+  },
+  lua_ls = {
+    filetypes = { "lua" },
+    settings = {
+      Lua = {
+        runtime = {
+          version = "LuaJIT",
+        },
+        completion = {
+          callSnippet = "Replace",
+        },
+        diagnostics = {
+          globals = { "vim" }, -- Recognize 'vim' global
+        },
+        workspace = {
+          library = {
+            vim.env.VIMRUNTIME,
+            "${3rd}/luv/library",
+          },
+          checkThirdParty = false,
+        },
+        telemetry = {
+          enable = false,
+        },
+      },
+    },
+  },
+}
+
+-- Configure each LSP server using vim.lsp.config (Neovim 0.11+)
+for server_name, server_config in pairs(servers) do
+  vim.lsp.config[server_name] = vim.tbl_deep_extend("force", {
+    cmd = server_commands[server_name],
+    root_markers = { ".git", "pyproject.toml", "package.json" },
+    capabilities = capabilities,
+  }, server_config or {})
+
+  -- Enable the LSP server
+  vim.lsp.enable(server_name)
+end
 
 -- Line numbers
 vim.opt.number = true
@@ -613,6 +386,21 @@ vim.keymap.set("n", "<leader>es", require("luasnip.loaders").edit_snippet_files,
 local snipsetuppath = vim.fn.stdpath("config") .. "/luasnip.vim"
 vim.cmd("source " .. snipsetuppath)
 
+-- LuaSnip standalone keymaps (expand/jump without cmp)
+vim.keymap.set({ "i", "s" }, "<C-l>", function()
+  local luasnip = require("luasnip")
+  if luasnip.expand_or_locally_jumpable() then
+    luasnip.expand_or_jump()
+  end
+end, { desc = "Snippet expand/jump forward" })
+
+vim.keymap.set({ "i", "s" }, "<C-h>", function()
+  local luasnip = require("luasnip")
+  if luasnip.locally_jumpable(-1) then
+    luasnip.jump(-1)
+  end
+end, { desc = "Snippet jump backward" })
+
 -- gitsigns setup
 require("gitsigns").setup({
   on_attach = function(bufnr)
@@ -691,6 +479,8 @@ require("telescope").setup({
     },
   },
 })
+-- Load fzf native extension for faster matching
+require("telescope").load_extension("fzf")
 
 -- leap.nvim setup
 vim.keymap.set({ "n", "x", "o" }, "<leader>s", "<Plug>(leap)", { silent = true, desc = "Leap [S]earch" })
@@ -760,13 +550,29 @@ vim.keymap.set("n", "<leader>gl", garden.garden_log, { desc = "[G]arden [L]og" }
 vim.keymap.set("n", "<leader>gL", garden.garden_log_project, { desc = "[G]arden [L]og Project" })
 vim.keymap.set("n", "<C-t>", garden.toggle_todo, { desc = "Complete [T]ask" })
 
+-- nvim-surround setup (replaces vim-surround; treesitter-aware)
+-- Note: garden.lua's setup_markdown_surround() uses nvim-surround's buffer_setup API
+require("nvim-surround").setup({})
+
+-- nvim-autopairs (eager setup — negligible startup cost)
+require("nvim-autopairs").setup({})
+
+-- conform.nvim (formatter)
+require("conform").setup({
+  notify_on_error = false,
+  formatters_by_ft = {
+    lua = { "stylua" },
+    markdown = { "prettier" },
+  },
+})
+
 -- Markdown specific changes
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = { "*.txt", "*.md", "*.markdown" },
   callback = function()
     vim.opt_local.spell = false
     vim.opt_local.spelllang = "en_us"
-    -- Setup markdown-specific vim-surround mappings
+    -- Setup markdown-specific nvim-surround mappings (e.g. bold wrap with ysiwb -> **...**)
     require("garden").setup_markdown_surround()
   end,
 })
