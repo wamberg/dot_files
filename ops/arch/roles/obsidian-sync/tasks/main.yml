@@ -30,3 +30,15 @@
     scope: user
   tags:
     - obsidian
+# Safe to auto-enable (unlike obsidian-sync, which crash-loops until the vault is
+# linked): the renderer exits cleanly if the vault/template isn't there yet.
+- name: Service | obsidian-diary | Enable timer (ensures today+tomorrow notes)
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.systemd:
+    name: obsidian-diary.timer
+    scope: user
+    enabled: yes
+    state: started
+  tags:
+    - obsidian

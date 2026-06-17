@@ -1,0 +1,12 @@
+[Unit]
+Description=Ensure Obsidian diary entries at boot and daily
+
+[Timer]
+# Shortly after boot, and again every day just after midnight so a machine left
+# running rolls over to the new day. Persistent catches a missed run after downtime.
+OnBootSec=2min
+OnCalendar=*-*-* 00:05:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=Ensure Obsidian diary entries exist for today and tomorrow
+# Render after the vault is reachable; sync picks up the new files afterward.
+After=obsidian-sync.service
+
+[Service]
+Type=oneshot
+# Renderer is version-agnostic, but node is mise-managed and not on the user
+# service PATH; run it under node@24 like the sync service (see CLAUDE.md).
+ExecStart=/usr/bin/mise exec node@24 -- %h/.bin/obsidian-diary-ensure.js
