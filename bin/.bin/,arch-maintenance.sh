@@ -29,7 +29,15 @@ print_error() {
 
 # Update everything
 print_step "Updating system packages and AUR packages..."
-sudo -u aur_builder yay -Syu
+if ! sudo -u aur_builder yay -Syu --devel; then
+    echo ""
+    print_error "yay exited non-zero — one or more packages failed to update/build (see output above)."
+    read -rp "Continue with the rest of maintenance? (y/N): " continue_maint
+    if [[ ! "$continue_maint" =~ ^[Yy]$ ]]; then
+        print_warning "Aborting maintenance at user request."
+        exit 1
+    fi
+fi
 
 echo ""
 print_step "Cleaning temporary download files..."
