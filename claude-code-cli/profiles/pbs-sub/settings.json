@@ -14,5 +14,6 @@
   },
   "enabledPlugins": {},
   "effortLevel": "medium",
-  "theme": "light"
+  "theme": "light",
+  "agentPushNotifEnabled": false
 }
