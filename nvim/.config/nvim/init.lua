@@ -3,6 +3,22 @@ local vim = vim
 
 vim.g.mapleader = " " -- Make sure to set `mapleader` before plugins so mappings are correct
 
+-- Build hooks: run after plugin install/update.
+-- Registered BEFORE vim.pack.add() so the synchronous "install" event fired
+-- during add() on a fresh machine is caught (otherwise the build never runs).
+vim.api.nvim_create_autocmd("PackChanged", {
+  callback = function(args)
+    if args.data.kind == "install" or args.data.kind == "update" then
+      local name = args.data.spec.name
+      if name == "nvim-treesitter" then
+        vim.cmd("TSUpdate")
+      elseif name == "telescope-fzf-native.nvim" then
+        vim.fn.system({ "make", "-C", args.data.path })
+      end
+    end
+  end,
+})
+
 -- Install plugins via vim.pack (native, Neovim 0.12+)
 vim.pack.add({
   { src = "https://github.com/akinsho/bufferline.nvim" },
@@ -28,19 +44,13 @@ vim.pack.add({
   { src = "https://github.com/HiPhish/rainbow-delimiters.nvim" },
 })
 
--- Build hooks: run after plugin install/update
-vim.api.nvim_create_autocmd("PackChanged", {
-  callback = function(args)
-    if args.data.kind == "install" or args.data.kind == "update" then
-      local name = args.data.spec.name
-      if name == "nvim-treesitter" then
-        vim.cmd("TSUpdate")
-      elseif name == "telescope-fzf-native.nvim" then
-        vim.fn.system({ "make", "-C", args.data.path })
-      end
-    end
-  end,
-})
+-- Safety net: ensure telescope-fzf-native is compiled even if the PackChanged
+-- build hook didn't fire (e.g. plugin cloned by an earlier config without the
+-- hook). Builds synchronously before telescope loads the "fzf" extension below.
+local fzf_native = vim.fn.stdpath("data") .. "/site/pack/core/opt/telescope-fzf-native.nvim"
+if vim.fn.isdirectory(fzf_native) == 1 and vim.fn.filereadable(fzf_native .. "/build/libfzf.so") == 0 then
+  vim.fn.system({ "make", "-C", fzf_native })
+end
 
 -- Enable TreeSitter highlighting for file buffers
 vim.api.nvim_create_autocmd({ "FileType" }, {
