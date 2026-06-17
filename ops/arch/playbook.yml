@@ -4,6 +4,7 @@
     - common
     - aur
     - workstation
+    - obsidian-sync
 - hosts: forge
   become: yes
   roles:

@@ -11,6 +11,7 @@
     "custom/desktop-recording",
     "custom/audio-recording",
     "pulseaudio",
+    "custom/obsidian-sync",
     "custom/power"
   ],
   "niri/workspaces": {
@@ -57,6 +58,12 @@
     "return-type": "json",
     "interval": 2,
     "on-click": "~/dev/dot_files/bin/.bin/fuzzel/toggle-audio-recording.sh"
+  },
+  "custom/obsidian-sync": {
+    "exec": "~/dev/dot_files/bin/.bin/obsidian-sync-status.sh --status",
+    "return-type": "json",
+    "interval": 10,
+    "on-click": "~/dev/dot_files/bin/.bin/obsidian-sync-status.sh --restart"
   },
   "custom/power": {
     "format": "⏻",

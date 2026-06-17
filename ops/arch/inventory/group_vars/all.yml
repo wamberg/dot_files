@@ -12,6 +12,7 @@ stow_packages_common:
   - niri
   - npm
   - nvim
+  - obsidian-sync
   - sql
   - swappy
   - tinty

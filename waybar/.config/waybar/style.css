@@ -63,6 +63,11 @@ window#waybar {
     color: @red;
 }
 
+#custom-obsidian-sync { margin-right: 8px; }
+#custom-obsidian-sync.active { color: @green; }
+#custom-obsidian-sync.activating { color: @yellow; }
+#custom-obsidian-sync.failed { color: @red; }
+
 #pulseaudio {
     margin-right: 15px;
 }

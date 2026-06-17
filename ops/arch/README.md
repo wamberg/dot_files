@@ -79,6 +79,26 @@ To run only the AUR-related tasks:
 
 `sudo ansible-playbook -i ops/arch/inventory ops/arch/playbook.yml --limit forge --tags aur_setup`
 
+## Obsidian Sync Bootstrap (one-time per machine, after playbook run)
+
+The `obsidian-sync` role installs `ob` (under a mise-managed Node 24, since the
+system Node lacks `better-sqlite3` prebuilts) and deploys the unit files, but does
+**not** enable the service — it would crash-loop until the vault is linked. `ob`
+must always be invoked via `mise exec node@24 --`; an `ob` alias makes this less
+tedious. Complete these steps manually on each machine after the first playbook run:
+
+```bash
+alias ob='mise exec node@24 -- ob'                    # optional, for this shell
+ob login                                              # interactive: email/password + MFA
+ob sync-list-remote                                   # confirm the vault (name: garden)
+ob sync-setup --vault garden --path ~/dev/garden
+ob sync                                               # initial reconcile (one-shot)
+systemctl --user enable --now obsidian-sync.service   # start continuous daemon
+```
+
+After this, the service auto-resumes on reboot (linger + `WantedBy=default.target`).
+The waybar dot turns green within ~10 s; click it to restart the service if it stops.
+
 ## Post-Playbook Steps
 
 ### AWS Config

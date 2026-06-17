@@ -1,0 +1,32 @@
+- name: System | Node | Install Node 24 (better-sqlite3 prebuilts; Node 26 lacks them)
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.command:
+    cmd: /usr/bin/mise install node@24
+  register: mise_node24
+  changed_when: "'install' in (mise_node24.stderr | lower) or 'install' in (mise_node24.stdout | lower)"
+  tags:
+    - obsidian
+- name: System | Packages | Install obsidian-headless CLI (ob) under Node 24
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.command:
+    cmd: /usr/bin/mise exec node@24 -- npm install --global obsidian-headless
+  register: ob_install
+  changed_when: "'up to date' not in (ob_install.stdout | lower)"
+  tags:
+    - obsidian
+- name: User | {{ username }} | Enable linger so obsidian-sync survives logout
+  ansible.builtin.command:
+    cmd: loginctl enable-linger {{ username }}
+  changed_when: false
+  tags:
+    - obsidian
+- name: Service | obsidian-sync | Reload systemd user daemon
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.systemd:
+    daemon_reload: yes
+    scope: user
+  tags:
+    - obsidian

@@ -1,0 +1,6 @@
+[Unit]
+Description=Notify when Obsidian Sync has stopped
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/notify-send -u critical "Obsidian Sync STOPPED" "Notes in ~/dev/garden are NOT syncing. Check: systemctl --user status obsidian-sync"

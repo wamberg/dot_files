@@ -1,0 +1,20 @@
+[Unit]
+Description=Obsidian Sync (headless, continuous)
+After=network-online.target
+Wants=network-online.target
+# If it crash-loops past this burst, let it reach "failed" so OnFailure fires.
+StartLimitIntervalSec=300
+StartLimitBurst=5
+OnFailure=obsidian-sync-failure.service
+
+[Service]
+Type=simple
+WorkingDirectory=%h/dev/garden
+# ob lives in the user npm prefix, which isn't on the service PATH — call it by
+# absolute path. mise exec puts node@24 first so its env-node shebang resolves right.
+ExecStart=/usr/bin/mise exec node@24 -- %h/.npm-packages/bin/ob sync --continuous
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target
