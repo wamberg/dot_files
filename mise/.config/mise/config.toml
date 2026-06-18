@@ -9,6 +9,7 @@ rust = "latest"
 stylua = "latest"
 tree-sitter = "latest"
 ty = "latest"
+usage = "latest"
 uv = "latest"
 
 [settings]
