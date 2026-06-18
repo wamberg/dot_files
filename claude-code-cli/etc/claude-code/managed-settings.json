@@ -99,16 +99,6 @@
             "async": true
           }
         ]
-      },
-      {
-        "matcher": "idle_prompt",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$HOME/.claude/hooks/garden-log.sh",
-            "async": true
-          }
-        ]
       }
     ],
     "PermissionRequest": [

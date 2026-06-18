@@ -1,5 +1,5 @@
 ---
-description: Append a 3-sentence session summary to today's garden diary
+description: Append a session summary to today's garden diary (optional guidance to steer it)
 ---
 
-!$HOME/.claude/hooks/garden-log.sh manual
+!$HOME/.claude/hooks/garden-log.sh manual "$ARGUMENTS"
