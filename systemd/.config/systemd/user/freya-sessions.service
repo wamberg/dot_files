@@ -1,6 +1,11 @@
 [Unit]
 Description=Create tmux sessions for bazaar and garden
-After=default.target
+# Bind to the graphical session so WAYLAND_DISPLAY is in the systemd user
+# environment before the tmux server is created. niri --session imports
+# WAYLAND_DISPLAY and then reaches graphical-session.target; starting earlier
+# (e.g. default.target) freezes an empty WAYLAND_DISPLAY into the tmux server.
+After=graphical-session.target
+PartOf=graphical-session.target
 
 [Service]
 Type=oneshot
@@ -9,4 +14,4 @@ Environment=PATH=%h/.bin:%h/.local/bin:/usr/local/bin:/usr/bin:/bin
 ExecStart=%h/.bin/,freya-sessions.sh
 
 [Install]
-WantedBy=default.target
+WantedBy=graphical-session.target
