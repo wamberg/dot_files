@@ -7,4 +7,7 @@ After=obsidian-sync.service
 Type=oneshot
 # Renderer is version-agnostic, but node is mise-managed and not on the user
 # service PATH; run it under node@24 like the sync service (see CLAUDE.md).
-ExecStart=/usr/bin/mise exec node@24 -- %h/.bin/obsidian-diary-ensure.js
+# The .cjs extension is load-bearing: Node decides the module type from the
+# extension and never consults an ancestor package.json, so a stray/invalid
+# ~/package.json can't crash the run with ERR_INVALID_PACKAGE_CONFIG.
+ExecStart=/usr/bin/mise exec node@24 -- %h/.bin/obsidian-diary-ensure.cjs

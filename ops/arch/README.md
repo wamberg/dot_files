@@ -103,12 +103,12 @@ The waybar dot turns green within ~10 s; click it to restart the service if it s
 
 The role also enables `obsidian-diary.timer`, which runs at boot and just after
 midnight to ensure a diary entry exists for **today and tomorrow** (`~/dev/garden/diary/`).
-Because Templater (the GUI plugin) can't run headlessly, `bin/.bin/obsidian-diary-ensure.js`
+Because Templater (the GUI plugin) can't run headlessly, `bin/.bin/obsidian-diary-ensure.cjs`
 reproduces the daily-note render generically: it reads the vault's own
 `.obsidian/daily-notes.json` + template at runtime and fills in `{{date:…}}` and the
 `<%* … %>` weekday logic. The template (with its private content) stays in the vault;
 this script holds none of it. Run it by hand any time with
-`mise exec node@24 -- ~/.bin/obsidian-diary-ensure.js` (add `--dry-run` to preview).
+`mise exec node@24 -- ~/.bin/obsidian-diary-ensure.cjs` (add `--dry-run` to preview).
 If you change the template's weekday-task logic in Obsidian, the renderer follows it
 automatically — only genuinely new Templater APIs would need a shim addition.
 
