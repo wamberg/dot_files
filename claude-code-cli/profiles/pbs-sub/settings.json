@@ -15,5 +15,6 @@
   "enabledPlugins": {},
   "effortLevel": "medium",
   "theme": "light",
-  "agentPushNotifEnabled": false
+  "agentPushNotifEnabled": false,
+  "tui": "default"
 }
