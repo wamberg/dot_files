@@ -14,6 +14,12 @@ vim.api.nvim_create_autocmd("PackChanged", {
         vim.cmd("TSUpdate")
       elseif name == "telescope-fzf-native.nvim" then
         vim.fn.system({ "make", "-C", args.data.path })
+      elseif name == "markdown-preview.nvim" then
+        -- Upstream stopped publishing prebuilt binaries (latest release has no
+        -- assets), so mkdp#util#install() 404s. Build the preview app from
+        -- source instead. npx ships with the mise-managed Node, so this needs
+        -- no extra tooling; the app then runs under that same Node at runtime.
+        vim.fn.system({ "npx", "--yes", "yarn", "--cwd", args.data.path .. "/app", "install" })
       end
     end
   end,
@@ -42,6 +48,7 @@ vim.pack.add({
   -- LuaSnip note: if regex-transform snippets are ever needed, run once manually:
   --   make -C ~/.local/share/nvim/site/pack/core/opt/LuaSnip install_jsregexp
   { src = "https://github.com/HiPhish/rainbow-delimiters.nvim" },
+  { src = "https://github.com/iamcco/markdown-preview.nvim" },
 })
 
 -- Safety net: ensure telescope-fzf-native is compiled even if the PackChanged
@@ -578,6 +585,8 @@ require("conform").setup({
 })
 
 -- Markdown specific changes
+-- markdown-preview.nvim: toggle browser preview (mermaid renders out of the box)
+vim.keymap.set("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", { desc = "[M]arkdown [P]review" })
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = { "*.txt", "*.md", "*.markdown" },
   callback = function()
