@@ -32,6 +32,11 @@ aur_cli_packages:
   - claude-code
   - downgrade
   - ideviceinstaller
+  # Stable libggml (not libggml-git): whisper.cpp builds against the system ggml
+  # (-DWHISPER_USE_SYSTEM_GGML=ON). The -git variant only rebuilds under
+  # `yay -Syu --devel` and drifts stale, breaking whisper.cpp upgrades. The
+  # versioned package upgrades in lockstep on a normal -Syu.
+  - libggml
   - whisper.cpp
   - whisper.cpp-model-medium.en
   - whisper.cpp-model-small.en-tdrz
